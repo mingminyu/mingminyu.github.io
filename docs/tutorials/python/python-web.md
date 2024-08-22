@@ -19,8 +19,8 @@
     Django
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/django/django) &nbsp;
+    [:bookmark:](https://docs.djangoproject.com/en/5.1/)
 
 - :simple-flask: &nbsp; Flask
 
@@ -28,8 +28,8 @@
     Flask
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/pallets/flask) &nbsp;
+    [:bookmark:](https://flask.palletsprojects.com/en/3.0.x)
 
 - :simple-sanic: &nbsp; Sanic
 
@@ -37,8 +37,8 @@
     Sanic
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://sanic.dev/en/guide/getting-started.html) &nbsp;
+    [:bookmark:](https://github.com/sanic-org/sanic)
 
 - :simple-sanic: &nbsp; NiceGUI
 
@@ -46,8 +46,8 @@
     NiceGUI
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/zauberzeug/nicegui) &nbsp;
+    [:bookmark:](https://nicegui.io/documentation)
 
 - :simple-sanic: &nbsp; Reflex
 
@@ -55,8 +55,8 @@
     Reflex
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/reflex-dev/reflex) &nbsp;
+    [:bookmark:](https://reflex.dev/docs/getting-started/introduction/)
 
 - :simple-sanic: &nbsp; ReactPy
 
@@ -64,8 +64,8 @@
     ReactPy
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/reactive-python/reactpy) &nbsp;
+    [:bookmark:](https://reactpy.dev/docs/index.html)
 
 - :simple-sanic: &nbsp; JustPy
 
@@ -73,8 +73,8 @@
     JustPy
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/justpy-org/justpy) &nbsp;
+    [:bookmark:](https://justpy.io)
 
 - :simple-sanic: &nbsp; Flet
 
@@ -82,8 +82,8 @@
     Flet
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://flet.dev/docs/) &nbsp;
+    [:bookmark:](https://github.com/flet-dev/flet)
 
 - :material-pyramid: &nbsp; Pyramid
 
@@ -91,8 +91,8 @@
     Pyramid
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/Pylons/pyramid) &nbsp;
+    [:bookmark:](https://trypyramid.com/documentation.html)
 
 - :simple-streamlit: &nbsp; Streamlit
 
@@ -100,8 +100,8 @@
     Streamlit
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/streamlit/streamlit) &nbsp;
+    [:bookmark:](https://docs.streamlit.io)
 
 - :simple-sanic: &nbsp; Robyn
 
@@ -109,8 +109,8 @@
     Robyn
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/sparckles/robyn) &nbsp;
+    [:bookmark:](https://robyn.tech/documentation)
 
 - :cloud_tornado: &nbsp; Tornado
 
@@ -127,8 +127,8 @@
     Shiny
 
     ---
-    [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
-    [:bookmark:](https://fastapi.tiangolo.com/zh)
+    [:simple-github:](https://github.com/posit-dev/py-shiny) &nbsp;
+    [:bookmark:](https://shiny.posit.co/py/docs/overview.html)
 
 </div>
 
