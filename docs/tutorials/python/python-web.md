@@ -103,7 +103,7 @@
     [:simple-github:](https://github.com/streamlit/streamlit) &nbsp;
     [:bookmark:](https://docs.streamlit.io)
 
-- :simple-sanic: &nbsp; Robyn
+- :material-apps: &nbsp; Robyn
 
     ---
     Robyn
@@ -121,7 +121,7 @@
     [:simple-github:](https://github.com/fastapi/fastapi) &nbsp;
     [:bookmark:](https://fastapi.tiangolo.com/zh)
 
-- :cloud_tornado: &nbsp; Shiny
+- :material-apps: &nbsp; Shiny
 
     ---
     Shiny
@@ -129,6 +129,15 @@
     ---
     [:simple-github:](https://github.com/posit-dev/py-shiny) &nbsp;
     [:bookmark:](https://shiny.posit.co/py/docs/overview.html)
+
+- :material-apps: &nbsp; FastHTML
+
+    ---
+    FastHTML
+
+    ---
+    [:simple-github:](https://github.com/AnswerDotAI/fasthtml) &nbsp;
+    [:bookmark:](https://docs.fastht.ml)
 
 </div>
 

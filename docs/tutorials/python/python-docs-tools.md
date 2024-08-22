@@ -20,6 +20,15 @@
     [:simple-github:](https://github.com/squidfunk/mkdocs-material) &nbsp;
     [:bookmark:](https://squidfunk.github.io/mkdocs-material)
 
+- :simple-materialformkdocs: &nbsp; ReportLab
+
+    ---
+    ReportLab
+
+    ---
+    [:simple-github:](https://github.com/Distrotech/reportlab) &nbsp;
+    [:bookmark:](https://docs.reportlab.com)
+
 </div>
 
 [mkdocs]: https://www.zerooai.cn

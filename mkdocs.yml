@@ -178,6 +178,11 @@ nav:
         - 任务调度: tutorials/python/python-task-scheduler.md
         - 文档工具: tutorials/python/python-docs-tools.md
         - 办公自动化: tutorials/python/python-office-auto.md
+        - 终端美化: tutorials/python/python-terminal.md
+        - 数据处理: tutorials/python/python-data-process.md
+        - 操作数据库: tutorials/python/python-databases.md
+        - 日志处理: tutorials/python/python-log-process.md
+
         - WEB 开发: tutorials/python/python-web.md
         - GUI 开发: tutorials/python/python-gui.md
         
@@ -233,8 +238,14 @@ nav:
     - 自然语言处理:
       - ai/nlp/index.md
 
+    - 图像处理:
+      - ai/cv/index.md
+
     - AI:
       - Conversational AI: ai/aigc/conversational-ai.md
+
+    - AI 工具: ai/tools.md
+
 
   - 商业分析: business_analysis/index.md
   - 软件工具:
