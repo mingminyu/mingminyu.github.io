@@ -30,13 +30,13 @@
     [:simple-github:](https://github.com/pola-rs/polars) &nbsp;
     [:bookmark:](https://docs.pola.rs)
 
-- :material-apps: &nbsp; CSVKit
+- :material-apps: &nbsp; Spout^2014^
 
     ---
-    CSVKit
+    Spout 用于构建分布式数据流处理应用程序。**非常古老的库，不建议学习**。
 
     ---
-    [:simple-github:](https://github.com/wireservice/csvkit) &nbsp;
-    [:bookmark:](https://csvkit.readthedocs.io/en/latest)
+    [:simple-github:](https://github.com/daviesjamie/spout)^8^ &nbsp;
+
 
 </div>

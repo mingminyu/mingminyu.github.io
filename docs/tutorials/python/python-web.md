@@ -139,14 +139,49 @@
     [:simple-github:](https://github.com/AnswerDotAI/fasthtml) &nbsp;
     [:bookmark:](https://docs.fastht.ml)
 
+- :material-apps: &nbsp; FastUI
+
+    ---
+    FastUI
+
+    ---
+    [:simple-github:](https://github.com/pydantic/FastUI)^8k^ &nbsp;
+    [:bookmark:](https://docs.pydantic.dev/fastui)
+
 </div>
 
+## 2. 组件
 
-## 2. 压力测试
+### 2.1 身份验证
 
 <div class="grid cards" markdown>
 
-- :simple-fastapi: &nbsp; Locust^2024^
+- :fontawesome-solid-locust: &nbsp; Authomatic^2024^
+
+    ---
+    Authomatic 提供了一套简单且强大的 API，用于处理 OAuth 和 OpenID 身份验证流程。
+
+    ---
+    [:simple-github:](https://github.com/authomatic/authomatic)^1k^ &nbsp;
+    [:bookmark:](https://authomatic.github.io/authomatic/)
+
+- :material-apps: &nbsp; 
+    ---
+    
+
+    ---
+    [:simple-github:](https://github.com/eldaduzman/pymeter)^130^ &nbsp;
+    [:bookmark:](https://pymeter.readthedocs.io/en/latest)
+
+</div>
+
+
+
+## 3. 压力测试
+
+<div class="grid cards" markdown>
+
+- :fontawesome-solid-locust: &nbsp; Locust^2024^
 
     ---
     Locust 对站点进行压力测试
@@ -155,7 +190,7 @@
     [:simple-github:](https://github.com/locustio/locusts)^24.4k^ &nbsp;
     [:bookmark:](https://docs.locust.io/en/stable)
 
-- :simple-fastapi: &nbsp; PyMeter^2024^
+- :material-apps: &nbsp; PyMeter^2024^
 
     ---
     PyMeter 是 JMeter 的 Python 实现，用于对站点进行压力测试

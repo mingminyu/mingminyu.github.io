@@ -29,5 +29,14 @@
     ---
     [:simple-github:](https://github.com/cloudera/impyla)^726^ &nbsp;
 
+- :material-apps: &nbsp; ZODB^2024^
+
+    ---
+    ZODB 是一个强大而灵活的 Python 对象数据库，适合那些需要将数据存储在数据库中。
+
+    ---
+    [:simple-github:](https://github.com/cloudera/impyla)^673^ &nbsp;
+    [:bookmark:](https://zodb.org/en/latest)
+
 
 </div>

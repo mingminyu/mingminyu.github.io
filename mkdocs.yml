@@ -180,6 +180,7 @@ nav:
         - 数据处理: tutorials/python/python-data-process.md
         - 操作数据库: tutorials/python/python-databases.md
         - 日志处理: tutorials/python/python-log-process.md
+        - 打包: tutorials/python/python-packging.md
         - 常用库: tutorials/python/most-used-pkgs.md
 
         - WEB 开发: tutorials/python/python-web.md
@@ -224,15 +225,16 @@ nav:
 
     - 深度学习:
       - 基础内容:
+        - Attention: ai/deep-learning/attention.md
         # - CNN:
         # - RNN:
         # - LSTM:
-        - Attention: ai/deep-learning/attention.md
         # - 变分自编码器:
         # - 生成式对抗网络: 
         # - Transformer:
         # - 扩散模型:
         # - 多模态模型:
+      - 应用框架: ai/deep-learning/most-popular-packages.md
 
     - 自然语言处理:
       - ai/nlp/index.md

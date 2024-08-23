@@ -125,8 +125,80 @@
 - :bookmark_tabs: &nbsp; Ast
 
     ---
-    Ast 抽象语法树，是 Python 标注库之一，可以用于加密代码。
+    Ast 抽象语法树，是 Python 内置标准库之一，可以用于加密代码。
 
     
 </div>
 
+## 5. 代码风格
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Black^2018^
+
+    ---
+    Black 是一款遵循 PEP8 编码规范的 Python 代码自动格式化工，它能够帮助我们解决代码缩进、括号位置、空格使用等格式化问题，使代码风格保持一致，提高代码的可读性和可维护性
+
+    ---
+    [:simple-github:](https://github.com/asweigart/pyrect)^38.3k^
+    [:bookmark:](https://black.readthedocs.io/en/stable)
+
+</div>
+
+
+## 6. 其他
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; DnsPython^2024^
+
+    ---
+    DnsPython 专门用于处理 DNS 查询。
+
+    ---
+    [:simple-github:](https://github.com/rthalley/dnspython)^2.4k^
+    [:bookmark:](https://dnspython.readthedocs.io/en/stable)
+
+- :material-apps: &nbsp; PycURL^2024^
+
+    ---
+    PycURL 是 libcurl 的 Python 实现。
+
+    ---
+    [:simple-github:](https://github.com/pycurl/pycurl)^1.1k^
+    [:bookmark:](http://pycurl.io/docs/latest/index.html)
+
+
+- :material-apps: &nbsp; PyWinRM^2024^
+
+    ---
+    PyWinrm 专为与 Windows 系统上的 WinRM 服务进行交互而设计
+
+    ---
+    [:simple-github:](https://github.com/diyan/pywinrm)^1.1k^ &nbsp;
+
+- :material-apps: &nbsp; CDKTF^2024^
+
+    ---
+    CDKTF 允许开发者使用Python编写云基础设施的代码，然后通过 Terraform 进行部署。
+
+    ---
+    [:simple-github:](hub.com/hashicorp/terraform-cdk)^4.8k^ &nbsp;
+    [:bookmark:](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install)
+
+
+- :material-apps: &nbsp; PyRect^2018^
+
+    ---
+    PyRect 是一个用于处理矩形几何计算的 Python 库。**无详细文档，不建议学习**。
+
+    ---
+    [:simple-github:](https://github.com/asweigart/pyrect)^11^
+
+- :material-apps: &nbsp; Imghdr^2018^
+
+    ---
+    Imghdr 是 Python 内置标准库，专门用于检测图片文件的类型
+
+
+</div>
