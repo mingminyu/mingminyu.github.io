@@ -1,5 +1,7 @@
 # Python 爬虫
 
+## 1. 爬虫框架
+
 <div class="grid cards" markdown>
 
 - :simple-scrapy: &nbsp; **[Scrapy][scrapy]**
@@ -16,7 +18,31 @@
     [:simple-github:](https://github.com/Boris-code/feapder) &nbsp;
     [:bookmark:](https://feapder.com/#/README)
 
+- :fontawesome-solid-map-location-dot: &nbsp; Requests
+
+    ---
+    Requests
+
+    ---
+    [:simple-github:](https://github.com/psf/requests) &nbsp;
+    [:bookmark:](https://requests.readthedocs.io/projects/cn/zh-cn/latest)
+
 </div>
 
 [scrapy]: https://docs.scrapy.org/en/latest
-[feapder]: https://feapder.com/
+[feapder]: https://feapder.com
+
+## 2. 内容提取
+
+<div class="grid cards" markdown>
+
+- :simple-scrapy: &nbsp; LXML^2024^
+
+    ---
+    LXML 提取 HTML/XML 内容
+
+    [:simple-github:](https://github.com/lxml/lxml)^2.6k^ &nbsp;
+    [:bookmark:](hhttps://lxml.de)
+
+</div>
+

@@ -141,3 +141,27 @@
 
 </div>
 
+
+## 2. 压力测试
+
+<div class="grid cards" markdown>
+
+- :simple-fastapi: &nbsp; Locust^2024^
+
+    ---
+    Locust 对站点进行压力测试
+
+    ---
+    [:simple-github:](https://github.com/locustio/locusts)^24.4k^ &nbsp;
+    [:bookmark:](https://docs.locust.io/en/stable)
+
+- :simple-fastapi: &nbsp; PyMeter^2024^
+
+    ---
+    PyMeter 是 JMeter 的 Python 实现，用于对站点进行压力测试
+
+    ---
+    [:simple-github:](https://github.com/eldaduzman/pymeter)^130^ &nbsp;
+    [:bookmark:](https://pymeter.readthedocs.io/en/latest)
+
+</div>

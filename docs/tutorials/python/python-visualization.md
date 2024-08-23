@@ -39,4 +39,15 @@
     [:bookmark:](https://pyecharts.org)  &nbsp;
     [:bookmark:](https://gallery.pyecharts.org)
 
+- :material-apps: &nbsp; Vizro^2024^
+
+    ---
+    Vizro
+
+    ---
+    [:simple-github:](https://github.com/mckinsey/vizro)^2.6k^ &nbsp;
+    [:bookmark:](https://vizro.readthedocs.io/en/stable)  &nbsp;
+    
+
 </div>
+

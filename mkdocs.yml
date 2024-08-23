@@ -176,12 +176,11 @@ nav:
         - 爬虫: tutorials/python/spider/index.md
         - 可视化: tutorials/python/python-visualization.md
         - 任务调度: tutorials/python/python-task-scheduler.md
-        - 文档工具: tutorials/python/python-docs-tools.md
         - 办公自动化: tutorials/python/python-office-auto.md
-        - 终端美化: tutorials/python/python-terminal.md
         - 数据处理: tutorials/python/python-data-process.md
         - 操作数据库: tutorials/python/python-databases.md
         - 日志处理: tutorials/python/python-log-process.md
+        - 常用库: tutorials/python/most-used-pkgs.md
 
         - WEB 开发: tutorials/python/python-web.md
         - GUI 开发: tutorials/python/python-gui.md
@@ -242,9 +241,9 @@ nav:
       - ai/cv/index.md
 
     - AI:
-      - Conversational AI: ai/aigc/conversational-ai.md
-
-    - AI 工具: ai/tools.md
+      - 大模型: ai/aigc/llm.md
+      - 对话机器人: ai/aigc/conversational-ai.md
+      - AI 工具: ai/tools.md
 
 
   - 商业分析: business_analysis/index.md
