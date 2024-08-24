@@ -1,6 +1,18 @@
-# GUI 开发
+# Python GUI 开发
+
+
+## 1. 框架
 
 <div class="grid cards" markdown>
+
+- :material-apps: &nbsp; PyQt6
+
+    ---
+    PyQt6
+
+    ---
+    [:bookmark:](https://www.riverbankcomputing.com/static/Docs/PyQt6)
+
 
 - :material-apps: &nbsp; PyQtGraph
 
@@ -55,3 +67,17 @@
     [:simple-github:](https://github.com/fltk/fltk)^1.6k^ &nbsp;
     [:bookmark:](https://www.fltk.org/documentation.php)
 </div>
+
+## 2. 优秀项目
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; CustomTkinterBuilder^2024^
+
+    ---
+    CustomTkinter 是对 Tkinter 的优化和升级，它提供了创建窗口、按钮、标签等UI组件的功能。
+
+    ---
+    [:simple-github:](https://github.com/rigvedmaanas/CustomTkinterBuilder)^60^ &nbsp;
+    [:bookmark:](https://github.com/rigvedmaanas/CustomTkinterBuilder/wiki/1.-Home)
+

@@ -48,4 +48,14 @@
     [:simple-github:](https://github.com/agronholm/apscheduler) &nbsp;
     [:bookmark:](https://apscheduler.readthedocs.io/en/3.x)
 
+- :material-apps: &nbsp; Schedule
+
+    ---
+    Schedule 是一个轻量级的定时任务调度的库
+
+    ---
+    [:simple-github:](https://github.com/dbader/schedule)^11.7k^ &nbsp;
+    [:bookmark:](https://schedule.readthedocs.io/en/stable)
+
+
 </div>

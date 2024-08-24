@@ -47,6 +47,15 @@
     ---
     [:simple-github:](https://github.com/mckinsey/vizro)^2.6k^ &nbsp;
     [:bookmark:](https://vizro.readthedocs.io/en/stable)  &nbsp;
+
+- :material-apps: &nbsp; Marmir^2024^
+
+    ---
+    Marmir 是一个基于 Python 的数据可视化工具，它提供了一种简单直观的方式来创建各种图表和可视化界面。
+
+    ---
+    [:simple-github:](https://github.com/mckinsey/vizro)^2.6k^ &nbsp;
+    [:bookmark:](https://vizro.readthedocs.io/en/stable)  &nbsp;
     
 
 </div>

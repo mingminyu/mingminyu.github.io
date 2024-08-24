@@ -15,14 +15,6 @@
     [:simple-github:](https://github.com/huggingface/datasets)^18.9k^ &nbsp;
     [:bookmark:](https://huggingface.co/docs/datasets/v1.15.1/installation.html)
 
-- :material-apps: &nbsp; PyInstaller^2024^
-
-    ---
-    PyInstaller 
-
-    ---
-    [:simple-github:](https://github.com/pyinstaller/pyinstaller)^11.6k^ &nbsp;
-    [:bookmark:](https://pyinstaller.org/en/stable)
 
 </div>
 

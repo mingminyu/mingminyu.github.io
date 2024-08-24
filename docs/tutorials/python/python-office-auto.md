@@ -1,5 +1,8 @@
 # 办公自动化
 
+
+## 1. Excel
+
 <div class="grid cards" markdown>
 
 - :material-apps: &nbsp; Xlwings
@@ -11,15 +14,11 @@
     [:simple-github:](https://github.com/xlwings/xlwings) &nbsp;
     [:bookmark:](https://docs.xlwings.org/en/latest)
 
-- :material-apps: &nbsp; Papermill
+</div>
 
-    ---
-    Papermill
+## 2. PDF
 
-    ---
-    [:simple-github:](https://github.com/nteract/papermill) &nbsp;
-    [:bookmark:](https://papermill.readthedocs.io/en/latest)
-
+<div class="grid cards" markdown>
 - :material-apps: &nbsp; PDFPlumber
 
     ---
@@ -37,6 +36,20 @@
     ---
     [:simple-github:](https://github.com/camelot-dev/camelot) &nbsp;
     [:bookmark:](https://camelot-py.readthedocs.io/en/master)
+
+- :material-apps: &nbsp; PDFMiner^2019^
+
+    ---
+    PDFMiner 用于提取 PDF 文件中信息。
+
+    ---
+    [:simple-github:](https://github.com/euske/pdfminer)^5.2K^ &nbsp;
+    [:bookmark:](https://pdfminersix.readthedocs.io/en/lates)
+
+</div>
+
+## 3. 邮箱
+<div class="grid cards" markdown>
 
 - :material-apps: &nbsp; SMTPLib
 
@@ -71,6 +84,22 @@
     ---
     [:simple-github:](https://github.com/modoboa/modoboa) ^3k^ &nbsp;
     [:bookmark:](https://modoboa.readthedocs.io/en/latest)
+
+</div>
+
+
+## 4. 其他
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Papermill
+
+    ---
+    Papermill
+
+    ---
+    [:simple-github:](https://github.com/nteract/papermill) &nbsp;
+    [:bookmark:](https://papermill.readthedocs.io/en/latest)
 
 </div>
 

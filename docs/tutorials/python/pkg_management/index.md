@@ -94,5 +94,14 @@
     Pipreqs
 
 
+- :fontawesome-solid-cube: &nbsp; LocalShop^2020^
+
+    ---
+    LocalShop 是一个Python包的本地包管理器。
+
+    ---
+    [:simple-github:](https://github.com/mvantellingen/localshop) &nbsp;
+    [:bookmark:](https://localshop.readthedocs.io/en/latest)
+
 </div>
 

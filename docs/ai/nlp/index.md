@@ -54,5 +54,20 @@
     ---
     [:simple-github:](https://github.com/fxsjy/jieba)^33k^ &nbsp;
 
+</div>
+
+## 3. 文本摘要
+
+<div class="grid cards" markdown>
+
+- :fontawesome-solid-cube: &nbsp; Sumy^2024^
+
+    ---
+    Sumy 用于从长文本中提取出摘要，使得用户可以快速了解文本的主要内容。
+
+    ---
+    [:simple-github:](https://github.com/miso-belica/sumy)^3.5k^ &nbsp;
+    [:bookmark:](https://miso-belica.github.io/sumy)
 
 </div>
+

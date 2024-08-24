@@ -148,7 +148,38 @@
     [:simple-github:](https://github.com/pydantic/FastUI)^8k^ &nbsp;
     [:bookmark:](https://docs.pydantic.dev/fastui)
 
+- :material-apps: &nbsp; Starlette
+
+    ---
+    Starlette 是一款 Python 异步 WEB 框架。
+
+    ---
+    [:simple-github:](https://github.com/encode/starlette)^10k^ &nbsp;
+    [:bookmark:](https://www.starlette.io)
+
+- :material-apps: &nbsp; MeSop
+
+    ---
+    MeSop 是谷歌开源的基于 Python 的 UI 框架，可以用快速构建 Web 应用。
+
+    ---
+    [:simple-github:](https://github.com/encode/starlette)^5.1k^ &nbsp;
+    [:bookmark:](https://www.starlette.io)
+
 </div>
+
+### 1.1 Django 插件
+
+<div class="grid cards" markdown>
+
+- :simple-django: &nbsp; GeoDjango
+
+    ---
+    GeoDjango
+
+    ---
+    [:simple-github:](https://github.com/django/django) &nbsp;
+    [:bookmark:](https://docs.djangoproject.com/en/5.1/)
 
 ## 2. 组件
 
@@ -165,16 +196,16 @@
     [:simple-github:](https://github.com/authomatic/authomatic)^1k^ &nbsp;
     [:bookmark:](https://authomatic.github.io/authomatic/)
 
-- :material-apps: &nbsp; 
+- :material-apps: &nbsp; RAuth^2015^
     ---
     
+    RAuth 用于处理 OAuth 认证
 
     ---
-    [:simple-github:](https://github.com/eldaduzman/pymeter)^130^ &nbsp;
-    [:bookmark:](https://pymeter.readthedocs.io/en/latest)
+    [:simple-github:](https://github.com/litl/rauth)^1.6k^ &nbsp;
+    [:bookmark:](https://rauth.readthedocs.io/en/latest)
 
 </div>
-
 
 
 ## 3. 压力测试
@@ -200,3 +231,35 @@
     [:bookmark:](https://pymeter.readthedocs.io/en/latest)
 
 </div>
+
+
+## 4. 部署
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Unicorn^2024^
+
+    ---
+    Unicorn 是一个用于创建和管理多进程，常用于部署 WEB 应用。
+
+    ---
+    [:simple-github:](https://github.com/unicorn-engine/unicorn)^7.4k^ &nbsp;
+    [:bookmark:](https://www.unicorn-engine.org/docs)
+
+</div>
+
+
+## 5. 其他
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Unicode-Slugify^2024^
+
+    ---
+    Unicode-Slugify 支持广泛的字符集，并且能够生成符合URL规范的slug字符串。
+
+    ---
+    [:simple-github:](https://github.com/mozilla/unicode-slugify)^322^ &nbsp;
+
+</div>
+
