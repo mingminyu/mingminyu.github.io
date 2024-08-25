@@ -31,4 +31,14 @@
     [:bookmark:](https://www.jaided.ai/easyocr/tutorial)
 
 
+- :material-apps: &nbsp; Scikit-Image
+
+    ---
+    Scikit-Image 是基于Python的开源图像处理库
+
+    ---
+    [:simple-github:](https://github.com/scikit-image/scikit-image)^6k^ &nbsp;
+    [:bookmark:](https://scikit-image.org/docs/stable/)
+
+
 </div>

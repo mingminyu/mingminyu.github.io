@@ -57,5 +57,31 @@
     [:simple-github:](https://github.com/dbader/schedule)^11.7k^ &nbsp;
     [:bookmark:](https://schedule.readthedocs.io/en/stable)
 
+- :material-apps: &nbsp; Huey
+
+    ---
+    Huey是一个轻量级的异步任务队列
+
+    ---
+    [:simple-github:](https://github.com/coleifer/huey)^11.7k^ &nbsp;
+    [:bookmark:](https://huey.readthedocs.io)
+
+- :material-apps: &nbsp; Honcho^2022^
+
+    ---
+    Honcho是一个轻量级的Python库，用于管理多个Python进程
+
+    ---
+    [:simple-github:](https://github.com/nickstenning/honcho)^1.6k^ &nbsp;
+    [:bookmark:](https://honcho.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; Luigi^2022^
+
+    ---
+    Luigi 专门为复杂的批处理作业和工作流管理而设计
+
+    ---
+    [:simple-github:](https://github.com/spotify/luigi)^17.6k^ &nbsp;
+    [:bookmark:](https://luigi.readthedocs.io/en/stable)
 
 </div>

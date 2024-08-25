@@ -67,7 +67,6 @@
 
     ---
     [:simple-github:](https://github.com/jazzband/tablib)^4.6k^ &nbsp;
-
     [:bookmark:](https://tablib.readthedocs.io/en/stable)
 
 - :material-apps: &nbsp; Orjson^2022^
@@ -78,6 +77,32 @@
     ---
     [:simple-github:](https://github.com/ijl/orjson)^6k^ &nbsp;
 
+- :material-apps: &nbsp; ujson
+
+    ---
+    ujson 
+
+    ---
+    [:simple-github:](https://github.com/ultrajson/ultrajson)^6k^ &nbsp;
+
+- :material-apps: &nbsp; Faust^2022^
+
+    ---
+    Faust 是一个用于构建流处理应用程序的Python库，已经被废弃。
+
+    ---
+    [:simple-github:](https://github.com/robinhood/faust)^6.7k^ &nbsp;
+    [:bookmark:](https://faust.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; Faust-Streaming
+
+    ---
+    Faust-Streaming 是 Faust 重新实现库。
+
+    ---
+    [:simple-github:](https://github.com/faust-streaming/faust)^1.6k^ &nbsp;
+    [:bookmark:](https://faust-streaming.github.io/faust/)
+
 </div>
 
 
@@ -86,6 +111,16 @@
 
 
 <div class="grid cards" markdown>
+
+- :simple-pandas: &nbsp; Pydantic
+
+    ---
+    Pydantic 
+
+    ---
+    [:simple-github:](https://github.com/pydantic/pydantic)^20.2k^ &nbsp;
+    [:bookmark:](https://docs.pydantic.dev/latest)
+
 
 - :simple-pandas: &nbsp; Colander
 
@@ -110,9 +145,27 @@
     ---
     Dataclass 是 Python 内置标准库，用于定义数据模型。
 
+
+- :simple-pandas: &nbsp; Schematics
+
     ---
-    [:simple-github:](https://github.com/python-attrs/attrs)^5.2k^ &nbsp;
-    [:bookmark:](https://www.attrs.org/en/stable)
+    Schematics 是 Python 内置标准库，用于定义数据模型。
+
+    ---
+    [:simple-github:](https://github.com/schematics/schematics)^2.6k^ &nbsp;
+    [:bookmark:](https://schematics.readthedocs.io)
+
+
+- :simple-pandas: &nbsp; Schema
+
+    ---
+    Schema 用于验证数据结构，确保数据的完整性和正确性
+
+    ---
+    [:simple-github:](https://github.com/keleshev/schema)^2.9k^ &nbsp;
+    
+
+
 
 </div>
 

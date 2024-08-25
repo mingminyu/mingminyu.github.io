@@ -46,6 +46,32 @@
     [:simple-github:](https://github.com/euske/pdfminer)^5.2K^ &nbsp;
     [:bookmark:](https://pdfminersix.readthedocs.io/en/lates)
 
+- :material-apps: &nbsp; MagicPDF^2019^
+
+    ---
+    Magic-PDF是一款将PDF转化为markdown格式的工具。支持转换本地文档或者位于支持S3协议对象存储上的文件。
+
+    ---
+    [:simple-github:](https://github.com/opendatalab/MinerU/tree/master)^9.8k^ &nbsp;
+
+- :material-apps: &nbsp; MagicDoc
+
+    ---
+    Magic-Doc 是一个轻量级、开源的用于将多种格式的文档（PPT/PPTX/DOC/DOCX/PDF）转化为 markdown 格式的工具。支持转换本地文档或者位于 AWS S3 上的文件
+
+    ---
+    [:simple-github:](https://github.com/opendatalab/magic-doc)^268^ &nbsp;
+    
+
+- :material-apps: &nbsp; MagicHTML
+
+    ---
+    Magic-Doc 提供了一套工具，能够轻松地从HTML中提取主体区域内容。无论您处理的是复杂的HTML结构还是简单的网页，这个库都旨在为您的HTML抽取需求提供一个便捷高效的接口。
+
+    ---
+    [:simple-github:](https://github.com/opendatalab/magic-html)^58^ &nbsp;
+    
+
 </div>
 
 ## 3. 邮箱
@@ -100,6 +126,15 @@
     ---
     [:simple-github:](https://github.com/nteract/papermill) &nbsp;
     [:bookmark:](https://papermill.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; PyWin32
+
+    ---
+    PyWin32
+
+    ---
+    [:simple-github:](https://github.com/mhammond/pywin32)^5k^ &nbsp;
+    
 
 </div>
 

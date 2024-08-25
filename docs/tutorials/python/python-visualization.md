@@ -56,7 +56,59 @@
     ---
     [:simple-github:](https://github.com/mckinsey/vizro)^2.6k^ &nbsp;
     [:bookmark:](https://vizro.readthedocs.io/en/stable)  &nbsp;
+
+- :material-apps: &nbsp; Altair^2024^
+
+    ---
+    Altair 
+
+    ---
+    [:simple-github:](https://github.com/vega/altair)^9.2k^ &nbsp;
+    [:bookmark:](https://altair-viz.github.io)  &nbsp;
     
+- :material-apps: &nbsp; Bokeh^2024^
+
+    ---
+    Bokeh 
+
+    ---
+    [:simple-github:](https://github.com/bokeh/bokeh)^19.2k^ &nbsp;
+    [:bookmark:](https://docs.bokeh.org/en/latest/)  &nbsp;
+
+- :material-apps: &nbsp; Vispy^2018^
+
+    ---
+    Vispy 
+
+    ---
+    [:simple-github:](https://github.com/vispy/vispy)^3.3k^ &nbsp;
+    [:bookmark:](https://vispy.org/overview.html)  &nbsp;
+
+- :material-apps: &nbsp; PyGraphviz^2018^
+
+    ---
+    PyGraphviz 提供了对Graphviz图形可视化软件包的接口
+
+    ---
+    [:simple-github:](https://github.com/pygraphviz/pygraphviz)^755^ &nbsp;
+    [:bookmark:](https://pygraphviz.github.io/)  &nbsp;
+
+</div>
+
+
+## 地图
+
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Leafmap
+
+    ---
+    Leafmap 简化地理信息的交互式探索和可视化
+
+    ---
+    [:simple-github:](https://github.com/plotly/plotly.py)^3.1k^ &nbsp;
+    [:bookmark:](https://leafmap.org)
 
 </div>
 

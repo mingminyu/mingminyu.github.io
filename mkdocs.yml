@@ -242,6 +242,9 @@ nav:
     - 图像处理:
       - ai/cv/index.md
 
+    - 语音处理:
+      - ai/speech/index.md
+
     - AI:
       - 大模型: ai/aigc/llm.md
       - 对话机器人: ai/aigc/conversational-ai.md

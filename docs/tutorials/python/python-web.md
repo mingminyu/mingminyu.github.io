@@ -166,6 +166,24 @@
     [:simple-github:](https://github.com/encode/starlette)^5.1k^ &nbsp;
     [:bookmark:](https://www.starlette.io)
 
+- :material-apps: &nbsp; PyScript
+
+    ---
+    PyScript 是一个基于 WebAssembly（WASM）的框架，它允许开发者在 HTML 页面中直接嵌入 Python 代码，并在浏览器中直接执行
+
+    ---
+    [:simple-github:](https://github.com/pyscript/pyscript)^17.8k^ &nbsp;
+    [:bookmark:](https://docs.pyscript.net/2024.8.2)
+
+- :material-apps: &nbsp; ToApi^2021^
+
+    ---
+    ToApi 是一个简洁易用的Python库，它的主要功能是将静态网页数据转化为API接口
+
+    ---
+    [:simple-github:](https://github.com/elliotgao2/toapi)^3.5k^ &nbsp;
+    [:bookmark:](http://www.toapi.org)
+
 </div>
 
 ### 1.1 Django 插件
@@ -180,6 +198,39 @@
     ---
     [:simple-github:](https://github.com/django/django) &nbsp;
     [:bookmark:](https://docs.djangoproject.com/en/5.1/)
+
+</div>
+
+### 1.2 FastAPI 插件
+
+<div class="grid cards" markdown>
+
+- :simple-fastai: &nbsp; FastAPI-CLI
+
+    ---
+    FastAPI-CLI 是一个命令行工具，它使得创建和管理 FastAPI 项目变得更加简单和高效。通过这个工具，我们可以快速生成项目模板、运行服务器、进行数据库迁移等操作，极大地提升了开发效率。
+
+    ---
+    [:simple-github:](https://github.com/fastapi/fastapi-cli) &nbsp;
+    [:bookmark:](https://fastapi.tiangolo.com/fastapi-cli)
+
+</div>
+
+### 1.3 Flask 插件
+
+<div class="grid cards" markdown>
+
+- :simple-fastai: &nbsp; Flask-AppBuilder
+
+    ---
+    Flask-AppBuilder是一个功能强大的Python库，旨在简化使用Flask框架构建Web应用程序的过程。
+
+    ---
+    [:simple-github:](https://github.com/dpgaspar/Flask-AppBuilder)^4.6k^ &nbsp;
+    [:bookmark:](https://flask-appbuilder.readthedocs.io/en/latest)
+
+</div>
+
 
 ## 2. 组件
 
@@ -204,6 +255,17 @@
     ---
     [:simple-github:](https://github.com/litl/rauth)^1.6k^ &nbsp;
     [:bookmark:](https://rauth.readthedocs.io/en/latest)
+
+
+- :material-apps: &nbsp; Authlib^2015^
+    ---
+    
+    Authlib 供了一种简单而强大的方式来处理Web应用的认证和授权
+
+    ---
+    [:simple-github:](https://github.com/lepture/authlib)^4.5k^ &nbsp;
+    [:bookmark:](https://docs.authlib.org/en/latest)
+
 
 </div>
 
@@ -260,6 +322,21 @@
 
     ---
     [:simple-github:](https://github.com/mozilla/unicode-slugify)^322^ &nbsp;
+
+</div>
+
+
+## 6. 优秀项目
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; chaiNNer^2024^
+
+    ---
+    chaiNNer是一个基于节点的图像处理GUI工具，旨在使图像处理任务流程变得简单和可定制。
+
+    ---
+    [:simple-github:](https://github.com/chaiNNer-org/chaiNNer)^322^ &nbsp;
 
 </div>
 

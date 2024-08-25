@@ -20,4 +20,12 @@
     [:simple-github:](https://github.com/scikit-learn/scikit-learn)^59.2k^ &nbsp;
     [:bookmark:](https://scikit-learn.org/stable/user_guide.html)
 
+- :material-apps: &nbsp; Xorbits
+
+    ---
+    Xorbits 是一个开源计算框架，可以轻松扩展数据科学和机器学习工作负载——从数据预处理到调整、训练和模型服务。 
+
+    ---
+    [:simple-github:](https://github.com/xorbitsai/xorbits)^1.1k^ &nbsp;
+
 </div>
