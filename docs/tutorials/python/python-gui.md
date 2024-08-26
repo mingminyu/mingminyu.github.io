@@ -148,14 +148,32 @@
     [:simple-github:](https://github.com/rdbende/Sun-Valley-ttk-theme)^1.9k^ &nbsp;
     [:bookmark:](https://github.com/rdbende/Sun-Valley-ttk-theme/wiki/Usage-with-Python)
 
-- :material-apps: &nbsp; napari
+- :material-apps: &nbsp; Napari
 
     ---
-    napari 是一个用 Python 编写的开源库，旨在为科学研究提供一个快速、交互式、多维图像查看器
+    Napari 是一个用 Python 编写的开源库，旨在为科学研究提供一个快速、交互式、多维图像查看器
 
     ---
     [:simple-github:](https://github.com/napari/napari)^2.2k^ &nbsp;
     [:bookmark:](https://napari.org/stable/usage.html)
+
+- :material-apps: &nbsp; GUIZero
+
+    ---
+    GUIZero 
+
+    ---
+    [:simple-github:](https://github.com/lawsie/guizero)^396^ &nbsp;
+    [:bookmark:](https://napari.org/stable/usage.html)
+
+- :material-apps: &nbsp; PyCUI
+
+    ---
+    PyCUI 
+
+    ---
+    [:simple-github:](https://github.com/jwlodek/py_cui)^751^ &nbsp;
+    [:bookmark:](https://jwlodek.github.io/py_cui-docs)
 
 
 </div>

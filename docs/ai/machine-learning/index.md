@@ -28,4 +28,31 @@
     ---
     [:simple-github:](https://github.com/xorbitsai/xorbits)^1.1k^ &nbsp;
 
+- :material-apps: &nbsp; Dejavu
+
+    ---
+    Dejavu 要用于数据聚类和模式识别。 
+
+    ---
+    [:simple-github:](https://github.com/xorbitsai/xorbits)^1.1k^ &nbsp;
+
+- :material-apps: &nbsp; Metaflow
+
+    ---
+    Metaflow 是一个数据流编程框架，它允许开发人员以声明式的方式定义机器学习流程，而无需关注底层的数据处理细节
+
+    ---
+    [:simple-github:](https://github.com/Netflix/metaflow)^8k^ &nbsp;
+    [:bookmark:](https://docs.metaflow.org)
+
+- :material-apps: &nbsp; PyMC
+
+    ---
+    PyMC 用于概率编程和马尔可夫链蒙特卡洛（MCMC）采样
+
+    ---
+    [:simple-github:](https://github.com/pymc-devs/pymc)^8.6k^ &nbsp;
+    [:bookmark:](https://www.pymc.io/projects/docs/en/stable)
+
+
 </div>

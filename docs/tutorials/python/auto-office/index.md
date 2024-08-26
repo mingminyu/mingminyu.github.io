@@ -1,6 +1,5 @@
 # 办公自动化
 
-
 ## 1. Excel
 
 <div class="grid cards" markdown>
@@ -13,6 +12,24 @@
     ---
     [:simple-github:](https://github.com/xlwings/xlwings) &nbsp;
     [:bookmark:](https://docs.xlwings.org/en/latest)
+
+- :material-apps: &nbsp; Openpyxl
+
+    ---
+    Openpyxl
+
+    ---
+    [:simple-github:](https://github.com/theorchard/openpyxl) &nbsp;
+    [:bookmark:](https://openpyxl.readthedocs.io)
+
+- :material-apps: &nbsp; XsxlWriter
+
+    ---
+    XlsxWriter
+
+    ---
+    [:simple-github:](https://github.com/jmcnamara/XlsxWriter)^3.6k^ &nbsp;
+    [:bookmark:](https://xlsxwriter.readthedocs.io)
 
 </div>
 
@@ -113,6 +130,20 @@
 
 </div>
 
+## 4. Doc
+
+<div class="grid cards" markdown>
+
+- :material-apps: &nbsp; Docxtpl
+
+    ---
+    Docxtpl 专门用于处理Word文档
+
+    ---
+    [:simple-github:](https://github.com/elapouya/python-docx-template)^2k^ &nbsp;
+    [:bookmark:](https://docxtpl.readthedocs.io/en/latest)
+
+</div>
 
 ## 4. 其他
 
@@ -137,4 +168,6 @@
     
 
 </div>
+
+
 

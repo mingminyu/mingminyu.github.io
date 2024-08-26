@@ -184,6 +184,33 @@
     [:simple-github:](https://github.com/elliotgao2/toapi)^3.5k^ &nbsp;
     [:bookmark:](http://www.toapi.org)
 
+- :material-apps: &nbsp; Curdling^2021^
+
+    ---
+    Curdling 简化 Web 应用程序的构建和部署过程
+
+    ---
+    [:simple-github:](https://github.com/clarete/curdling)^275^ &nbsp;
+    [:bookmark:](https://clarete.li/curdling)
+
+- :material-apps: &nbsp; Devpi^2021^
+
+    ---
+    Devpi 基于Python的私有PyPI 服务器
+
+    ---
+    [:simple-github:](https://github.com/devpi/devpi)^880^ &nbsp;
+    [:bookmark:](https://devpi.net/docs/devpi/devpi/stable/%2Bd/index.html)
+
+- :material-apps: &nbsp; PyJokes^2021^
+
+    ---
+    PyJokes是专门用于生成笑话。它可以帮助我们在代码中插入笑话，让编程过程变得更加轻松愉快
+
+    ---
+    [:simple-github:](https://github.com/pyjokes/pyjokes)^334^ &nbsp;
+    [:bookmark:](http://pyjok.es)
+
 </div>
 
 ### 1.1 Django 插件
@@ -307,6 +334,15 @@
     ---
     [:simple-github:](https://github.com/unicorn-engine/unicorn)^7.4k^ &nbsp;
     [:bookmark:](https://www.unicorn-engine.org/docs)
+
+- :material-apps: &nbsp; Gunicorn^2024^
+
+    ---
+    Gunicorn
+
+    ---
+    [:simple-github:](https://github.com/benoitc/gunicorn)9.7k^ &nbsp;
+    [:bookmark:](https://docs.gunicorn.org/en/stable/)
 
 </div>
 

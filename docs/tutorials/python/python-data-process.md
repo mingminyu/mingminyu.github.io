@@ -103,6 +103,15 @@
     [:simple-github:](https://github.com/faust-streaming/faust)^1.6k^ &nbsp;
     [:bookmark:](https://faust-streaming.github.io/faust/)
 
+- :material-apps: &nbsp; Shiv
+
+    ---
+    Shiv 用于处理 JSON 数据，常作为 WEB 组件使用。
+
+    ---
+    [:simple-github:](https://github.com/faust-streaming/faust)^1.6k^ &nbsp;
+    [:bookmark:](https://faust-streaming.github.io/faust/)
+
 </div>
 
 

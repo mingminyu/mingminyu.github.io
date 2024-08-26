@@ -84,4 +84,13 @@
     [:simple-github:](https://github.com/PyMySQL/PyMySQL)^7.6k^ &nbsp;
     [:bookmark:](https://pymysql.readthedocs.io/en/latest)
 
+- :material-apps: &nbsp; PyZMQ^2024^
+
+    ---
+    PyZMQ 用于消息传递的库。它提供了对ZeroMQ库的Python语言绑定
+
+    ---
+    [:simple-github:](https://github.com/zeromq/pyzmq)^7.6k^ &nbsp;
+    [:bookmark:](https://pyzmq.readthedocs.io/en/latest)
+
 </div>

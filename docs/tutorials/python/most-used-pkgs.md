@@ -45,7 +45,23 @@
     ---
     [:simple-github:](https://github.com/arrow-py/arrow)^3.4k^ &nbsp;
     [:bookmark:](https://arrow.readthedocs.io/en/latest) &nbsp;
-    
+
+- :material-apps: &nbsp; Chronyk
+
+    ---
+    Chronyk 处理日期和时间
+
+    ---
+    [:simple-github:](https://github.com/KoffeinFlummi/Chronyk)^345^ &nbsp;
+
+- :material-apps: &nbsp; pm4ngs
+
+    ---
+    Pm4ngs 为Next-Generation Sequencing（NGS）数据的处理和分析设计
+
+    ---
+    [:simple-github:](https://github.com/ncbi/pm4ngs)^25^ &nbsp;
+    [:bookmark:](https://pm4ngs.readthedocs.io/en/latest) &nbsp;
 
 </div>
 
@@ -619,13 +635,85 @@
     [:simple-github:](https://github.com/sympy/sympy)^12.7k^ &nbsp;
     [:bookmark:](https://docs.sympy.org/latest/index.html)
 
-- :material-apps: &nbsp; Mapie
+- :material-apps: &nbsp; Marimo
 
     ---
-    Nose2是一个用于Python的测试驱动开发(TDD)框架
+    Marimo 作为 Jupyter 的替代者，非常好得一款 Python 编程环境。
 
     ---
-    [:simple-github:](https://github.com/nose-devs/nose2)^788^ &nbsp;
+    [:simple-github:](https://github.com/marimo-team/marimo)^5.9k^ &nbsp;
     [:bookmark:](https://docs.nose2.io/en/latest)
+
+- :material-apps: &nbsp; System-Design-Primer
+
+    ---
+    Marimo 作为 Jupyter 的替代者，非常好得一款 Python 编程环境。
+
+    ---
+    [:simple-github:](https://github.com/donnemartin/system-design-primer)^5.9k^ &nbsp;
+    [:bookmark:](https://docs.marimo.io)
+
+- :material-apps: &nbsp; AioMultiprocess
+
+    ---
+    AioMultiprocess 高性能异步多进程
+
+    ---
+    [:simple-github:](https://github.com/omnilib/aiomultiprocess)^1.7k^ &nbsp;
+    [:bookmark:](https://aiomultiprocess.omnilib.dev/en/stable)
+
+- :material-apps: &nbsp; ArgosTranslate & ArgosTranslateGUI
+
+    ---
+    ArgosTranslate 是用Python写的开源离线翻译库
+
+    ---
+    [:simple-github:](https://github.com/argosopentech/argos-translate)^3.6k^ &nbsp;
+    [:simple-github:](https://github.com/argosopentech/argos-translate-gui)^45^ &nbsp;
+    [:bookmark:](https://argos-translate.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; Delorean
+
+    ---
+    Delorean 主要用于处理时间序列数据
+
+    ---
+    [:simple-github:](https://github.com/myusuf3/delorean)^1.8k^ &nbsp;
+    [:bookmark:](https://delorean.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; Importlib_Resources
+
+    ---
+    Importlib_Resources 提供了一种简单而优雅的方式来访问包内的资源文件
+
+    ---
+    [:simple-github:](https://github.com/python/importlib_resources)^62k^ &nbsp;
+
+- :material-apps: &nbsp; Rye
+
+    ---
+    Rye 是大名鼎鼎 Armin(Flask 作者) 开源的一站式 Python 依赖解决方案。它由 Rust 编写，支持安装和管理不同版本的 Python
+
+    ---
+    [:simple-github:](https://github.com/astral-sh/rye)^13.3k^ &nbsp;
+    [:bookmark:](https://rye.astral.sh/guide)
+
+- :material-apps: &nbsp; KiwiSolver
+
+    ---
+    KiwiSolver 是一个用于求解约束优化问题的C++库，通过Python接口提供了方便的使用方式
+
+    ---
+    [:simple-github:](https://github.com/nucleic/kiwi)^675^ &nbsp;
+    [:bookmark:](https://kiwisolver.readthedocs.io/en/latest)
+
+- :material-apps: &nbsp; RSA
+
+    ---
+    RSA 是一种基于大数因子分解的加密算法
+
+    ---
+    [:simple-github:](https://github.com/sybrenstuvel/python-rsa)^479^ &nbsp;
+    [:bookmark:](https://stuvel.eu/software/rsa)
 
 </div>
