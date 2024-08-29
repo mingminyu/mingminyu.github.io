@@ -54,5 +54,13 @@
     [:simple-github:](https://github.com/pymc-devs/pymc)^8.6k^ &nbsp;
     [:bookmark:](https://www.pymc.io/projects/docs/en/stable)
 
+- :material-apps: &nbsp; lifelines
+
+    ---
+    lifelines 是一个专注于生存分析的  Python  库。
+
+    ---
+    [:simple-github:](https://github.com/pymc-devs/pymc)^2.3k^ &nbsp;
+    [:bookmark:](http://lifelines.readthedocs.org/en/latest/index.html)
 
 </div>

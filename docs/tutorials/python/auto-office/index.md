@@ -91,7 +91,8 @@
 
 </div>
 
-## 3. 邮箱
+## 3. 邮件
+
 <div class="grid cards" markdown>
 
 - :material-apps: &nbsp; SMTPLib
@@ -128,9 +129,27 @@
     [:simple-github:](https://github.com/modoboa/modoboa) ^3k^ &nbsp;
     [:bookmark:](https://modoboa.readthedocs.io/en/latest)
 
+- :material-apps: &nbsp; Imbox
+
+    ---
+    Imbox 在简化IMAP协议的使用，让开发者能够以最少的努力接收和读取电子邮件
+
+    ---
+    [:simple-github:](https://github.com/martinrusev/imbox) ^1.2k^ &nbsp;
+
+
+- :material-apps: &nbsp; Envelopes
+
+    ---
+    Envelopes Envelopes的目标是让发送电子邮件变得简单直接，无需深入了解SMTP协议的复杂性。它适用于各种规模的项目，从小型脚本到大型应用程序。
+
+    ---
+    [:simple-github:](https://github.com/tomekwojcik/envelopes) ^590^ &nbsp;
+    [:bookmark:](https://tomekwojcik.github.io/envelopes)
+
 </div>
 
-## 4. Doc
+## 4. Word 文档
 
 <div class="grid cards" markdown>
 

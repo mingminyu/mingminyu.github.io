@@ -66,18 +66,32 @@
 </div>
 
 
-## 数据加密与解密
+## 3. 数据加密与解密
 
 <div class="grid cards" markdown>
 
+- :material-apps: &nbsp; PyCryptodome^2020^
 
+    ---
+    PyCryptodome 是一个强大的加密库，是 PyCrypto 的一个分支，提供了更好的支持和更多的功能
 
-    
+    ---
+    [:simple-github:](https://github.com/Legrandin/pycryptodome)^2.8k^ &nbsp;
+    [:bookmark:](https://www.pycryptodome.org)
+
+- :material-apps: &nbsp; RSA
+
+    ---
+    RSA 是一种基于大数因子分解的加密算法
+
+    ---
+    [:simple-github:](https://github.com/sybrenstuvel/python-rsa)^479^ &nbsp;
+    [:bookmark:](https://stuvel.eu/software/rsa)
 
 </div>
 
 
-## 2. 终端美化
+## 4. 终端美化
 
 <div class="grid cards" markdown>
 
@@ -136,7 +150,7 @@
 </div>
 
 
-## 2. 音频处理
+## 5. 音频处理
 
 <div class="grid cards" markdown>
 
@@ -170,7 +184,7 @@
 
 </div>
 
-## 3. 构建文档
+## 6. 构建文档
 
 <div class="grid cards" markdown>
 
@@ -204,7 +218,7 @@
 </div>
 
 
-## 4. 底层编译
+## 7. 底层编译
 
 <div class="grid cards" markdown>
 
@@ -249,7 +263,7 @@
 
 </div>
 
-## 解析配置文件
+## 9. 解析配置文件
 
 <div class="grid cards" markdown>
 
@@ -262,11 +276,20 @@
     [:simple-github:](https://github.com/candlepin/python-iniparse)^38.3k^
     [:bookmark:](https://black.readthedocs.io/en/stable)
 
+- :material-apps: &nbsp; hydra
+
+    ---
+    Hydra 提供了一种优雅的方式来组织和访问配置数据，并支持动态生成和组合配置
+
+    ---
+    [:simple-github:](https://github.com/facebookresearch/hydra)^8.5k^ &nbsp;
+    [:bookmark:](https://hydra.cc/docs/intro)
+
+
 </div>
 
 
-
-## 6. 音乐管理
+## 10. 音乐管理
 
 <div class="grid cards" markdown>
 
@@ -301,7 +324,7 @@
 </div>
 
 
-## 6. 其他
+## 11. 其他
 
 <div class="grid cards" markdown>
 
@@ -466,14 +489,6 @@
     [:simple-github:](https://github.com/Zulko/easyAI)^635^ &nbsp;
     [:bookmark:](hhttps://zulko.github.io/easyAI)
 
-- :material-apps: &nbsp; PyCryptodome^2020^
-
-    ---
-    PyCryptodome 是一个强大的加密库，是 PyCrypto 的一个分支，提供了更好的支持和更多的功能
-
-    ---
-    [:simple-github:](https://github.com/Legrandin/pycryptodome)^2.8k^ &nbsp;
-    [:bookmark:](https://www.pycryptodome.org)
 
 - :material-apps: &nbsp; Future^2020^
 
@@ -707,13 +722,41 @@
     [:simple-github:](https://github.com/nucleic/kiwi)^675^ &nbsp;
     [:bookmark:](https://kiwisolver.readthedocs.io/en/latest)
 
-- :material-apps: &nbsp; RSA
+
+- :material-apps: &nbsp; Devpi^2021^
 
     ---
-    RSA 是一种基于大数因子分解的加密算法
+    Devpi 基于Python的私有PyPI 服务器
 
     ---
-    [:simple-github:](https://github.com/sybrenstuvel/python-rsa)^479^ &nbsp;
-    [:bookmark:](https://stuvel.eu/software/rsa)
+    [:simple-github:](https://github.com/devpi/devpi)^880^ &nbsp;
+    [:bookmark:](https://devpi.net/docs/devpi/devpi/stable/%2Bd/index.html)
+
+- :material-apps: &nbsp; PyJokes^2021^
+
+    ---
+    PyJokes是专门用于生成笑话。它可以帮助我们在代码中插入笑话，让编程过程变得更加轻松愉快
+
+    ---
+    [:simple-github:](https://github.com/pyjokes/pyjokes)^334^ &nbsp;
+    [:bookmark:](http://pyjok.es)
+
+- :material-apps: &nbsp; RxPy^2021^
+
+    ---
+    RxPy （ReactiveX for Python）观察者模式
+
+    ---
+    [:simple-github:](https://github.com/ReactiveX/RxPY)^4.7k^ &nbsp;
+    [:bookmark:](https://rxpy.readthedocs.io/en/latest/get_started.html)
+
+- :material-apps: &nbsp; py-signe^2021^
+
+    ---
+    py-signe 
+
+    ---
+    [:simple-github:](https://github.com/CrystalWindSnake/py-signe)^3^ &nbsp;
+    [:bookmark:](https://github.com/CrystalWindSnake/py-signe/blob/main/README.cn.md)
 
 </div>

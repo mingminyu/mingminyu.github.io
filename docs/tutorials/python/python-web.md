@@ -193,23 +193,14 @@
     [:simple-github:](https://github.com/clarete/curdling)^275^ &nbsp;
     [:bookmark:](https://clarete.li/curdling)
 
-- :material-apps: &nbsp; Devpi^2021^
+- :material-apps: &nbsp; Quart^2021^
 
     ---
-    Devpi 基于Python的私有PyPI 服务器
+    Quart 是 Flask 异步版本
 
     ---
-    [:simple-github:](https://github.com/devpi/devpi)^880^ &nbsp;
-    [:bookmark:](https://devpi.net/docs/devpi/devpi/stable/%2Bd/index.html)
-
-- :material-apps: &nbsp; PyJokes^2021^
-
-    ---
-    PyJokes是专门用于生成笑话。它可以帮助我们在代码中插入笑话，让编程过程变得更加轻松愉快
-
-    ---
-    [:simple-github:](https://github.com/pyjokes/pyjokes)^334^ &nbsp;
-    [:bookmark:](http://pyjok.es)
+    [:simple-github:](https://github.com/pallets/quart)^2.9k^ &nbsp;
+    [:bookmark:](https://quart.palletsprojects.com/en/latest)
 
 </div>
 
