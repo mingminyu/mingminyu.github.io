@@ -1,7 +1,7 @@
 # ReportML
 
-![alt text](../images/reportml-config-file.png)
-![alt text](../images/preview.png)
+![alt text](../../images/reportml-config-file.png)
+![alt text](../../images/reportml-preview.png)
 
 ## 1. 简介
 
