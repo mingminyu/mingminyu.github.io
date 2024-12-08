@@ -1,8 +1,7 @@
 site_name: "ZERO.AI"
 site_author: Mingmin Yu
-site_description: >-
-  ZERO.AI
-site_url: "https://mingminyu.github.io/"
+site_description: ZERO.AI
+site_url: "https://mingminyu.github.io"
 # use_directory_urls: false
 
 # repo_name: mingminyu/mingminyu.github.io
