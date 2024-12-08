@@ -284,6 +284,14 @@
     [:simple-github:](https://github.com/lepture/authlib)^4.5k^ &nbsp;
     [:bookmark:](https://docs.authlib.org/en/latest)
 
+- :material-apps: &nbsp; Casbin^2015^
+    ---
+    
+    Casbin 是一个开源的访问控制框架，它提供了一组简单的接口，用于实现基于策略的访问控制。
+
+    ---
+    [:simple-github:](https://github.com/casbin/casbin)^4.5k^ &nbsp;
+    [:bookmark:](https://casbin.org/docs/overview)
 
 </div>
 

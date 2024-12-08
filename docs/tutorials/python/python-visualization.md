@@ -87,11 +87,20 @@
 - :material-apps: &nbsp; PyGraphviz^2018^
 
     ---
-    PyGraphviz 提供了对Graphviz图形可视化软件包的接口
+    PyGraphviz 提供了对 Graphviz 图形可视化软件包的接口
 
     ---
     [:simple-github:](https://github.com/pygraphviz/pygraphviz)^755^ &nbsp;
     [:bookmark:](https://pygraphviz.github.io/)  &nbsp;
+
+- :material-apps: &nbsp; Superset
+
+    ---
+    Apache Superset 是一个开源的数据可视化平台，它提供了一种简单的方式来探索、可视化和分享数据。
+
+    ---
+    [:simple-github:](https://github.com/apache/superset)^62.9k^ &nbsp;
+    [:bookmark:](https://superset.apache.org/docs/intro)  &nbsp;
 
 </div>
 

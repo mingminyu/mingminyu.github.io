@@ -360,7 +360,7 @@
     CDKTF 允许开发者使用Python编写云基础设施的代码，然后通过 Terraform 进行部署。
 
     ---
-    [:simple-github:](hub.com/hashicorp/terraform-cdk)^4.8k^ &nbsp;
+    [:simple-github:](https://hub.com/hashicorp/terraform-cdk)^4.8k^ &nbsp;
     [:bookmark:](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-install)
 
 

@@ -88,6 +88,3 @@ df.to_csv("results/20240730.csv", index=False, encoding="utf8")
     - 空号
     - 通话中: 通话中 / 用户正忙（拦截 / 黑名单 / 被挂断）
     - 无法接通: 无信号、无服务 / 关机 / 拉黑
-
-[^1]:
-  Mod FunASR: https://github.com/smswg/FreeSwitch-Mod_FunAsr

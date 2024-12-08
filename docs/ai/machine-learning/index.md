@@ -54,13 +54,22 @@
     [:simple-github:](https://github.com/pymc-devs/pymc)^8.6k^ &nbsp;
     [:bookmark:](https://www.pymc.io/projects/docs/en/stable)
 
-- :material-apps: &nbsp; lifelines
+- :material-apps: &nbsp; Lifelines
 
     ---
-    lifelines 是一个专注于生存分析的  Python  库。
+    lifelines 是一个专注于生存分析的 Python 库。
 
     ---
     [:simple-github:](https://github.com/pymc-devs/pymc)^2.3k^ &nbsp;
     [:bookmark:](http://lifelines.readthedocs.org/en/latest/index.html)
+
+- :material-apps: &nbsp; Kerdo
+
+    ---
+    Kerdo **流程画布式** 构建机器学习模型，此外还有 Kerdo Viz 和 Kerdo Datasets 辅助工作，非常强大。 
+
+    ---
+    [:simple-github:](https://github.com/kedro-org/kedro) ^10k^ &nbsp;
+    [:bookmark:](https://docs.kedro.org/en/stable/index.html)
 
 </div>

@@ -93,10 +93,10 @@ extra_css:
   - custom/stylesheets/extra.css
   - https://unpkg.com/katex@0/dist/katex.min.css
 
-extra_javascript:
-  - custom/javascripts/katex.js
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+#extra_javascript:
+#  - custom/javascripts/katex.js
+#  - https://unpkg.com/katex@0/dist/katex.min.js
+#  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
 markdown_extensions:
   - abbr
@@ -167,12 +167,12 @@ nav:
         - 基础知识: tutorials/python/python-base.md
         - 包管理: 
           - tutorials/python/pkg_management/index.md
+          - Conda: tutorials/python/pkg_management/conda.md
           - PIP: tutorials/python/pkg_management/pip.md
           - PDM:
             - tutorials/python/pdm/index.md
             - 安装: tutorials/python/pdm/installation.md
             - 创建项目: tutorials/python/pdm/create_project.md
-
         - 爬虫: tutorials/python/spider/index.md
         - 可视化: tutorials/python/python-visualization.md
         - 任务调度: tutorials/python/python-task-scheduler.md
@@ -184,7 +184,7 @@ nav:
         - 日志处理: tutorials/python/python-log-process.md
         - 打包: tutorials/python/python-packging.md
         - 常用库: tutorials/python/most-used-pkgs.md
-
+        - 工具库: tutorials/python/python-tools.md
         - WEB 开发: tutorials/python/python-web.md
         - GUI 开发: tutorials/python/python-gui.md
         
@@ -209,7 +209,9 @@ nav:
   
     - 前端:
       - Vue: tutorials/vue/vue-base.md
-    
+      - React: tutorials/react/react-base.md
+      - WEB UI: tutorials/webui/webui-base.md
+
     - 其他:
       - 容器化: tutorials/container/container-base.md
       - 数据库: tutorials/databases/db-base.md
@@ -226,6 +228,7 @@ nav:
       # - 决策树:
 
     - 深度学习:
+      - ai/deep-learning/index.md
       - 基础内容:
         - Attention: ai/deep-learning/attention.md
         # - CNN:
@@ -236,7 +239,6 @@ nav:
         # - Transformer:
         # - 扩散模型:
         # - 多模态模型:
-      - 应用框架: ai/deep-learning/most-popular-packages.md
 
     - 自然语言处理:
       - ai/nlp/index.md
@@ -248,6 +250,7 @@ nav:
       - ai/speech/index.md
 
     - AI:
+      - ai/aigc/index.md
       - 大模型: ai/aigc/llm.md
       - 对话机器人: ai/aigc/conversational-ai.md
       - AI 工具: ai/tools.md

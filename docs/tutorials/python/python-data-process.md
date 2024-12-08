@@ -32,6 +32,15 @@
     [:simple-github:](https://github.com/pola-rs/polars) &nbsp;
     [:bookmark:](https://docs.pola.rs)
 
+- :simple-polars: &nbsp; DuckDB
+
+    ---
+    DuckDB
+
+    ---
+    [:simple-github:](https://github.com/duckdb/duckdb) ^24.4k^&nbsp;
+    [:bookmark:](https://duckdb.org/docs/api/python/overview.html)
+
 - :material-apps: &nbsp; Spout^2014^
 
     ---
@@ -57,7 +66,6 @@
 
     ---
     [:simple-github:](https://github.com/stspec/pyspssio)^5^ &nbsp;
-
     [:bookmark:](https://pyspssio.readthedocs.io)
 
 - :material-apps: &nbsp; Tablib^2022^
