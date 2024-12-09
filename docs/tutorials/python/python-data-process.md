@@ -22,7 +22,6 @@
     [:simple-github:](https://github.com/pandas-dev/pandas) &nbsp;
     [:bookmark:](https://docs.dask.org/en/stable)
 
-
 - :simple-polars: &nbsp; Polars
 
     ---
@@ -31,6 +30,15 @@
     ---
     [:simple-github:](https://github.com/pola-rs/polars) &nbsp;
     [:bookmark:](https://docs.pola.rs)
+
+- :simple-polars: &nbsp; FireDucks
+
+    ---
+    FireDucks
+
+    ---
+    [:simple-github:](https://github.com/fireducks-dev/fireducks) &nbsp;
+    [:bookmark:](https://fireducks-dev.github.io/docs/get-started)
 
 - :simple-polars: &nbsp; DuckDB
 
@@ -41,7 +49,7 @@
     [:simple-github:](https://github.com/duckdb/duckdb) ^24.4k^&nbsp;
     [:bookmark:](https://duckdb.org/docs/api/python/overview.html)
 
-- :material-apps: &nbsp; Spout^2014^
+- :material-apps: &nbsp; Spout
 
     ---
     Spout 用于构建分布式数据流处理应用程序。**非常古老的库，不建议学习**。
@@ -56,7 +64,6 @@
 
     ---
     [:simple-github:](https://github.com/Yelp/mrjob)^2.6k^ &nbsp;
-
     [:bookmark:](https://mrjob.readthedocs.io/en/latest)
 
 - :material-apps: &nbsp; PySpssio^2022^
@@ -88,7 +95,7 @@
 - :material-apps: &nbsp; ujson
 
     ---
-    ujson 
+    ujson
 
     ---
     [:simple-github:](https://github.com/ultrajson/ultrajson)^6k^ &nbsp;
@@ -180,9 +187,6 @@
 
     ---
     [:simple-github:](https://github.com/keleshev/schema)^2.9k^ &nbsp;
-    
-
-
 
 </div>
 
