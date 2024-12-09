@@ -156,7 +156,7 @@ nav:
     - index.md
     - 个人项目:
       - ReportML:
-          - 简介: projects/reportml/overview.md
+        - 简介: projects/reportml/overview.md
 
   - 教程:
     - tutorials/index.md
@@ -256,6 +256,10 @@ nav:
 
 
   - 商业分析: business_analysis/index.md
+  - 金融风控:
+    - 风控基础:
+      - 业务流程: risk/basic/business-workflow.md
+    # - 风控指标:
   - 软件工具:
     - AIGC:
       - ChatBox: tools/chatbox.md
