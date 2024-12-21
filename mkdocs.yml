@@ -95,7 +95,7 @@ plugins:
       draggable: true
       skip_classes:
         - custom-skip-class-name
-      auto_caption: false
+      auto_caption: true
       caption_position: bottom
       background: white
       shadow: true
