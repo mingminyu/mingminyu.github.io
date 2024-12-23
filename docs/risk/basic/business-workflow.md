@@ -319,21 +319,117 @@
 
 ### 3.4.2 硬件工厂
 
-![alt text](../../images/20241219-03.png)
+![硬件工厂](../../images/20241219-03.png)
 
 ### 3.4.3 数据仓库
 
-![alt text](../../images/20241219-04.png)
+![数据仓库](../../images/20241219-04.png)
 
 ### 3.4.4 风控系统
 
-![alt text](../../images/20241221-01.png)
+![风控系统](../../images/20241221-01.png)
 
 ### 3.4.5 外部技术接入
 
 <figure markdown>
 ![全链路运营、风控、系统、方案等服务](../../images/20241221-02.png)
+<figcaption>全链路运营、风控、系统、方案等服务</figcaption>
 </figure>
+
+
+<figure markdown>
+![数据接口](../../images/20241221-03.png)
+<figcaption>数据接口</figcaption>
+</figure>
+
+<figure markdown>
+![数据字典](../../images/20241221-04.png)
+<figcaption>数据字典</figcaption>
+</figure>
+
+### 3.4.6 服务器
+
+服务器按沟通暂时使用 XX 或 XX云服务器，确定具体部署的服务器，采购完成并提供账号密码。
+
+### 3.4.7 后台系统
+
+<figure markdown>
+![平台概览](../../images/20241221-05.png)
+<figcaption>平台概览</figcaption>
+</figure>
+
+<figure markdown>
+![功能列表](../../images/20241221-06.png)
+<figcaption>功能列表</figcaption>
+</figure>
+
+
+<figure markdown>
+![启动页](../../images/20241221-07.png)
+<figcaption>启动页</figcaption>
+</figure>
+
+
+<figure markdown>
+![审批管理](../../images/20241221-08.png)
+<figcaption>审批管理</figcaption>
+</figure>
+
+
+<figure markdown>
+![放款管理](../../images/20241221-09.png)
+<figcaption>放款管理</figcaption>
+</figure>
+
+<figure markdown>
+![逾期管理](../../images/20241221-10.png)
+<figcaption>逾期管理</figcaption>
+</figure>
+
+权限管理：客户经理、客服人员、代理商、风控人员、财务人员、运营人员、催收人员、系统管理
+
+<figure markdown>
+![短信提醒](../../images/20241221-11.png)
+<figcaption>短信提醒</figcaption>
+</figure>
+
+
+### 3.4.8 APP
+
+<figure markdown>
+![首页](../../images/20241221-12.png)
+<figcaption>首页</figcaption>
+</figure>
+
+
+<figure markdown>
+![身份认证](../../images/20241221-13.png)
+<figcaption>身份认证</figcaption>
+</figure>
+
+<figure markdown>
+![联系认证](../../images/20241221-14.png)
+<figcaption>联系认证</figcaption>
+</figure>
+
+
+<figure markdown>
+![还款](../../images/20241221-15.png)
+<figcaption></figcaption>
+</figure>
+
+<figure markdown>
+![我的](../../images/20241221-16.png)
+<figcaption>我的</figcaption>
+</figure>
+
+## 3.5 营销获客
+
+### 3.5.1 放款计划
+
+- 放款计划
+- 冷启动，慢增长
+
 
 ## 4. 生命周期风险建议
 
