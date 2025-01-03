@@ -1,0 +1,5 @@
+---
+icon: simple/scala
+---
+
+# Scala

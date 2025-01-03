@@ -1,0 +1,299 @@
+site_name: "ZERO.AI"
+site_author: Mingmin Yu
+site_description: ZERO.AI
+site_url: "https://mingminyu.github.io"
+# use_directory_urls: false
+
+# repo_name: mingminyu/mingminyu.github.io
+# repo_url: https://github.com/mingminyu/mingminyu.github.io
+
+copyright: Copyright &copy; 2024, Mingmin Yu
+
+theme:
+  name: material
+  custom_dir: overrides
+  features:
+    - announce.dismiss
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tooltips
+    - content.tabs.link
+    - content.footnote.tooltips
+    - navigation.instant
+    - navigation.instant.progress
+    # - navigation.instant.prefetch
+    # - navigation.prune
+    - navigation.footer
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 暗黑模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 明亮模式
+  
+  favicon: assets/logo.svg
+  logo: assets/logo.svg
+  
+  language: zh
+
+plugins:
+  - blog:
+      blog_toc: true
+      post_date_format: short
+      post_url_date_format: yyyy/MM/dd
+      # post_url_format: "{categories}/{slug}"
+      post_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      post_excerpt_max_authors: 2
+      archive_toc: true
+      categories_toc: true
+      categories_slugify_separator: _
+      categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+      pagination_per_page: 10
+      pagination_url_format: "page/{page}"
+      pagination_format: "~2~"
+      pagination_if_single_page: false
+      pagination_keep_content: true
+
+  - tags
+  - search
+  - toggle-sidebar
+  - tags:
+      enabled: true
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      skip_classes:
+        - custom-skip-class-name
+      auto_caption: true
+      caption_position: bottom
+      background: white
+      shadow: true
+      manual: false
+
+extra:
+  generator: false
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  
+
+extra_css:
+  - custom/stylesheets/extra.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
+
+markdown_extensions:
+  - abbr
+  - tables
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.snippets:
+      auto_append:
+        - includes/mkdocs.md
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - 首页: 
+    - index.md
+    - 个人项目:
+      - ReportML:
+        - 简介: projects/reportml/overview.md
+
+  - 教程:
+    - tutorials/index.md
+    - 后端:
+      - Python:
+        - tutorials/python/index.md
+        - 基础知识: tutorials/python/python-base.md
+        - 包管理: 
+          - tutorials/python/pkg_management/index.md
+          - Conda: tutorials/python/pkg_management/conda.md
+          - PIP: tutorials/python/pkg_management/pip.md
+          - PDM:
+            - tutorials/python/pdm/index.md
+            - 安装: tutorials/python/pdm/installation.md
+            - 创建项目: tutorials/python/pdm/create_project.md
+        - 爬虫: tutorials/python/spider/index.md
+        - 可视化: tutorials/python/python-visualization.md
+        - 任务调度: tutorials/python/python-task-scheduler.md
+        - 办公自动化: 
+          - tutorials/python/auto-office/index.md
+          - tutorials/python/auto-office/send-mail.md
+        - 数据处理: tutorials/python/python-data-process.md
+        - 操作数据库: tutorials/python/python-databases.md
+        - 日志处理: tutorials/python/python-log-process.md
+        - 打包: tutorials/python/python-packging.md
+        - 常用库: tutorials/python/most-used-pkgs.md
+        - 工具库: tutorials/python/python-tools.md
+        - WEB 开发: tutorials/python/python-web.md
+        - GUI 开发: tutorials/python/python-gui.md
+        
+      - Go: tutorials/go/go-base.md
+      - Java: tutorials/java/java-base.md
+      - Kotlin: tutorials/kotlin/kotlin-base.md
+      - Rust: 
+        - tutorials/rust/index.md
+        - 基础知识:
+          - 快速入门: tutorials/rust/rust-base/rust-quickstart.md
+          - 包管理器: tutorials/rust/rust-base/rust-cargo.md
+          - 变量与数据类型: tutorials/rust/rust-base/rust-variable-and-types.md
+          - 所有权机制: tutorials/rust/rust-base/rust-ownership.md
+          - 字符串: tutorials/rust/rust-base/rust-string.md
+          - 枚举值和匹配: tutorials/rust/rust-base/rust-enum-and-match.md
+          - 结构体: tutorials/rust/rust-base/rust-struct.md
+          - 堆、栈以及复制与转移: tutorials/rust/rust-base/rust-stack-heap-copy-move.md
+      - Scala: tutorials/scala/scala-base.md
+      - Shell: 
+        - tutorials/shell/index.md
+        - 用户管理: tutorials/shell/user_management.md
+  
+    - 前端:
+      - Vue: tutorials/vue/vue-base.md
+      - React: tutorials/react/react-base.md
+      - WEB UI: tutorials/webui/webui-base.md
+
+    - 其他:
+      - 容器化: tutorials/container/container-base.md
+      - 数据库: tutorials/databases/db-base.md
+      - 消息队列: tutorials/mq/mq-base.md
+      - 版本控制: tutorials/vcs/vcs-base.md
+  
+  - 人工智能: 
+    - ai/index.md
+    - 机器学习:
+      - ai/machine-learning/index.md
+      # - 感知机:
+      # - SVM:
+      # - 逻辑回归:
+      # - 决策树:
+
+    - 深度学习:
+      - ai/deep-learning/index.md
+      - 基础内容:
+        - Attention: ai/deep-learning/attention.md
+        # - CNN:
+        # - RNN:
+        # - LSTM:
+        # - 变分自编码器:
+        # - 生成式对抗网络: 
+        # - Transformer:
+        # - 扩散模型:
+        # - 多模态模型:
+
+    - 自然语言处理:
+      - ai/nlp/index.md
+
+    - 图像处理:
+      - ai/cv/index.md
+
+    - 语音处理:
+      - ai/speech/index.md
+
+    - AI:
+      - ai/aigc/index.md
+      - 大模型: ai/aigc/llm.md
+      - 对话机器人: ai/aigc/conversational-ai.md
+      - AI 工具: ai/tools.md
+
+
+  - 商业分析: business_analysis/index.md
+  - 金融风控:
+    - 风控基础:
+      - 业务流程: risk/basic/business-workflow.md
+    # - 风控指标:
+  - 软件工具:
+    - AIGC:
+      - ChatBox: tools/chatbox.md
+      # - NextChat:
+      # - LobreChat:
+      # - LobeChat:
+      # - LM Studio:
+      # - Chat Ollama:
+      
+    - 编程开发:
+      - PyCharm: tools/pycharm.md
+      # - IDEA: tools/idea.md
+
+    # - 日常办公:
+    - 系统工具:
+      - VPN: tools/vpn.md
+    # - 装机必备:
+
+  - 博客:
+    - blog/index.md
