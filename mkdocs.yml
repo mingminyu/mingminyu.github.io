@@ -276,7 +276,8 @@ nav:
   - 金融风控:
     - 风控基础:
       - 业务流程: risk/basic/business-workflow.md
-    # - 风控指标:
+      - 量化风险: risk/basic/quant_risk_ctrl.md
+
   - 软件工具:
     - AIGC:
       - ChatBox: tools/chatbox.md
