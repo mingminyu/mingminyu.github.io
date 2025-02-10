@@ -174,6 +174,8 @@ nav:
     - 个人项目:
       - ReportML:
         - 简介: projects/reportml/overview.md
+      - BenchmarkML:
+        - 简介: projects/benchmark-ml/overview.md
 
   - 教程:
     - tutorials/index.md
