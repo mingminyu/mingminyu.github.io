@@ -238,6 +238,7 @@ nav:
     - ai/index.md
     - 机器学习:
       - ai/machine-learning/index.md
+      - 迁移学习: ai/machine-learning/transfer-learning.md
       # - 感知机:
       # - SVM:
       # - 逻辑回归:
