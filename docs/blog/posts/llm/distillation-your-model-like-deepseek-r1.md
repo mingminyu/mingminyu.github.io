@@ -18,4 +18,4 @@ readtime: 10
 
 ## 参考资料
 
-- 用 DeepSeek-R1 蒸馏出属于自己的大模型
+- 用 DeepSeek-R1 蒸馏出属于自己的大模型: https://zhuanlan.zhihu.com/p/21781359302
