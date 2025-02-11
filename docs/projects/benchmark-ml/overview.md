@@ -9,7 +9,7 @@
     ![type:video](https://player.bilibili.com/player.html?isOutside=true&aid=113980177649738&bvid=BV15ENaeUEMD&cid=28319485459&autoplay=0&danmaku=0&p=)
 
 Benchmark ML 是基于 ReportML 自动化建模库开发的 Web 平台（前端技术栈使用 React + Ant Design + NextJS 展示可视化报告，后端技术栈使用 FastAPI + ReportML 实现自动化建模），未来计划完成以下功能：
-  
+
 - [ ] 增加模型训练全自动化 Web 流程，实现 LR/XGB/LGBM 的常用以及全超参数的调整；
 - [ ] 新建模型可从之前版本的模型文档中引入重要变量，并可以对变量的 WOE 分组结果进行手动调整；
 - [ ] 实时查看当前训练模型的进度以及阶段性的结果；
