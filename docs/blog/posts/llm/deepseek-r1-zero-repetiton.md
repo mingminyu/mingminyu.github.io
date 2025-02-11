@@ -146,5 +146,6 @@ use_cpu: false
 ```
 
 一般来说，这个文件内容不需要修改，如果有定制需求，请不要使用这个文件，运行 accelerate config 自行设定。　
+在介绍下一个文件之前，我们强烈建议大家使用 Swanlab（https://swanlab.cn/） 来可视化追踪实验过程，打开：https://swanlab.cn/login ，登录之后点击图中所示的 Quick Start，或者打开：https://swanlab.cn/space/~/settings ，复制 API Key。
 
-在介绍下一个文件之前，我们强烈建议大家使用 Swanlab（https://swanlab.cn/） 来可视化追踪实验过程，打开：https://swanlab.cn/login ，登录之后点击图中所示的 Quick Start，或者打开：https://swanlab.cn/space/~/settings ，复制 API Key。　
+　
