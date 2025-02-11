@@ -38,7 +38,7 @@ DeepSeek V1 是 2024 年 1 月份发布的第一版DeepSeek模型，包含DeepSe
 
 1. Grouped Query Attention 每组 query 共用同一组 key 和 value。
 
-![alt text](../../images/20250208-01.png)
+![alt text](../../../images/20250208-01.png)
 
 **优化端**：使用 ==Multi-Step Learning Rate== 代替 LLaMA 中的 Cosine Learning Rate Schedule，主要原因是实验发现两者虽然最终收敛到的 Loss 差不多，但是前者在连续学习上 Loss 能够保证一致性，连续学习更加方便。先用 2000 个 step 的 WarmUp 将学习率提升到最大值，然后在训练完 80% 的训练数据后将学习率降低到 31.6%，在训练完 90% 的训练数据后进一步降低到 10%。
 

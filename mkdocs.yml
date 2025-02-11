@@ -82,6 +82,7 @@ plugins:
   - tags
   - search
   - toggle-sidebar
+  - mkdocs-video
   - tags:
       enabled: true
   - glightbox:
