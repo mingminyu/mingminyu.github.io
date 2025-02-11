@@ -1,11 +1,38 @@
 # ReportML
 
-![alt text](../../images/reportml-config-file.png)
-![alt text](../../images/reportml-preview.png)
-
 ## 1. 简介
 
 ReportML 作为一款跨平台的机器学习框架，它不仅是支持快速建模的 AutoML 框架，还是一个自动输出模型报告的框架。考虑到很多业务场景中建模依旧还是使用 Excel 作为模型输出报告，ReportML 会记录自动建模中的各种细节，并产出一份非常美观的 Excel 模型报告。
+
+=== "1. SETUP"
+
+    ![SETUP](../../images/20250211-01.png)
+
+=== "2. 数据报告"
+
+    ![数据报告](../../images/20250211-02.png)
+
+=== "3. 变量WoE表"
+
+    ![WoE表](../../images/20250211-03.png)
+
+=== "4. 变量WoE图"
+
+    ![WoE图](../../images/reportml-preview.png)
+
+=== "5. 变量逐月稳定性"
+
+    ![变量逐月稳定性](../../images/20250211-04.png)
+
+=== "6. LR 模型结果"
+
+    ![LR 模型结果1](../../images/20250211-05.png)
+    ![LR 模型结果2](../../images/20250211-06.png)
+
+=== "7. LGBM 模型结果"
+
+    ![LGBM 模型结果1](../../images/20250211-07.png)
+    ![LGBM 模型结果2](../../images/20250211-08.png)
 
 ## 2. 安装
 
