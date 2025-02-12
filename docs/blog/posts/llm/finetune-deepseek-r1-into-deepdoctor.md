@@ -12,6 +12,8 @@ readtime: 10
 
 # 将 DeepSeek R1 模型微调成 DeepDoctor
 
+> 原文地址: https://mp.weixin.qq.com/s/cqh42XH60s0-8Xum04lSjw
+
 DeepSeek 颠覆了 AI 领域，挑战 OpenAI 的主导地位，推出了一系列先进的推理模型。最令人兴奋的是？这些模型完全免费，且没有任何使用限制，人人都可以访问。
 
 在本教程中，我们将对 DeepSeek-R1-Distill-Llama-8B 模型进行微调，使用来自 Hugging Face 的医学思维链数据集进行训练，该精简版 DeepSeek-R1 模型是通过在 DeepSeek-R1 生成的数据上微调 Llama 3.1 8B 模型而创建的。它展示了与原始模型相似的推理能力。
