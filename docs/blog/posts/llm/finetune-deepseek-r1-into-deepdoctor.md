@@ -45,3 +45,25 @@ DeepSeek-R1 和 DeepSeek-R1-Zero 在数学、编程和逻辑推理任务上与 O
     这种多阶段训练使得该模型在数学、编程和推理基准测试中，能够达到与 OpenAI-o1 相媲美的领先水平，同时提升了输出的可读性和连贯性。
 
 </div>
+
+<div class="grid cards" markdown>
+-   __DeepSeek 蒸馏__（Distillation）
+
+    ---
+
+    DeepSeek 还推出了蒸馏模型，这些更小、更高效的模型同样展示了卓越的推理性能。这些模型的参数范围从 1.5B 到 70B 不等，但保留了强大的推理能力，其中 DeepSeek-R1-Distill-Qwen-32B 在多个基准测试中超越了 OpenAI-o1-mini。
+
+    更小的模型继承了大模型的推理模式，展示了蒸馏过程的有效性。
+</div>
+
+
+![](https://mingminyu.github.io/webassets/images/20250213-02.png)
+
+
+## 2. 逐步微调 DeepSeek-R1
+
+在本项目中，我们使用 Kaggle 作为云 IDE，因为它提供免费的 GPU 资源。我选择了两块 T4 GPU，但是看起来最终我只用了一块。如果你想用自己的电脑微调的话，那估计至少是要一块 16GB 显存的 RTX 3090 才行。
+
+在本项目中，我们使用 Kaggle 作为云 IDE，因为它提供免费的 GPU 资源。我选择了两块 T4 GPU，但是看起来最终我只用了一块。如果你想用自己的电脑微调的话，那估计至少是要一块 16GB 显存的 RTX 3090 才行。
+
+
