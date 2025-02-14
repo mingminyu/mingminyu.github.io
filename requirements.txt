@@ -5,3 +5,4 @@ mkdocs-awesome-pages-plugin
 mkdocs-glightbox 
 mkdocs-toggle-sidebar-plugin 
 mkdocs-video
+mkdocs
