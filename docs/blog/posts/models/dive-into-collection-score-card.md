@@ -5,8 +5,10 @@ authors:
 categories:
   - 风控模型
 tags:
-  - 催收评分卡
   - 转载
+  - 催收评分卡
+
+slug: dive-into-collection-score-card
 readtime: 30
 ---
 
