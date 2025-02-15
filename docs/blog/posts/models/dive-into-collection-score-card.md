@@ -121,4 +121,65 @@ readtime: 30
 | --- | --- | --- |
 | 回款率模型 | 经过催收后，最终催员欠款的比例 | 逾期天数、历史还款信息、个人基础信息、多头负债、联系人关系 |
 | 逾期率模型 | 预测逾期用户从轻度逾期变层重度逾期的概率 | 逾期天数、历史还款信息、个人基础信息、多头负债 |
-| 失联预测模型 | 逾期阶段能联系到的客群未来失联概率 | 逾期天数、逾期金额占比、历史还款信息、个人基础信息、多头负债、运营商信息（在网时长） |
+| 失联预测模型 | 逾期阶段能联系到的客群未来失联概率 | 逾期天数、逾期金额占比、历史还款信息、个人基础信息、联系人关系、运营商信息（在网时长） |
+
+### 2.6 代码实现
+
+催收评分卡代码如下，还款率模型完之后还可以对其进行延伸，预测出来的催回还款率假设定一个阈值(1) 定义正负样本，之后可以使用二分类的逻辑回归对客户情况进行预测该客户是可摧回还是不可催回。
+{ .annotate }
+
+1. 假设为 80%，大于 80% 为可催回，小于为不可催回。实际上是根据业务场景来定，不同逾期阶段下客户还款能力不一样，通常会看下这个阶段同还款比例的客群占比。
+
+```python linenums="1" hl_lines="13-35"
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import GridSearchCV
+
+
+df = pd.read_csv('data.csv')
+# ① 注意处理缺失值、异常值
+# ② 特征编码，例如 One-Hot 编码，Label编码，标准化等
+num_features = [...]
+
+gs_params = {
+  'n_estimators':range(60, 91, 5),
+  'max_depth' range(3, 15), 
+  'min_samples_split': range(10, 101, 10),
+  'min_samples_leaf': range(1, 20, 2),
+  'max_features': range(3, num_features + 1)
+  }  # (1)!
+gs = GridSearchCV(
+  estimator=RandomForestRegressor(
+    random_state=10,
+    oob_score=True
+    ),
+  param_grid=param_test2, 
+  scoring='neg_mean_squared_error',
+  cv=5
+  )
+gs.fit(X,y)
+print("Best Params: ", gs.best_params_, gs.best_score_)
+best_n_estimators = gs.best_params_['n_estimators']
+best_max_depth = gs.best_params_['max_depth']
+best_min_samples_split = gs.best_params_['min_samples_split']
+best_min_samples_leaf = gs.best_params_['min_samples_leaf']
+best_max_features = gs.best_params_['max_features']
+
+clf = RandomForestRegressor(
+  n_estimators=best_n_estimators,
+  max_depth=best_max_depth,
+  min_samples_leaf=best_min_samples_leaf,min_samples_split=best_min_samples_split,
+  max_features=best_max_features,
+  random_state=10,
+  oob_score=True
+)
+train_data['pred'] = clf.predict(train_data[num_features])
+
+
+```
+
+1. 这里我们使用了随机森林的常用 5 个参数，但是这几个参数的组合会变得非常多，实际上场景中网格参数来定位最优参数还会用到更多的其他参数，采用上面这种代码方式显然训练时间会变得非常久，这里建议采用逐步定位最后参数的方法：只用 1 个采纳数，先通过 GridSearch 得到 `best_n_estimators`，将 `n_estimators` 设置为 `best_n_estimators`，再通过 GridSearch 得到 `best_max_depth`，依次得到所有调优参数。
+
+
