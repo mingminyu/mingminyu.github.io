@@ -4,6 +4,9 @@ authors:
   - mingminyu
 categories:
   - 大模型
+tags:
+  - DeepSeek
+  - 转载
 readtime: 10
 ---
 

@@ -5,11 +5,10 @@ authors:
 categories:
   - 风控模型
 tags:
-  - 转载
   - 催收评分卡
-
+  - 转载
 slug: dive-into-collection-score-card
-readtime: 30
+readtime: 20
 ---
 
 # 深入解析金融风控催收评分卡
