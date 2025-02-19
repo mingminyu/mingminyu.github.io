@@ -31,6 +31,7 @@ readtime: 10
 
 1. CodeI/O: Condensing Reasoning Patterns via Code Input-Output Prediction
 
+<!-- more -->
 ## 1. 从代码中构建思维链
 
 首先，作者从 CodeMix、PyEdu-R 等数据集中收集了 80 多万份代码文件，涵盖多种编程语言（以 Python 为主），任务类型多样，并且蕴含了丰富的推理模式。但是，由于原始代码文件通常缺乏结构化，包含不相关的元素，难以以自包含的方式执行，作者使用 DeepSeek-V2.5 模型对其进行预处理，将其转换为统一的格式。
