@@ -67,7 +67,8 @@ plugins:
         kwds:
           case: lower
       post_excerpt_max_authors: 2
-      archive_toc: true
+      archive: false
+      # archive_toc: false
       categories_toc: true
       categories_slugify_separator: _
       categories_slugify: !!python/object/apply:pymdownx.slugs.slugify

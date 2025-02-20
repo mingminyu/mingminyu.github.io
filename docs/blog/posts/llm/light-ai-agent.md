@@ -3,7 +3,7 @@ date: 2025-02-17
 authors:
   - mingminyu
 categories:
-  - 大模型
+  - 大模型_123
 tags:
   - Agent
   - 转载
@@ -32,6 +32,8 @@ CodeAgent 的关键特点包括：
 - **模型无关性**：smolagents 支持任何 LLM。可以是本地的 Transformers 或 Ollama 模型，也可以是 Hub 上的多个模型提供者，或者通过 LiteLLM 集成使用 OpenAI、Anthropic 等公司的模型。
 - **模态无关性**：Agent 支持文本、视觉、视频，甚至音频输入！
 - **工具无关性**：可以使用 LangChain、Anthropic 的 MCP 等工具，甚至可以将 Hub 空间作为工具使用。
+
+<!-- more -->
 
 ## 1. 快速使用
 

@@ -14,7 +14,9 @@ readtime: 20
 
 > 官方文档: https://docs.getdbt.com/guides/manual-install
 
-Impala 并不是 DBT 官方支持的数据库，但开源社区提供了响应的组件，支持 DBT 的常用操作。
+Impala 并不是 DBT 官方支持的数据库，但开源社区提供了响应的组件，支持 DBT 的常用操作，本篇文章我们来介绍下如何使用 DBT-Core 操作 Impala 数据库。
+
+<!-- more -->
 
 ## 1. 安装 DBT-Core 以及 Impala 组件
 
