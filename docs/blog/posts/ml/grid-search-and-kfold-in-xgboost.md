@@ -22,6 +22,8 @@ readtime: 20
 
 接下来，我们将通过具体的示例代码，详细演示如何运用网格搜索和K折交叉验证优化 XGBoost 分类模型的过程。
 
+<!-- more -->
+
 ## 1. 数据预处理
 
 ```python linenums="1"
@@ -82,5 +84,127 @@ params_xgb = {
 | `subsample`         | 每次迭代时随机选择的样本比例，用于增加模型的泛化能力            |
 | `eval_metric`       | 评价指标，二分类使用对数损失（`logloss`），多分类使用交叉熵（cross-entropy）或者多分类对数损失（`mlogloss`），其他指标还有 `merror` 等。 |
 
+## 3. 定义模型
+
+使用定义的参数初始化XGBoost回归模型
+
+```python
+model_xgb = xgb.XGBRegressor(**params_xgb)
+```
+
+## 4. 定义参数网格
 
 
+下面我们定义一个网格参数，
+
+```python linenums="1"
+param_grid = {
+    'n_estimators': [100, 200, 300, 400, 500],  # 树的数量，控制模型的复杂度
+    'max_depth': [3, 4, 5, 6, 7],  # 树的最大深度，控制模型的复杂度，防止过拟合
+    'min_child_weight': [1, 2, 3, 4, 5],  # 节点最小权重，值越大，算法越保守，用于控制过拟合
+}
+```
+
+定义需要进行网格搜索的参数范围，包括树的数量（`n_estimators`）、最大深度（`max_depth`）和最小节点权重（`min_child_weight`），这些参数用于调整模型的复杂度和防止过拟合。
+
+当然除了这些参数以外还存在很对参数。下面给出一些参考（这些参数并没有参与网格调参），网格参数范围多少当对运行速度成倍数增长
+
+```python linenums="1"
+param_grid = {
+    'learning_rate': [0.01, 0.02, 0.05, 0.1],  # 学习率，控制每一步的步长，防止过拟合
+    'gamma': [0, 0.1, 0.2, 0.3],  # 节点分裂所需的最小损失减少量，值越大，算法越保守，用于控制过拟合
+    'subsample': [0.6, 0.7, 0.8, 0.9],  # 每次迭代时随机选择的样本比例，防止过拟合
+    'colsample_bytree': [0.5, 0.6, 0.7, 0.8],  # 每棵树随机选择的特征比例，防止过拟合
+    'reg_alpha': [0, 0.01, 0.1, 1],  # L1正则化项的权重，值越大，模型越简单，用于防止过拟合
+    'reg_lambda': [0, 0.01, 0.1, 1],  # L2正则化项的权重，值越大，模型越简单，用于防止过拟合
+}
+```
+
+## 5. 创建 GridSearchCV 对象
+
+`GridSearchCV` 用于进行网格搜索和交叉验证，`scoring` 设为 `neg_root_mean_squared_error`，即负均方根误差，作为评估指标，`cv=5` 表示使用5折交叉验证，`n_jobs=-1` 表示使用所有可用的 CPU 核心进行并行计算。
+
+```python linenums="1"
+grid_search = GridSearchCV(
+    estimator=model_xgb, 
+    param_grid=param_grid, 
+    scoring='neg_root_mean_squared_error',
+    cv=5, 
+    n_jobs=-1, 
+    verbose=1
+)
+```
+
+## 6. 训练模型
+
+```python linenums="1"
+grid_search.fit(X_train, y_train)
+
+# 输出最优参数
+print("Best parameters found: ", grid_search.best_params_)
+print("Best RMSE score: ", -grid_search.best_score_)
+```
+
+GridSearchCV 训练好之后，我们输出最优模型参数：
+
+```python linenums="1"
+Fitting 5 folders for each of 125 candidates, totalling 625 fits
+Best parameters found:  { 
+  'max_depth': 7, 
+  'min_child_weight': 1, 
+  'n_estimators': 500, 
+}
+Best RMSE score:  0.4666597060108463
+```
+
+- `5 folds` 表示使用 5 折交叉验证，即数据集被分成 5 个子集，每次使用其中的 4 个子集进行训练，1 个子集进行验证，这样进行 5 次，每个子集都作为一次验证集，
+- 125 candidates: 表示总共有 125 组不同的参数组合需要评估（5x5x5），也就是定义的网格参数存在的组合形式，
+- totalling 625 fits: 因为每个参数组合都要经过 5 次交叉验证，所以总共进行 625 次模型训练和评估（5x125=625）
+- 最后模型找到的最佳参数组合为 `max_depth=7`、`min_child_weight=5`、`n_estimators=500`，使用这些参数，模型在验证集上的平均 RMSE 分数为 0.4666597060108463。
+
+
+## 7. 最优参数下的模型
+
+使用找到的最优参数重新训练模型，得到最终的最佳模型并保存。
+
+```python
+best_model = grid_search.best_estimator_
+```
+
+## 8. 模型评价
+
+```python linenums="1"
+from sklearn import metrics
+
+# 预测
+y_pred = best_model.predict(X_test)
+y_pred_list = y_pred.tolist()  
+mse = metrics.mean_squared_error(y_test, y_pred_list)
+rmse = np.sqrt(mse)
+mae = metrics.mean_absolute_error(y_test, y_pred_list)
+r2 = metrics.r2_score(y_test, y_pred_list)
+print("均方误差 (MSE):", mse)
+print("均方根误差 (RMSE):", rmse)
+print("平均绝对误差 (MAE):", mae)
+print("拟合优度 (R-squared):", r2)
+```
+
+## 9. 可视化
+
+这里采用 Matplotlib 进绘制实际值 (`y_test`) 和预测值 (`y_pred`) 之间的散点图，并在图中添加一个理想对角线（`y = x`），以便比较实际值和预测值的关系。
+```python
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 6), dpi=1200)
+# 绘制 y_pred 和 y_test 的散点图
+plt.scatter(y_test, y_pred, alpha=0.3, color='blue', label='Predicted vs Actual')
+# 绘制一条 y = x 的对角线，用于参考
+max_value = max(max(y_test), max(y_pred))
+plt.plot([0, max_value], [0, max_value], color='red', linestyle='--', linewidth=2, label='Ideal Line (y = x)')
+plt.title(f'Actual vs Predicted Values\nR-squared: {r2:.2f}')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
