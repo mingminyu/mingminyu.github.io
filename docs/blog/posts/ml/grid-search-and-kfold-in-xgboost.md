@@ -192,6 +192,7 @@ print("拟合优度 (R-squared):", r2)
 ## 9. 可视化
 
 这里采用 Matplotlib 进绘制实际值 (`y_test`) 和预测值 (`y_pred`) 之间的散点图，并在图中添加一个理想对角线（`y = x`），以便比较实际值和预测值的关系。
+
 ```python
 import matplotlib.pyplot as plt
 
@@ -208,3 +209,5 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
+
+![](https://mingminyu.github.io/webassets/images/20250221-01.png)
