@@ -3,7 +3,7 @@ date: 2025-02-17
 authors:
   - mingminyu
 categories:
-  - 大模型_123
+  - 大模型
 tags:
   - Agent
   - 转载

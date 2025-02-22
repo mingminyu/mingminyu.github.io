@@ -210,4 +210,4 @@ plt.grid(True)
 plt.show()
 ```
 
-![](https://mingminyu.github.io/webassets/images/20250221-01.png)
+![真实值与预测值的散点图](https://mingminyu.github.io/webassets/images/20250221-01.png)
