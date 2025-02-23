@@ -11,7 +11,6 @@ readtime: 2
 
 # 机器学习文章
 
-- [快速学会一个算法，Transformer](https://mp.weixin.qq.com/s/jMUjAzyhX1sIbmZXx1ILKg)
 - [深度学习中常见的权重初始化方法](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494528&idx=1&sn=cdce928de883c001d63fb677329925cc&chksm=fe658aa4c91203b2be93cdf20329c1a757be5cb0f7c004cc75cc85adba062e8b1e8d2e155454&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
 - [如何从头构建一个机器学习模型](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494586&idx=1&sn=90264c67f8b39d269c848217d5694c72&chksm=fe658a9ec9120388b3b63a8fb54d799cd6d850d7c779342e55395b72209dd957540e67c76ec9&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
 - [终于把神经网络中的激活函数搞懂了](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494587&idx=1&sn=947f6570c129f2b1275e0155d5ba3fb9&chksm=fe658a9fc9120389c74692b7ebf74c6b4b3307a995ce2fb1a83558ea78e09fb6ca0936040b74&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
