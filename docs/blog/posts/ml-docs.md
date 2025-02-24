@@ -19,7 +19,6 @@ readtime: 2
 - [快速学会一个算法，Faster R-CNN](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494678&idx=2&sn=11ad95b708eb19b3c605cdc96420e179&chksm=fe658d32c9120424c95e8f305c1a09120d8b2b36aceab96c8a1854af9e37fcdff4a6752d1749&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
 - [快速学习一个算法，神经网络](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494678&idx=1&sn=f7f9bc73d340c887d507233d54aa798a&chksm=fe658d32c9120424455dd43f38988dd13e30794203d9038d446965f2282648e25994513d0297&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
 - [终于把机器学习中的混淆矩阵搞懂了](https://mp.weixin.qq.com/s?__biz=MzU5NjE0NjI1MQ==&mid=2247494702&idx=1&sn=deb668da078543941c6afbf5a7d4dd9a&chksm=fe658d0ac912041ca033d4b6cdd2b6b6c8c2a35709c0fc97965cebd67eef2fd8e6d13f7510bf&cur_album_id=2531631889723179011&scene=189#wechat_redirect)
-- [机器学习中的常用评估指标](https://mp.weixin.qq.com/s/d6H_NIxyKioZ1Jn8rDg5_Q)
 - [快速学会一个算法，SVM](https://mp.weixin.qq.com/s/0aNvT1obW38WvlR7X99NoQ)
 - [机器学习中的五个重要权衡](https://mp.weixin.qq.com/s/mESqskkRj8ytisn0skzp6g)
 - [快速学习一个算法，DBSCAN](https://mp.weixin.qq.com/s/dMZgA4tOlhL2Zz41xcNdKA)

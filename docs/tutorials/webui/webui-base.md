@@ -48,12 +48,23 @@ icon: simple/nextui
     ---
     通用性 UI 组件
 
+
+- :simple-shadcnui: &nbsp; __[ReCharts](https://recharts.org/)__
+
+    ---
+    ReCharts
+
+- :simple-shadcnui: &nbsp; _[AgCharts](https://www.ag-grid.com/charts)__
+
+    ---
+    AgCharts
+
 - :simple-chakraui: &nbsp; __[Chakra UI][chakra_ui]__
 
     ---
     通用性 UI 组件
 
-- :simple-nextui: &nbsp; __[Next UI][chakra_ui]__
+- :simple-nextui: &nbsp; __[Next UI][next_ui]__
 
     ---
     通用性 UI 组件
@@ -204,3 +215,22 @@ icon: simple/nextui
 [antd_vue]: https://www.antdv.com/docs/vue/introduce-cn
 [vue_flow]: https://vueflow.dev
 
+## 3. React 可视化
+
+## 4. Vue 可视化
+
+## 4. 图标
+
+<div class="grid cards" markdown>
+
+- :material-vuejs: &nbsp; __[Lucide](https://lucide.dev/icons/lock)__
+
+    ---
+    Lucide 图标
+
+- :simple-uikit: &nbsp; __[Vue Flow][vue_flow]__
+
+    ---
+    ...
+
+</div>
