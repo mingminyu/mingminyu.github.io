@@ -27,6 +27,6 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material mkdocs-redirects mkdocs-minify-plugin pip install  mkdocs-glightbox mkdocs-video mkdocs-jupyter   
+      - run: pip install mkdocs-material mkdocs-redirects mkdocs-minify-plugin mkdocs-glightbox mkdocs-video mkdocs-jupyter   
       # pip install mkdocs-awesome-pages-plugin mkdocs-awesome-nav
       - run: mkdocs gh-deploy --force
