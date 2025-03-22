@@ -1,3 +1,7 @@
+---
+icon: material/home
+---
+
 # 个人简介
 
 !!! tip "勉励自己"

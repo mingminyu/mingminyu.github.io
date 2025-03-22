@@ -1,6 +1,5 @@
 # CONDA 虚拟环境管理
 
-
 ```bash
 channels:
   - defaults
@@ -32,9 +31,7 @@ conda config --set show_channel_urls yes
 conda config --set ssl_verify false 
 ```
 
-
-
-## 10. 自动创建环境
+## 1. 自动创建环境
 
 ```bash
 conda create --prefix ./venv python==3.10.12
@@ -58,4 +55,3 @@ conda env export --prefix ./venv > environment.yml
 conda env create --prefix ./venv --file environment.yml
 conda activate .venv
 ```
-

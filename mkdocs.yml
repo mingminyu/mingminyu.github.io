@@ -1,6 +1,6 @@
-site_name: "ZERO.AI"
+site_name: "Hello World"
 site_author: Mingmin Yu
-site_description: ZERO.AI
+site_description: Hello World
 site_url: "https://mingminyu.github.io"
 # use_directory_urls: false
 
@@ -22,14 +22,14 @@ theme:
     - content.footnote.tooltips
     - navigation.instant
     - navigation.instant.progress
-    # - navigation.instant.prefetch
+    - navigation.instant.prefetch
     # - navigation.prune
     - navigation.footer
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
-    - navigation.sections
+    # - navigation.sections
     - navigation.tracking
     - search.highlight
     - search.share
@@ -51,10 +51,10 @@ theme:
       toggle:
         icon: material/brightness-4
         name: 明亮模式
-  
+
   favicon: assets/logo.svg
   logo: assets/logo.svg
-  
+
   language: zh
 
 plugins:
@@ -82,8 +82,9 @@ plugins:
 
   - tags
   - search
-  - toggle-sidebar
+  # - awesome-nav
   - mkdocs-video
+  - offline
   - tags:
       enabled: true
   - glightbox:
@@ -105,12 +106,12 @@ plugins:
 
 extra:
   generator: false
+  scope: /
 
 extra_javascript:
   - javascripts/katex.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
-  
 
 extra_css:
   - custom/stylesheets/extra.css
@@ -179,64 +180,69 @@ nav:
       - BenchmarkML:
         - 简介: projects/benchmark-ml/overview.md
 
-  - 教程:
-    - tutorials/index.md
-    - 后端:
-      - Python:
-        - tutorials/python/index.md
-        - 基础知识: tutorials/python/python-base.md
-        - 包管理: 
-          - tutorials/python/pkg_management/index.md
-          - Conda: tutorials/python/pkg_management/conda.md
-          - PIP: tutorials/python/pkg_management/pip.md
-          - PDM:
-            - tutorials/python/pdm/index.md
-            - 安装: tutorials/python/pdm/installation.md
-            - 创建项目: tutorials/python/pdm/create_project.md
-        - 爬虫: tutorials/python/spider/index.md
-        - 可视化: tutorials/python/python-visualization.md
-        - 任务调度: tutorials/python/python-task-scheduler.md
-        - 办公自动化: 
-          - tutorials/python/auto-office/index.md
-          - tutorials/python/auto-office/send-mail.md
-        - 数据处理: tutorials/python/python-data-process.md
-        - 操作数据库: tutorials/python/python-databases.md
-        - 日志处理: tutorials/python/python-log-process.md
-        - 打包: tutorials/python/python-packging.md
-        - 常用库: tutorials/python/most-used-pkgs.md
-        - 工具库: tutorials/python/python-tools.md
-        - WEB 开发: tutorials/python/python-web.md
-        - GUI 开发: tutorials/python/python-gui.md
-        
-      - Go: tutorials/go/go-base.md
-      - Java: tutorials/java/java-base.md
-      - Kotlin: tutorials/kotlin/kotlin-base.md
-      - Rust: 
-        - tutorials/rust/index.md
-        - 基础知识:
-          - 快速入门: tutorials/rust/rust-base/rust-quickstart.md
-          - 包管理器: tutorials/rust/rust-base/rust-cargo.md
-          - 变量与数据类型: tutorials/rust/rust-base/rust-variable-and-types.md
-          - 所有权机制: tutorials/rust/rust-base/rust-ownership.md
-          - 字符串: tutorials/rust/rust-base/rust-string.md
-          - 枚举值和匹配: tutorials/rust/rust-base/rust-enum-and-match.md
-          - 结构体: tutorials/rust/rust-base/rust-struct.md
-          - 堆、栈以及复制与转移: tutorials/rust/rust-base/rust-stack-heap-copy-move.md
-      - Scala: tutorials/scala/scala-base.md
-      - Shell: 
-        - tutorials/shell/index.md
-        - 用户管理: tutorials/shell/user_management.md
-  
-    - 前端:
-      - Vue: tutorials/vue/vue-base.md
-      - React: tutorials/react/react-base.md
-      - WEB UI: tutorials/webui/webui-base.md
+  # - 教程:
+  #   - backend/index.md
 
-    - 其他:
-      - 容器化: tutorials/container/container-base.md
-      - 数据库: tutorials/databases/db-base.md
-      - 消息队列: tutorials/mq/mq-base.md
-      - 版本控制: tutorials/vcs/vcs-base.md
+  - 前端:
+    - React: frontend/react/index.md
+    - Vue: frontend/vue/vue-base.md
+    - WEB UI: frontend/webui/webui-base.md
+  
+  # - 教程:
+  - 后端:
+    - Python:
+      - backend/python/index.md
+      - 基础知识: backend/python/python-base.md
+      - 包管理: 
+        - backend/python/pkg_management/index.md
+        - Conda: backend/python/pkg_management/conda.md
+        - PIP: backend/python/pkg_management/pip.md
+        - PDM:
+          - backend/python/pdm/index.md
+          - 安装: backend/python/pdm/installation.md
+          - 创建项目: backend/python/pdm/create_project.md
+      - 爬虫: backend/python/spider/index.md
+      - 可视化: backend/python/python-visualization.md
+      - 任务调度: backend/python/python-task-scheduler.md
+      - 办公自动化: 
+        - backend/python/auto-office/index.md
+        - backend/python/auto-office/send-mail.md
+      - 数据处理: backend/python/python-data-process.md
+      - 操作数据库: backend/python/python-databases.md
+      - 日志处理: backend/python/python-log-process.md
+      - 打包: backend/python/python-packging.md
+      - 常用库: backend/python/most-used-pkgs.md
+      - 工具库: backend/python/python-tools.md
+      - WEB 开发: backend/python/python-web.md
+      - GUI 开发: backend/python/python-gui.md
+      
+    - Go: backend/go/go-base.md
+    - Java: backend/java/java-base.md
+    - Kotlin: backend/kotlin/kotlin-base.md
+    - Rust: 
+      - backend/rust/index.md
+      - 基础知识:
+        - 快速入门: backend/rust/rust-base/rust-quickstart.md
+        - 包管理器: backend/rust/rust-base/rust-cargo.md
+        - 变量与数据类型: backend/rust/rust-base/rust-variable-and-types.md
+        - 所有权机制: backend/rust/rust-base/rust-ownership.md
+        - 字符串: backend/rust/rust-base/rust-string.md
+        - 枚举值和匹配: backend/rust/rust-base/rust-enum-and-match.md
+        - 结构体: backend/rust/rust-base/rust-struct.md
+        - 堆、栈以及复制与转移: backend/rust/rust-base/rust-stack-heap-copy-move.md
+    - Scala: backend/scala/scala-base.md
+    - Shell: 
+      - backend/shell/index.md
+      - 用户管理: backend/shell/user_management.md
+
+  - 数据库: 
+    - databases/index.md
+    - 消息队列: databases/mq/mq-base.md
+  
+  - 版本控制: 
+    - vcs/index.md
+  - 容器化: 
+    - container/index.md
   
   - 人工智能: 
     - ai/index.md
@@ -277,29 +283,12 @@ nav:
       - AI 工具: ai/tools.md
 
 
-  - 商业分析: business_analysis/index.md
+  # - 商业分析: business_analysis/index.md
   - 金融风控:
+    - risk/index.md
     - 风控基础:
       - 业务流程: risk/basic/business-workflow.md
       - 量化风险: risk/basic/quant_risk_ctrl.md
-
-  - 软件工具:
-    - AIGC:
-      - ChatBox: tools/chatbox.md
-      # - NextChat:
-      # - LobreChat:
-      # - LobeChat:
-      # - LM Studio:
-      # - Chat Ollama:
-      
-    - 编程开发:
-      - PyCharm: tools/pycharm.md
-      # - IDEA: tools/idea.md
-
-    # - 日常办公:
-    - 系统工具:
-      - VPN: tools/vpn.md
-    # - 装机必备:
 
   - 博客:
     - blog/index.md

@@ -1,3 +1,15 @@
+---
+date: 2025-03-20
+authors:
+  - mingminyu
+categories:
+  - 软件工具
+tags:
+  - 对话工具
+slug: chatbox
+readtime: 2
+---
+
 # Chatbox
 
 [ChatBox](https://github.com/Bin-Huang/chatbox/releases) 一款支持多种大语言模型应用的跨平台桌面端软件。
@@ -14,4 +26,4 @@
 
 使用 `ollama serve` 启动模型服务后，在 ChatBox 中选择 Ollama，并在 **API域名** 中填写 http://localhost:11434 ，模型列表下拉框会自动加载 Ollama 所下载的模型（我这里只下载了 Qwen2 的 0.5B 和 1.5B 的模型）。
 
-![ChatBox设置Ollama服务](../images/chatbox_set_ollama.png)
+![ChatBox设置Ollama服务](../../../images/chatbox_set_ollama.png)
