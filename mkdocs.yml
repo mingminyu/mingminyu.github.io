@@ -185,7 +185,7 @@ nav:
       - React:
         - frontend/react/index.md
         - 快速入门: 
-          - index.md
+          - frontend/react/react/index.md
           - 井字棋: frontend/react/react/quickstart/tic-tac-toe.md
           - React 哲学: frontend/react/react/quickstart/thinking-in-react.md
         - 安装:
@@ -362,7 +362,13 @@ nav:
           - 支持浏览器: architecture/supported-browsers.md
           - Turbopack: architecture/turbopack.md
 
-    - Vue: frontend/vue/vue-base.md
+    - Vue: 
+      - Vue: 
+        - frontend/vue/index.md
+        - 开始:
+          - 快速入门: frontend/vue/vue/quickstart/quickstart.md
+          - 第一个Vue应用: frontend/vue/vue/quickstart/fst_vue_app.md
+
     - WEB UI: frontend/webui/webui-base.md
   
   # - 教程:
@@ -415,6 +421,14 @@ nav:
   - 数据库: 
     - databases/index.md
     - 消息队列: databases/mq/mq-base.md
+    - Hive:
+      - databases/hive/index.md
+      - 运算符和函数:
+        - 内置函数:
+          - 日期函数: databases/hive/functions/built-in-functions/date-functions.md
+          - 条件函数: databases/hive/functions/built-in-functions/conditional-functions.md
+          - 字符串函数: databases/hive/functions/built-in-functions/string-functions.md
+        - 聚合函数: databases/hive/functions/built-in-functions/aggregate-functions.md
   
   - 版本控制: 
     - vcs/index.md
