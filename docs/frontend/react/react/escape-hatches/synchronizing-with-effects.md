@@ -1,0 +1,2 @@
+# Synchronizing with Effects
+
