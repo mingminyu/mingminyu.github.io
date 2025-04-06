@@ -395,9 +395,40 @@ nav:
       - 日志处理: backend/python/python-log-process.md
       - 打包: backend/python/python-packging.md
       - 常用库: backend/python/most-used-pkgs.md
-      - 工具库: backend/python/python-tools.md
-      - WEB 开发: backend/python/python-web.md
+      
+      - WEB 开发: 
+        - backend/python/web/index.md
+        
       - GUI 开发: backend/python/python-gui.md
+
+      - 工具库: 
+        - backend/python/tools/index.md
+        - DBT:
+          - backend/python/tools/dbt/index.md
+          - 快速入门: backend/python/tools/dbt/quickstart.md
+          - 支持的数据平台: backend/python/tools/dbt/supported-data-platforms.md
+          - 搭建 DBT: 
+            - 运行项目: backend/python/tools/dbt/setup/run-dbt-projects.md
+            - 使用线程: backend/python/tools/dbt/setup/use-threads.md
+          - 构建 DBT 项目:
+            - 关于 DBT 项目: backend/python/tools/dbt/build_dbt_projects/about-project.md
+            - DBT 提示与技巧: backend/python/tools/dbt/build_dbt_projects/dbt-tips-and-tricks.md
+          
+          - 指南:
+            - 手动安装DBT Core: backend/python/tools/dbt/guides/manual-install.md
+
+          - 参考:
+            - backend/python/tools/dbt/references/index.md
+            - 项目配置: backend/python/tools/dbt/references/project-configs.md
+            - 特定平台配置: backend/python/tools/dbt/references/platform-configs.md
+            - 资源配置和属性: 
+              - backend/python/tools/dbt/references/resource-configs-properties/index.md
+              - 资源路径: backend/python/tools/dbt/references/resource-configs-properties/resource-paths.md
+              - 通用属性: backend/python/tools/dbt/references/resource-configs-properties/general-properties.md
+              - 通用配置: backend/python/tools/dbt/references/resource-configs-properties/general-configs.md
+
+          - DBT Cloud: dbt-cloud/index.md
+
       
     - Go: backend/go/go-base.md
     - Java: backend/java/java-base.md
@@ -458,20 +489,82 @@ nav:
         # - 扩散模型:
         # - 多模态模型:
 
-    - 自然语言处理:
-      - ai/nlp/index.md
-
     - 图像处理:
       - ai/cv/index.md
 
     - 语音处理:
       - ai/speech/index.md
+      - FunASR:
+        - ai/speech/funasr/index.md
+        - 安装: ai/speech/funasr/installation.md
+        - 命令行参数: ai/speech/funasr/cli.md
+        - 基础功能:    
+          - 语音识别: ai/speech/funasr/asr.md
+          - 语音端点检测: ai/speech/funasr/vad.md
+          - 标点恢复: ai/speech/funasr/ct_punc.md
+          - 情感识别: ai/speech/funasr/emotion.md
+          - 时间戳预测: ai/speech/funasr/fa.md
+        
+        - 训练: ai/speech/funasr/train.md
+        #   - 数据准备:
+        #   - 微调:
+        #   - 测试:
+        - 导出模型: ai/speech/funasr/export_model.md
+        - 服务部署: ai/speech/funasr/deploy.md
+        - 模型仓库: ai/speech/funasr/model_repo.md
+        - 更新日志: ai/speech/funasr/changelog.md
 
-    - AI:
-      - ai/aigc/index.md
-      - 大模型: ai/aigc/llm.md
-      - 对话机器人: ai/aigc/conversational-ai.md
-      - AI 工具: ai/tools.md
+    # - AI:
+    #   - ai/aigc/index.md
+    
+    - 大模型: 
+      # - ai/aigc/llm.md
+      - 通义千问:
+        - ai/aigc/qwen/index.md
+        - 快速入门:
+          - 安装: ai/aigc/qwen/installation.md
+          - 快速开始: ai/aigc/qwen/quickstart.md
+
+        - 推理:
+          - 与 Qwen2 交互: ai/aigc/qwen/chat_with_qwen2.md
+        
+        - 本地运行:
+          - llama.cpp: ai/aigc/qwen/llama.cpp.md
+          - MLX-LM: ai/aigc/qwen/mlx-lm.md
+          - Ollama: ai/aigc/qwen/ollama.md
+
+        - WEB UI:
+          - Text Generation Web UI: ai/aigc/qwen/text-generate-web-ui.md
+        
+        - 量化:
+          - AWQ: ai/aigc/qwen/awq.md
+          - GPTQ: ai/aigc/qwen/gptq.md
+          - GGUF: ai/aigc/qwen/gguf.md
+
+        - 部署:
+          - vLLM: ai/aigc/qwen/vllm.md
+          - TGI: ai/aigc/qwen/tgi.md
+          - SkyPilot: ai/aigc/qwen/skypilot.md
+
+        - 训练:
+          - 微调示例: ai/aigc/qwen/sft_example.md
+          - LLaMA Factory: ai/aigc/qwen/sft_llama_factory.md
+
+        - 框架:
+          - 函数调用: ai/aigc/qwen/function_call.md
+          - Agent: ai/aigc/qwen/qwen_agent.md
+          - LlamaIndex: ai/aigc/qwen/llamaindex.md
+          - LangChain: ai/aigc/qwen/langchain.md
+
+        - 评测:
+          - 模型效果: ai/aigc/qwen/quantization_benchmark.md
+          - 效率评估: ai/aigc/qwen/speed_benchmark.md
+
+    - 自然语言处理:
+      - ai/nlp/index.md
+    
+    - 对话机器人: ai/aigc/conversational-ai.md
+    - AI 工具: ai/tools.md
 
 
   # - 商业分析: business_analysis/index.md
