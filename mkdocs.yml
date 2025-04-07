@@ -85,7 +85,7 @@ plugins:
   - search
   # - awesome-nav
   - mkdocs-video
-  - offline
+  # - offline
   - tags:
       enabled: true
   - glightbox:
