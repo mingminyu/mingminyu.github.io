@@ -1,6 +1,7 @@
 .webassets/
 .idea/
 .DS_Store
+**/.DS_Store
 *.mov
 
 # Byte-compiled / optimized / DLL files

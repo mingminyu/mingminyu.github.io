@@ -10,6 +10,7 @@ site_url: "https://mingminyu.github.io"
 copyright: Copyright &copy; 2024, Mingmin Yu
 
 theme:
+  font: false
   name: material
   custom_dir: overrides
   features:
@@ -29,7 +30,7 @@ theme:
     - navigation.tabs.sticky
     - navigation.top
     - navigation.indexes
-    # - navigation.sections
+    - navigation.sections
     - navigation.tracking
     - search.highlight
     - search.share
@@ -236,6 +237,27 @@ nav:
           - 将事件与副作用分开: frontend/react/react/escape-hatches/separating-events-from-effects.md
           - 移除副作用依赖: frontend/react/react/escape-hatches/removing-effect-dependencies.md
           - 使用自定义钩子重用逻辑: frontend/react/react/escape-hatches/reusing-logic-with-custom-hooks.md
+
+        - 参考:
+          - 钩子:
+            - frontend/react/react/reference/hooks/index.md
+            - useActionState: frontend/react/react/reference/hooks/use-action-state.md
+            - useCallback: frontend/react/react/reference/hooks/use-callback.md
+            - useContext: frontend/react/react/reference/hooks/use-context.md
+            - useDebugValue: frontend/react/react/reference/hooks/use-debug-value.md
+            - useDeferredValue: frontend/react/react/reference/hooks/use-deferred-value.md
+            - useEffect: frontend/react/react/reference/hooks/use-effect.md
+            - useId: frontend/react/react/reference/hooks/use-id.md
+            - useImperativeHandle: frontend/react/react/reference/hooks/use-imperative-handle.md
+            - useInsertionEffect: frontend/react/react/reference/hooks/use-insertion-effect.md
+            - useLayoutEffect: frontend/react/react/reference/hooks/use-layout-effect.md
+            - useMemo: frontend/react/react/reference/hooks/use-memo.md
+            - useOptimistic: frontend/react/react/reference/hooks/use-optimistic.md
+            - useReducer: frontend/react/react/reference/hooks/use-reducer.md
+            - useRef: frontend/react/react/reference/hooks/use-ref.md
+            - useState: frontend/react/react/reference/hooks/use-state.md
+            - useSyncExternalStore: frontend/react/react/reference/hooks/use-sync-external-store.md
+            - useTransition: frontend/react/react/reference/hooks/use-transition.md
           
       - NextJS:
         - frontend/react/nextjs/index.md
@@ -371,35 +393,45 @@ nav:
 
     - WEB UI: frontend/webui/webui-base.md
   
-  # - 教程:
   - 后端:
     - Python:
-      - backend/python/index.md
-      - 基础知识: backend/python/python-base.md
-      - 包管理: 
-        - backend/python/pkg_management/index.md
-        - Conda: backend/python/pkg_management/conda.md
-        - PIP: backend/python/pkg_management/pip.md
-        - PDM:
-          - backend/python/pdm/index.md
-          - 安装: backend/python/pdm/installation.md
-          - 创建项目: backend/python/pdm/create_project.md
-      - 爬虫: backend/python/spider/index.md
-      - 可视化: backend/python/python-visualization.md
-      - 任务调度: backend/python/python-task-scheduler.md
+      - Python基础:
+        - backend/python/index.md
+        - 基础知识: backend/python/python-base.md
+        - 包管理: 
+          - backend/python/pkg_management/index.md
+          - Conda: backend/python/pkg_management/conda.md
+          - PIP: backend/python/pkg_management/pip.md
+          - PDM:
+            - backend/python/pdm/index.md
+            - 安装: backend/python/pdm/installation.md
+            - 创建项目: backend/python/pdm/create_project.md
+        - 日志处理: backend/python/python-log-process.md
+        - 常用库: backend/python/most-used-pkgs.md
+        - 打包: backend/python/python-packging.md
+        - 操作数据库: backend/python/python-databases.md
+
+      - 爬虫: 
+        - backend/python/spider/index.md
+      
+      - 可视化: 
+        - backend/python/visualization/index.md
+
+      - 任务调度: 
+        - backend/python/schedule/index.md
+      
       - 办公自动化: 
         - backend/python/auto-office/index.md
         - backend/python/auto-office/send-mail.md
-      - 数据处理: backend/python/python-data-process.md
-      - 操作数据库: backend/python/python-databases.md
-      - 日志处理: backend/python/python-log-process.md
-      - 打包: backend/python/python-packging.md
-      - 常用库: backend/python/most-used-pkgs.md
       
+      - 数据处理: 
+        - backend/python/data-process/index.md
+
       - WEB 开发: 
         - backend/python/web/index.md
         
-      - GUI 开发: backend/python/python-gui.md
+      - GUI 开发: 
+        - backend/python/gui/index.md
 
       - 工具库: 
         - backend/python/tools/index.md
@@ -430,21 +462,34 @@ nav:
           - DBT Cloud: dbt-cloud/index.md
 
       
-    - Go: backend/go/go-base.md
-    - Java: backend/java/java-base.md
-    - Kotlin: backend/kotlin/kotlin-base.md
+    - Go: 
+      - Go基础:
+        - backend/go/index.md
+
+    - Java: 
+      - Java基础: 
+        - backend/java/java-base.md
+      
+    - Kotlin:
+      - Kotlin基础:
+        - backend/kotlin/index.md
+
     - Rust: 
-      - backend/rust/index.md
-      - 基础知识:
-        - 快速入门: backend/rust/rust-base/rust-quickstart.md
-        - 包管理器: backend/rust/rust-base/rust-cargo.md
-        - 变量与数据类型: backend/rust/rust-base/rust-variable-and-types.md
-        - 所有权机制: backend/rust/rust-base/rust-ownership.md
-        - 字符串: backend/rust/rust-base/rust-string.md
-        - 枚举值和匹配: backend/rust/rust-base/rust-enum-and-match.md
-        - 结构体: backend/rust/rust-base/rust-struct.md
-        - 堆、栈以及复制与转移: backend/rust/rust-base/rust-stack-heap-copy-move.md
-    - Scala: backend/scala/scala-base.md
+      - Rust基础:
+        - backend/rust/index.md
+        - 基础知识:
+          - 快速入门: backend/rust/rust-base/rust-quickstart.md
+          - 包管理器: backend/rust/rust-base/rust-cargo.md
+          - 变量与数据类型: backend/rust/rust-base/rust-variable-and-types.md
+          - 所有权机制: backend/rust/rust-base/rust-ownership.md
+          - 字符串: backend/rust/rust-base/rust-string.md
+          - 枚举值和匹配: backend/rust/rust-base/rust-enum-and-match.md
+          - 结构体: backend/rust/rust-base/rust-struct.md
+          - 堆、栈以及复制与转移: backend/rust/rust-base/rust-stack-heap-copy-move.md
+    - Scala: 
+      - Scala基础:
+        - backend/scala/index.md
+    
     - Shell: 
       - backend/shell/index.md
       - 用户管理: backend/shell/user_management.md

@@ -1,3 +1,7 @@
+---
+icon: simple/plotly
+---
+
 # Python 可视化
 
 <div class="grid cards" markdown>

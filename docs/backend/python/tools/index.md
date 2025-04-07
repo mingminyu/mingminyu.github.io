@@ -1,3 +1,7 @@
+---
+icon: material/tools
+---
+
 # 工具库
 
 ## 1. Notebook

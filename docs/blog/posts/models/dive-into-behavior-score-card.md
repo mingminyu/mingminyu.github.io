@@ -3,10 +3,11 @@ date: 2025-02-16
 authors:
   - mingminyu
 categories:
-  - 风控模型
+  - 风控
 tags:
-  - 行为评分卡
   - 转载
+  - 行为评分卡
+  
 slug: dive-into-behavior-score-card
 readtime: 20
 ---

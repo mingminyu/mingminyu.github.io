@@ -7,6 +7,7 @@ categories:
 tags:
   - DeepSeek
   - 转载
+slug: deepseek-ollama-local-application
 readtime: 10
 ---
 

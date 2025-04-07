@@ -3,11 +3,11 @@ date: 2024-07-12
 authors:
   - mingminyu
 categories:
-  - 风控模型
+  - 风控
 tags:
+  - 风控模型
   - 转载
   - 样本切分
-
 slug: risk_model
 readtime: 2
 ---

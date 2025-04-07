@@ -1,3 +1,7 @@
+---
+icon: simple/pandas
+---
+
 # Python 数据处理与验证
 
 ## 1. 数据处理

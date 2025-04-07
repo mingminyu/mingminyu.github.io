@@ -7,6 +7,7 @@ categories:
 tags:
   - DeepSeek
   - 转载
+slug: deepseek-quick-introduce-v1-v3
 readtime: 10
 ---
 

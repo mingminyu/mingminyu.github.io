@@ -3,9 +3,11 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - NiceGUI
+  - PythonWeb
 tags:
+  - NiceGUI
   - VueFlow
+slug: wrap_vue_flow_component
 readtime: 2
 ---
 

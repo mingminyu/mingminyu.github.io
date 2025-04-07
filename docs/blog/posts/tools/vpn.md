@@ -10,10 +10,9 @@ slug: vpn
 readtime: 2
 ---
 
-
 # VPN
 
-!!! warning "警告" 
+!!! warning "警告"
 
     VPN 仅用于学术性科学上网，切勿违反国家法律法规。
 

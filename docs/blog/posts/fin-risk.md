@@ -5,7 +5,8 @@ authors:
 categories:
   - 风控
 tags:
-  - 风控
+  - 风控策略
+slug: fin-risk
 readtime: 2
 ---
 
