@@ -99,7 +99,6 @@ function TodoList({ todos, tab, theme }) {
 
     `useMemo` 不会使第一个渲染更快，它只能帮助您跳过不必要的更新工作。请记住，您的机器可能比用户的速度快，因此最好通过人工放缓来测试性能。例如，Chrome 为此提供了 CPU 节流选项。另请注意，测量开发性能不会给您带来最准确的结果。（例如，当严格模式开启时，您会看到每个组件呈现两次而不是一次。）要获得最准确的时间，请构建应用程序以进行生产，并在用户像用户一样在设备上进行测试。
 
-
 ??? info "你是否需要每处添加 useMemo?"
 
     如果您的应用程序就像此站点一样，并且大多数交互作用是粗糙的（例如更换页面或整个部分），则通常不需要记忆。另一方面，如果您的应用程序更像是绘图编辑器，并且大多数交互都是颗粒状的（例如移动形状），那么您可能会发现回忆非常有帮助。
@@ -113,7 +112,133 @@ function TodoList({ todos, tab, theme }) {
 
     在实践中，您可以通过遵循一些原则来使很多不必要的记忆：
 
-    - 当组件在视觉上包裹其他组件时，让它接受JSX作为孩子。这样，当包装器组件更新自己的状态时，React知道其孩子不需要重新渲染。
+    - 当组件上包裹其他组件时，让它接受 JSX 作为 `children`。这样，当包装器组件更新自己的状态时，React 知道其孩子不需要重新渲染。
+    - React 注重局部状态，除非必要的情况下，否则不会进一步提升的状态。例如，不要保留诸如表单的瞬态状态，以及项目是否徘徊在树的顶部还是全局的状态库中。
+    - 保持渲染逻辑纯净，如果重新渲染组件会引起问题或产生一些明显的视觉伪像，那么这是组件中的一个 BUG！这个时候需要修复错误，而不是添加回忆。
+    - 避免更新状态时触发的不必要效果，React 应用程序中的大多数性能问题都是由更新的链条引起的，这些更新源于导致您的组件反复呈现的效果。
+    - 尝试从效果中删除不必要的依赖性。例如，将某些对象或函数移入效果或组件之外通常更简单，而不是使用记忆。
+
+    如果特定的互动仍然惰性加载，请使用 React Developer Tools Profiler 来查看哪些组件将从记忆中受益最大，并在需要时添加回忆。这些原则使您的组件更容易进行调试和理解，因此无论如何都可以跟随它们。从长远来看，我们正在研究自动进行颗粒状回忆，以一劳永逸地解决此问题。
+
+??? example "useMemo 和直接计算值之间的差异"
+
+    === "使用 useMemo 跳过重新计算"
+
+        在此示例中，`FilterTodos` 人为地放慢了速度，因此我们可以看到在渲染过程中调用某些 JavaScript 函数实际发生了什么，通过尝试切换选项卡并切换主题。
+
+        切换选项卡时感觉很慢，因为它强制放缓的过滤器重新执行。这是预期的，因为标签已经改变，因此整个计算需要重新运行。（如果您很好奇它为什么运行两次，请在此处解释。）
+
+        切换主题，多亏了 `useMemo`，尽管人为放缓，但它还是很快的！跳过了 `filterTodos` 的重新计算，因为自上次渲染以来，`todos` 和 `tab` 项都没有发生更改（作为 `useMemo` 的依赖项）。
+
+        ```ts linenums="1" title="App.js"
+        import { useState } from 'react';
+        import { createTodos } from './utils.js';
+        import TodoList from './TodoList.js';
+
+        const todos = createTodos();
+
+        export default function App() {
+          const [tab, setTab] = useState('all');
+          const [isDark, setIsDark] = useState(false);
+          return (
+            <>
+              <button onClick={() => setTab('all')}>
+                All
+              </button>
+              <button onClick={() => setTab('active')}>
+                Active
+              </button>
+              <button onClick={() => setTab('completed')}>
+                Completed
+              </button>
+              <br />
+              <label>
+                <input
+                  type="checkbox"
+                  checked={isDark}
+                  onChange={e => setIsDark(e.target.checked)}
+                />
+                Dark mode
+              </label>
+              <hr />
+              <TodoList
+                todos={todos}
+                tab={tab}
+                theme={isDark ? 'dark' : 'light'}
+              />
+            </>
+          );
+        }
+        ```
+
+        ```ts linenums="1" title="TodoList.js"
+        import { useMemo } from 'react';
+        import { filterTodos } from './utils.js'
+
+        export default function TodoList({ todos, theme, tab }) {
+          const visibleTodos = useMemo(
+            () => filterTodos(todos, tab),
+            [todos, tab]
+          );
+          return (
+            <div className={theme}>
+              <p><b>Note: <code>filterTodos</code> is artificially slowed down!</b></p>
+              <ul>
+                {visibleTodos.map(todo => (
+                  <li key={todo.id}>
+                    {todo.completed ?
+                      <s>{todo.text}</s> :
+                      todo.text
+                    }
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+        ```
+
+        ```ts linenums="1" title="utils.js"
+        export function createTodos() {
+          const todos = [];
+          for (let i = 0; i < 50; i++) {
+            todos.push({
+              id: i,
+              text: "Todo " + (i + 1),
+              completed: Math.random() > 0.5
+            });
+          }
+          return todos;
+        }
+
+        export function filterTodos(todos, tab) {
+          console.log('[ARTIFICIALLY SLOW] Filtering ' + todos.length + ' todos for "' + tab + '" tab.');
+          let startTime = performance.now();
+          while (performance.now() - startTime < 500) {
+            // Do nothing for 500 ms to emulate extremely slow code
+          }
+
+          return todos.filter(todo => {
+            if (tab === 'all') {
+              return true;
+            } else if (tab === 'active') {
+              return !todo.completed;
+            } else if (tab === 'completed') {
+              return todo.completed;
+            }
+          });
+        }
+
+        ```
+
+    === "总是重新计算一个值"
+
+
+
+
+### 1.2 跳过重新渲染的组件
+
+在某些情况下，`useMemo` 还可以帮助您优化重新渲染儿童组件的性能。为了说明这一点，假设这个todolist的组件将Visibletodos作为一个道具传递给子女列表组成部分：
 
 
 
