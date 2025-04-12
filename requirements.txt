@@ -1,0 +1,8 @@
+mkdocs-material 
+mkdocs-redirects
+mkdocs-minify-plugin 
+mkdocs-awesome-pages-plugin 
+mkdocs-glightbox 
+mkdocs-toggle-sidebar-plugin 
+mkdocs-video
+mkdocs
