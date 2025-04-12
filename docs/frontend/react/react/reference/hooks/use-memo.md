@@ -228,18 +228,283 @@ function TodoList({ todos, tab, theme }) {
             }
           });
         }
-
         ```
 
     === "总是重新计算一个值"
 
+        在此示例中，`FilterTodos` 的实现也被人为地放慢速度，以便您可以看到当渲染过程中某些JavaScript 函数您调用时会发生什么。
 
+        与上一个示例中不同，切换主题现在也很慢！这是因为此版本中没有 `useMemo` 调用，因此人为放慢的 `filterTodos` 会被调用每个重新渲染。即使只有主题已更改，也被进行调用。
 
+        === "App.js"
+
+            ```js linenums="1" 
+            import { useState } from 'react';
+            import { createTodos } from './utils.js';
+            import TodoList from './TodoList.js';
+
+            const todos = createTodos();
+
+            export default function App() {
+              const [tab, setTab] = useState('all');
+              const [isDark, setIsDark] = useState(false);
+              return (
+                <>
+                  <button onClick={() => setTab('all')}>
+                    All
+                  </button>
+                  <button onClick={() => setTab('active')}>
+                    Active
+                  </button>
+                  <button onClick={() => setTab('completed')}>
+                    Completed
+                  </button>
+                  <br />
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={isDark}
+                      onChange={e => setIsDark(e.target.checked)}
+                    />
+                    Dark mode
+                  </label>
+                  <hr />
+                  <TodoList
+                    todos={todos}
+                    tab={tab}
+                    theme={isDark ? 'dark' : 'light'}
+                  />
+                </>
+              );
+            }
+            ```
+
+        === "TodoList.js"
+
+            ```js linenums="1"
+            import { filterTodos } from './utils.js'
+
+            export default function TodoList({ todos, theme, tab }) {
+              const visibleTodos = filterTodos(todos, tab);
+              return (
+                <div className={theme}>
+                  <ul>
+                    <p><b>Note: <code>filterTodos</code> is artificially slowed down!</b></p>
+                    {visibleTodos.map(todo => (
+                      <li key={todo.id}>
+                        {todo.completed ?
+                          <s>{todo.text}</s> :
+                          todo.text
+                        }
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+            ```
+
+        === "util.js"
+
+            ```js linenums="1"
+            export function createTodos() {
+              const todos = [];
+              for (let i = 0; i < 50; i++) {
+                todos.push({
+                  id: i,
+                  text: "Todo " + (i + 1),
+                  completed: Math.random() > 0.5
+                });
+              }
+              return todos;
+            }
+
+            export function filterTodos(todos, tab) {
+              console.log('[ARTIFICIALLY SLOW] Filtering ' + todos.length + ' todos for "' + tab + '" tab.');
+              let startTime = performance.now();
+              while (performance.now() - startTime < 500) {
+                // Do nothing for 500 ms to emulate extremely slow code
+              }
+
+              return todos.filter(todo => {
+                if (tab === 'all') {
+                  return true;
+                } else if (tab === 'active') {
+                  return !todo.completed;
+                } else if (tab === 'completed') {
+                  return todo.completed;
+                }
+              });
+            }
+            ```
+        
+        但是，以下是相同的代码，可以删除人工放缓，缺乏 `useMemo` 是否会感到明显？
+
+        === "App.js"
+
+            ```js linenums="1" 
+            import { useState } from 'react';
+            import { createTodos } from './utils.js';
+            import TodoList from './TodoList.js';
+
+            const todos = createTodos();
+
+            export default function App() {
+              const [tab, setTab] = useState('all');
+              const [isDark, setIsDark] = useState(false);
+              return (
+                <>
+                  <button onClick={() => setTab('all')}>
+                    All
+                  </button>
+                  <button onClick={() => setTab('active')}>
+                    Active
+                  </button>
+                  <button onClick={() => setTab('completed')}>
+                    Completed
+                  </button>
+                  <br />
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={isDark}
+                      onChange={e => setIsDark(e.target.checked)}
+                    />
+                    Dark mode
+                  </label>
+                  <hr />
+                  <TodoList
+                    todos={todos}
+                    tab={tab}
+                    theme={isDark ? 'dark' : 'light'}
+                  />
+                </>
+              );
+            }
+            ```
+
+        === "TodoList.js"
+
+            ```js linenums="1"
+            import { filterTodos } from './utils.js'
+
+            export default function TodoList({ todos, theme, tab }) {
+              const visibleTodos = filterTodos(todos, tab);
+              return (
+                <div className={theme}>
+                  <ul>
+                    <p><b>Note: <code>filterTodos</code> is artificially slowed down!</b></p>
+                    {visibleTodos.map(todo => (
+                      <li key={todo.id}>
+                        {todo.completed ?
+                          <s>{todo.text}</s> :
+                          todo.text
+                        }
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            }
+            ```
+
+        === "util.js"
+
+            ```js linenums="1"
+            export function createTodos() {
+              const todos = [];
+              for (let i = 0; i < 50; i++) {
+                todos.push({
+                  id: i,
+                  text: "Todo " + (i + 1),
+                  completed: Math.random() > 0.5
+                });
+              }
+              return todos;
+            }
+
+            export function filterTodos(todos, tab) {
+              console.log('[ARTIFICIALLY SLOW] Filtering ' + todos.length + ' todos for "' + tab + '" tab.');
+              let startTime = performance.now();
+              while (performance.now() - startTime < 500) {
+                // Do nothing for 500 ms to emulate extremely slow code
+              }
+
+              return todos.filter(todo => {
+                if (tab === 'all') {
+                  return true;
+                } else if (tab === 'active') {
+                  return !todo.completed;
+                } else if (tab === 'completed') {
+                  return todo.completed;
+                }
+              });
+            }
+            ```
+        
+        通常情况下没有回忆的代码效果很好，如果您的互动足够快，您可能不需要记忆。
+
+        您可以尝试增加 utils.js 中的待办事项数量，并查看行为的变化。首先，这种特殊的计算并不是很昂贵，但是如果 todos 的数量显着增长，那么大多数开销将重新供应而不是在过滤中进行。继续阅读下面的内容，以了解如何通过 `useMemo` 优化重新渲染。
 
 ### 1.2 跳过重新渲染的组件
 
-在某些情况下，`useMemo` 还可以帮助您优化重新渲染儿童组件的性能。为了说明这一点，假设这个todolist的组件将Visibletodos作为一个道具传递给子女列表组成部分：
+在某些情况下，`useMemo` 还可以帮助您优化重新渲染儿童组件的性能。为了说明这一点，假设这个 `todoList` 的组件将 `visibleTodos` 作为一个道具传递给 `List` 子组件：
 
+```js linenums="1"
+export default function TodoList({ todos, tab, theme }) {
+  // ...
+  return (
+    <div className={theme}>
+      <List items={visibleTodos} />
+    </div>
+  );
+}
+```
+
+您kennel已经注意到，切换 `theme` 属性会暂时冻结该应用程序，但是如果从您的 JSX 中删除 `<List />` ，就会感觉很快。这告诉我们，值得尝试去优化 `List` 组件。
+
+```js linenums="1" hl_lines="3"
+import { memo } from 'react';
+
+const List = memo(function List({ items }) {
+  // ...
+});
+```
+
+通过此更改，如果清单与上次渲染相同，则列表将跳过重新渲染。这是缓存计算变得重要的地方！想象一下，您在没有 `useMemo` 的情况下计算了 `visibleTodos`：
+
+```js linenums="1" hl_lines="3 8"
+export default function TodoList({ todos, tab, theme }) {
+  // Every time the theme changes, this will be a different array...
+  const visibleTodos = filterTodos(todos, tab);
+  return (
+    <div className={theme}>
+      {/* ... so List's props will never be the same, and it will re-render every time */}
+      <List items={visibleTodos} />
+    </div>
+  );
+}
+```
+
+在上面的示例中，`filterTodos` 函数始终会创建一个不同的数组，类似于 `{}` 对象字面始终创建新对象的方式。通常这不是一个问题，但这意味着 `List` 属性将永远不会相同，而您的 `useMemo` 优化将无法使用。这是 `useMemo` 派上用场了：
+
+```js linenums="1" hl_lines="3 8"
+export default function TodoList({ todos, tab, theme }) {
+  // Tell React to cache your calculation between re-renders...
+  const visibleTodos = useMemo(
+    () => filterTodos(todos, tab),
+    [todos, tab] // ...so as long as these dependencies don't change...
+  );
+  return (
+    <div className={theme}>
+      {/* ...List will receive the same props and can skip re-rendering */}
+      <List items={visibleTodos} />
+    </div>
+  );
+}
+```
+
+通过将visibletodos计算包装在UseMemo中，您可以确保其在重新汇率之间具有相同的值（直到依赖性更改）。除非出于某种特定原因进行，否则您不必在UseMemo中包装计算。在此示例中，原因是您将其传递给包裹在备忘录中的组件，这使其可以跳过重新渲染。还有其他一些原因添加UseMemo，这些原因在此页面上进行了进一步描述。
 
 
 ## 2. 疑难解答
