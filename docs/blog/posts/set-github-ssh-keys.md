@@ -20,4 +20,14 @@ ssh -T git@github.com
 不要用 rsa
 
 
+设置 git
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+
+
+
+
+
+
 
