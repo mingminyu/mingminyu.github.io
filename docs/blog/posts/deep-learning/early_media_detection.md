@@ -8,6 +8,7 @@ tags:
   - FunASR
   - 语音识别
   - 意图识别
+slug: early_media_dectection
 readtime: 2
 ---
 

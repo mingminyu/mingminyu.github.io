@@ -3,7 +3,7 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - 前端
+  - 前端开发
 tags:
   - ReactUI
 slug: react_ui_collections

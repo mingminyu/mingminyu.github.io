@@ -17,17 +17,14 @@ ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)"
 ssh -T git@github.com
 ```
 
-不要用 rsa
+!!! warning "注意"
+  
+    很多教程上使用的还是 RSA，实际添加密钥后仍然无法成功连接 Github，建议使用 ED25519。
 
 
-设置 git
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
+此外，如果需要提交更改，是需要设置 GIT 配置信息：
 
-
-
-
-
-
-
-
+```bash
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```

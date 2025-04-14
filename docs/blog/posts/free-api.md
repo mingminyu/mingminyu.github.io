@@ -3,7 +3,7 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - 爬虫
+  - 网络爬虫
 tags:
   - API
 readtime: 2

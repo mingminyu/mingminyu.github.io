@@ -3,7 +3,7 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - 风控
+  - 金融风控
 tags:
   - 风控策略
 slug: fin-risk
