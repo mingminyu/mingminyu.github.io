@@ -3,9 +3,9 @@ date: 2025-04-15
 authors:
   - mingminyu
 categories:
-  - Git
+  - 软件工具
 tags:
-  - SSH
+  - VSCode
 slug: vscode-most-popular-plugins
 readtime: 2
 ---
