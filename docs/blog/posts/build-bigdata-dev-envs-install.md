@@ -4,7 +4,7 @@ authors:
   - mingminyu
 categories:
   - 环境搭建
-slug: dev-envs-install
+slug: build-bigdata-dev-envs-install
 readtime: 30
 ---
 
@@ -23,7 +23,6 @@ docker run -d --name kudu-impala \
   -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 \
   --memory=4096m apache/kudu:impala-latest impala
 ```
-
 
 > 如果你也要开启 WebHDFS 和 Hive 接口服务，这里建议将 10000 端口以及 9870 端口先暴露出来。
 
@@ -86,11 +85,19 @@ docker run -d --name kudu-impala \
         <value>hdfs://127.0.0.1:9000</value>  <!-- 替换为你的NameNode主机名或IP -->
       </property>
       <property>
-        <name>hadoop.proxyuser.[http-user].hosts</name>
+        <name>hadoop.proxyuser.root.hosts</name>
         <value>*</value>  <!-- 允许所有主机访问 -->
       </property>
       <property>
-        <name>hadoop.proxyuser.[http-user].groups</name>
+        <name>hadoop.proxyuser.root.groups</name>
+        <value>*</value>  <!-- 允许所有用户组 -->
+      </property>
+      <property>
+        <name>hadoop.proxyuser.yumingmin.hosts</name>
+        <value>*</value>  <!-- 允许所有主机访问 -->
+      </property>
+      <property>
+        <name>hadoop.proxyuser.yumingmin.groups</name>
         <value>*</value>  <!-- 允许所有用户组 -->
       </property>
     </configuration>
@@ -98,16 +105,16 @@ docker run -d --name kudu-impala \
 
 === "/opt/hadoop/etc/hadoop/hdfs-site.xml"
 
-    ```xml linenums="1"
+    ```xml linenums="1" hl_lines="9"
     <configuration>
-      <property>property>
+      <property>
         <name>dfs.webhdfs.enabled</name>
         <value>true</value>
       </property>
       <!-- NameNode HTTP 地址（Hadoop 3.x 默认端口：9870） -->
       <property>
         <name>dfs.namenode.http-address</name>
-        <value>127.0.0.1:9870</value>
+        <value>0.0.0.0:9870</value>
       </property>
       <!-- DataNode HTTP 地址（Hadoop 3.x 默认端口：9864） -->
       <property>
@@ -122,8 +129,8 @@ docker run -d --name kudu-impala \
 ```bash
 # 启动 NameNode 和 DataNode 服务
 $ /opt/hadoop/bin/hdfs namenode -format
-$ /opt/hadoop/bin/hdfs -daemon start namenode
-$ /opt/hadoop/bin/hdfs -daemon start datanode
+$ /opt/hadoop/bin/hdfs --daemon start namenode
+$ /opt/hadoop/bin/hdfs --daemon start datanode
 
 # 停止 NameNode 和 DataNode 服务
 $ /opt/hadoop/bin/hdfs stop namenode
@@ -140,7 +147,7 @@ docker run -d --name kudu-impala \
 
 ## 3. Apache Hive
 
-开启 Hive Metastore 需要先设置好 `Java_HOME` 以及 `HADOOP_CONF_DIR` 环境变量。在创建容器时就将 10000 接口暴露出来：
+开启 Hive Metastore 需要先设置好 `JAVA_HOME` 以及 `HADOOP_CONF_DIR` 环境变量。在创建容器时就将 10000 接口暴露出来：
 
 ```bash
 docker run -d --name kudu-impala \
@@ -150,11 +157,12 @@ docker run -d --name kudu-impala \
   --memory=4096m apache/kudu:impala-latest impala
 ```
 
-接下来
+接下来执行以下命令开启 HiveServer2 服务，==需要注意的是 NameNode 和 Datanode 服务需要先启动==：
 
 ```bash
 $ nohup hive --service hiveserve2 > /dev/null 2>&1 &
 ```
+
 
 ## 4. Hue
 
@@ -162,4 +170,48 @@ $ nohup hive --service hiveserve2 > /dev/null 2>&1 &
 docker network create -d bridge quickstart-network
 ```
 
+### 4.1 配置 Impala
 
+```ini title="/usr/share/hue/desktop/conf/hue.ini"
+default_user=root
+default_hdfs_superuser=root
+
+[hadoop]
+[[hdfs_clusters]]
+[[[default]]]
+webhdfs_url = http://kudu-impala.orb.local:9870/webhdfs/v1
+```
+
+
+
+### 4.1 配置 WebHDFS
+
+```ini title="/usr/share/hue/desktop/conf/hue.ini"
+default_user=root
+default_hdfs_superuser=root
+
+[impala]
+server_host=kudu-impala.orb.local
+server_port=21050
+```
+
+### 4.2 配置 Hive 服务
+
+打开 Hue 的 Hive Editor，出现如下错误：
+
+```bash
+Thrift version configured by property thrift_version might be too high. Request failed with "Required field 'client_protocol' is unset! Struct:TOpenSessionReq(client_protocol:null, username:hue, configuration:{hive.server2.proxy.user=yumingmin})" (code OPEN_SESSION): None
+```
+
+需要在 hue.ini 文件中修改 `thrift_version=7`。
+
+
+```ini title="/usr/share/hue/desktop/conf/hue.ini"
+default_user=root
+default_hdfs_superuser=root
+
+[beeswax]
+hive_server2_host=hkudu-impala.orb.local
+hive_server_port=10000
+thrift_version=7
+```
