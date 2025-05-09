@@ -18,14 +18,14 @@ readtime: 30
 ## 1. Apache Impala
 
 ```bash
-docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 0.0.0.0:21000:21000 -p 0.0.0.0:21050:21050 -p 0.0.0.0:25000:25000 -p 0.0.0.0:25010:25010 -p 0.0.0.0:25020:25020 --memory=4096m apache/kudu:impala-latest impala
 ```
 
 > 如果你也要开启 WebHDFS 和 Hive 接口服务，这里建议将 10000 端口以及 9870 端口先暴露出来。
 
 ???+ "Window 宿主机作为接口服务端"
 
-      服务启动后，发现通过 Python 连接 `localhost` 是正常的，但换成 `127.0.0.1` 或者实际 IP4 地址，都无法正确连接。但我们希望该机器作为测试机器能对外映射服务端口，从来让其他机器访问该服务，这个时候需要做一个端口转发：
+      【方法不可行】服务启动后，发现通过 Python 连接 `localhost` 是正常的，但换成 `127.0.0.1` 或者实际 IP4 地址，都无法正确连接。但我们希望该机器作为测试机器能对外映射服务端口，从来让其他机器访问该服务，这个时候需要做一个端口转发：
 
       ```bash
       netsh interface portproxy add v4tov4 listenport=21050 listenaddress=0.0.0.0 connectport=21050 connectaddress=localhost
@@ -36,10 +36,21 @@ docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p
       netsh interface portproxy show all
       ```
 
-      好像这个方法也不行。
+      好像这个方法也不行，开启端口转发后，局域网内不可访问。
 
-      https://blog.csdn.net/weixin_40845192/article/details/124588096
+      参考：https://blog.csdn.net/weixin_40845192/article/details/124588096
 
+
+```bash title="/impala-entrypoint.sh"
+function start_hive_hs2() {
+  hive --service hiveserver2 &
+}
+
+function start_hdfs() {
+  hdfs --daemon start namenode
+  hdfs --daemon start datanode
+}
+```
 
 ## 2. Apache Hadoop
 
@@ -82,11 +93,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_CONF_DIR
 那换个思路，直接在创建 docker 容器时，就把环境变量设置进去。重新创建容器后，再次执行 `hadoop version` 命令就正常了：
 
 ```bash
-docker run -d --name kudu-impala \
-  -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 \
-  --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" \
-  --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" \
-  --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 0.0.0.0:21000:21000 -p 0.0.0.0:21050:21050 -p 0.0.0.0:25000:25000 -p 0.0.0.0:25010:25010 -p 0.0.0.0:25020:25020 --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" --memory=4096m apache/kudu:impala-latest impala
 ```
 
 工作中 Hadoop 用到最多的可能就是 WebHDFS 服务了，这里以 Hadoop 3.x 为例，说明下 WebHDFS 服务开启操作。
@@ -97,7 +104,12 @@ docker run -d --name kudu-impala \
     <configuration>
       <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://127.0.0.1:9000</value>  <!-- 替换为你的NameNode主机名或IP -->
+        <value>hdfs://0.0.0.0:9000</value>  <!-- 替换为你的NameNode主机名或IP -->
+      </property>
+      <!-- 不添加的会导致无法提交文件到 hdfs 上 -->
+      <property>
+        <name>dfs.client.use.datanode.hostname</name>
+        <value>true</value>
       </property>
       <property>
         <name>hadoop.proxyuser.root.hosts</name>
@@ -108,11 +120,11 @@ docker run -d --name kudu-impala \
         <value>*</value>  <!-- 允许所有用户组 -->
       </property>
       <property>
-        <name>hadoop.proxyuser.yumingmin.hosts</name>
+        <name>hadoop.proxyuser.impala.hosts</name>
         <value>*</value>  <!-- 允许所有主机访问 -->
       </property>
       <property>
-        <name>hadoop.proxyuser.yumingmin.groups</name>
+        <name>hadoop.proxyuser.impala.groups</name>
         <value>*</value>  <!-- 允许所有用户组 -->
       </property>
     </configuration>
@@ -136,21 +148,41 @@ docker run -d --name kudu-impala \
         <name>dfs.datanode.http.address</name>
         <value>0.0.0.0:9864</value>
       </property>
+      <!-- 不添加的会导致无法提交文件到 hdfs 上 -->
+      <property>
+        <name>dfs.datanode.hostname</name>
+        <value>10.166.99.61</value>
+      </property>
     </configuration>
     ```
+
+
+需要设置下 datanode 的 hostname，否则会报错：
+
+```bash
+Failed to resolve 'f38ea60d2b3a' ([Errno 11001] getaddrinfo failed)"))
+```
 
 接下来，我们还要重启下 NameNode 和 Datanode 服务，然后就可以通过 WebHDFS 服务访问 HDFS 了。
 
 ```bash
 # 启动 NameNode 和 DataNode 服务
 $ /opt/hadoop/bin/hdfs namenode -format
+$ /opt/hadoop/bin/hdfs datanode -regular
 $ /opt/hadoop/bin/hdfs --daemon start namenode
 $ /opt/hadoop/bin/hdfs --daemon start datanode
 
 # 停止 NameNode 和 DataNode 服务
-$ /opt/hadoop/bin/hdfs stop namenode
-$ /opt/hadoop/bin/hdfs stop datanode
+$ /opt/hadoop/bin/hdfs --daemon stop namenode
+$ /opt/hadoop/bin/hdfs --daemon stop datanode
+
+# 创建目录，默认是 impala 账户
+# 以下不操作，会出现 User: impala is not allowed to impersonate root 报错信息
+$ /opt/hadoop/bin/hdfs dfs  -mkdir /tmp
+$ /opt/hadoop/bin/hdfs dfs  -mkdir -p /user/impala
+$ /opt/hadoop/bin/hdfs dfs  -mkdir -p /user/root
 ```
+
 
 最后还是重新创建下容器：
 
@@ -158,12 +190,20 @@ $ /opt/hadoop/bin/hdfs stop datanode
 docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 --memory=4096m apache/kudu:impala-latest impala
 ```
 
+使用 pyhdfs 连接报错：
+
+```bash
+HdfsIOException: Failed to find datanode, suggest to check cluster health. excludeDatanodes=null
+```
+
+先删除 `/tmp/hadoop-impala/dfs/data` 目录所有文件，再重新启动 datanode。
+
 ## 3. Apache Hive
 
 开启 Hive Metastore 需要先设置好 `JAVA_HOME` 以及 `HADOOP_CONF_DIR` 环境变量。在创建容器时就将 10000 接口暴露出来：
 
 ```bash
-docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 -p 10000:10000 --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 0.0.0.0:21000:21000 -p 0.0.0.0:21050:21050 -p 0.0.0.0:25000:25000 -p 0.0.0.0:25010:25010 -p 0.0.0.0:25020:25020 -p 0.0.0.0:9000:9000 -p 0.0.0.0:9870:9870 -p 0.0.0.0:9864:9864 -p 0.0.0.0:10000:10000 --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" --memory=4096m apache/kudu:impala-latest impala
 ```
 
 接下来执行以下命令开启 HiveServer2 服务，==需要注意的是 NameNode 和 Datanode 服务需要先启动==：
