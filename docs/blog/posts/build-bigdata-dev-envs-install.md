@@ -8,8 +8,7 @@ slug: build-bigdata-dev-envs-install
 readtime: 30
 ---
 
-# 最简单大数据开发环境搭建
-
+# 最简单的大数据开发环境搭建
 
 !!! note "参考文档"
 
@@ -19,12 +18,28 @@ readtime: 30
 ## 1. Apache Impala
 
 ```bash
-docker run -d --name kudu-impala \
-  -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 \
-  --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 --memory=4096m apache/kudu:impala-latest impala
 ```
 
 > 如果你也要开启 WebHDFS 和 Hive 接口服务，这里建议将 10000 端口以及 9870 端口先暴露出来。
+
+???+ "Window 宿主机作为接口服务端"
+
+      服务启动后，发现通过 Python 连接 `localhost` 是正常的，但换成 `127.0.0.1` 或者实际 IP4 地址，都无法正确连接。但我们希望该机器作为测试机器能对外映射服务端口，从来让其他机器访问该服务，这个时候需要做一个端口转发：
+
+      ```bash
+      netsh interface portproxy add v4tov4 listenport=21050 listenaddress=0.0.0.0 connectport=21050 connectaddress=localhost
+      netsh interface portproxy add v4tov4 listenport=10000 listenaddress=0.0.0.0 connectport=10000 connectaddress=localhost
+      netsh interface portproxy add v4tov4 listenport=9870 listenaddress=0.0.0.0 connectport=9870 connectaddress=localhost
+
+      netsh interface portproxy reset
+      netsh interface portproxy show all
+      ```
+
+      好像这个方法也不行。
+
+      https://blog.csdn.net/weixin_40845192/article/details/124588096
+
 
 ## 2. Apache Hadoop
 
@@ -137,12 +152,10 @@ $ /opt/hadoop/bin/hdfs stop namenode
 $ /opt/hadoop/bin/hdfs stop datanode
 ```
 
-最后还是重新创建下容器：cd
+最后还是重新创建下容器：
 
 ```bash
-docker run -d --name kudu-impala \
-  -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 \
-  --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 --memory=4096m apache/kudu:impala-latest impala
 ```
 
 ## 3. Apache Hive
@@ -150,19 +163,14 @@ docker run -d --name kudu-impala \
 开启 Hive Metastore 需要先设置好 `JAVA_HOME` 以及 `HADOOP_CONF_DIR` 环境变量。在创建容器时就将 10000 接口暴露出来：
 
 ```bash
-docker run -d --name kudu-impala \
-  -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 -p 10000:10000 \
-  --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" \
-  --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" \
-  --memory=4096m apache/kudu:impala-latest impala
+docker run -d --name kudu-impala -p 21000:21000 -p 21050:21050 -p 25000:25000 -p 25010:25010 -p 25020:25020 -p 9870:9870 -p 10000:10000 --env "JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/jre" --env "HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop" --memory=4096m apache/kudu:impala-latest impala
 ```
 
 接下来执行以下命令开启 HiveServer2 服务，==需要注意的是 NameNode 和 Datanode 服务需要先启动==：
 
 ```bash
-$ nohup hive --service hiveserve2 > /dev/null 2>&1 &
+nohup hive --service hiveserver2 > /dev/null 2>&1 &
 ```
-
 
 ## 4. Hue
 
@@ -181,8 +189,6 @@ default_hdfs_superuser=root
 [[[default]]]
 webhdfs_url = http://kudu-impala.orb.local:9870/webhdfs/v1
 ```
-
-
 
 ### 4.1 配置 WebHDFS
 
