@@ -1,0 +1,11 @@
+.md-typeset__table table thead {
+  background-color: #D6EAF8;
+}
+:root {
+  --md-status--report: url('data:image/svg+xml;charset=utf-8,<svg t="1719997281145" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1745" width="32" height="32"><path d="M96.865 0h830.27C980.632 0 1024 43.368 1024 96.865v830.27c0 53.497-43.368 96.865-96.865 96.865H96.865C43.368 1024 0 980.632 0 927.135V96.865C0 43.368 43.368 0 96.865 0z m355.923 188.084V842.89h153.254V188.084H452.788zM682.669 550.31v292.573h153.254V550.31H682.669z m-466.73-139.32v431.893h153.255V410.991H215.939z"/></svg>')
+}
+
+.md-status--report::after {
+  mask-image: var(--md-status--report);
+  -webkit-mask-image: var(--md-status--report);
+}
