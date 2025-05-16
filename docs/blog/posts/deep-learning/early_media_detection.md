@@ -24,7 +24,7 @@ readtime: 2
 
 ## 2. 技术架构
 
-![技术架构图](../images/image.png)
+![技术架构图](https://mingminyu.github.io/images/image.png)
 
 !!! warning "无声状态"
 

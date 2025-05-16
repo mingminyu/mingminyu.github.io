@@ -352,37 +352,34 @@ nav:
             - 升级: frontend/react/nextjs/app/building-your-application/upgrading.md
             - 案例: frontend/react/nextjs/app/building-your-application/examples.md
 
-          - API 参考:
-            - 组件:
-              - api-reference/components/index.md
-              - 字体: api-reference/components/font.md
-              - 表单: api-reference/components/form.md
-              - 图像: api-reference/components/image.md
-              - 链接: api-reference/components/link.md
-              - 脚本: api-reference/components/script.md
-            - 文件约定:
-              - api-reference/file-conventions/index.md
-            - 函数:
-              - api-reference/functions/index.md
-            - NextJS配置选项:
-              - api-reference/next-config-js/index.md
-            - 命令行工具:
-              - api-reference/cli/index.md
-              - next-create-app: api-reference/cli/next-create-app.md
-              - Next CLI: api-reference/cli/next.md
+          # - API 参考:
+          #   - 组件:
+          #     - frontend/react/nextjs/api-reference/components/index.md
+          #     - 字体: frontend/react/nextjs/api-reference/components/font.md
+          #     - 表单: frontend/react/nextjs/api-reference/components/form.md
+          #     - 图像: frontend/react/nextjs/api-reference/components/image.md
+          #     - 链接: frontend/react/nextjs/api-reference/components/link.md
+          #     - 脚本: frontend/react/nextjs/api-reference/components/script.md
+          #   - 文件约定:
+          #     - frontend/react/nextjs/app/api-reference/file-conventions/index.md
+          #   - 函数:
+          #     - frontend/react/nextjs/app/api-reference/functions/index.md
+          #   - NextJS配置选项:
+          #     - frontend/react/nextjs/app/api-reference/next-config-js/index.md
+          #   - 命令行工具:
+          #     - frontend/react/nextjs/api-reference/cli/index.md
+          #     - next-create-app: frontend/react/nextjs/api-reference/cli/next-create-app.md
+          #     - Next CLI: frontend/react/nextjs/api-reference/cli/next.md
             
-            - Edge Runtime: api-reference/edge-runtime.md
+          #   - Edge Runtime: api-reference/edge-runtime.md
 
-        - Page Router:
-            - frontend/react/nextjs/app/page/index.md
-
-        - 架构:
-          - architecture/index.md
-          - 可访问性: architecture/accessibility.md
-          - 快速刷新: architecture/fast-refresh.md
-          - 编译器: architecture/nextjs-compiler.md
-          - 支持浏览器: architecture/supported-browsers.md
-          - Turbopack: architecture/turbopack.md
+        # - 架构:
+        #   - frontend/react/nextjs/architecture/index.md
+        #   - 可访问性: frontend/react/nextjs/architecture/accessibility.md
+        #   - 快速刷新: frontend/react/nextjs/architecture/fast-refresh.md
+        #   - 编译器: frontend/react/nextjs/architecture/nextjs-compiler.md
+        #   - 支持浏览器: frontend/react/nextjs/architecture/supported-browsers.md
+        #   - Turbopack: frontend/react/nextjs/architecture/turbopack.md
 
     - Vue: 
       - Vue: 
@@ -459,7 +456,7 @@ nav:
               - 通用属性: backend/python/tools/dbt/references/resource-configs-properties/general-properties.md
               - 通用配置: backend/python/tools/dbt/references/resource-configs-properties/general-configs.md
 
-          - DBT Cloud: dbt-cloud/index.md
+          - DBT Cloud: backend/python/tools/dbt-cloud/index.md
 
       
     - Go: 
@@ -468,7 +465,7 @@ nav:
 
     - Java: 
       - Java基础: 
-        - backend/java/java-base.md
+        - backend/java/index.md
       
     - Kotlin:
       - Kotlin基础:

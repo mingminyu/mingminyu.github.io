@@ -203,7 +203,8 @@ SELECT COALESCE(NULL, NULL, 5, NULL);  -- 5
 ## 8. ASSERT_TRUE
 
 
-[^1]: 
-    "LanguageManual UDF": https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-ConditionalFunctions
 
-[^2]: "Hive中NVL和COLESCE的使用": https://www.cnblogs.com/wdh01/p/15843859.html
+## 9. 参考资料
+
+- LanguageManual UDF: https://cwiki.apache.org/confluence/display/Hive/LanguageManual+UDF#LanguageManualUDF-ConditionalFunctions
+- Hive中NVL和COLESCE的使用: https://www.cnblogs.com/wdh01/p/15843859.html

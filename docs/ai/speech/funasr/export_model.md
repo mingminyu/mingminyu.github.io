@@ -32,5 +32,3 @@ wav_path = [
 result = model(wav_path)
 print(result)
 ```
-
-[^1]: ONNXRuntime-Python: https://github.com/modelscope/FunASR/tree/main/runtime/python/onnxruntime

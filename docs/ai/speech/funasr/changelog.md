@@ -25,6 +25,3 @@
 - 2023.08.07: 中文实时语音听写服务一键部署的CPU版本发布。
 - 2023.07.17: BAT 一种低延迟低内存消耗的 **RNN-T** 模型发布。
 - 2023.06.26: ASRU2023 多通道多方会议转录挑战赛 2.0 完成竞赛结果公布，详细信息参阅（[M2MeT2.0](https://alibaba-damo-academy.github.io/FunASR/m2met2_cn/index.html)）
-
-
-[^1]: https://github.com/modelscope/FunASR/blob/main/README_zh.md

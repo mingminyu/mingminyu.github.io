@@ -4,7 +4,7 @@ DBT 是一种转换工作流程，能帮助我们完成数据工程以及数据�
 
 DBT 针对数据平台编译并运行分析代码，使团队能够在指标、见解和业务定义的单一事实来源上进行协作。这种单一事实来源与为数据定义测试的能力相结合，可以减少逻辑变化时的错误，并在出现问题时发出警报。
 
-![DBT 可与提取、可视化和其他数据工具配合使用](images/20241226-01.png)
+![DBT 可与提取、可视化和其他数据工具配合使用](https://mingminyu.github.io/webassets/images/20241226-01.png)
 
 
 在 [DBT Viewpoint](https://docs.getdbt.com/community/resources/viewpoint) 中详细了解为什么我们希望让分析师能够更像软件工程师一样工作。[加入 dbt 社区](https://www.getdbt.com/community/join-the-community)，了解世界各地的其他数据从业者如何使用 dbt。
