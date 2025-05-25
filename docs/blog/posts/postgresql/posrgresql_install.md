@@ -6,7 +6,6 @@ categories:
   - 数据库
 tags:
   - PostgreSQL
-  - 安装
 readtime: 2
 ---
 

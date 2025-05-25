@@ -72,6 +72,7 @@ plugins:
       # archive_toc: false
       categories_toc: true
       categories_slugify_separator: _
+      categories_url_format: "{slug}"
       categories_slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
           case: lower
