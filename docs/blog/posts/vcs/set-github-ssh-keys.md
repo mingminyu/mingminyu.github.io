@@ -3,7 +3,7 @@ date: 2025-04-12
 authors:
   - mingminyu
 categories:
-  - Git
+  - 版本控制
 tags:
   - SSH
 slug: set_github_ssh_keys

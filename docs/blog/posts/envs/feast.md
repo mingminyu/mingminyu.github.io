@@ -3,10 +3,10 @@ date: 2025-02-24
 authors:
   - mingminyu
 categories:
-  - 开源软件
+  - 环境搭建
 tags:
   - 开源软件
-  - Feast
+  - 数据特征
 slug: feast
 readtime: 10
 ---
