@@ -42,18 +42,18 @@ DeepSeek V1 是 2024 年 1 月份发布的第一版DeepSeek模型，包含DeepSe
 
 1. Grouped Query Attention 每组 query 共用同一组 key 和 value。
 
-![alt text](../../../images/20250208-01.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250208-01.png)
 
 **优化端**：使用 ==Multi-Step Learning Rate== 代替 LLaMA 中的 Cosine Learning Rate Schedule，主要原因是实验发现两者虽然最终收敛到的 Loss 差不多，但是前者在连续学习上 Loss 能够保证一致性，连续学习更加方便。先用 2000 个 step 的 WarmUp 将学习率提升到最大值，然后在训练完 80% 的训练数据后将学习率降低到 31.6%，在训练完 90% 的训练数据后进一步降低到 10%。
 
-![alt text](../../../images/20250209-01.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250209-01.png)
 
 **对齐**：使用 Supervised Fine-Tuning（SFT）、DPO 两种方式进行预训练模型的微调（finetune），进行风格对齐。
 
 - SFT 使用 120w 搜集到的监督数据（一些根据指令给出答案的文本，由人类标注的高质量数据，帮助预训练模型迁移人类风格）进行微调。
 - DPO 是针对之前 ChatGPT 中基于强化学习的 RHLF 风格迁移的一种升级，不用强化学习，只使用一个指定对应的两个答案之前的相对偏好关系作为损失函数加入到模型中。
 
-![alt text](../../../images/20250209-02.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250209-02.png)
 
 ## 2. DeepSeek V2
 
@@ -61,7 +61,7 @@ DeepSeek V2 最核心的两处改动都在模型结构上，一是提出了一�
 
 **多头浅注意力**：MLA 的主要目的是减少 KV 缓存占用的空，KV 缓存是大模型都会使用的技术，在推理阶段，每一个 token 的输出都要和历史所有 token 计算 attention，每次新增 token 都有很多重复计算，因此可以将前面 token 计算出的 key 和 value 缓存起来。但是直接缓存 key 和 value 占用较大的空间，因此 MLA 对 KV 进行了一个低维映射，只存储这个低维的向量，节省了缓存存储空间。
 
-![alt text](../../../images/20250210-01.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250210-01.png)
 
 **DeepSeekMoE**：MoE 是目前大模型在探索应用的一项技术，基础的 MoE 将原来的每个 token 的单个 ==FFN== 层变成多个并行的 FFN 层（对应多个专家模型），并根据输入生成一个路由到各个 FFN 的打分，选择 topN 个专家，实现在单 token 运算量没有显著提升的前提下，扩大模型的参数空间的目的。如下图a中，即是一个激活2个专家的MoE。
 
@@ -70,7 +70,7 @@ DeepSeekMoE 相比 MoE 有两处核心优化：
 1. 把 Expert 变多了（文中称为 Fine-Grained Expert），其实就是把原来每个 Expert 的 FFN 维度调小，增加 Expert 数量，并且最终激活的 Expert 数量也变多。
 2. 增加了几个所有 token 都走的公用 Expert，通过让所有 token 都走这些 Expert，让这些Expert 提取通用信息，其他 Expert 就能更专注于提取差异化的信息。
 
-![alt text](../../../images/20250210-02.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250210-02.png)
 
 ## 3. DeepSeek V3
 
@@ -87,4 +87,4 @@ DeepSeekV3 在模型结构上做了两处核心优化:
 
 文中引入 Multi-Token Prediction 主要为了提升训练效果，推理阶段直接去掉这些 MTP 模块，也可以引入这些MTP模块提升inference效率。
 
-![alt text](../../../images/20250210-03.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250210-03.png)

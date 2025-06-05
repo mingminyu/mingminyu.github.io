@@ -11,7 +11,7 @@
 
 卷积、全连接、池化层都只考虑不随意线索，注意力机制则会显示地考虑随意线索。随意线索被称为查询（Query），每个输入是一个不随意线索（Key）和值（Value）的键值对，通过注意力池化层来有偏向性地选择某些输入。
 
-![注意力机制](../../images/attention.png)
+![注意力机制](https://mingminyu.github.io/webassets/images/attention.png)
 
 
 ## 2. 非参注意力池化层

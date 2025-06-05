@@ -12,8 +12,14 @@ readtime: 2
 
 # Impala 常用 SQL
 
-## 1. 查看表占用空间
-
-```sql
+## 1. 统计信息
+ 
+```sql title="查看表占用空间"
 SHOW TABLE STATS <YOUR_TABLE>;
+```
+
+## 2. 日期转换
+
+```sql title="获取当前月最后1天日期"
+SELECT LAST_DAY(NOW())
 ```

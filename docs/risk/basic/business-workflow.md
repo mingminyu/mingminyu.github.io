@@ -83,7 +83,7 @@
 
 持卡人在商户那里刷卡消费的一瞬间，其实有很多数据是需要再银行、银联和第三方支付公司之间做数据交换记账的，以下就是整个交易流程的概略图。
 
-![alt text](../../images/20241209-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241209-01.png)
 
 #### 2.1.4 提额
 
@@ -121,7 +121,7 @@
 
 #### 2.2.3 模式
 
-![alt text](../../images/20241210-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241210-01.png)
 
 #### 2.2.4 特点
 
@@ -164,7 +164,7 @@
 
 #### 2.3.3 模式
 
-![alt text](../../images/20241215-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241215-01.png)
 
 
 #### 2.3.4 特点
@@ -195,12 +195,12 @@
 
 几种信贷模式有所差异，但核心流程基本相同，如无特殊说明，本节信贷业务流程内容均 **以现金分期为例**。
 
-![alt text](../../images/20241215-02.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241215-02.png)
 
 
 ### 3.1 组织架构
 
-![alt text](../../images/20241217-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-01.png)
 
 | 组织架构 | 作用 | 
 | --- | --- |
@@ -213,11 +213,11 @@
 | 贷中管理部 | 风险追踪；用户管理 |
 | 贷后管理部 | 数据中心；催收中心；委外中心 |
 
-![alt text](../../images/20241217-05.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-05.png)
 
-![alt text](../../images/20241217-06.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-06.png)
 
-![alt text](../../images/20241217-07.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-07.png)
 
 ### 3.2 市场调研
 
@@ -270,21 +270,21 @@
 
 举个前两年市场上常见的现金贷产品案例：
 
-![alt text](../../images/20241217-02.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-02.png)
 
 ### 3.3.2 借款流程
 
-![alt text](../../images/20241217-03.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-03.png)
 
 ### 3.3.3 审批流程
 
-![alt text](../../images/20241217-04.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-04.png)
 
 ### 3.3.4 还款流程
 
 还款方式：等本等息、先本后息、先息后本。
 
-![alt text](../../images/20241217-08.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-08.png)
 
 
 ### 3.3.5 逾期罚息
@@ -296,7 +296,7 @@
 
 ### 3.3.6 用户管理
 
-![alt text](../../images/20241217-09.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241217-09.png)
 
 ## 3.4 基础设施建设
 
@@ -308,41 +308,41 @@
 系统整体流程：
 
 
-![alt text](../../images/20241219-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241219-01.png)
 
 
 **系统功能**：现金贷管理系统支持 App 端及手机端登录操作。核心功能模块由 **用户管理、借款管理、还款管理、催收管理、规则引擎、报表统计及系统配置** 组成，且系统对征信平台、短信平台、外设硬件、第三方支付接口完美兼容。
 
 
-![alt text](../../images/20241219-02.png)
+![alt text](https://mingminyu.github.io/webassets/images/20241219-02.png)
 
 ### 3.4.2 硬件工厂
 
-![硬件工厂](../../images/20241219-03.png)
+![硬件工厂](https://mingminyu.github.io/webassets/images/20241219-03.png)
 
 ### 3.4.3 数据仓库
 
-![数据仓库](../../images/20241219-04.png)
+![数据仓库](https://mingminyu.github.io/webassets/images/20241219-04.png)
 
 ### 3.4.4 风控系统
 
-![风控系统](../../images/20241221-01.png)
+![风控系统](https://mingminyu.github.io/webassets/images/20241221-01.png)
 
 ### 3.4.5 外部技术接入
 
 <figure markdown>
-![全链路运营、风控、系统、方案等服务](../../images/20241221-02.png)
+![全链路运营、风控、系统、方案等服务](https://mingminyu.github.io/webassets/images/20241221-02.png)
 <figcaption>全链路运营、风控、系统、方案等服务</figcaption>
 </figure>
 
 
 <figure markdown>
-![数据接口](../../images/20241221-03.png)
+![数据接口](https://mingminyu.github.io/webassets/images/20241221-03.png)
 <figcaption>数据接口</figcaption>
 </figure>
 
 <figure markdown>
-![数据字典](../../images/20241221-04.png)
+![数据字典](https://mingminyu.github.io/webassets/images/20241221-04.png)
 <figcaption>数据字典</figcaption>
 </figure>
 
@@ -353,42 +353,42 @@
 ### 3.4.7 后台系统
 
 <figure markdown>
-![平台概览](../../images/20241221-05.png)
+![平台概览](https://mingminyu.github.io/webassets/images/20241221-05.png)
 <figcaption>平台概览</figcaption>
 </figure>
 
 <figure markdown>
-![功能列表](../../images/20241221-06.png)
+![功能列表](https://mingminyu.github.io/webassets/images/20241221-06.png)
 <figcaption>功能列表</figcaption>
 </figure>
 
 
 <figure markdown>
-![启动页](../../images/20241221-07.png)
+![启动页](https://mingminyu.github.io/webassets/images/20241221-07.png)
 <figcaption>启动页</figcaption>
 </figure>
 
 
 <figure markdown>
-![审批管理](../../images/20241221-08.png)
+![审批管理](https://mingminyu.github.io/webassets/images/20241221-08.png)
 <figcaption>审批管理</figcaption>
 </figure>
 
 
 <figure markdown>
-![放款管理](../../images/20241221-09.png)
+![放款管理](https://mingminyu.github.io/webassets/images/20241221-09.png)
 <figcaption>放款管理</figcaption>
 </figure>
 
 <figure markdown>
-![逾期管理](../../images/20241221-10.png)
+![逾期管理](https://mingminyu.github.io/webassets/images/20241221-10.png)
 <figcaption>逾期管理</figcaption>
 </figure>
 
 权限管理：客户经理、客服人员、代理商、风控人员、财务人员、运营人员、催收人员、系统管理
 
 <figure markdown>
-![短信提醒](../../images/20241221-11.png)
+![短信提醒](https://mingminyu.github.io/webassets/images/20241221-11.png)
 <figcaption>短信提醒</figcaption>
 </figure>
 
@@ -396,29 +396,29 @@
 ### 3.4.8 APP
 
 <figure markdown>
-![首页](../../images/20241221-12.png)
+![首页](https://mingminyu.github.io/webassets/images/20241221-12.png)
 <figcaption>首页</figcaption>
 </figure>
 
 
 <figure markdown>
-![身份认证](../../images/20241221-13.png)
+![身份认证](https://mingminyu.github.io/webassets/images/20241221-13.png)
 <figcaption>身份认证</figcaption>
 </figure>
 
 <figure markdown>
-![联系认证](../../images/20241221-14.png)
+![联系认证](https://mingminyu.github.io/webassets/images/20241221-14.png)
 <figcaption>联系认证</figcaption>
 </figure>
 
 
 <figure markdown>
-![还款](../../images/20241221-15.png)
+![还款](https://mingminyu.github.io/webassets/images/20241221-15.png)
 <figcaption></figcaption>
 </figure>
 
 <figure markdown>
-![我的](../../images/20241221-16.png)
+![我的](https://mingminyu.github.io/webassets/images/20241221-16.png)
 <figcaption>我的</figcaption>
 </figure>
 
@@ -437,7 +437,7 @@
 
 
 <figure markdown>
-![渠道用户质量测试](../../images/20241223-01.png)
+![渠道用户质量测试](https://mingminyu.github.io/webassets/images/20241223-01.png)
 <figcaption>渠道用户质量测试</figcaption>
 </figure>
 
@@ -445,13 +445,13 @@
 
 通过多方数据建立预测模型综合评估客户价值，对客户进行综合评判和分级，筛选出信贷需求高意向客户，优先进行营销触达。对中、低意向客户持续进行跟踪，当其转化成高意向客户时及时触发营销手段，形成一个良性循环。
 
-![营销模型](../../images/20241223-02.png)
+![营销模型](https://mingminyu.github.io/webassets/images/20241223-02.png)
 
 ## 3.6 贷前审核
 
 线上贷款的流程设计，首要目标是满足风控的要求，确保风控无死角。由于线上贷款容易涉及各类欺诈风险，流程设计时旨在提高风险识别的时效性、准确性，避免欺诈行为对银行和客户造成经济损失，同时用量化的方式替代人工判断来防范信用风险，维护行方的市场声誉，并满足监管机构对线上业务风险防控的基本要求。
 
-![贷前审核流程](../../images/20241224-01.png)
+![贷前审核流程](https://mingminyu.github.io/webassets/images/20241224-01.png)
 
 主要涉及以下几个环节，其中风险评估涉及内容比较多，单独介绍。
 
@@ -466,37 +466,37 @@
 ### 3.6.1 风险评估
 
 <figure markdown>
-![变量特征](../../images/20241224-02.png)
+![变量特征](https://mingminyu.github.io/webassets/images/20241224-02.png)
 <figcaption>变量特征</figcaption>
 </figure>
 
 <figure markdown>
-![策略开发](../../images/20241224-03.png)
+![策略开发](https://mingminyu.github.io/webassets/images/20241224-03.png)
 <figcaption>策略开发</figcaption>
 </figure>
 
 
 <figure markdown>
-![准入规则](../../images/20241224-04.png)
+![准入规则](https://mingminyu.github.io/webassets/images/20241224-04.png)
 <figcaption>准入规则</figcaption>
 </figure>
 
 反欺诈：生物识别、身份证校验、黑名单、异常检测
 
 <figure markdown>
-![准入规则](../../images/20241224-05.png)
+![准入规则](https://mingminyu.github.io/webassets/images/20241224-05.png)
 <figcaption>准入规则</figcaption>
 </figure>
 
 
 <figure markdown>
-![人工审核](../../images/20241224-06.png)
+![人工审核](https://mingminyu.github.io/webassets/images/20241224-06.png)
 <figcaption>人工审核</figcaption>
 </figure>
 
 
 <figure markdown>
-![决策引擎](../../images/20241224-07.png)
+![决策引擎](https://mingminyu.github.io/webassets/images/20241224-07.png)
 <figcaption>决策引擎</figcaption>
 </figure>
 
@@ -509,7 +509,7 @@
 - 进阶版本是在成本定价框架上同时考虑用户对利率敏感程度的营销响应定价框架；
 - 终极版本则是在营销响应定价框架上又考虑市场竞争因素的市场竞争定价框架。
 
-![定额定费](../../images/20241224-08.png)
+![定额定费](https://mingminyu.github.io/webassets/images/20241224-08.png)
 
 ### 3.6.3 签约打款
 
@@ -545,7 +545,7 @@
 
 ## 3.7 贷中管理
 
-![贷中管理](../../images/20241224-09.png)
+![贷中管理](https://mingminyu.github.io/webassets/images/20241224-09.png)
 
 基于用户移动端行为特征、设备信息、地理位置等信息进行还款风险监控，比如用户会否因失业、过度举债、家庭突发状况等一些突发原因导致还款能力降低，出现逾期风险。当用户出现逾期风险时，根据用户风险原因制定相应的策略，减少机构损失。
 
@@ -566,7 +566,7 @@
 
 ## 3.8 贷后管理
 
-![贷后管理](../../images/20241224-10.png)
+![贷后管理](https://mingminyu.github.io/webassets/images/20241224-10.png)
 
 
 贷后管理是指贷款发放之后到贷款收回之前的各个环节及各个方面的管理，这是信贷管理的最终环节，对于确保银行贷款安全和案件防控具有至关重要的作用。贷后管理是控制风险、防止不良贷款发生的重要一环。本文将为读者分享贷后管理中逾期监控阶段的技巧及贷后管理的经验总结。
@@ -586,7 +586,7 @@
 - Ⅲ类：无还款意愿有还款能力，重点在信用再教育及提高违约成本；
 - Ⅳ类：无还款意愿无还款能力，强力催收及诉讼执行，降低损失。
 
-![贷后管理](../../images/20241224-11.png)
+![贷后管理](https://mingminyu.github.io/webassets/images/20241224-11.png)
 
 
 **违约成本**：借款人逾期被信用惩戒造成的不便及损失，含既定违约成本（逾期对借款人当前的家庭成员、资产、社会声誉、经营公司、配偶声誉、上下游关系等造成的不便及损失）和变动违约成本（通过信用惩戒设计增加违约成本，增加担保人、增加违约金及罚息、增加抵押质押及约定失信信息披露等）；
@@ -619,7 +619,7 @@
 
 ### 3.8.3 催收管理
 
-![](../../images/20241224-12.png)
+![](https://mingminyu.github.io/webassets/images/20241224-12.png)
 
 
 一般把逾期管理分为三个阶段：

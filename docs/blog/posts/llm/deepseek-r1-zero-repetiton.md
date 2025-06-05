@@ -16,7 +16,7 @@ readtime: 10
 
 各位同学好，我是来自 Unlock-DeepSeek 开源项目团队的骆师傅。先说结论，我们（Datawhale X 似然实验室）使用 3 张 80G 的 A800计算卡训练了 20 小时，做出了可能是国内首批 DeepSeek R1 Zero 的中文复现版本，我们把它叫做 Datawhale-R1，用于 R1 Zero 复现教学。*
 
-![alt text](../../../images/20250210-04.png)
+![alt text](https://mingminyu.github.io/webassets/../images/20250210-04.png)
 
 按照 5.5 ~ 7.0 元每小时的价格计算，3 张 A800 花费最低为 3 x 5.5 x 20 = 330 元，预计花费接近 420 元，而 [TinyZero](https://github.com/Jiayi-Pan/TinyZero) 项目用了 4 张 A800 训练了 8 小时，预计花费为：224 元，这中间的差异可能是由于硬件性能瓶颈和框架差异带来的（我们用的是 Huggingface TRL，TinyZero 使用的是 veRL）。所以建议大家如果真的要复现，请使用 TinyZero 项目，我们出于教育目的使用 TRL 为大家报告这个结果。
 

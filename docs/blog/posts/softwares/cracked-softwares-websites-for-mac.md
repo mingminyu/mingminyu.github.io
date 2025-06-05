@@ -12,7 +12,6 @@ readtime: 10
 
 # Mac破解软件下载站点
 
-
 | 网站 | 描述 |
 | --- | --- |
 | [麦氪派](https://www.waitsun.com) | |

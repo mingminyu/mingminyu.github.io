@@ -3,8 +3,9 @@ date: 2025-06-01
 authors:
   - mingminyu
 categories:
-  - 语音识别
+  - 智能语音
 tags:
+  - 语音识别
   - FunASR
 slug: funasr-streaming-asr-docker
 readtime: 10

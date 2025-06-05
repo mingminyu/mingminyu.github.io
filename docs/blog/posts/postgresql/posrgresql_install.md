@@ -17,6 +17,7 @@ PostgreSQL 提供了多个平台的安装包，整体安装步骤也非常简单
 
 访问 [PostgreSQL 官网](https://www.postgresql.org)下载对应版本的 [Windows 安装包](https://www.postgresql.org/download/windows)，下载完成后直接运行安装包进行安装，注意过程中安装路径的更改。
 
+<!-- more -->
 
 ### 1.1 初始化失败
 
@@ -28,7 +29,7 @@ PostgreSQL 提供了多个平台的安装包，整体安装步骤也非常简单
 initdb.exe -D "D:\PostgreSQL\17\databases"
 ```
 
-![alt text](https://mingmin.github.io/webassets/images/20250406-01.png)
+![alt text](https://mingmin.github.io/webassets/images/20250406/01.png)
 
 这里提示我们使用如下命令来启动 PostgreSQL 数据库服务：
 

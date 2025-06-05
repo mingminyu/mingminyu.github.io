@@ -25,7 +25,7 @@
 ### 1.2 预训练模型（Pre-Trained Model）
 
 <figure markdown="span">
-![编码器和解码器](../../images/20250202-01.png){ width="300" }
+![编码器和解码器](https://mingminyu.github.io/webassets/images/20250202-01.png){ width="300" }
 <figcaption>编码器和解码器</figcaption>
 </figure>
 
@@ -48,7 +48,7 @@
 
 
 <figure markdown="span">
-![微调时模型权重的初始化](../../images/20250202-02.png)
+![微调时模型权重的初始化](https://mingminyu.github.io/webassets/images/20250202-02.png)
 <figcaption>微调时模型权重的初始化</figcaption>
 </figure>
 
@@ -68,7 +68,7 @@
 ### 1.3 固定底部的网络层
 
 <figure markdown="span">
-![底层和高层所学习到的知识维度](../../images/20250202-03.png)
+![底层和高层所学习到的知识维度](https://mingminyu.github.io/webassets/images/20250202-03.png)
 <figcaption>底层和高层所学习到的知识维度</figcaption>
 </figure>
 

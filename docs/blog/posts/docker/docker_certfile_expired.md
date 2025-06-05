@@ -3,9 +3,9 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - Docker
+  - 容器化
 tags:
-  - 报错
+  - Docker
 readtime: 2
 ---
 

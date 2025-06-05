@@ -38,9 +38,9 @@
 
 ```bash linenums="1" hl_lines="4"
 scp2jsonl \
-    ++scp_file_list='["../../../data/list/train_wav.scp", "../../../data/list/train_text.txt"]' \
+    ++scp_file_list='["https://mingminyu.github.io/webassets/../data/list/train_wav.scp", "https://mingminyu.github.io/webassets/../data/list/train_text.txt"]' \
     ++data_type_list='["source", "target"]' \
-    ++jsonl_file_out="../../../data/list/train.jsonl"
+    ++jsonl_file_out="https://mingminyu.github.io/webassets/../data/list/train.jsonl"
 ```
 
 !!! tip "将 jsonl 文件解析成 .txt 和 .scp 文件"
@@ -49,9 +49,9 @@ scp2jsonl \
 
     ```bash linenums="1" hl_lines="4"
     jsonl2scp \
-        ++scp_file_list='["../../../data/list/train_wav.scp", "../../../data/list/train_text.txt"]' \
+        ++scp_file_list='["https://mingminyu.github.io/webassets/../data/list/train_wav.scp", "https://mingminyu.github.io/webassets/../data/list/train_text.txt"]' \
         ++data_type_list='["source", "target"]' \
-        ++jsonl_file_in="../../../data/list/train.jsonl"
+        ++jsonl_file_in="https://mingminyu.github.io/webassets/../data/list/train.jsonl"
     ```
 
 ## 2. 模型训练
@@ -122,7 +122,7 @@ export CUDA_VISIBLE_DEVICES="0,1"
 gpu_num=$(echo $CUDA_VISIBLE_DEVICES | awk -F "," '{print NF}')
 
 torchrun --nnodes 1 --nproc_per_node ${gpu_num} \
-    ../../../funasr/bin/train.py ${train_args}
+    https://mingminyu.github.io/webassets/../funasr/bin/train.py ${train_args}
 ```
 
 其中，`--nnodes` 表示参与的节点总数，`--nproc_per_node` 表示每个节点上运行的进程数。
@@ -137,7 +137,7 @@ gpu_num=$(echo $CUDA_VISIBLE_DEVICES | awk -F "," '{print NF}')
 
 torchrun --nnodes 2 --node_rank 0 --nproc_per_node ${gpu_num} \
     --master_addr 192.168.1.1 --master_port 12345 \
-    ../../../funasr/bin/train.py ${train_args}
+    https://mingminyu.github.io/webassets/../funasr/bin/train.py ${train_args}
 ```
 
 在从节点上（假设 IP 为 192.168.1.2），你需要确保 `MASTER_ADDR` 和 `MASTER_PORT` 环境变量与主节点设置的一致，并运行同样的命令：
@@ -148,7 +148,7 @@ gpu_num=$(echo $CUDA_VISIBLE_DEVICES | awk -F "," '{print NF}')
 
 torchrun --nnodes 2 --node_rank 1 --nproc_per_node ${gpu_num} \
     --master_addr 192.168.1.1 --master_port 12345 \
-    ../../../funasr/bin/train.py ${train_args}
+    https://mingminyu.github.io/webassets/../funasr/bin/train.py ${train_args}
 ```
 
 其中，`--nnodes` 表示参与的节点总数，`--node_rank` 表示当前节点 id，`--nproc_per_node` 表示每个节点上运行的进程数（通常为 gpu 个数）。
