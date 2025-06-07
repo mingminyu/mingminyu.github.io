@@ -67,7 +67,7 @@ React 可以改变你对可见设计和应用构建的思考。当你使用 Reac
 
 你既可以通过从层次结构更高层组件（如 `FilterableProductTable`）开始“自上而下”构建，也可以通过从更低层级组件（如 `ProductRow`）“自下而上”进行构建。在简单的例子中，自上而下构建通常更简单；而在大型项目中，自下而上构建更简单。
 
-![alt text](https://mingminyu.github.io/webassets/images/qs-02.png)
+![alt text](https://mingminyu.github.io/webassets/images/20.png)
 
 在构建你的组件之后，即拥有一个渲染数据模型的可复用组件库。因为这是一个静态应用程序，组件仅返回 JSX。最顶层组件（`FilterableProductTable`）将接收你的数据模型作为其 prop。这被称之为 **单向数据流**，因为数据从树的顶层组件传递到下面的组件。
 

@@ -18,7 +18,7 @@
 
     === "效果"
 
-        ![alt text](https://mingminyu.github.io/webassets/images/qs-03.png)
+        ![alt text](https://mingminyu.github.io/webassets/images/20250607/21.png)
 
     === "App.js"
 
@@ -318,7 +318,7 @@ export default function Board() {
 }
 ```
 
-![alt text](https://mingminyu.github.io/webassets/images/qs-04.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/22.png)
 
 此时你的代码应如下所示:
 

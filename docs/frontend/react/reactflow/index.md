@@ -15,7 +15,7 @@ npm run
 这里我们先不深究具体的 API 接口，只简单看下效果，后面再回过来 Review 这个模板项目的代码。
 
 
-![alt text](https://mingminyu.github.io/webassets/images/vite_template.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/46.png)
 
 ## 2. 安装
 

@@ -225,7 +225,7 @@ export const getPost = cache(async (id) => {
 - **顺序**：组件树中的请求相互依赖，这可能会导致加载时间更长。
 - **并行**：路由中的请求是立即发起的，并且会同时加载数据，这减少了加载数据所需的总时间。
 
-![](https://mingminyu.github.io/webassets/images/abdf-01.png)
+![](https://mingminyu.github.io/webassets/images/20250607/04.png)
 
 #### 3.1.1 顺序数据获取
 

@@ -18,7 +18,7 @@ ReportML 作为一款跨平台的机器学习框架，它不仅是支持快速�
 
 === "4. 变量WoE图"
 
-    ![WoE图](https://mingminyu.github.io/webassets/images/reportml-preview.png)
+    ![WoE图](https://mingminyu.github.io/webassets/images/20250607/03.png)
 
 === "5. 变量逐月稳定性"
 

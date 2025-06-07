@@ -8,7 +8,7 @@ NiceGUI 中 `ui.table` 组件为我们提供了非常好的数据展示形式，
 
 在渲染一些表格数据时，为了提高页面美化效果，我们常常希望将某些列渲染成更突出的元素。NiceGUI 官方提供了一个[示例](https://nicegui.io/documentation/table#conditional_formatting)，使用 `ui.badge` 组件渲染 `age` 字段，并根据字段值在颜色上做不同的突出。
 
-![alt text](https://mingminyu.github.io/images/table_conditional_formatting.png){ width="300"}
+![alt text](https://mingminyu.github.io/images/20250607/43.png){ width="300"}
 
 ```python linenums="1" hl_lines="12-18" title="条件格式化"
 from nicegui import ui
@@ -69,7 +69,7 @@ table.add_slot('body-cell-status', '''
 ui.run()
 ```
 
-![alt text](https://mingminyu.github.io/images/render_with_switch.png){ width="300"}
+![alt text](https://mingminyu.github.io/images/20250607/39.png){ width="300"}
 
 我们发现表格确实正常渲染了，但是这种方式下 `ui.switch` 组件却 **无法点击切换状态**，我们需要使用 `v-model="props.row.status"` 来绑定到每行 `status` 的值，就可以正常切换状态了。
 
@@ -135,7 +135,7 @@ table.add_slot('body-cell-status', '''
 
 ### 1.3 编辑按钮
 
-![alt text](https://mingminyu.github.io/images/table_edit.png)
+![alt text](https://mingminyu.github.io/images/20250607/44.png)
 
 在很多用户列表页上，表格最后一列有编辑按钮，点击后可以出现弹窗来更新相关数据。
 

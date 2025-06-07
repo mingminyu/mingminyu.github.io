@@ -6,7 +6,7 @@
 
 页面是路由特有的 UI，我们可以默认从 `page.js` 文件导出组件来定义页面。例如，要创建索引页面 `index`，请在应用程序目录 `app` 中添加 `page.js` 文件：
 
-![img.png](https://mingminyu.github.io/webassets/images/abrp-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/05.png)
 
 ```jsx linenums="1" title="app/page.tsx"
 // `app/page.tsx` is the UI for the `/` URL
@@ -40,7 +40,7 @@ export default function Page() {
 
 例如，`/dashboard` 和 `/dashboard/settings` 页面共享同一个布局：
 
-![img.png](https://mingminyu.github.io/webassets/images/abrp-03.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/07.png)
 
 ```jsx linenums="1" title="app/dashboard/layout.jsx"
 export default function DashboardLayout({ children }) { // will be a page or nested layout
@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
 
 默认情况下，文件夹层次结构中的布局是嵌套的，这意味着它们通过 `children` 属性包装子布局。我们可以通过在特定路由段（文件夹）内添加 `layout.js` 来嵌套布局。例如，要为 `/dashboard` 路由创建布局，请在 `dashboard` 文件夹中添加一个新的 `layout.js` 文件：
 
-![img.png](https://mingminyu.github.io/webassets/images/abrp-04.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/05.png)
 
 ```jsx linenums="1" title="app/dashboard/layout.js"
 export default function DashboardLayout({ children }) {
@@ -88,7 +88,7 @@ export default function DashboardLayout({ children }) {
 
 这两个布局将这样嵌套：
 
-![img.png](https://mingminyu.github.io/webassets/images/abrp-05.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/09.png)
 
 !!! note "补充"
 
@@ -114,7 +114,7 @@ export default function DashboardLayout({ children }) {
 
 可以通过从 `template.js` 文件导出默认的 React 组件来定义模板，该组件应该接受一个 `children`属性。
 
-![img.png](https://mingminyu.github.io/webassets/images/abrp-06.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/10.png)
 
 ```jsx linenums="1" title="app/template.js"
 export default function Template({ children }) {

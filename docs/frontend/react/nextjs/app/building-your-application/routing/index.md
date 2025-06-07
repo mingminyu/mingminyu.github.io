@@ -10,14 +10,14 @@ icon: material/router
 
 首先，您将看到整个文档中使用了这些术语，下面一个快速参考：
 
-![img.png](https://mingminyu.github.io/webassets/images/r-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/25.png)
 
 - **Tree**（树）：可视化层次结构的约定。例如，具有父组件和子组件的组件树、文件夹结构等。
 - **SubTree**（子树）：树的一部分，从新的根节点（第一个）开始，到叶子节点（最后一个）结束。
 - **Root**（根节点）：树或子树中的第一个节点，例如根布局。
 - **Leaf**（叶子节点）：子树中没有向继续向下拆分的子节点，例如 URL 路径中的最后一段。
 
-![img.png](https://mingminyu.github.io/webassets/images/r-02.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/26.png)
 
 - **URL Segment**（URL 段）：由斜杠分隔的 URL 路径的一部分。
 - **URL Path**（URL 段）：域名后面的 URL 部分（由段组成）。
@@ -32,7 +32,7 @@ icon: material/router
 
     App Router 的优先级高于 Pages Router，跨目录的路由不应解析为相同的 URL 路径，并且会导致构建时错误以防止冲突。    
 
-![img.png](https://mingminyu.github.io/webassets/images/r-03.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/27.png)
 
 默认情况下，应用程序内的组件是 [React 服务端组件](https://nextjs.org/docs/app/building-your-application/rendering/server-components)。这是一种性能优化，可以让您轻松调用它们，并且您还可以使用[客户端组件](https://nextjs.org/docs/app/building-your-application/rendering/client-components)。
 
@@ -51,7 +51,7 @@ Next.js 使用基于文件系统的路由器，其中：
 
 路由中的每个文件夹代表一个路由段。每个路由段都映射到 URL 路径中的相应分段。
 
-![img.png](https://mingminyu.github.io/webassets/images/r-04.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/28.png)
 
 ## 5. 嵌套路由
 
@@ -92,17 +92,17 @@ Next.js 提供了一组特殊文件来创建在嵌套路由中具有特定行为
 - `not-found.js`（React suspense boundary）
 - `page.js` 或者嵌套的 `layout.js`
 
-![img.png](https://mingminyu.github.io/webassets/images/r-05.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/29.png)
 
 在嵌套路由中，分段的组件将嵌套在其父段的组件内。
 
-![img.png](https://mingminyu.github.io/webassets/images/r-06.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/30.png)
 
 ## 8. 托管
 
 除了特殊文件之外，您还可以选择将自己的文件（例如组件、样式、测试等）放置在应用程序目录的 `app` 文件夹中。这是因为虽然文件夹定义了路由，但只有 `page.js` 或 `route.js` 返回的内容是可公开访问的。你可以了解有关[项目组织和托管](https://nextjs.org/docs/app/building-your-application/routing/colocation)的更多信息。
 
-![img.png](https://mingminyu.github.io/webassets/images/r-07.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/31.png)
 
 ## 9. 高级路由模式
 

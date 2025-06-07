@@ -9,7 +9,7 @@
 ![两种构建形式](https://nextjs.org/_next/image?url=%2Fdocs%2Flight%2Ftop-level-folders.png&w=1920&q=75)
 
 
-![img.png](https://mingminyu.github.io/webassets/images/ps-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/18.png)
 
 
 | 文件夹                                                                                        | 描述           |

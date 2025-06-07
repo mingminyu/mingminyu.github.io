@@ -12,11 +12,11 @@
 
 网页是构建在 HTML、CSS 和 JavaScript 之上的。多年以来，web 开发者都是将网页内容存放在 HTML 中，样式放在 CSS 中，而逻辑则放在 JavaScript 中 —— 通常是在不同的文件中！页面的内容通过标签语言描述并存放在 HTML 文件中，而逻辑则单独存放在 JavaScript 文件中。
 
-![alt text](https://mingminyu.github.io/webassets/images/du-01.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/15.png)
 
 但随着 Web 的交互性越来越强，逻辑越来越决定页面中的内容。JavaScript 控制着 HTML 的内容！这也是为什么 **在 React 中，渲染逻辑和标签共同存在于同一个地方——组件。**
 
-![alt text](https://mingminyu.github.io/webassets/images/du-02.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/16.png)
 
 将一个按钮的渲染逻辑和标签放在一起可以确保它们在每次编辑时都能保持互相同步。反之，彼此无关的细节是互相隔离的，例如按钮的标签和侧边栏的标签。这样我们在修改其中任意一个组件时会更安全。
 

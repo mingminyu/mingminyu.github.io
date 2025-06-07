@@ -43,7 +43,7 @@ setNumber(0 + 1);
 这可能会让你想起在餐厅点菜的服务员。服务员不会一提到你的第一道菜就跑到厨房！而是，他们让你完成订单，让你对其进行更改，甚至接受桌上其他人的订单。
 
 <figure markdown="span">
-  ![img.png](https://mingminyu.github.io/webassets/images/qu-01.png)
+  ![img.png](https://mingminyu.github.io/webassets/images/20250607/32.png)
 </figure>
 
 

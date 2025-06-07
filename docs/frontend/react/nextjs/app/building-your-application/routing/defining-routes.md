@@ -10,7 +10,7 @@ Next.js 使用基于文件系统的路由器，其中使用文件夹来定义路
 
 一个特殊的 [page.js](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#pages) 文件用于使路由段可被公开访问。
 
-![img.png](https://mingminyu.github.io/webassets/images/dr-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/14.png)
 
 在此示例中，`/dashboard/analytics` URL 路径不可公开访问，因为它没有相应的 page.js 文件。该文件夹可用于存储组件、样式表、图像或其他并置文件。
 

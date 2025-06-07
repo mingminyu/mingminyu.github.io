@@ -15,7 +15,7 @@
 2. 渲染组件（在厨房准备订单）
 3. 提交给 DOM（将订单放在表格上）
 
-![](https://mingminyu.github.io/webassets/images/steps-request-and-provide-ui.png)
+![](https://mingminyu.github.io/webassets/images/20250607/42.png)
 
 ## 1. 触发渲染
 
@@ -59,7 +59,7 @@
 
 组件最初渲染后，你可以通过使用 [`set` 函数](https://react.nodejs.cn/reference/react/useState#setstate) 更新其状态来触发进一步的渲染。更新组件的状态会自动对渲染进行排队。（你可以把这些想象成餐厅客人在第一次点菜后点茶、甜点和各种各样的东西，这取决于他们的口渴或饥饿状态。）
 
-![img.png](https://mingminyu.github.io/webassets/images/rc-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/33.png)
 
 ## 2. React渲染组件
 
@@ -151,7 +151,7 @@ export default function Clock({ time }) {
 
 渲染完成并且 React 更新 DOM 后，浏览器将重新绘制屏幕。尽管此过程称为 “浏览器渲染”，但我们将其称为 “绘制” 以避免在整个文档中造成混淆。
 
-![img.png](https://mingminyu.github.io/webassets/images/rc-02.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/34.png)
 
 ## 5. 回顾
 

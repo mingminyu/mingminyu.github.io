@@ -42,7 +42,7 @@ npm install @types/react @types/react-dom
 
 以 [快速入门](https://zh-hans.react.dev/learn) 指南中的 [`MyButton` 组件](https://zh-hans.react.dev/learn#components) 为例，我们可以为按钮的 `title` 添加一个描述类型：
 
-![alt text](https://mingminyu.github.io/webassets/images/qs-05.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/23.png)
 
 ```jsx linenums="1" title="App.tsx"
 function MyButton({ title }: { title: string }) {
@@ -68,7 +68,7 @@ export default function MyApp() {
 
 这种内联语法是为组件提供类型的最简单方法，但是一旦你开始描述几个字段，它可能变得难以管理。相反，你可以使用 `interface` 或 `type` 来描述组件的 props：
 
-![alt text](https://mingminyu.github.io/webassets/images/qs-06.png)
+![alt text](https://mingminyu.github.io/webassets/images/20250607/24.png)
 
 ```jsx linenums="1" title="App.jsx"
 interface MyButtonProps {

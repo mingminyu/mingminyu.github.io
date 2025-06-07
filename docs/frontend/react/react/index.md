@@ -45,7 +45,7 @@ export default function MyApp() {
 
     === "效果"
 
-        ![alt text](https://mingminyu.github.io/webassets/images/qs-01.png)
+        ![alt text](https://mingminyu.github.io/webassets/images/20250607/19.png)
 
     === "App.js"
 

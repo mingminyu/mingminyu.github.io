@@ -65,11 +65,11 @@ function sendMessage(message) {
 2. 你的函数返回一个新的 JSX 快照。
 3. 然后 React 更新屏幕以匹配函数返回的快照。
 
-![img.png](https://mingminyu.github.io/webassets/images/ss-01.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/37.png)
 
 作为组件的内存，状态不像一个常规变量，在你的函数返回后就消失了。实际上在 React 本身中声明 “存在” - 就像束之高阁一样！在你的函数之外。当 React 调用你的组件时，它会为你提供该特定渲染的状态快照。你的组件返回 UI 的快照，并在其 JSX 中包含一组新的属性和事件处理程序，所有这些都使用该渲染中的状态值进行计算！
 
-![img.png](https://mingminyu.github.io/webassets/images/ss-02.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/38.png)
 
 
 这是一个小实验，向你展示这是如何工作的。在此示例中，你可能希望单击 “+3” 按钮会使计数器递增 3 次，因为它调用了 3 次 `setNumber(number + 1)`。

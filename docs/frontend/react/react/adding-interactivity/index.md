@@ -204,7 +204,7 @@ const [showMore, setShowMore] = useState(false);
 - 渲染组件（在厨房准备订单）
 - 提交给 DOM（将订单放在表格上）
 
-![img.png](https://mingminyu.github.io/webassets/images/steps-request-and-provide-ui.png)
+![img.png](https://mingminyu.github.io/webassets/images/20250607/42.png)
 
 ## 4. 状态快照
 
