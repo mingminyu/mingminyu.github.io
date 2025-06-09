@@ -22,7 +22,8 @@ readtime: 2
 | Space Sniffer | 查看磁盘空间使用情况 | |
 | [CCleaner](https://pan.quark.cn/s/c69a96554468) | 系统清理工具 | |
 | uTools | 系统搜索工具，类似于 Mac 下的 Alfred  | |
-| Arc | 浏览器 | Windows下无法登录 |
+| Arc | 浏览器 | 很好的一款浏览器，但 Windows 下无法登录 |
+| Zen | 浏览器 | 模仿 ARC 的一款浏览器 |
 | Clash for  Windows | 翻墙软件 | |
 
 ## 2. 办公工具
