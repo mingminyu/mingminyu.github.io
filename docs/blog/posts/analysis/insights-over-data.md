@@ -4,6 +4,8 @@ authors:
   - mingminyu
 categories:
   - 商业分析
+tags:
+  - 转载
 slug: insights-over-data
 readtime: 20
 ---

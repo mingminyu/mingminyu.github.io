@@ -14,8 +14,9 @@ readtime: 2
 # Python安装Confluent Kafka库
 
 > 参考文档：
-> - https://docs.confluent.io/kafka-clients/python/current/overview.html
-> - https://codemia.io/knowledge-hub/path/unable_to_install_confluent-kafka_fatal_error_librdkafkardkafkah_no_such_file_or_directory
+
+- https://docs.confluent.io/kafka-clients/python/current/overview.html
+- https://codemia.io/knowledge-hub/path/unable_to_install_confluent-kafka_fatal_error_librdkafkardkafkah_no_such_file_or_directory
 
 ## 1. Pip 安装
 
