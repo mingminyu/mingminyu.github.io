@@ -5,7 +5,7 @@ authors:
 categories:
   - 机器学习
 tags:
-  - LightGBM
+  - XGBoost
   - LR
 slug: logistic-regresion-vs-xgb
 readtime: 15
@@ -185,11 +185,8 @@ plt.subplots_adjust(top=0.92)
 > 对比结果
 
 - ROC Curve（接收者操作特征曲线）：显示模型在所有分类阈值下的性能。曲线越靠近左上角，模型性能越好。XGBoost 的 AUC 值明显高于 Logistic Regression，说明其整体分类能力更强。
-
 - Precision-Recall Curve（精准率-召回率曲线）：衡量在不同阈值下，模型对正类预测的准确性和完整性。在样本不平衡时，比 ROC 曲线更能真实反映分类器性能。XGBoost 的 PR 曲线更“高且右”，表示其在高召回率下还能保持较高精度。
-
 - Confusion Matrix（Logistic Regression）：展示模型的预测分类错误和正确的数量。颜色越深表示对应类别数量越多。逻辑回归的假阳性偏多，说明对边界样本的辨识能力弱。
-
 - Confusion Matrix（XGBoost）：相比逻辑回归，XGBoost 的总体预测更准确，误判更少。
 
 最终的话，若模型的 **可解释性要求高、特征关系较线性、对部署性能敏感**，优先使用逻辑回归。若追求 **预测准确率、数据存在非线性关系、样本量中等偏大**：优先使用 XGBoost。
