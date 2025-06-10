@@ -12,7 +12,9 @@ readtime: 2
 
 # Windows常用软件合集
 
-本篇文章主要列举一些 Windows 系统上常用软件的合集
+本篇文章主要列举一些 Windows 系统上常用软件的合集。
+
+<!-- more -->
 
 ## 1. 系统工具
 
@@ -31,8 +33,7 @@ readtime: 2
 | 软件 | 描述 | 备注 |
 | --- | --- | --- |
 | PixPin | 屏幕截图工具 | |
-| Snappaste | 截图粘贴工具，无OCR识别功能 |
-| Wrap | 终端工具 |  |
+| Snapaste | 截图粘贴工具，无OCR识别功能 |
 | Ditto | 剪贴板管理工具，可查看历史复制内容 | |
 | ReadPaper | 论文阅读神器 | |
 | 阿里云盘 | 云盘工具 | |
@@ -62,6 +63,7 @@ readtime: 2
 | MobaXterm | 远程连接工具 | |
 | WindTerm | 远程连接工具 | |
 | Codux | React 开发 IDE | |
+| Wrap | 终端工具 |  |
 
 ## 4. AI开发
 
