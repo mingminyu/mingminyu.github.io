@@ -1,5 +1,5 @@
 ---
-date: 2024-06-11
+date: 2025-06-11
 authors:
   - mingminyu
 categories:
@@ -13,4 +13,6 @@ readtime: 10
 
 | 名称  | 描述 | 备注 |
 | --- | --- | --- |
-| [slideegg](https://www.slideegg.com) | 国外的一个 PPT 站点 | 提供免费和付费模板 |
+| [ SlideEgg](https://www.slideegg.com) | 国外的一个 PPT 站点 | 提供免费和付费模板 |
+| [PresentationGo](https://www.presentationgo.com) | 国外的一个 PPT 站点 | 提供免费和付费模板 |
+| [SlideShare](https://www.slideshare.net) | 国外的一个 PPT 站点 | 30天内可免费下载 |
