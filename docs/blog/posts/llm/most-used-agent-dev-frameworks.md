@@ -20,7 +20,7 @@ readtime: 2
 
 <!-- more -->
 
-![](https://mingminyu.github.io/webasstes/images/20250613/02.png)
+![](https://mingminyu.github.io/webassets/images/20250613/02.png)
 
 让我们澄清一点，所谓的 AI 代理不仅仅是花哨的聊天机器人，它是一个能够完成以下任务的智能体：
 
@@ -33,7 +33,7 @@ readtime: 2
 
 ## 1. n8n
 
-![n8n](https://mingminyu.github.io/webasstes/images/20250613/03.png)
+![n8n](https://mingminyu.github.io/webassets/images/20250613/03.png)
 
 > **适用场景**：想将 AI 代理接入700+现实应用，无需编码。
 
@@ -46,7 +46,7 @@ readtime: 2
 
 ## 2. Flowise
 
-![flowise](https://mingminyu.github.io/webasstes/images/20250613/04.png)
+![flowise](https://mingminyu.github.io/webassets/images/20250613/04.png)
 
 > **适用场景**：喜欢 LangChain 但讨厌 YAML。
 
@@ -73,7 +73,7 @@ readtime: 2
 
 ## 10. Superagent
 
-![Superagent](https://mingminyu.github.io/webasstes/images/20250613/01.png)
+![Superagent](https://mingminyu.github.io/webassets/images/20250613/01.png)
 
 [Superagent](https://github.com/superagent-ai/superagent?utm_source=chatgpt.com) 作为一个即插即用的系统，让你可以通过 API 快速部署 AI 代理。它简单、快速、不费脑子，几分钟内就能配置好，且像 **Zapier** 一样与大语言模型（LLMs）无缝协作，主要为不想折腾基础设施的开发者量身打造。
 
