@@ -3,7 +3,7 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - Web开发
+  - WEB开发
 tags:
   - NiceGUI
   - VueFlow
