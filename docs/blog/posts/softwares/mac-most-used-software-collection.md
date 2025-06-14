@@ -42,6 +42,11 @@ readtime: 2
 | Pixelmator | 图像处理工具 | |
 | Endel | 场景声软件，屏蔽一些声音 | |
 | HandBrake | 视频处理工具 | |
+| Clop | 压缩工具  | 对文件和图片等进行压缩，并不是压缩成文件，例如将 20M 图片压缩成 1M 图片 |
+｜ AutoRaise | 自动激活鼠标指向的窗口 | 已停止更新和维护 |
+｜ AutoFocus | 自解激活鼠标指向的窗口  | AutoRaise 平替 |
+｜ Recents | 记录打开过的文件 | 帮助搜索文件 |
+｜ SuperCharge | 充电工具 | 非常多的Mac系统功能 |
 
 ## 2. 办公工具
 
