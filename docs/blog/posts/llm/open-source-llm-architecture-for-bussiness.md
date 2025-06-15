@@ -1,18 +1,22 @@
 ---
-date: 2025-06-13
+date: 2025-06-15
 authors:
   - mingminyu
 categories:
   - 大模型
 tags:
   - 对话工具
-slug: most-used-agent-dev-frameworks
+slug: open-source-llm-architecture-for-bussiness
 readtime: 2
 ---
 
 # 大模型应用架构
 
 > 原文地址：https://mp.weixin.qq.com/s/J5jahix8RioSBB_Mo-QCxg
+
+本文总结了大模型常见的应用架构，仅供参考。
+
+<!-- more -->
 
 ## 1. 技术全景视图
 
