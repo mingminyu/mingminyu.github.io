@@ -395,7 +395,9 @@ nav:
     - Python:
       - Python基础:
         - backend/python/index.md
-        - 基础知识: backend/python/python-base.md
+        - 基础知识: 
+          - backend/python/base/index.md
+          - 安装: backend/python/base/install.md
         - 包管理: 
           - backend/python/pkg_management/index.md
           - Conda: backend/python/pkg_management/conda.md
