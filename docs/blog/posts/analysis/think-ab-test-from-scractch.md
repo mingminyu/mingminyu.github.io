@@ -122,12 +122,11 @@ H1均值-H0均值的差值必须要足够大，大的满足两个条件：
 
 1. 对于连续型指标的统计效应d，如下图，两个曲线的重合部分越小，d越高。其实就是最小样本量的H1均值-H0均值距离越大，越好；
 
-
-![](https://mingminyu.github.io/webassets/images/20250615/30.png)
+    ![](https://mingminyu.github.io/webassets/images/20250615/30.png)
 
 2. **比率型指标统计效应h**，如下图，$\arcsin(\sqrt{p})$ 是对比例类数据的**方差稳定变换**，让差值在所有区域都更具可比性；得到的$h$是无量纲的、可标准化的指标。如果直接对比，比如比率**的差异****在线性尺度下不公平**；低值区域（0.1 vs. 0.2 提升 100%）对差异更敏感，高值区域不明显（0.8 vs. 0.9 提升 12.5%）。
 
-![](https://mingminyu.github.io/webassets/images/20250615/31.png)
+    ![](https://mingminyu.github.io/webassets/images/20250615/31.png)
 
 ## 4. AB实验结论理解
 
