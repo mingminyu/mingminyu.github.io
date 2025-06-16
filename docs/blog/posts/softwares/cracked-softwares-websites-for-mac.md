@@ -26,3 +26,4 @@ readtime: 10
 | [XMac](https://xmac.app)  | 无须登录，软件版本相对较新，目前无法登录上。  |
 | [MacDo](https://macdo.cn) | 登录后下载| 
 | [MacWk](https://macwk.cn) | 无需登录 | 
+| [XMac.cc](https://xmac.cc) | 需登录后下载 |

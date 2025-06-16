@@ -47,6 +47,11 @@ readtime: 2
 ｜ AutoFocus | 自解激活鼠标指向的窗口  | AutoRaise 平替 |
 ｜ Recents | 记录打开过的文件 | 帮助搜索文件 |
 ｜ SuperCharge | 充电工具 | 非常多的Mac系统功能 |
+| Permute | 格式转换神器 |  |
+| Final Cut Pro | 剪辑软件 | |
+| Amadeus Pro for Mac | 音频处理软件| |
+| Metadatics Pro for Mac | 音频处理软件| |
+| QuickRecorder | 录屏软件 | |
 
 ## 2. 办公工具
 
