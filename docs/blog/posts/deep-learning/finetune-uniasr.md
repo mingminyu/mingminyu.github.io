@@ -5,9 +5,7 @@ authors:
 categories:
   - 智能语音
 tags:
-  - FunASR
-  - 语音识别
-  - 意图识别
+  - UniASR
 slug: finetune-uniasr
 readtime: 2
 ---
@@ -27,3 +25,4 @@ readtime: 2
 
 
 <!-- more -->
+
