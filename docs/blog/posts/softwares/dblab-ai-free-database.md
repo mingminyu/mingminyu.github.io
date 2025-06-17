@@ -16,7 +16,7 @@ readtime: 10
 
 > 原文地址：https://mp.weixin.qq.com/s/viAG0jJ05H1rfVs-1FtgTw
 
-[DBLab](https://dblab.ai/en/) 是一款免费、支持 AI 助手以及快速代码生成的数据库管理工具，它可以简化数据库管理任务，使得数据库管理员和开发人员能够更轻松地管理和操作各种数据库。DBLab 提供了跨平台安装文件，包括 Windows、macOS、Linux。
+[DBLab](https://dblab.ai/en/) 是一款免费、支持 AI 助手以及快速代码生成的数据库管理工具，它可以简化数据库管理任务，使得数据库管理员和开发人员能够更轻松地管理和操作各种数据库。DBLab 提供了跨平台安装文件，包括 Windows、MacOS、Linux。
 
 <!-- more -->
 

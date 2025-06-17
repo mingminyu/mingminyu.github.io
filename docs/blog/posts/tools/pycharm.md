@@ -6,9 +6,9 @@ categories:
   - 软件工具
 tags:
   - 编程
-slug: python-programming
+slug: pychrm
 readtime: 2
 ---
 
-
 # PyCharm
+
