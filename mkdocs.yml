@@ -187,17 +187,17 @@ nav:
       - React:
         - frontend/react/index.md
         - 快速入门: 
-          - frontend/react/react/index.md
+          # - frontend/react/react/index.md
           - 井字棋: frontend/react/react/quickstart/tic-tac-toe.md
           - React 哲学: frontend/react/react/quickstart/thinking-in-react.md
         - 安装:
-          - frontend/react/react/installation/index.md
+          # - frontend/react/react/installation/index.md
           - 启动一个新的 React 项目: frontend/react/react/installation/start-a-new-react-project.md
           - 将 React 添加到现有项目中: frontend/react/react/installation/add-react-to-an-existing-project.md
           - 使用 TypeScript: frontend/react/react/installation/use-typescript.md
         
         - 描述UI:
-          - frontend/react/react/describing-ui/index.md
+          # - frontend/react/react/describing-ui/index.md
           - 你的第一个组件: frontend/react/react/describing-ui/your-first-component.md
           - 组件的导入与导出: frontend/react/react/describing-ui/importing-and-exporting-components.md
           - 使用JSX书写标签语言: frontend/react/react/describing-ui/writing-markup-with-jsx.md
@@ -209,7 +209,7 @@ nav:
           - 将UI视作树: frontend/react/react/describing-ui/understanding-your-ui-as-a-tree.md
 
         - 添加交互:
-            - frontend/react/react/adding-interactivity/index.md
+            # - frontend/react/react/adding-interactivity/index.md
             - 响应事件: frontend/react/react/adding-interactivity/responding-to-events.md
             - 组件的内存: frontend/react/react/adding-interactivity/state-a-components-memory.md
             - 渲染和提交: frontend/react/react/adding-interactivity/render-and-commit.md
@@ -219,7 +219,7 @@ nav:
             - 更新状态中的数组: frontend/react/react/adding-interactivity/updating-arrays-in-state.md
 
         - 状态管理:
-          - frontend/react/react/managing-state/index.md
+          # - frontend/react/react/managing-state/index.md
           - 使用状态对输入做出反应: frontend/react/react/managing-state/reacting-to-input-with-state.md
           - 选择状态结构: frontend/react/react/managing-state/choosing-the-state-structure.md
           - 在组件之间共享状态: frontend/react/react/managing-state/sharing-state-between-components.md
@@ -229,7 +229,7 @@ nav:
           - 使用Reducer和上下文进行扩展: frontend/react/react/managing-state/scaling-up-with-reducer-and-context.md
 
         - 脱围机制:
-          - frontend/react/react/escape-hatches/index.md
+          # - frontend/react/react/escape-hatches/index.md
           - 使用引用引用值: frontend/react/react/escape-hatches/referencing-values-with-refs.md
           - 使用引用操作DOM: frontend/react/react/escape-hatches/manipulating-the-dom-with-refs.md
           - 使用副作用进行同步: frontend/react/react/escape-hatches/synchronizing-with-effects.md
@@ -241,7 +241,7 @@ nav:
 
         - 参考:
           - 钩子:
-            - frontend/react/react/reference/hooks/index.md
+            # - frontend/react/react/reference/hooks/index.md
             - useActionState: frontend/react/react/reference/hooks/use-action-state.md
             - useCallback: frontend/react/react/reference/hooks/use-callback.md
             - useContext: frontend/react/react/reference/hooks/use-context.md
