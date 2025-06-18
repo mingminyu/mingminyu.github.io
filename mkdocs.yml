@@ -196,17 +196,17 @@ nav:
           - 将 React 添加到现有项目中: frontend/react/react/installation/add-react-to-an-existing-project.md
           - 使用 TypeScript: frontend/react/react/installation/use-typescript.md
         
-        - 描述 UI:
+        - 描述UI:
           - frontend/react/react/describing-ui/index.md
           - 你的第一个组件: frontend/react/react/describing-ui/your-first-component.md
           - 组件的导入与导出: frontend/react/react/describing-ui/importing-and-exporting-components.md
-          - 使用 JSX 书写标签语言: frontend/react/react/describing-ui/writing-markup-with-jsx.md
-          - 在 JSX 中通过大括号使用 JavaScript: frontend/react/react/describing-ui/javascript-in-jsx-with-curly-braces.md
-          - 将 Props 传递给组件: frontend/react/react/describing-ui/passing-props-to-a-component.md
+          - 使用JSX书写标签语言: frontend/react/react/describing-ui/writing-markup-with-jsx.md
+          - 在JSX中通过大括号使用JavaScript: frontend/react/react/describing-ui/javascript-in-jsx-with-curly-braces.md
+          - 将Props传递给组件: frontend/react/react/describing-ui/passing-props-to-a-component.md
           - 条件渲染: frontend/react/react/describing-ui/conditional-rendering.md
           - 渲染列表: frontend/react/react/describing-ui/rendering-lists.md
           - 保持组件纯粹: frontend/react/react/describing-ui/keeping-components-pure.md
-          - 将 UI 视作树: frontend/react/react/describing-ui/understanding-your-ui-as-a-tree.md
+          - 将UI视作树: frontend/react/react/describing-ui/understanding-your-ui-as-a-tree.md
 
         - 添加交互:
             - frontend/react/react/adding-interactivity/index.md
