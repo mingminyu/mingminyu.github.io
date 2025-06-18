@@ -5,7 +5,7 @@ authors:
 categories:
   - 后端开发
 tags:
-  - Python装时器
+  - Python装饰器
   - 缓存函数
 slug: memory-function-with-lru_cache
 readtime: 7
@@ -14,6 +14,8 @@ readtime: 7
 # 提升代码执行速度：使用lru_cache缓存函数避免重复计算
 
 函数执行速度慢时，可以使用 `lru_cache` 缓存函数结果，避免重复计算，可极大地加快程序执行的速度。
+
+<!-- more -->
 
 ## 1. 示例
 
