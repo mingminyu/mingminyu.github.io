@@ -62,6 +62,13 @@ readtime: 2
 | PixPin | 屏幕截图工具 | 支持OCR识别 |
 | Bob | 屏幕截图工具 | 支持OCR识别 |
 | Snapaste | 截图粘贴工具 | 不支持OCR识别 |
+| SuperCharge | 电池管理软件 | 保持MAC电池的最佳状态，延长使用寿命 |
+| Ice Bar | 顶部工具栏 | 类似于 Bartender，开源 |
+| iBar | 顶部工具栏 | 类似于 Bartender |
+| maccy | 剪贴板管理工具 | 类似于 PasteNow |
+| ScreenFlow | 屏幕录制工具 | |
+| mac mouse fix | 鼠标工具 | |
+| loop |  | |
 
 ## 2. 办公工具
 
