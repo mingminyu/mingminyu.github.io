@@ -67,8 +67,9 @@ readtime: 2
 | iBar | 顶部工具栏 | 类似于 Bartender |
 | maccy | 剪贴板管理工具 | 类似于 PasteNow |
 | ScreenFlow | 屏幕录制工具 | |
-| mac mouse fix | 鼠标工具 | |
-| loop |  | |
+| Mac Mouse Fix | 鼠标工具 | |
+| Loop |  | |
+| Hazel | 文件管理工具 | |
 
 ## 2. 办公工具
 

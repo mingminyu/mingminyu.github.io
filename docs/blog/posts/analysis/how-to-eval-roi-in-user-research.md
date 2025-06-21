@@ -75,6 +75,5 @@ readtime: 20
 - 提升特定付费功能的采用率 (Feature Adoption Rate)，从而增加收入。
 - 修复阻碍用户完成购买或其他关键转化行为的严重可用性问题，直接挽回损失的收入（可通过修复后的转化率提升来量化）。
 
-
 ### 3.2 代理指标影响模型 (Proxy Indicator Impact Model)
 
