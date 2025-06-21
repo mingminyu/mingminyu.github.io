@@ -7,11 +7,11 @@ categories:
 tags:
   - 转载
   - 自动归因
-slug: auto-attribution-for-anomalies
+slug: auto-attribution-by-adtributor-mcts
 readtime: 20
 ---
 
-# 自动归因算法
+# 自动归因算法：Adtributor 和 MCTS
 
 > 原文地址：https://mp.weixin.qq.com/s/E5SxU5PwzOnp07_I9HdrPw
 
@@ -146,19 +146,96 @@ MCTS 分为四步，简单说就是先从根节点触发，从单个变量逐渐
 ![](https://mingminyu.github.io/webassets/images/20250621/10.png)
 
 ```python linenums="1"
+import math
+import pandas as pd
 
+class MCTSNode:
+    def __init__(self, state, parent = None):
+        self.parent = parent
+        self.children = []
+        self.state = state
+        self.visits = 0
+        self.value = 0
+        self.untried_actions = []
+
+    def fully_expanded(self):
+        return len(self.untried_actions) == 0
+
+    def best_child(self, c_param: float = math.sqrt(2)):
+        weights = [
+            (node.value + c_param * math.sqrt(math.log(self.visits + 1) / (node.visits + 1))) 
+            for node in self.children
+          ]
+        return self.children[weights.index(max(weights))]
+
+# Ripple Effect 模拟 Potential Score
+def ripple_effect(candicate_set: list, df_score: pd.DataFrame) -> float:
+    """candidate_set: 候选组合集合，df_score 包含了0517和0510销售额的完整表"""
+    simulated = df_score['5月17号销售额'].copy()
+    for k in candicate_set:
+        if k in simulated.index:
+            simulated[k] = df_score['a'][k]
+        
+    d1 = ((df_score['5月10号销售额'] - simulated) ** 2).sum() ** 0.5
+    d2 = ((df_score['5月10号销售额'] - df_score['5月10号销售额']) ** 2).sum() ** 0.5
+    return max(1 - d1 / d2, 0) if d2 != 0 else 0.0, df_score['ele_key'][k], d1, d2
 ```
 
 简易版 MTCS 实现，没有循环计算 ps 值版本：
 
 ```python linenums="1"
+# MCTS 核心搜索逻辑
+def mcts_search(elements: list, df_score: pd.DataFrame, max_iter: int = 20):
+    root = MCTSNode(state=[])
+    root.untried_actions = elements.copy()
+    iter_time = 0
+    for _ in range(max_iter):
+        node = root
+        iter_time += 1
+        # Selection
+        while node.fully_expanded() and node.children:
+            node = node.best_child()
 
+        if node.untried_actions:
+            action = node.untried_actions.pop(0)
+            new_state = node.state + [action]
+
+            child = MCTSNode(state=new_state, parent=node)
+            child.untried_actions = [e for e in elements if e not in new_state]
+            node.children.append(child)
+            node = child
+
+        # Evaluation
+        ps, state_temp, dl_d2 = ripple_potential_score(node.state, df_score)
+        node.visits += 1
+        node.value = max(node.value, ps)
+
+        # Backup
+        parent = node.parent
+        while parent:
+            parent.visits += 1
+            parent.value = max(parent.value, ps)
+            parent = parent.parent
+
+    # 输出 value 最高的节点
+    best = max(root.children, key=lambda n: n.value)
+    return best.state, best.value
 ```
 
 运行结果得出下降主要原因是：蛋糕_西城、奶茶_东城和奶茶_朝阳下降最严重；
 
 ```python linenums="1"
+# 执行搜索
+best_subset, best_score = mcts_search(element_pool, df_raw, 30)
+print(f"贡献最大的组合维度是：", df_raw['ele_key'][best_subset], best_score)
 
+sbest_subset, sbest_score = mcts_search([i for i in element_pool if i not in best_subset], df_raw, 30)
+print(f"贡献第二大的组合维度是：", df_raw['ele_key'][sbest_subset], sbest_score)
+
+tbest_subset, tbest_score = mcts_search(
+  [i for i in element_pool if i not in best_subset + sbest_subset], df_raw, 30
+  )
+print(f"贡献第三大的组合维度是：", df_raw['ele_key'][tbest_subset], tbest_score)
 ```
 
 
