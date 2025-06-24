@@ -398,6 +398,7 @@ nav:
         - 基础知识: 
           - backend/python/base/index.md
           - 安装: backend/python/base/install.md
+          - 字符串: backend/python/base/string.md
         - 包管理: 
           - backend/python/pkg_management/index.md
           - Conda: backend/python/pkg_management/conda.md
