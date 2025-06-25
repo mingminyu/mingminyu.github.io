@@ -3,7 +3,7 @@ date: 2025-06-13
 authors:
   - mingminyu
 categories:
-  - WEB开发
+  - 前端开发
 tags:
   - NiceGUI
 slug: nicegui-change-log

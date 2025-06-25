@@ -3,7 +3,7 @@ date: 2025-06-23
 authors:
   - mingminyu
 categories:
-  - WEB开发
+  - 前端开发
 tags:
   - Github
   - 域名配置

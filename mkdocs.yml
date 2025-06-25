@@ -393,12 +393,12 @@ nav:
   
   - 后端:
     - Python:
-      - Python基础:
-        - backend/python/index.md
-        - 基础知识: 
-          - backend/python/base/index.md
-          - 安装: backend/python/base/install.md
+      - 基础知识: 
+        - backend/python/base/index.md
+        - 安装: backend/python/base/install.md
+        - 数据结构:
           - 字符串: backend/python/base/string.md
+          - 列表: backend/python/base/list.md
         - 包管理: 
           - backend/python/pkg_management/index.md
           - Conda: backend/python/pkg_management/conda.md

@@ -256,7 +256,7 @@ print(f'{var:#^20}:')  # 居中对齐
 | `partition()`、`rpartition()` | 搜索指定分隔符 |
 | `zfill()` | 在字符串的左侧填充指定字符 |
 | `center()`、`ljust()`、`rjust()` | 在字符串的指定位置填充指定字符 |
-| `maketrans()`、`translate()` | 使用字符串替换指定字符 |
+| `maketrans()`、`translate()` | 创建字符映射转换表，可批量替换多个字符 |
 | `isdigit()` | 判断字符串是否只包含数字 |
 | `isalpha()` | 判断字符串是否只包含字母 |
 | `isdecimal()` | 判断字符串是否只包含十进制数字 |
@@ -267,6 +267,102 @@ print(f'{var:#^20}:')  # 居中对齐
 | `isnumberic()` | 判断字符串是否只包含数字 |
 | `isprintable()` | 判断字符串是否只包含空格 |
 | `isspace()` | 判断字符串是否只包含空格 |
+
+=== "join"
+
+
+=== "count"
+
+
+=== "replace"
+
+=== "zfill / center / ljust / rjust"
+
+
+<div></div>
+
+=== "index / rindex"
+
+
+=== "find / rfind"
+
+
+=== "upper / lower / swapcase / title / capitalize"
+
+
+<div></div>
+
+=== "split / rsplit / splitlines"
+
+
+=== "strip / rstrip / lstrip"
+
+
+=== "format / format_map"
+
+
+<div></div>
+
+
+=== "startswith / endsiwth"
+
+    `startswith()` 和 `endswith()` 方法用于判断字符串是否以指定字符开头（结尾）：
+
+    ```python linenums="1"
+    s = "Hello World"
+    print(s.startswith("He"))  # True
+    print(s.endswith("ld"))  # True
+    ```
+
+    此外，这两个函数还支持判断字符串指定切片是否以指定字符开头（结尾）：
+
+    ```python linenums="1"
+    s = "Hello World"
+    print(s.startswith("He", 0, 3))
+    print(s.endswith("ld", 5, 10))
+    ```
+
+=== "partition / rpartition"
+
+    `partition()` 方法用于搜索指定分隔符，返回一个元组，包含分隔符左边的字符串、分隔符本身、分隔符右边的字符串，其中 `rpartition()` 是从右边开始搜索进行分隔。
+
+    ```python linenums="1"
+    s1 = "http://www.w3cschool.cc/"
+    print(s.partition("://"))  # 输出：('http', '://', 'www.w3cschool.cc/')
+    print(s.partition("www")) # 输出：('http://', 'www', '.w3cschool.cc/')
+
+    s2 = "aabbccadbb"
+    print(s2.rpartition("bb"))  # 输出：('aabbccad', 'bb', '')
+    print(s2.rpartition("d"))  # 输出：('aabbcca', 'd', 'bb')
+    ```
+
+=== "maketrans / translate"
+
+    `maketrans()` 方法用于给 `translate()` 方法创建字符映射转换表，它被 `str` 对象调用，返回一个转换表。需要注意的是，它只支持单一字符映射，不支持多字符子串 → 多字符子串 的映射（比如 `'th' → '7'` 或 `'is' → 'zz'` 这种）。。
+
+    ```python linenums="1"
+    intab = "aeiou"
+    outtab = "12345"
+    deltab = "thw"
+
+    trantab1 = str.maketrans(intab, outtab)  # 创建字符映射转换表
+    trantab2 = str.maketrans(intab, outtab, deltab)  # 创建字符映射转换表，并删除指定字符
+
+    test = "this is string example....wow!!!"
+    print(test.translate(trantab1))  # 输出：th3s 3s str3ng 2x1mpl2....w4w!!!
+    print(test.translate(trantab2))  # 输出：3s 3s sr3ng 2x1mpl2....4!!!
+    ```
+
+<div></div>
+
+=== "isalpha"
+
+=== "isprintable / isspace"
+
+=== "istitle / isupper / islower"
+
+=== "isdigit / isdecimal / isalnum / isnumberic"
+
 
 ## 5. 字符串的编码问题
 
