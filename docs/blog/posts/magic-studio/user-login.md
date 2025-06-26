@@ -17,8 +17,18 @@ readtime: 2
 
 <!-- more -->
 
-## 1. 登录流程
+## 1. 原型设计
 
+### 1.1 登录流程
+
+
+### 1.2 登录页面
+
+一个优秀的登录页面除了具备基础的登录窗口外，还应该有比较体现平台特性的背景图片，还应该需具备如下功能：
+
+1. 登录成功后，跳转到用户主页；
+2. 登录失败后，显示错误信息；
+3. 登录成功后，保存用户信息、Cookie 以及 Token，以便下次登录时自动登录。
 
 
 ## 2. 创建项目
@@ -49,3 +59,27 @@ export default function Home() {
 }
 ```
 
+## 3. 登录页面
+
+我们在 `app` 文件夹下创建 `(auth)/login` 文件夹，并在里面创建 `page.tsx` 文件，内容如下：
+
+```tsx linenums="1" title="app/(auth)/login/page.tsx"
+export default function Page() {
+  return (
+    <div>LoginPage</div>
+  )
+}
+```
+
+
+## 4. 注册页面
+
+我们在 `app` 文件夹下创建 `(auth)/register` 文件夹，并在里面创建 `page.tsx` 文件，内容如下：
+
+```tsx linenums="1" title="app/(auth)/register/page.tsx"
+export default function Page() {
+  return (
+    <div>RegisterPage</div>
+  )
+}
+```
