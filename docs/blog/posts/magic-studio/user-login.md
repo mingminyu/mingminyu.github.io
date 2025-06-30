@@ -176,6 +176,16 @@ export default function Page() {
 
 为了让我们的登录页面看起来更有逼格，体现出来平台灵活调度、自动化程度高等特性，。我们用 Windmill 官网上的 SVG 作为宣传图，并封装到 `app/(auth)/login/_components/MagicStudioOverview.tsx`。
 
+### 3.3 登录页面
+
+登录表现
+
+![](https://mingminyu.github.io)
+
+### 3.2 登录页面的模板
+
+我们希望
+
 
 ## 4. 注册页面
 
