@@ -30,7 +30,6 @@ readtime: 2
 2. 登录失败后，显示错误信息；
 3. 登录成功后，保存用户信息、Cookie 以及 Token，以便下次登录时自动登录。
 
-
 ## 2. 创建项目
 
 我们使用 Git 以及 GitHub 对项目代码做版本控制，在 Github 上创建好项目并克隆到本地，终端下进入项目文件夹下使用如下命令创建 NextJS 项目。需要注意的是，你需要先安装最新版本的 Node.js，以及项目文件夹下为空文件夹。
@@ -59,6 +58,108 @@ export default function Home() {
 }
 ```
 
+此外，我们使用 ShadcnUI 以及 Lucide-React 作为前端页面和图标组件，这两个个组件库非常优秀，整个项目可能会用到以下组件库：
+
+```bash linenums="1"
+npx shadcn@latest add card separator button input form tabs
+npm install lucide-react
+```
+
+
+### 2.1 GoogleFont字体问题
+
+```bash linenums="1"
+Error while requesting resource
+There was an issue establishing a connection while requesting https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap.
+```
+
+正常启动服务后，查看终端信息，你会发现上面提示信息：
+
+```tsx linenums="1" title="app/layout.tsx"
+import { Geist, Geist_Mono } from "next/font/google";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+```
+
+这个主要是国内使用谷歌字体的时候，会因为网络问题导致无法访问，一个解决办法就是讲字体下载到本地，并改用 `next/font/local`。
+
+```tsx linenums="1" title="app/layout.tsx" hl_lines="4-7"
+import localFont from 'next/font/local';
+import type { Metadata } from "next";
+import "./globals.css";
+
+const geistSans = localFont({
+  src: "../public/fonts/Geist-Regular.ttf",
+  display: "swap",
+});
+
+const geistMono = localFont({
+  src: "../public/fonts/GeistMono-Regular.ttf",
+  display: "swap",
+});
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className={`${geistSans} ${geistMono} antialiased`}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+### 2.2 Logo组件
+
+我们从 iconfont 上找了 Magic 图标（建议使用 SVG 文件）作为平台的 Logo，并封装成一个可用的组件。
+
+```tsx linenums="1" title="components/Logo.tsx"
+import React from "react";
+
+export default function Logo({className}: {className?: string}) {
+  return (
+    <svg
+      className={className || "icon"}
+      viewBox="0 0 1024 1024"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      p-id="6766"
+      width="64"
+      height="64"
+    >
+    ...
+    </svg>
+  )
+}
+```
+
+### 2.3 更改站点的Metadata和图标
+
+接下来我们需要把站点的 Metadata 进行更改，以保证打开页面时候的标题不是默认标题。
+
+```tsx linenums="1" title="app/layout.tsx"
+export const metadata: Metadata = {
+  title: "Magic Studio",
+  description: "Make building a ML model easily",
+};
+```
+
+同样将 iconfont 下载的 png 图片保存为 favicon.ico，并替换 `apps` 目录下的同名文件。
+
 ## 3. 登录页面
 
 我们在 `app` 文件夹下创建 `(auth)/login` 文件夹，并在里面创建 `page.tsx` 文件，内容如下：
@@ -70,6 +171,10 @@ export default function Page() {
   )
 }
 ```
+
+### 3.1 登录页面的背景图
+
+为了让我们的登录页面看起来更有逼格，体现出来平台灵活调度、自动化程度高等特性，。我们用 Windmill 官网上的 SVG 作为宣传图，并封装到 `app/(auth)/login/_components/MagicStudioOverview.tsx`。
 
 
 ## 4. 注册页面

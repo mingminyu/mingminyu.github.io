@@ -399,6 +399,7 @@ nav:
         - 数据结构:
           - 字符串: backend/python/base/string.md
           - 列表: backend/python/base/list.md
+          - 字典: backend/python/base/dict.md
         - 包管理: 
           - backend/python/pkg_management/index.md
           - Conda: backend/python/pkg_management/conda.md

@@ -281,107 +281,202 @@ print(f'{var:#^20}:')  # 居中对齐
 | `isprintable()` | 判断字符串是否只包含空格 |
 | `isspace()` | 判断字符串是否只包含空格 |
 
-=== "join"
+### 4.1 join
+
+`join()` 方法用于将序列中的元素以指定的字符连接生成一个新的字符串。
+
+```python linenums="1"
+print(",".join(["a", "b", "c"]))  # 输出：a,b,c
+
+# 连接对象必须先转成字符串
+print("-".join([1, 2, 3]))
+print("-".join(map(str, [1, 2, 3])))  # 使用 map 将元素转成字符串
+```
+
+### 4.2 count
+
+`count()` 方法用于统计字符串中某个字符出现的次数。
+
+```python linenums="1"
+print("hello world".count("l"))   # 输出： 3
+```
+
+### 4.3 replace
+
+`replace()` 方法用于替换字符串中某个字符或子串。
+
+```python linenums="1"
+print("hello world".replace("l", "L"))  # 输出：hello WorLd
+```
+
+同时 `replace()` 函数也可以接受一个可选的参数 `count`，用于指定替换的次数，默认值为 `-1`，全量进行替换。
+
+```python linenums="1"
+print("hello world".replace("l", "L", 2))  # 输出：heLLo World
+```
+
+### 4.4 zfill / center / ljust / rjust
+
+- `zfill()` 函数用于将字符串填充为指定长度，填充的字符为 `0`。
+- `center()` 函数用于将字符串居中填充为指定长度，填充的 character 为 `' '`。
+- `ljust()` 函数用于将字符串左对齐填充为指定长度，填充的 character 为 `' '`。
+- `rjust()` 函数用于将字符串右对齐填充为指定长度，填充的 character 为 `' '`。
 
 
-=== "count"
+```python linenums="1"
+s = "abc"
+print(s.zfill(10))  # 0000000abc
+
+print(s.center(10))
+print(s.center(10, '@'))  # 输出：@@@abc@@@@
+
+print(s.ljust(10, '-'))  # 输出：abc-------
+print(s.rjust(10, '#'))  # 输出：###abc####
+```
+
+### 4.5 index / rindex
+
+`index` 和 `rindex` 都是查找字符串中某个字符的位置，区别在于 `index` 是从左往右查找， `rindex` 是从右往左查找。
+
+```python linenums="1" title="查找字符"
+s = "abcdefcg"
+print(s.index('c'))  # 输出：2
+print(s.rindex('c')) # 输出：6
+```
+
+### 4.6 find / rfind
+
+`find` 和 `rfind` 函数功能类似，区别在于 `find` 是从左往右查找， `rfind` 是从右往左查找。
+
+```python linenums="1" title="查找字符"
+s = "abcdefcg"
+print(s.find('c'))  # 输出：2
+print(s.rfind('c')) # 输出：6
+print(s.find('z'))  # 输出：-1
+```
+
+### 4.7 upper / lower / swapcase / title / capitalize
+
+- `upper` 函数将字符串中的所有字符转为大写；
+- `lower` 函数将字符串中的所有字符转为小写；
+- `swapcase` 函数将字符串中的所有字符转为大写或小写；
+- `title` 函数将字符串中的每个单词的第一个字母转为大写；
+- `capitalize` 函数将字符串中的第一个字母转为大写。
+
+```python linenums="1" title="大小写转换"
+print('hello world'.upper())  # 输出：HELLO WORLD
+print('HELLO world'.lower())  # 输出：hello world
+print('HELLO world'.swapcase())  # 输出：hello WORLD
+print('hello world'.title())  # 输出：Hello World
+print('hello world'.capitalize())  # 输出：Hello world
+```
+
+### 4.8 split / rsplit / splitlines"
+
+- `split` 函数：将字符串（默认为空格和换行符）按指定字符进行分割，返回一个列表;
+- `rsplit` 函数：与 `split` 类似，只是从字符串的右边开始分割;
+- `splitlines` 函数：将字符串按行进行分割，返回一个列表。
+
+```python linenums="1"
+s = 'hello world\nhello world'
+
+# split：参数 maxsplit 用于最大分割次数，默认为 -1，即不限制
+print(s.split())  # 输出：['hello', 'world', 'hello', 'world']
+print(s.split(' '))  # 输出：['hello', 'world\nhello', 'world']
+print(s.split(' ', 1))  # 输出：['hello', 'world\nhello world']
+
+# rsplit：参数 maxsplit 用于最大分割次数，默认为 -1，即不限制
+print(s.rsplit())  # 输出：['hello', 'world', 'hello', 'world']
+print(s.rsplit(' '))  # 输出：['hello', 'world\nhello', 'world']
+print(s.rsplit(' ', 1))  # 输出：['hello world\nhello', 'world']
+
+# splitlines：设置为 True，则按行进行分割
+print(s.splitlines())  # 输出：['hello world', 'hello world']
+print(s.splitlines(True))  # 输出：['hello world\n', 'hello world']
+```
+
+### 4.9 strip / rstrip / lstrip
 
 
-=== "replace"
+### 4.10 format / format_map
 
-=== "zfill / center / ljust / rjust"
+`format` 是字符串格式化方法，`format_map` 是字符串格式化方法，`format_map` 可以使用字典进行格式化。
+
+```python linenums="1" title="格式化"
+# format
+print('hello {name}'.format(name='world'))
+print('hello {}'.format('world' ))
+print('hello {} {}'.format('world', 'python'))
+print('hello {0} {1}'.format('world', 'python'))
+
+# format_map：如果格式化变量不存在，则报错
+print('hello {name}'.format_map({'name': 'world'}))
+print('hello {age}'.format_map({'name': 'world'}))  # 报错
+```
+
+### 4.11 startswith / endsiwth
+
+`startswith()` 和 `endswith()` 方法用于判断字符串是否以指定字符开头（结尾）：
+
+```python linenums="1"
+s = "Hello World"
+print(s.startswith("He"))  # True
+print(s.endswith("ld"))  # True
+```
+
+此外，这两个函数还支持判断字符串指定切片是否以指定字符开头（结尾）：
+
+```python linenums="1" title="支持切片匹配"
+s = "Hello World"
+print(s.startswith("He", 0, 3))
+print(s.endswith("ld", 5, 10))
+```
+
+### 4.12 partition / rpartition
+
+`partition()` 方法用于搜索指定分隔符，返回一个元组，包含分隔符左边的字符串、分隔符本身、分隔符右边的字符串，其中 `rpartition()` 是从右边开始搜索进行分隔。
+
+```python linenums="1"
+s1 = "http://www.w3cschool.cc/"
+print(s.partition("://"))  # 输出：('http', '://', 'www.w3cschool.cc/')
+print(s.partition("www")) # 输出：('http://', 'www', '.w3cschool.cc/')
+
+s2 = "aabbccadbb"
+print(s2.rpartition("bb"))  # 输出：('aabbccad', 'bb', '')
+print(s2.rpartition("d"))  # 输出：('aabbcca', 'd', 'bb')
+```
+
+### 4.13 maketrans / translate
+
+`maketrans()` 方法用于给 `translate()` 方法创建字符映射转换表，它被 `str` 对象调用，返回一个转换表。需要注意的是，它只支持单一字符映射，不支持多字符子串 → 多字符子串 的映射（比如 `'th' → '7'` 或 `'is' → 'zz'` 这种）。。
+
+```python linenums="1"
+intab = "aeiou"
+outtab = "12345"
+deltab = "thw"
+
+trantab1 = str.maketrans(intab, outtab)  # 创建字符映射转换表
+trantab2 = str.maketrans(intab, outtab, deltab)  # 创建字符映射转换表，并删除指定字符
+
+test = "this is string example....wow!!!"
+print(test.translate(trantab1))  # 输出：th3s 3s str3ng 2x1mpl2....w4w!!!
+print(test.translate(trantab2))  # 输出：3s 3s sr3ng 2x1mpl2....4!!!
+```
+
+### 4.14 isalpha / isprintable / isspace
 
 
-<div></div>
 
-=== "index / rindex"
+### 4.15 istitle / isupper / islower
 
-
-=== "find / rfind"
-
-
-=== "upper / lower / swapcase / title / capitalize"
-
-
-<div></div>
-
-=== "split / rsplit / splitlines"
-
-
-=== "strip / rstrip / lstrip"
-
-
-=== "format / format_map"
-
-
-<div></div>
-
-
-=== "startswith / endsiwth"
-
-    `startswith()` 和 `endswith()` 方法用于判断字符串是否以指定字符开头（结尾）：
-
-    ```python linenums="1"
-    s = "Hello World"
-    print(s.startswith("He"))  # True
-    print(s.endswith("ld"))  # True
-    ```
-
-    此外，这两个函数还支持判断字符串指定切片是否以指定字符开头（结尾）：
-
-    ```python linenums="1"
-    s = "Hello World"
-    print(s.startswith("He", 0, 3))
-    print(s.endswith("ld", 5, 10))
-    ```
-
-=== "partition / rpartition"
-
-    `partition()` 方法用于搜索指定分隔符，返回一个元组，包含分隔符左边的字符串、分隔符本身、分隔符右边的字符串，其中 `rpartition()` 是从右边开始搜索进行分隔。
-
-    ```python linenums="1"
-    s1 = "http://www.w3cschool.cc/"
-    print(s.partition("://"))  # 输出：('http', '://', 'www.w3cschool.cc/')
-    print(s.partition("www")) # 输出：('http://', 'www', '.w3cschool.cc/')
-
-    s2 = "aabbccadbb"
-    print(s2.rpartition("bb"))  # 输出：('aabbccad', 'bb', '')
-    print(s2.rpartition("d"))  # 输出：('aabbcca', 'd', 'bb')
-    ```
-
-=== "maketrans / translate"
-
-    `maketrans()` 方法用于给 `translate()` 方法创建字符映射转换表，它被 `str` 对象调用，返回一个转换表。需要注意的是，它只支持单一字符映射，不支持多字符子串 → 多字符子串 的映射（比如 `'th' → '7'` 或 `'is' → 'zz'` 这种）。。
-
-    ```python linenums="1"
-    intab = "aeiou"
-    outtab = "12345"
-    deltab = "thw"
-
-    trantab1 = str.maketrans(intab, outtab)  # 创建字符映射转换表
-    trantab2 = str.maketrans(intab, outtab, deltab)  # 创建字符映射转换表，并删除指定字符
-
-    test = "this is string example....wow!!!"
-    print(test.translate(trantab1))  # 输出：th3s 3s str3ng 2x1mpl2....w4w!!!
-    print(test.translate(trantab2))  # 输出：3s 3s sr3ng 2x1mpl2....4!!!
-    ```
-
-<div></div>
-
-=== "isalpha"
-
-=== "isprintable / isspace"
-
-=== "istitle / isupper / islower"
-
-=== "isdigit / isdecimal / isalnum / isnumberic"
+### 4.16 isdigit / isdecimal / isalnum / isnumberic
 
 
 ## 5. 字符串的编码问题
 
 Python3 中字符串默认使用 `utf-8` 编码，很多时候我们发现拿到的文本输出是乱码（尤其是 Windows 记事本中的文本内容放到 Linux 或者 MacOS 上输出文件内容时，经常会出现这个问题），那么我们需要对字符串进行转义。
 
-```python
+```python linenums="1"
 greet = '你好'
 # 编码为bytes
 greet_utf8 = greet.encode('utf-8')  # b'\xe4\xbd\xa0\xe5\xa5\xbd'
