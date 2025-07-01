@@ -160,6 +160,12 @@ export const metadata: Metadata = {
 
 同样将 iconfont 下载的 png 图片保存为 favicon.ico，并替换 `apps` 目录下的同名文件。
 
+### 2.4 配置ShadcnUI的CSS主样式
+
+访问 [ShadcnUI 主题](hhttps://ui.shadcn.com/themes) 选择自己的样式，因为我们的 Logo 是深色图案，所以使用默认主题。
+
+如果你喜欢其他样式的主题，点击右上角的 “Copy Code” 复制代码，并替换 `app/global.css` 文件对应的内容。
+
 ## 3. 登录页面
 
 我们在 `app` 文件夹下创建 `(auth)/login` 文件夹，并在里面创建 `page.tsx` 文件，内容如下：
@@ -538,7 +544,24 @@ export default function Page() {
 
 ### 3.3 登录页面的模板
 
-我们希望
+我们希望右侧的能够在登录和注册页都显示，这里将这部分的页面内容放在模板中：
+
+```tsx linenums="1" title="app/(auth)/layout.tsx"
+import MagicStudioOverview from "../_components/MagicStudioOverview";
+
+export default function Layout({children}: {children: React.ReactNode}) {
+  return (
+    <div className="flex h-screen w-screen items-center justify-center">
+      <div className="w-3/4 self-center justify-center items-center flex">
+        {children}       
+      </div>
+      <div className="h-screen bg-slate-50">
+        <MagicStudioOverview  className="ml-16"/>
+      </div>
+    </div>
+  );
+}
+```
 
 
 ## 4. 注册页面
@@ -552,3 +575,7 @@ export default function Page() {
   )
 }
 ```
+
+## 5. 数据表设计
+
+

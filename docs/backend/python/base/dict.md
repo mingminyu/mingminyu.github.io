@@ -20,7 +20,7 @@ d6 = dict({'one': 1, 'three': 3}, two=2)
 需要注意的是，字典的键必须独一无二，但值则不必，如果同一个键传了 **2** 次值，那么会用后面的作为值。
 
 ```python linenums="1"
-d = {'name': 'Zara', 'age': 7, 'name': 'Manni'};
+d = {'name': 'Zara', 'age': 7, 'name': 'Manni'}
 print(d["name"])
 ```
 
@@ -119,7 +119,7 @@ print(d1)  # 输出：{1: 1, 4: 2, 9: 3}
 
 与列表一样，`copy` 是一个字典的浅拷贝。需要注意的是，如果我们修改的字典值是不可变类型（例如整数 17），而不是引用类型（例如列表 `[1, 2, 3]`），那么 `copy` 函数不会改变原字典的值，相当于一个单独的副本。
 
-```python linenums"1"
+```python linenums="1"
 d1 = {'name': 'zhangsan', 'age': 17, 'friends': ['amy', "lucy"]}
 d2 = d1.copy()
 print(d2)

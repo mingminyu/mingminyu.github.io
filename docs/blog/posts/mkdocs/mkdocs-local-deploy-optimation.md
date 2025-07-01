@@ -27,6 +27,6 @@ theme:
   font: false
 ```
 
-## 2. 禁用 office 插件
+## 2. 禁用 offline 插件
 
-如果你使用了 office 插件，mkdocs 默认会从 unpkg.com 加载 iframe-worker 的 shim 脚本，因为离线环境下网络问题，也导致尝试时间过长，强烈建议关闭此插件。此外，如果你已经使用 `mkdocs build` 生成了静态文件，那么需要在 `site/index.html` 文件中找到对应的 iframe-worker 取消或删除掉。
+如果你使用了 office 插件，mkline 默认会从 unpkg.com 加载 iframe-worker 的 shim 脚本，因为离线环境下网络问题，也导致尝试时间过长，强烈建议关闭此插件。此外，如果你已经使用 `mkdocs build` 生成了静态文件，那么需要在 `site/index.html` 文件中找到对应的 iframe-worker 取消或删除掉。
