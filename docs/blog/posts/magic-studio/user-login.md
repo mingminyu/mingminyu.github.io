@@ -61,10 +61,9 @@ export default function Home() {
 此外，我们使用 ShadcnUI 以及 Lucide-React 作为前端页面和图标组件，这两个个组件库非常优秀，整个项目可能会用到以下组件库：
 
 ```bash linenums="1"
-npx shadcn@latest add card separator button input form tabs
+npx shadcn@latest add card separator button input form tabs sidebar
 npm install lucide-react
 ```
-
 
 ### 2.1 GoogleFont字体问题
 
