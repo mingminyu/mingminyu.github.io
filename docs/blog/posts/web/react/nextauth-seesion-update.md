@@ -46,8 +46,8 @@ Next.js 14 默认使用服务器端渲染来显示网页组件，在组件代码
 export default async function Home() {
   console.log('Server Side Rendering') // 添加console.log 
   return (
-		...
-	)
+    ...
+  )
 }
 ```
 
@@ -55,13 +55,13 @@ export default async function Home() {
 "use client"
 
 export default function Page() {
-	console.log('Client Side Rendering')
-	return (
-		<div>
-			<h1>Client Side Rendeing Page</h1>
-			<h2>Unavailable without auth</h2>
-		</div>
-	)
+  console.log('Client Side Rendering')
+  return (
+    <div>
+      <h1>Client Side Rendeing Page</h1>
+      <h2>Unavailable without auth</h2>
+    </div>
+  )
 }
 ```
 
@@ -76,7 +76,7 @@ export default function Page() {
 export const { handlers: { GET, POST }, auth, signIn, signOut, update } = NextAuth({
   ...authConfig,
   
-	...
+  ...
 })
 ```
 
@@ -88,8 +88,8 @@ export default async function Home() { // 现在是'async function'
   const session = await auth() // 调用session
   console.log(session); // console log读取session
   return (
-		...
-	)
+    ...
+  )
 }
 ```
 
@@ -155,16 +155,16 @@ export default function RootLayout({
 import { useSession } from "next-auth/react" // 添加import
 
 export default function Page() {
-    console.log('Client Side Rendering')
-    const { data: session, update } = useSession() // useSession()
-    console.log(session); // console.log
-    return (
-      <div>
-        <h1>Client Side Rendeing Page</h1>
-        <h2>Unavailable without auth</h2>
-      </div>
-    )
-  }
+  console.log('Client Side Rendering')
+  const { data: session, update } = useSession() // useSession()
+  console.log(session); // console.log
+  return (
+    <div>
+      <h1>Client Side Rendeing Page</h1>
+      <h2>Unavailable without auth</h2>
+    </div>
+  )
+}
 ```
 
 ## 5. Session更新
@@ -235,7 +235,7 @@ export const { handlers: { GET, POST }, auth, signIn, signOut, update } = NextAu
 
 让我们先处理客户端代码，编辑 `src/app/client/page.tsx` 中的代码：
 
-```ts title="src/app/client/page.ts" linenums="1"
+```tsx title="src/app/client/page.tsx" linenums="1"
 "use client"
 
 import { User } from "@/lib/definitions"
@@ -243,33 +243,33 @@ import { useSession } from "next-auth/react"
 import { useEffect, useState } from "react"
 
 export default function Page() {
-    const { data: session, update } = useSession()
-    // useState和useEffect用于仅在检索到session后
-    // 渲染UI
-    const [user, setUser] = useState<User>({} as User)
-    useEffect(() => {
-      if(session && session.user) 
-        {
-          setUser(session.user as User)
-          console.log(session.user)
-        }
-    }, [session])
+  const { data: session, update } = useSession()
+  // useState和useEffect用于仅在检索到session后
+  // 渲染UI
+  const [user, setUser] = useState<User>({} as User)
+  useEffect(() => {
+    if(session && session.user) 
+      {
+        setUser(session.user as User)
+        console.log(session.user)
+      }
+  }, [session])
 
-    return (
-      session && // UI在检索到session后渲染
-      <div>
-        <h1>Client Side Rendeing Page</h1>
-        <h2>Unavailable without auth</h2>
-        <br />
-        <button onClick={ () => {
-        // 使用从useSession钩子调用的update()
-          update({...user, name: 'Client-Man'});
-        }}>
-          Client Side Update
-        </button>
-      </div>
-    )
-  }
+  return (
+    session && // UI在检索到session后渲染
+    <div>
+      <h1>Client Side Rendeing Page</h1>
+      <h2>Unavailable without auth</h2>
+      <br />
+      <button onClick={ () => {
+      // 使用从useSession钩子调用的update()
+        update({...user, name: 'Client-Man'});
+      }}>
+        Client Side Update
+      </button>
+    </div>
+  )
+}
 ```
 
 访问 http://localhost:3000/client ，打开浏览器控制台，然后点击 "Client Side Update" 按钮。控制台将打印更新后的 session 用户数据。
@@ -287,14 +287,14 @@ export default function Page() {
 import { useSession } from "next-auth/react"
 
 export default function UpdateButton({newName} : {newName: String}) {
-	const { data: session, update } = useSession()
-	return (
-		<button onClick={() => {
-				update({...session!.user, name: newName});
-			}}>
-				Client Side Update
-		</button>
-	)
+  const { data: session, update } = useSession()
+  return (
+    <button onClick={() => {
+        update({...session!.user, name: newName});
+      }}>
+        Client Side Update
+    </button>
+  )
 }
 ```
 
@@ -313,17 +313,17 @@ export default async function Home() {
       <h1>Home Page</h1>
       <h2>Unavailable without auth</h2>
       <form
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
+        action={async () => {
+          'use server';
+          await signOut();
+        }}
         >
-          <button>
-             Log Out
-          </button>
-          <br /> 
-          <UpdateButton newName={'Server-Man'} />
-        </form>
+        <button>
+            Log Out
+        </button>
+        <br /> 
+        <UpdateButton newName={'Server-Man'} />
+      </form>
     </div>
   )
 }
@@ -349,23 +349,23 @@ export default async function Home() {
       <h1>Home Page</h1>
       <h2>Unavailable without auth</h2>
       <form
-          action={async () => {
-            'use server';
-            await signOut();
-          }}
+        action={async () => {
+          'use server';
+          await signOut();
+        }}
         >
-          <button>
-             Log Out
-          </button>
-          <br /> 
-          <UpdateButton newName={'Server-Man'} />
-        </form>
+        <button>
+            Log Out
+        </button>
+        <br /> 
+        <UpdateButton newName={'Server-Man'} />
+      </form>
       <br />
       <form
-          action={async () => {
-            'use server';
-            await update({...user, name: 'Serverserver-man'});
-          }}
+        action={async () => {
+          'use server';
+          await update({...user, name: 'Serverserver-man'});
+        }}
         >
         <button>
           Server Side Update
