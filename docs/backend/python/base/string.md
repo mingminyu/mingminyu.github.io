@@ -397,6 +397,15 @@ print(s.splitlines(True))  # 输出：['hello world\n', 'hello world']
 
 ### 4.9 strip / rstrip / lstrip
 
+- `strip` 函数用于去除字符串的开头和结尾的空格；
+- `rstrip` 函数用于去除字符串的结尾的空格；
+- `lstrip` 函数用于去除字符串的开头的空格。
+
+```python linenums="1" title="去除空格"
+print(' hello world '.strip())
+print(' hello world '.rstrip())
+print(' hello world '.lstrip())
+```
 
 ### 4.10 format / format_map
 
@@ -464,8 +473,6 @@ print(test.translate(trantab2))  # 输出：3s 3s sr3ng 2x1mpl2....4!!!
 ```
 
 ### 4.14 isalpha / isprintable / isspace
-
-
 
 ### 4.15 istitle / isupper / islower
 
