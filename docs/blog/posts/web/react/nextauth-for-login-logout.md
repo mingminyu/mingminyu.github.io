@@ -77,42 +77,42 @@ src/
 
 === "登录页面"
 
-		```tsx title="src/app/login/page.tsx" linenums="1"
-		"use client"
+      ```tsx title="src/app/login/page.tsx" linenums="1"
+      "use client"
 
-		export default function Page() {
-			return (
-				<div>
-					<h1>Log in Page</h1>
-					<form className="flex flex-col">
-						<input className="bg-blue-300 text-black" name="id" />
-						<input 
-							className="bg-yellow-300 text-black" 
-							name="password" 
-							type="password"
-						/>
-						<button>Log In</button>
-					</form>
-				</div>
-			)
-		}
-		```
+      export default function Page() {
+        return (
+          <div>
+            <h1>Log in Page</h1>
+            <form className="flex flex-col">
+              <input className="bg-blue-300 text-black" name="id" />
+              <input 
+                className="bg-yellow-300 text-black" 
+                name="password" 
+                type="password"
+              />
+              <button>Log In</button>
+            </form>
+          </div>
+        )
+      }
+      ```
 
 === "Home 页面"
 
-		```tsx title="src/app/page.tsx" linenums="1"
-		export default async function Home() {
-			return (
-				<div>
-					<h1>Home Page</h1>
-					<h2>Unavailable without auth</h2>
-					<form>
-						<button>Log Out</button>
-					</form>
-				</div>
-			)
-		}
-		```
+      ```tsx title="src/app/page.tsx" linenums="1"
+      export default async function Home() {
+        return (
+          <div>
+            <h1>Home Page</h1>
+            <h2>Unavailable without auth</h2>
+            <form>
+              <button>Log Out</button>
+            </form>
+          </div>
+        )
+      }
+      ```
 
 使用 `npx next dev` 或 `npm run dev` 或 `yarn` 运行应用程序。
 

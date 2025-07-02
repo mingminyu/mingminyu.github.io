@@ -19,9 +19,11 @@ readtime: 20
 
 除登录和注册页外，我们主体布局是支持整个平台各页面的，所以新建 `app/(main)` 文件夹，且布局并非是一个通用组件，所以不必放根目录下的 `components` 目录下。
 
+<!-- more -->
+
 ## 1. 侧边栏
 
-```tsx linenums="1" title="app/(main)/_components/AppSidebar.tsx">
+```tsx linenums="1" title="app/(main)/_components/AppSidebar.tsx"
 "use client";
 
 import React from "react";
