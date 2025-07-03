@@ -63,7 +63,7 @@ export default function Home() {
 此外，我们使用 ShadcnUI 以及 Lucide-React 作为前端页面和图标组件，这两个个组件库非常优秀，整个项目可能会用到以下组件库：
 
 ```bash linenums="1"
-npx shadcn@latest add card separator button input form tabs sidebar
+npx shadcn@latest add card separator button input form tabs sidebar badge dropdown-menu button avatar separator
 npm install lucide-react
 ```
 
@@ -548,7 +548,7 @@ export default function Page() {
 我们希望右侧的能够在登录和注册页都显示，这里将这部分的页面内容放在模板中：
 
 ```tsx linenums="1" title="app/(auth)/layout.tsx"
-import MagicStudioOverview from "../_components/MagicStudioOverview";
+import MagicStudioOverview from "./_components/MagicStudioOverview";
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return (
@@ -557,15 +557,108 @@ export default function Layout({children}: {children: React.ReactNode}) {
         {children}       
       </div>
       <div className="h-screen bg-slate-50">
-        <MagicStudioOverview  className="ml-16"/>
+        <MagicStudioOverview  className="ml-16 md:hidden"/>
       </div>
     </div>
   );
 }
 ```
 
+## 4. 登录验证
 
-## 4. 注册页面
+上面代码中我们实现了自定义登录验证处理，更好地方式使用优秀的外部库实现会更合理，比如 NextAuth.js，它可以帮助我们对全页面的登录状态进行管理。考虑到平台应用是本地的，这里我们使用 账号+密码的方式进行登录验证。
+
+首先我们安装 NextAuth.js 库：
+
+```bash
+npm install next-auth@beta
+npx auth secret
+```
+
+### 4.1 auth.ts
+
+在根目录下新建 `auth.ts` 文件，并写入以下代码：
+
+```ts linenums="1"
+import NextAuth from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { authConfig } from "./auth.config";
+
+
+export type User = {
+  id: string
+  account: string
+  email: string
+  role: string
+  name: string
+};
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  ...authConfig,
+  providers: [
+    CredentialsProvider({
+      credentials: {
+        account: {
+          label: "Account",
+          type: "text",
+          placeholder: "请输入账号/邮箱/手机号",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "请输入密码",
+        }
+      }
+      ,
+      authorize(credentials) {
+        console.log("@credentials", credentials);
+
+        let loginRes = {
+          success: true,
+          data: {
+            user: {
+              id: "89757",
+              name: "郁明敏",
+              email: "yumingmin@gmail.com",
+              role: "admin",
+            },
+          },
+        };
+
+        return {
+          id: loginRes.data.user.id,
+          name: loginRes.data.user.name,
+          email: loginRes.data.user.email,
+          role: loginRes.data.user.role,
+        };
+      },
+    }),
+  ],
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token.user as (User & { emailVerified: Date | null });
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
+      }
+      return token;
+    },
+  },
+});
+```
+
+### 4.2 auth.config.ts
+
+```ts linenums="1"
+
+```
+
+
+
+
+## 5. 注册页面
 
 我们在 `app` 文件夹下创建 `(auth)/register` 文件夹，并在里面创建 `page.tsx` 文件，内容如下：
 
@@ -577,6 +670,6 @@ export default function Page() {
 }
 ```
 
-## 5. 数据表设计
+## 6. 数据表设计
 
 
