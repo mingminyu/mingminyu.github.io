@@ -11,7 +11,7 @@ slug: magic_studio_user_login
 readtime: 20
 ---
 
-# 页面布局
+# Magic Studio开发者日志：页面布局
 
 ![](https://mingminyu.github.io/webassets/images/magic-studio/04.png)
 

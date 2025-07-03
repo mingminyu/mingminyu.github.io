@@ -13,6 +13,8 @@ readtime: 20
 
 # Magic Studio开发者日志：用户登录
 
+> 参考文档：https://authjs.dev/getting-started/authentication/credentials
+
 登录页面是用户使用平台的入口，如果一个平台连登录页面都做得极其 low，那么用户体验会非常差，甚至都不会有想要使用的欲望。此外，看似非常简单的登录流程，实际上也是麻雀虽小，五脏俱全，方方面面都会涉及到。本篇文章我们着手开发 Magic Studio 的用户登录功能，千里之堤始于足下，开干。
 
 <!-- more -->
@@ -482,7 +484,7 @@ export default function Page() {
 
     这里我们先简单定义一下验证方式，后面再完善：
 
-    ```tsx linenums="1" title="lib/auth.tsx"
+    ```ts linenums="1" title="lib/auth.ts"
     import { signInAccountSchema, signInMobileSchema, SignInMobileSchemaType } from "@/schema/signin";
 
     type SignInAccountType = {
@@ -577,13 +579,12 @@ npx auth secret
 
 ### 4.1 auth.ts
 
-在根目录下新建 `auth.ts` 文件，并写入以下代码：
+在根目录下新建 `auth.ts` 文件，后续我们在这个文件主要完成完整的验证逻辑代码，并写入以下代码：
 
-```ts linenums="1"
+```ts linenums="1" title="auth.ts"
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { authConfig } from "./auth.config";
-
 
 export type User = {
   id: string
@@ -651,11 +652,77 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
 ### 4.2 auth.config.ts
 
-```ts linenums="1"
+```ts linenums="1" title="auth.config.ts"
+export const authConfig = {
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }: { auth: any, request: { nextUrl: URL } }) {
+      const isLoggedIn = !!auth?.user;
+      const isOnProtected = !nextUrl.pathname.startsWith('/login');
 
+      if (isOnProtected) {
+        return isLoggedIn ? true : false;
+      } else if (isLoggedIn) {
+        const callbackUrl = nextUrl.searchParams.get("callbackUrl") || "/";  // 获取登录校验前的访问地址
+        return Response.redirect(new URL(callbackUrl, nextUrl));
+      }
+      return true;
+    },
+  },
+  providers: [], 
+};
 ```
 
+### 4.3 middleware.ts
 
+```ts title="middleware.ts" linenums="1"
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
+
+export default NextAuth(authConfig).auth;
+
+export const config = {
+  matcher: [
+    '/((?!api|_next/static|_next/image|.*\\.png$|$).*)',
+  ],
+};
+```
+
+### 4.4 route.ts
+
+```ts title="app/api/auth/[...auth]/routes.ts" linenums="1"
+import { handlers } from "@/auth"
+export const { GET, POST } = handlers
+```
+
+### 4.5 表单提交
+
+我们不再使用 `lib/auth.ts` 来验证，替换成根目录下 `auth.ts`，完成替换后 `lib/auth.ts` 文件可以删除。
+
+```tsx linenums="1" title="app/(auth)/login/_components/LoginForm.tsx" hl_lines="1-2 9-11"
+// import { signInAccount, signInMobile } from "@/lib/auth";  // 删除
+import { signIn } from "next-auth/react" // (1)!
+
+export default function LoginForm() {
+  return (
+    <Form {...formAccount}>
+      <form
+        className="space-y-4 mt-4"
+        // onSubmit={formAccount.handleSubmit(onAccountSubmit)} // 删除
+        onSubmit={formAccount.handleSubmit(async (formData: SignInAccountSchemaType) => {
+          await signIn('credentials', formData);
+        })}
+      >
+        ...
+      </form>
+    </Form>
+  )
+}
+```
+
+1. 因为我们使用 react-hook-form 库，这里直接使用 `import { signIn } from "@/auth"` 是会报错，并不能像官方示例中那样使用 `"use server"`。并且 `onSubmit={(formData: FormData) => {signIn("credentials", formData)}}` 以及 `onSubmit={async (formData: FormData) => {await signIn("credentials", formData)}}` 都不正确。
 
 
 ## 5. 注册页面
