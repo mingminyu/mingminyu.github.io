@@ -739,4 +739,23 @@ export default function Page() {
 
 ## 6. 数据表设计
 
+### 6.1 user
+
+| 字段名 | 数据类型 | 是否为空 | 描述 |
+| --- | --- | --- | --- |
+| id | int | 否 | 用户自增ID |
+| username | varchar(50) | 否 | 用户名 |
+| realname | varchar(50) | 否 | 姓名 |
+| password | varchar(128) | 否 | 密码 |
+| mobile | varchar(20) | 否 | 手机号 |
+| email | varchar(128) | 否 | 邮箱 |
+| avatar | varchar(128) | 是 | 头像 |
+| department | varchar(50) | 是 | 部门 |
+| role | varchar(20) | 否 | 角色 |
+| is_active | tinyint | 否 | 是否激活 |
+| created_at | timestamp | 否 | 创建时间 |
+| updated_at | timestamp | 否 | 更新时间 |
+
+### 6.2 role
+
 
