@@ -759,3 +759,16 @@ export default function Page() {
 ### 6.2 role
 
 
+
+
+## 7. 待整理
+
+- nextjs 请求 fastapi 跨域：在 fastapi 服务中添加跨域
+- fastapi app.on_event 取消，使用lifespan
+- 如何在各组件中自动获取用户信息（例如 AppHeader 中用户信息），使用 useContext
+- 如何在 fastapi 接口上添加验证，防止接口暴漏后可随机删除、添加数据
+- sqlmodel 如何实现，传入数据记录的字段是驼峰命名，如何自动转换为下划线命名
+- sqlmodel 如何添加字段 comment
+- sqlmodel 如何实现 update_by 传入为空时，使用 create_by 填充
+- fastapi pydantic 的数据模型，如何实现字段下划线自动转驼峰
+- nextjs 添加完成后，如何自动获取数据库信息，刷新数据

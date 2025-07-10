@@ -261,7 +261,7 @@ while True:
 
 > 避免过度使用 `break`
 
-虽然 `break` 语句可以方便地提前终止循环，但过度使用会使代码逻辑变得复杂，降低代码的可读性。在可能的情况下，应优先考虑使用更清晰的循环条件来控制循环的终止。
+: 虽然 `break` 语句可以方便地提前终止循环，但过度使用会使代码逻辑变得复杂，降低代码的可读性。在可能的情况下，应优先考虑使用更清晰的循环条件来控制循环的终止。
 
 > 使用 `else` 子句
 
@@ -323,12 +323,12 @@ while True:
     person = {"name": "Alice", "age": 30}
 
     match person:
-    case {"name": "Alice", "age": 30}:
-        print("It's Alice, 30 years old!")
-    case {"name": name, "age": age} if age < 18:
-        print(f"{name} is a minor.")
-    case {"name": name, "age": age}:
-        print(f"{name} is {age} years old.")
+        case {"name": "Alice", "age": 30}:
+            print("It's Alice, 30 years old!")
+        case {"name": name, "age": age} if age < 18:
+            print(f"{name} is a minor.")
+        case {"name": name, "age": age}:
+            print(f"{name} is {age} years old.")
 
     ```
 
