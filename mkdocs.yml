@@ -403,7 +403,9 @@ nav:
           - 元组和集合: backend/python/base/tuple-set.md
         - 流程控制: backend/python/base/condition-control.md
         - 异常处理: backend/python/base/exception.md
-        - 函数: backend/python/base/function.md
+        - 函数: 
+          - 函数基础: backend/python/base/functions.md
+          
         - 包管理: 
           - backend/python/pkg_management/index.md
           - Conda: backend/python/pkg_management/conda.md
