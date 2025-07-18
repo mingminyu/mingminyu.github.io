@@ -1,8 +1,23 @@
+---
+date: 2025-07-19
+authors:
+  - mingminyu
+categories:
+  - 金融风控
+tags:
+  - 转载
+  - 风控策略
+slug: quant_risk_ctrl
+readtime: 2
+---
+
 # 量化风险管理
+
+> 原文地址：https://mp.weixin.qq.com/s/hfJ3d5oSc-foF5HOF1sGPQ
 
 !!! info 参考文档
 
-    本文摘录[全面了解量化风险管理](https://geekdaxue.co/read/yingtaoxiang@hello/iaynwv)仅作为学习，请查看[原文]( https://mp.weixin.qq.com/s/hfJ3d5oSc-foF5HOF1sGPQ)。
+    本文摘录[全面了解量化风险管理](https://geekdaxue.co/read/yingtaoxiang@hello/iaynwv) 仅作为学习，请查看[原文](https://mp.weixin.qq.com/s/hfJ3d5oSc-foF5HOF1sGPQ)。
 
 
 过去 400 年间，只有保险公司始终积极从事风险管理活动；150年前，风险管理的范围开始扩大到信用风险和市场风险；最近40年，市场剧变让风险变得越来越复杂，潜在成本和未来机遇难以把握，企业开始有意识地从公司层面管理风险；20世纪80年代起， 企业在识别和管理风险上投入更多精力，带有“风险”的头衔成为新的职位。

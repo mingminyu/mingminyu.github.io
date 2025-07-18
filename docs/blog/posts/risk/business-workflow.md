@@ -1,4 +1,19 @@
+---
+date: 2025-07-19
+authors:
+  - mingminyu
+categories:
+  - 金融风控
+tags:
+  - 转载
+  - 风控策略
+slug: business-workflow
+readtime: 2
+---
+
 # 业务流程
+
+> 原文地址：https://mp.weixin.qq.com/s/3q0LzJsB6u3_svb-5a_UPA
 
 !!! info 参考文档
 

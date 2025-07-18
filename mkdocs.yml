@@ -566,9 +566,6 @@ nav:
         - 服务部署: ai/speech/funasr/deploy.md
         - 模型仓库: ai/speech/funasr/model_repo.md
         - 更新日志: ai/speech/funasr/changelog.md
-
-    # - AI:
-    #   - ai/aigc/index.md
     
     - 大模型: 
       # - ai/aigc/llm.md
@@ -618,14 +615,6 @@ nav:
     
     - 对话机器人: ai/aigc/conversational-ai.md
     - AI 工具: ai/tools.md
-
-
-  # - 商业分析: business_analysis/index.md
-  - 金融风控:
-    - risk/index.md
-    - 风控基础:
-      - 业务流程: risk/basic/business-workflow.md
-      - 量化风险: risk/basic/quant_risk_ctrl.md
 
   - 博客:
     - blog/index.md
