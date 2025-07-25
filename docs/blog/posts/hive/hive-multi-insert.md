@@ -22,7 +22,6 @@ CREATE TABLE mydb.yumm_multi_insert_demo
 )
 PARTITIONED BY (batchdate STRING)
 ;
-
 ```
 
 ## 2. Multi Insert插入数据
