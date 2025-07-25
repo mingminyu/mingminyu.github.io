@@ -6,7 +6,7 @@
 
 ### 1.1 定义和调用
 
-在 Python 中，函数是通过 `def` 关键字来定义的，并通过 `resturn` 语句返回结果（不一定是具体值，也可以是其他函数或类等）。函数定义的基本语法如下：
+在 Python 中，函数是通过 `def` 关键字来定义的，并通过 `return` 语句返回结果（不一定是具体值，也可以是其他函数或类等）。函数定义的基本语法如下：
 
 ```python linenums="1"
 def hello():
@@ -14,27 +14,31 @@ def hello():
 
 hello()  # 调用函数
 
-# 带参数的函数
+# 带参数无类型注解的函数
 def greet(name):
     return f"Hello, {name}!"
+
+greet("Amy")
 
 # 带类型注解的函数
 def greet2(name: str) -> str:
     return f"Hello, {name}!"
+
+greet2("Amy")
 ```
 
 **建议**：函数的参数都带上类型注解，这样能帮助阅读代码，更快理解函数的用途。
 
 ### 1.2 嵌套的函数调用
 
-函数嵌套调用是指在一个函数内部调用另一个函数。示例代码如下：
+函数嵌套调用是指在一个函数内部调用另一个函数，==被调用的函数位置可以在后面定义==。示例代码如下：
 
 ```python linenums="1"
-def square(x):
-    return x * x
-
-def sum_of_squares(a, b):
+def sum_of_squares(a: int, b: int):
     return square(a) + square(b)
+
+def square(x: int):
+    return x * x
 
 result = sum_of_squares(2, 3)
 print(result)
@@ -126,18 +130,21 @@ Python 函数命名规范是指在编写 Python 函数时所遵循的一系列�
 
 函数可以接受零个或多个参数，参数可以分为以下几种类型：
 
-- 位置参数：按照参数的位置顺序传递的参数；
-- 默认参数：在函数定义时为参数指定默认值，如果调用时没有传递该参数，则使用默认值。 
-- 可变参数：可以接受任意数量的参数，分为可变位置参数（`*args`）和可变关键字参数（`**kwargs`）。
+- **位置参数**：按照参数的位置顺序传递的参数；
+- **默认参数**：在函数定义时为参数指定默认值，如果调用时没有传递该参数，则使用默认值。 
+- **可变参数**：可以接受任意数量的参数，分为可变位置参数（`*args`）和可变关键字参数（`**kwargs`）。
 
 ```python linenums="1"
-def calculate(a: int | float, b int = 2, *args, **kwargs):
+def calculate(a: int | float, b: int = 2, *args, **kwargs):
     """计算结果"""
     result = a + b
+    
     for num in args:
         result += num
+    
     for key, value in kwargs.items():
         result += value
+    
     return result
 
 # 调用函数
@@ -180,7 +187,7 @@ greet("Bob", "Hi")
 
 需要注意的是，当某个参数设置了默认值后，后面的参数都必须设置默认值，否则会报错。
 
-```python linenums="1"
+```python linenums="1" title="错误示例"
 def greet(name: str = "Amy", message: str):
     """根据给定的名字和消息进行问候"""
     print(f"{message}, {name}!")
@@ -211,7 +218,7 @@ greet(message="Hello", name="Alice")
     `/` 表示位置参数，此前的参数只能根据参数位置进行传递。
 
     ```python linenums="1"
-    def greet(name, /):
+    def greet(name: str, /):
         print(f"Hello, {name}")
 
     greet("小明")   # 正确
@@ -223,7 +230,7 @@ greet(message="Hello", name="Alice")
     `*` 表示关键字参数，此前的参数只能根据参数名称进行传递。
 
     ```python linenums="1"
-    def greet(*, name):
+    def greet(*, name: str):
         print(f"Hello, {name}")
 
     greet(name="小明")
@@ -233,7 +240,7 @@ greet(message="Hello", name="Alice")
 === "/ 和 * 一起使用"
 
     ```python linenums="1"
-    def func(a, b, /, c, *, d, e):
+    def func(a: int, b: int, /, c: int, *, d: int, e: int):
         print(a, b, c, d, e)
 
     func(1, 2, 3, d=4, e=5)  # 正确
@@ -282,7 +289,7 @@ connect_to_database(host='example.com', user='admin')
 
 ```python linenums="1" hl_lines="7"
 # 错误示例
-def add_item(item, items=[]):
+def add_item(item: int, items: list[int] = []):
     items.append(item)
     return items
 
@@ -290,7 +297,7 @@ print(add_item(1))  # 输出: [1]
 print(add_item(2))  # 输出: [1, 2]，不是预期的 [2]
 
 # 正确示例
-def add_item(item, items=None):
+def add_item(item: int, items: list[int] = None):
     if items is None:
         items = []
     items.append(item)
@@ -339,15 +346,44 @@ print_local_variable()  # 输出: 20
 
 ### 3.3 嵌套作用域
 
-当一个函数内部嵌套另一个函数时，就会产生嵌套作用域。内部函数可以访问外部函数的变量，这些变量被称为非局部变量。示例如下：
+当一个函数内部嵌套另一个函数时，就会产生嵌套作用域。内部函数可以访问外部函数的变量，这些变量被称为非局部变量，但不能使用该变量运算后再变。示例如下：
 
 ```python linenums="1" hl_lines="5" title="嵌套作用域"
 def outer_function():
     outer_variable = 30
-    def inner_function():
+    def inner_function1():
+        outer_variable = 10
         print(outer_variable)
-    inner_function()
 
+    inner_function1()  # 10
+    print(f"执行 inner_function1 后: {outer_variable}")   # 30
+
+    def inner_function2():
+        print(outer_variable)
+
+    inner_function2()  # 30
+    print(f"执行 inner_function2 后: {outer_variable}")   # 30
+
+    def inner_function3():
+        outer_variable_new = outer_variable + 10
+        print(outer_variable_new)
+
+    inner_function3()  # 40
+    print(f"执行 inner_function3 后: {outer_variable}")  # 30
+
+    def inner_function4():
+        outer_variable = outer_variable + 10   # 报错：不能赋值为 outer_variable
+        print(outer_variable)
+    
+    inner_function4()  # 报错
+
+    def inner_function5():
+        outer_variable_copy = outer_variable  # 报错：不能直接赋值新的变量
+        outer_variable = outer_variable_copy + 10  
+        print(outer_variable)
+    
+    inner_function5()  # 报错
+    
 outer_function()  # 输出: 30
 ```
 
@@ -363,12 +399,29 @@ x = 1
 
 def outer():
     x = 2
+    print('(1):', x)  # 输出: 2
+    
     def inner():
         x = 3
-        print(x)  # 输出: 3
+        print('(2):', x)  # 输出: 3
+
+    def inner2():
+        print('(3):', x)  # 输出: 2
+    
     inner()
+    inner2()
+
+def outer2():
+    print('(4):', x)  # 输出: 1
+
+def outer3():
+    print('(5):', x)  # 报错
+    x = 2
+
 
 outer()
+outer2()
+outer3()  # 报错
 ```
 
 在这个例子中，`inner` 函数内部的 `x` 首先在局部作用域中找到，因此输出为 3。
@@ -381,11 +434,17 @@ outer()
 global_var = 5
 
 def modify_global():
+    global_var = 15   # 未修改全局变量
+
+modify_global()
+print(f"{global_var = }")
+
+def modify_global2():
     global global_var
     global_var = 15
 
-modify_global()
-print(global_var)  # 输出: 15
+modify_global2()
+print(f"{global_var = }")  # 输出: 15
 ```
 
 **`nonlocal` 关键字**：用于在嵌套函数中修改非局部变量。示例如下：
@@ -393,11 +452,19 @@ print(global_var)  # 输出: 15
 ```python linenums="1" hl_lines="5" title="修改非局部变量"
 def outer_func():
     nonlocal_var = 25
+    
     def inner_func():
+        nonlocal_var = 10  # 未修改非局部变量
+
+    inner_func()
+    print(f"{nonlocal_var = }")  # 输出: 25
+
+    def inner_func2():
         nonlocal nonlocal_var
         nonlocal_var = 35
-    inner_func()
-    print(nonlocal_var)  # 输出: 35
+    
+    inner_func2()
+    print(f"{nonlocal_var = }")  # 输出: 35
 
 outer_func()
 ```
