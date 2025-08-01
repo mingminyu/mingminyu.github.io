@@ -662,7 +662,7 @@ print(triple(5))  # 15
 
 === "动态生成函数"
 
-    ```python linenum="1"
+    ```python linenums="1"
     def get_operation(operator):
         if operator == '+':
             def add(x, y):
