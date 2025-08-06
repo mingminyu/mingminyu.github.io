@@ -196,7 +196,7 @@ def greet(name: str = "Amy", message: str):
 greet("Alice")
 ```
 
-### 2.2 位置参数和关键字参数
+### 2.3 位置参数和关键字参数
 
 参数传递的方式分为位置参数和关键字参数两种：
 
@@ -248,7 +248,7 @@ greet(message="Hello", name="Alice")
     func(a=1, b=2, c=3, d=4, e=5)  # 报错，a、b 不能用关键字传入
     ```
 
-### 2.3 参数解构
+### 2.4 参数解构
 
 可变参数的传递方式有有 2 种：`*args` 和 `**kwargs`。
 
@@ -285,7 +285,7 @@ connect_to_database(host='example.com', user='admin')
 # 输出: Connecting to example.com:5432 as admin
 ```
 
-### 2.4 避免可变对象的参数传递
+### 2.5 避免可变对象的参数传递
 
 ```python linenums="1" hl_lines="7"
 # 错误示例
@@ -745,9 +745,9 @@ for f in functions:
 
 在错误示例中，由于闭包引用的是循环变量 `i`，而不是 `i` 的值，当循环结束后，`i` 的值为 2，所以所有闭包调用的结果都是 2。在正确示例中，通过将 `i` 的值作为参数传递给内部函数，避免了这个问题。
 
-## 6. 匿名函数
+## 5. 匿名函数
 
-### 6.1 简单匿名函数
+### 5.1 简单匿名函数
 
 匿名函数是一种没有名称的函数，使用 `lambda` 关键字定义，通常用于简单的函数。
 
@@ -757,7 +757,7 @@ result = add(3, 5)
 print(result)  # 输出: 8
 ```
 
-### 6.2 带参数类型注解的匿名函数
+### 5.2 带参数类型注解的匿名函数
 
 那可不可以给匿名函数的参数添加类型注解呢？
 
@@ -773,7 +773,7 @@ from typing import Callable
 f: Callable[[int, int], int] = lambda x, y: x + y
 ```
 
-### 6.3 带条件判断的匿名函数
+### 5.3 带条件判断的匿名函数
 
 `lambda` 函数可以结合条件表达式进行条件判断。
 
@@ -784,7 +784,7 @@ print(is_positive(5))  # 输出: True
 print(is_positive(-3))  # 输出: False
 ```
 
-### 6.4 处理列表元素
+### 5.4 处理列表元素
 
 ```python linenums="1"
 fruits = [{'name': 'apple', 'price': 2}, {'name': 'banana', 'price': 1}]
@@ -792,7 +792,7 @@ prices = list(map(lambda x: x['price'], fruits))
 print(prices)  # 输出: [2, 1]
 ```
 
-### 6.5 作为回调函数
+### 5.5 作为回调函数
 
 在一些需要传递回调函数的场景中，内联函数可以作为简单的回调函数使用。例如，在使用 `threading` 模块创建线程时，可以使用内联函数作为线程的目标函数。
 
@@ -821,7 +821,7 @@ thread.start()
 
 : Lambda 函数适用于一次性使用的简单函数。如果一个函数需要多次使用，或者逻辑比较复杂，建议使用普通的函数定义，以提高代码的可维护性。
 
-## 7. 装饰器
+## 6. 装饰器
 
 装饰器是一种特殊的高阶函数，它可以用来修改其他函数的行为。以下是一个简单的装饰器示例，定义一个装饰器 `timer`，用于记录函数的执行时间：
 
@@ -849,7 +849,126 @@ slow_function()
 
     这里装饰器介绍得非常简单，除此之外，还有函数重载、偏函数、异步函数等内容。
 
-## 10. 小结
+## 7. 函数重载
+
+函数重载是指在同一个类或作用域中定义 **多个同名** 函数，但这些函数具有不同的参数列表，支持不同参数类型传参时自动调用相应参数的函数。在 Python 里，由于它是动态类型语言，并不像其他一些编程语言（如 Java、C++）那样原生支持，不能直接通过定义同名但参数类型或数量不同的函数来实现传统意义上的重载。不过，我们可以通过一些技巧和库来模拟实现函数重载，这有助于提高代码的可读性和可维护性。
+
+### 7.1 条件判断
+
+最基本的实现函数重载的方法，就是通过在函数内部使用 `if-else` 语句根据参数的类型或数量来执行不同的逻辑。
+
+```python linenums="1"
+def add(a: int, b: int = None):
+    if b is None:
+        return a + a
+    return a + b
+
+# 测试
+print(add(5))  # 输出: 10
+print(add(5, 3))  # 输出: 8
+```
+
+### 7.2 functools.singledispatch
+
+`functools.singledispatch` 是 Python 标准库中的一个工具，它可以根据第一个参数的类型来调度不同的函数实现。
+
+```python linenums="1"
+from functools import singledispatch
+
+@singledispatch
+def process(data):
+    print(f"Processing general data: {data}")
+
+@process.register(int)
+def _(data):
+    print(f"Processing integer data: {data}")
+
+@process.register(str)
+def _(data):
+    print(f"Processing string data: {data}")
+
+# 测试
+process(10)  # 输出: Processing integer data: 10
+process("hello")  # 输出: Processing string data: hello
+process([1, 2, 3])  # 输出: Processing general data: [1, 2, 3]
+```
+
+### 7.3 multipledispatch
+
+`multipledispatch` 是一个第三方库（通过 `pip` 安装），它可以根据多个参数的类型来实现函数重载。
+
+```python linenums="1"
+from multipledispatch import dispatch
+
+@dispatch(int, int)
+def add(a, b):
+    return a + b
+
+@dispatch(str, str)
+def add(a, b):
+    return a + " " + b
+
+# 测试
+print(add(5, 3))  # 输出: 8
+print(add("Hello", "World"))  # 输出: Hello World
+```
+
+在实际开发中，我们可能需要对不同类型的输入进行不同的处理。例如，处理整数和字符串时采用不同的逻辑。
+
+```python linenums="1"
+from multipledispatch import dispatch
+
+@dispatch(int)
+def handle_input(data):
+    return data * 2
+
+@dispatch(str)
+def handle_input(data):
+    return data.upper()
+
+# 测试
+print(handle_input(5))  # 输出: 10
+print(handle_input("hello"))  # 输出: HELLO
+```
+
+### 7.4 typing.overload
+
+
+```python linenums="1"
+from typing import overload, Union
+
+@overload
+def greet(name: str) -> str: ...
+
+@overload
+def greet(name: int) -> str: ...
+
+def greet(name: Union[str, int]) -> str:
+    if isinstance(name, str):
+        return f"Hello, {name}"
+    elif isinstance(name, int):
+        return f"Hello, user #{name}"
+    raise TypeError("Invalid type")
+
+print(greet("Alice"))  # Hello, Alice
+print(greet(123))      # Hello, user #123
+```
+
+这种方法对 mypy、pyright 有效，但 Python 运行时只执行最后一个实现函数。仅用于类型检查器，无运行时效果，在实际运行时，只有最后那个 `greet()` 会存在，前两个 `@overload` 的函数根本不会执行，Python 甚至会跳过它们的定义体。
+
+### 7.5 小结
+
+保持函数功能的一致性
+
+: 无论使用哪种方法实现函数重载，都应该确保同名函数的功能具有一致性。也就是说，不同的实现应该围绕同一个核心功能进行不同的处理。
+
+合理使用类型注解
+
+: 使用类型注解可以提高代码的可读性和可维护性，特别是在使用 `functools.singledispatch` 或 `multipledispatch` 时，类型注解可以让代码更加清晰。
+
+
+
+## 8. 小结
 
 函数命名规范
 
