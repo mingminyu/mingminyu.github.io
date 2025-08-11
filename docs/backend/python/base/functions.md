@@ -966,9 +966,90 @@ print(greet(123))      # Hello, user #123
 
 : 使用类型注解可以提高代码的可读性和可维护性，特别是在使用 `functools.singledispatch` 或 `multipledispatch` 时，类型注解可以让代码更加清晰。
 
+## 8. 偏函数
+
+偏函数（Partial Function）是一个非常实用的工具，它允许我们固定一个函数的某些参数，从而创建一个新的可调用对象。这在需要多次调用同一个函数，且部分参数保持不变的场景下非常有用。
+
+偏函数是 `functools` 模块中的一个功能，它基于现有的函数创建一个新的函数，新函数会固定原函数的一部分参数。这种特性使得我们可以在不修改原函数定义的情况下，方便地复用函数。
+
+### 8.1 底层原理
+
+偏函数通过将原函数和固定的参数封装起来，返回一个新的可调用对象。当调用这个新对象时，它会自动将固定的参数和新传入的参数一起传递给原函数。
+
+### 8.2 使用方法
+
+要使用偏函数，需要导入 `functools` 模块中的 `partial` 函数。下面是一个简单的示例：
+
+```python linenums="1"
+from functools import partial
+
+# 定义一个简单的函数
+def add(a: int, b: int):
+    return a + b
+
+# 创建一个偏函数，固定第一个参数为 10
+add_ten = partial(add, 10)
+
+# 调用偏函数
+result = add_ten(5)
+print(result)  # 输出: 15
+```
+
+在这个示例中，我们定义了一个 `add` 函数，然后使用 `partial` 函数创建了一个新的偏函数 `add_ten`，并将 `add` 函数的第一个参数固定为 10。当调用 `add_ten(5)` 时，实际上相当于调用 `add(10, 5)`。
+
+### 8.4 常见实践
+
+#### 8.4.1 简化函数调用
+
+在需要多次调用同一个函数，且部分参数保持不变的情况下，使用偏函数可以简化代码。例如，我们需要多次将字符串转换为整数，且默认使用十进制：
+
+```python linenums="1"
+from functools import partial
+
+# 创建一个偏函数，固定 base 参数为 10
+int_base_10 = partial(int, base=10)
+
+# 调用偏函数
+num1 = int_base_10('123')
+num2 = int_base_10('456')
+print(num1, num2)  # 输出: 123 456
+```
+
+#### 8.4.2 回调函数的参数固定
+
+在使用回调函数时，有时需要传递额外的参数。偏函数可以帮助我们固定这些参数。例如，使用 `threading.Timer` 时：
+
+```python linenums="1"
+import threading
+from functools import partial
+
+def print_message(message: str):
+    print(message)
+
+# 创建一个偏函数，固定 message 参数
+print_hello = partial(print_message, "Hello, World!")
+
+# 启动一个定时器，5 秒后调用偏函数
+timer = threading.Timer(5, print_hello)
+timer.start()
+```
+
+### 8.5 小结
+
+避免过度使用
+
+: 虽然偏函数很方便，但过度使用可能会导致代码的可读性降低。因此，应该在必要时使用偏函数，避免创建过多的偏函数。
+
+明确命名
+
+: 为偏函数取一个有意义的名称，这样可以提高代码的可读性。例如，在上面的 add_ten 示例中，名称清晰地表明了偏函数的功能。
+
+结合其他特性使用
+
+: 偏函数可以与 Python 的其他特性（如装饰器、高阶函数等）结合使用，以实现更复杂的功能。
 
 
-## 8. 小结
+## 9. 小结
 
 函数命名规范
 
