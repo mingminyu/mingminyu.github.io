@@ -7,7 +7,7 @@ categories:
 tags:
   - NextJS
   - MagicStudio
-slug: magic_studio_user_login
+slug: magic_dev_envs
 readtime: 20
 ---
 
