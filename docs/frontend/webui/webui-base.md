@@ -1,5 +1,5 @@
 ---
-icon: simple/nextui
+icon: simple/antdesign
 ---
 
 # WEB UI 框架
@@ -64,7 +64,7 @@ icon: simple/nextui
     ---
     通用性 UI 组件
 
-- :simple-nextui: &nbsp; __[Next UI][next_ui]__
+- :simple-chakraui: &nbsp; __[Next UI][next_ui]__
 
     ---
     通用性 UI 组件
