@@ -404,6 +404,7 @@ nav:
         - 流程控制: backend/python/base/condition-control.md
         - 异常处理: backend/python/base/exception.md
         - 函数: backend/python/base/functions.md
+        - 类: backend/python/base/class.md
           
         - 包管理: 
           - backend/python/pkg_management/index.md
