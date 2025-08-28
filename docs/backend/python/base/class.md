@@ -14,13 +14,8 @@ class Person:
 
     def introduce(self):
         print(f"Hello, my name is {self.name} and I am {self.age} years old.")
-```
 
-在这个示例中，`Person` 类有两个属性：`name` 和 `age`，以及一个方法 `introduce`。`__init__` 是一个特殊的方法，称为构造函数，它在创建对象时自动调用。
 
-要实例化一个 `Person` 类，我们只需要调用类名并传递必要的参数。创建好的对象 `p1` 可以通过 `p1.introduce()` 来调用 `introduce` 方法。
-
-```python linenums="1"
 # 创建一个 Person 对象
 p1 = Person("Alice", 25)
 
@@ -33,13 +28,47 @@ p2.introduce()
 print(p1 == p2)  # 输出：False
 ```
 
+在这个示例中，`Person` 类有两个属性：`name` 和 `age`，以及一个方法 `introduce`。`__init__` 是一个特殊的方法，称为构造函数，它在创建对象时自动调用。
+
+要实例化一个 `Person` 类，我们只需要调用类名并传递必要的参数。创建好的对象 `p1` 可以通过 `p1.introduce()` 来调用 `introduce` 方法。
+
+## 2. 文档字符串
+
+文档字符串用于描述类、方法的功能和使用方法。可以使用 `__doc__` 属性来访问文档字符串。
+
+```python linenums="1"
+class Rectangle:
+    """
+    表示一个矩形类
+    """
+    def __init__(self, length, width):
+        """
+        初始化矩形的长和宽
+        :param length: 矩形的长
+        :param width: 矩形的宽
+        """
+        self.length = length
+        self.width = width
+
+    def area(self):
+        """
+        计算矩形的面积
+        :return: 矩形的面积
+        """
+        return self.length * self.width
+
+# 访问文档字符串
+print(Rectangle.__doc__)
+print(Rectangle.area.__doc__)
+```
+
 ## 2. 继承
 
 ### 2.1 继承单个类
 
 类的继承允许我们创建一个新类，该类继承了另一个类的属性和方法。以下是一个简单的继承示例：
 
-```python linenums="1"
+```python linenums="1" hl_lines="3"
 class Student(Person):
     def __init__(self, name: str, age: int, student_id: str):
         super().__init__(name, age)
@@ -61,10 +90,33 @@ s1.study()
 
 继承多个类，可以通过多个类名（用逗号隔开），这样我们的类就可以继承多个类的属性和方法。
 
-```python linenums="1"
-# 实现多个类的继承
+## 3. 多态
 
+多态是指同一个操作作用于不同的对象会得到不同的结果，比如。
+
+```python linenums="1"
+class Animal:
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        print("汪汪汪")
+
+class Cat(Animal):
+    def speak(self):
+        print("喵喵喵")
+
+# 创建不同的对象
+dog = Dog()
+cat = Cat()
+
+# 调用相同的方法
+dog.speak()
+cat.speak()
 ```
+
+在这个例子中，`Dog` 和 `Cat` 类都继承了 `Animal` 类的 `speak` 方法，但它们对该方法做出了不同的实现。
 
 ## 3. getter 和 setter
 
@@ -121,12 +173,14 @@ print(account.balance)
 
 : 每个类应该只负责一个明确的功能，避免类的功能过于复杂。
 
+类的命名规范
+
+: 类名通常使用大写字母开头的驼峰命名法，例如 `Person`、`Student`。
 
 
 
-
-- https://geek-blogs.com/blog/instantiate-class-in-python/
-- https://geek-blogs.com/blog/how-to-make-a-class-in-python/
+- [x] https://geek-blogs.com/blog/instantiate-class-in-python/
+- [x] https://geek-blogs.com/blog/how-to-make-a-class-in-python/
 - https://geek-blogs.com/blog/what-is-a-python-class/
 - https://geek-blogs.com/blog/instantiate-class-in-python/
 - https://geek-blogs.com/blog/python-class-and-function
