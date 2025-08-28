@@ -68,20 +68,61 @@ s1.study()
 
 ## 3. getter 和 setter
 
-### 3.1 @property
+`Getter` 和 `Setter` 是一种用于控制属性访问的机制，它可以用来限制对属性的访问和修改。在 Python 中，我们可以使用 `@property` 和 `@setter` 来实现 `Getter` 和 `Setter`。
 
-### 3.2 @setter
+```python linenums="1"
+class BankAccount:
+    def __init__(self, balance: float):
+        self.__balance = balance
+
+    @balance.setter
+    def balance(self, amount: float):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited {amount}. New balance: {self.__balance}")
+        else:
+            print("Invalid deposit amount.")
+
+    @property
+    def balance(self) -> str:
+        return '有钱' if self.__balance >= 1000 else '没钱'
+
+account = BankAccount(1000)
+account.balance = 500
+print(account.balance)
+```
+
+在这个示例中，`__balance` 是一个私有属性，外部不能直接访问，只能通过 `balance` 方法来获取状态，并通过 `setter` 实现赋值。
+
 
 ## 4. 静态方法 staticmethod
 
 ## 5. 类方法 classmethod
-
 
 ## 6. 抽象方法 abstractmethod
 
 ## 7. 枚举 enum
 
 ## 8. 构造函数
+
+### 8.1 `__init__`
+
+在 `__init__` 方法中初始化对象的属性，确保对象在创建时具有正确的初始状态。
+
+
+## 9. 属性
+
+### 9.1 只读属性
+
+
+## 小结
+
+遵循单一职责原则
+
+: 每个类应该只负责一个明确的功能，避免类的功能过于复杂。
+
+
+
 
 
 - https://geek-blogs.com/blog/instantiate-class-in-python/
