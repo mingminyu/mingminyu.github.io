@@ -941,7 +941,6 @@ class MyClass:
     
     def __private_method(self):
         return "这是一个私有方法"
-
 ```
 
 ### 9.1 私有属性和方法
