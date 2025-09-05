@@ -47,8 +47,8 @@ class Counter:
         self.name = name
 
 # 创建类的实例
-c1 = Counter()
-c2 = Counter()
+c1 = Counter('c1')
+c2 = Counter('c2')
 
 # 访问类变量
 print(c1.count)  # 输出: 10
@@ -64,14 +64,15 @@ class Counter:
 
     def __init__(self):
         # 每次创建实例时，实例数量加 1
-        Counter.global_counts += 1
+        Counter.global_count += 1
 
 # 创建类的实例
 c1 = Counter()
 c2 = Counter()
 
-# 输出实例数量
 print(Counter.global_count)  # 输出: 2
+print(c1.global_count)  # 输出: 2
+print(c2.global_count)  # 输出: 2
 ```
 
 在上述代码中，`global_count` 是一个类变量，它被所有实例共享。每次创建实例时，`global_count` 的值都会加 1。
@@ -160,7 +161,7 @@ class Chair(Furniture):
     def __init__(self, material: str, furniture_id: int, cost: float):
         super().__init__(material, furniture_id, cost)
 
-    def set_number_of_legs(self, number_of_legs):
+    def set_number_of_legs(self, number_of_legs: int):
         self.number_of_legs = number_of_legs
         
     def description(self):
@@ -185,7 +186,7 @@ class Table(Furniture):
 
 # 多重继承，同时继承了 Chair 和 Table
 class ChairWithTableAttached(Chair, Table):
-    def __init__(self, material, furniture_id, cost):
+    def __init__(self, material: str, furniture_id: int, cost: float):
         super().__init__(material, furniture_id, cost) 
 
     # 重写 description 方法
@@ -196,7 +197,7 @@ class ChairWithTableAttached(Chair, Table):
         table_desc = Table.description(self)  
         return f"椅子部分：{chair_desc}  桌子部分：{table_desc}"
 
-# 示例
+
 item = ChairWithTableAttached("实木", 101, 150.00)
 item.set_number_of_legs(4)
 item.set_shape("圆形")
@@ -275,12 +276,12 @@ cat.speak()
 
 如果在实现某个功能时，不需要访问实例或类的任何属性，那么应该使用静态方法。静态方法如果放在类的外面，作为一个普通函数，功能上也不会有任何区别。放在类里面更多的是为了实现类的封装，相关的方法和数据应该尽量组织在一起。
 
-静态方法使用 `@staticmethod` 装饰器来声明。它的使用方法与类方法相同。比如，我们可以为 Animal 类添加一个静态方法，根据动物的叫声来判断动物是否健康。它不需要用到任何类或实例的属性，仅根据输入的声音做判断：
+静态方法使用 `@staticmethod` 装饰器来声明。它的使用方法与类方法相同。比如，我们可以为 `Animal` 类添加一个静态方法，根据动物的叫声来判断动物是否健康。它不需要用到任何类或实例的属性，仅根据输入的声音做判断：
 
 ```python linenums="1"
 class Animal:
     @staticmethod
-    def is_healthy(sound):
+    def is_healthy(sound: str):
         return sound != "silent"
 
 # 使用静态方法
@@ -292,27 +293,40 @@ print(Animal.is_healthy(sound))   输出： True
 
 ```python linenums="1"
 class Point:
-    def __init__(self, x, y):
+    tag: str = "Point"
+    def __init__(self, x: int, y: int):
         self.x = x
         self.y = y
 
     @staticmethod
-    def distance(p1, p2):
+    def distance(p1: Point, p2: Point):
         """计算两点之间的距离"""
-        return ((p1.x - p2.x)**2 + (p1.y - p2.y)**2)**0.5
+        return ((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2) ** 0.5
+    
+    @staticmethod
+    def add(x: int, y: int):
+        return x + y
 
 
 p1 = Point(1, 2)
 p2 = Point(3, 4)
 print(Point.distance(p1, p2))
+print(Point.add(1, 2))
+print(Point(0, 0).add(1, 2))
 ```
+
+!!! note "说明"
+
+    静态方法 `@staticmethod` 代码中不能访问类实例化的属性和方法（因为没有 `self`），只能通过 `Person.tag` 硬编码访问类属性。
 
 ### 4.2 类方法
 
 类方法是绑定到类而不是实例的方法，**可以通过类名直接调用**，不需要实例化对象，我们可以使用类方法来创建不同的构造函数。
 
-```python linenums="1" hl_lines="6-9"
+```python linenums="1" hl_lines="6-9 "
 class Person:
+    tag = "Shanghai"
+
     def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
@@ -320,7 +334,21 @@ class Person:
     @classmethod
     def from_string(cls, person_info: str):
         name, age = person_info.split(',')
+        cls.print_tag()
+        cls.print_tag2()
         return cls(name, int(age))
+
+    @classmethod
+    def print_tag(cls):
+        print(cls.tag)
+
+    @staticmethod
+    def print_tag2():
+        print(Person.tag)
+
+
+class Student(Person):
+    tag = "Beijing"
 
 # 使用 __init__ 方法创建对象
 person1 = Person("Alice", 25)
@@ -330,7 +358,20 @@ print(person1.name, person1.age)
 person_info = "Bob,30"
 person2 = Person.from_string(person_info)
 print(person2.name, person2.age)
+
+print(Student.print_tag())  # Beijing
+print(Student.print_tag2())  # Shanghai
 ```
+
+下面我们总结一下静态方法和类方法之间的联系与区别：
+
+| 特性           | 静态方法 `@staticmethod`         | 类方法 `@classmethod`       |
+| -------------- | -------------------------------- | --------------------------- |
+| 第一个参数     | 无（不传 `self`/`cls`）          | `cls`（类本身）             |
+| 能否访问实例？ | ❌ 不能                           | ❌ 不能（没有 `self`）       |
+| 能否访问类？   | ❌ 不能                           | ✅ 可以通过 `cls`            |
+| 典型用途       | 工具方法、与类逻辑相关的辅助函数 | 访问/修改类属性，返回类实例 |
+
 
 ## 7. 枚举 enum
 
@@ -377,8 +418,6 @@ print(account.balance)
 ```
 
 在这个示例中，`__balance` 是一个私有属性，外部不能直接访问，只能通过 `balance` 方法来获取状态，并通过 `setter` 实现赋值。
-
-
 
 ## 8. 构造函数
 
@@ -472,7 +511,7 @@ print(s1 is s2)  # 输出 True，说明 s1 和 s2 是同一个对象
 ```python linenums="1"
 class Point:
     # 初始化一个新创建的对象
-    def __init__(self, x=0, y=0):
+    def __init__(self, x: int = 0, y: int = 0):
         self.x = x
         self.y = y
         print(f"创建点 ({self.x}, {self.y})")
