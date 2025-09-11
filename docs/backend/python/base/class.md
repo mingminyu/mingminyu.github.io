@@ -8,7 +8,7 @@
 
 ### 1.1 属性和方法
 
-```python linenums="1" title="定义类"
+```python
 class Person:
     def __init__(self, name: str, age: int):
         self.name = name
@@ -38,7 +38,7 @@ print(p1 == p2)  # 输出：False
 
 类属性是类的所有实例共享的属性，而实例属性是每个实例独有的属性。
 
-```python linenums="1"
+```python
 class Counter:
     # 定义类变量
     count = 10
@@ -57,7 +57,7 @@ print(c2.count)  # 输出: 10
 
 类变量可以用于存储所有实例都需要共享的数据。例如，我们可以使用类变量来记录类的实例数量：
 
-```python linenums="1"
+```python
 class Counter:
     # 类变量，用于记录实例数量
     global_count = 0
@@ -81,12 +81,12 @@ print(c2.global_count)  # 输出: 2
 
 文档字符串用于描述类、方法的功能和使用方法。可以使用 `__doc__` 属性来访问文档字符串。
 
-```python linenums="1"
+```python
 class Rectangle:
     """
     表示一个矩形类
     """
-    def __init__(self, length, width):
+    def __init__(self, length: float, width: float):
         """
         初始化矩形的长和宽
         :param length: 矩形的长
@@ -113,7 +113,7 @@ print(Rectangle.area.__doc__)
 
 类的继承允许我们创建一个新类，该类继承了另一个类的属性和方法。以下是一个简单的继承示例：
 
-```python linenums="1" hl_lines="11"
+```python
 class Person:
     def __init__(self, name: str, age: int):
         self.name = name
@@ -143,7 +143,7 @@ s1.study()
 
 继承多个类，可以通过多个类名（用逗号隔开），这样我们的类就可以继承多个类的属性和方法。
 
-```python linenums="1"
+```python
 class Furniture:
     def __init__(self, material: str, furniture_id: int, cost: float):
         self.material = material
@@ -163,7 +163,7 @@ class Chair(Furniture):
 
     def set_number_of_legs(self, number_of_legs: int):
         self.number_of_legs = number_of_legs
-        
+      
     def description(self):
         return super().description() + f"共有 {self.number_of_legs} 条腿。"
 
@@ -177,7 +177,7 @@ class Table(Furniture):
 
     def set_shape(self, shape: str):
         self.shape = shape
-        
+      
     def description(self):
         return super().description() + f"桌子形状： {self.shape}。"
 
@@ -214,7 +214,7 @@ item.lay_tablecloth()
 
 比如：当我们考虑设计一个宠物店的系统时，在这个系统中，有多种动物，如猫、狗。尽管这些动物有很多不同的特性，但它们也有一些共同点。例如，每种动物都有一个名字，都需要吃食物，都可以发出声音。这些共同点，就可以抽象成为一个“动物”抽象类：
 
-```python linenums="1"
+```python
 from abc import ABC, abstractmethod
 
 class Animal(ABC):
@@ -240,12 +240,11 @@ class Cat(Animal):
 
 在这个 `Animal` 类中，我们定义了共同的属性 `name`，以及两个方法 `eat` 和 `speak`。但是，我们并没有为这些方法提供具体的实现，只是留下了一个占位符。
 
-
 ## 3. 多态
 
 多态是指同一个操作作用于不同的对象会得到不同的结果，比如。
 
-```python linenums="1"
+```python
 class Animal:
     def speak(self):
         pass
@@ -269,16 +268,15 @@ cat.speak()
 
 在这个例子中，`Dog` 和 `Cat` 类都继承了 `Animal` 类的 `speak` 方法，但它们对该方法做出了不同的实现。
 
-
 ## 4. 静态方法和类方法
 
-### 4.1 静态方法 
+### 4.1 静态方法
 
 如果在实现某个功能时，不需要访问实例或类的任何属性，那么应该使用静态方法。静态方法如果放在类的外面，作为一个普通函数，功能上也不会有任何区别。放在类里面更多的是为了实现类的封装，相关的方法和数据应该尽量组织在一起。
 
 静态方法使用 `@staticmethod` 装饰器来声明。它的使用方法与类方法相同。比如，我们可以为 `Animal` 类添加一个静态方法，根据动物的叫声来判断动物是否健康。它不需要用到任何类或实例的属性，仅根据输入的声音做判断：
 
-```python linenums="1"
+```python
 class Animal:
     @staticmethod
     def is_healthy(sound: str):
@@ -291,7 +289,7 @@ print(Animal.is_healthy(sound))   输出： True
 
 静态方法非常适合存放一些公共函数、常用的工具函数、辅助函数等。这样不需要创建对象，这些函数即可被其它代码调用。比如下面的示例中，一个作为工具函数的计算两点间距离的函数设置为了静态方法：
 
-```python linenums="1"
+```python
 class Point:
     tag: str = "Point"
     def __init__(self, x: int, y: int):
@@ -302,7 +300,7 @@ class Point:
     def distance(p1: Point, p2: Point):
         """计算两点之间的距离"""
         return ((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2) ** 0.5
-    
+  
     @staticmethod
     def add(x: int, y: int):
         return x + y
@@ -317,13 +315,13 @@ print(Point(0, 0).add(1, 2))
 
 !!! note "说明"
 
-    静态方法 `@staticmethod` 代码中不能访问类实例化的属性和方法（因为没有 `self`），只能通过 `Person.tag` 硬编码访问类属性。
+    静态方法`@staticmethod` 代码中不能访问类实例化的属性和方法（因为没有 `self`），只能通过 `Person.tag` 硬编码访问类属性。
 
 ### 4.2 类方法
 
 类方法是绑定到类而不是实例的方法，**可以通过类名直接调用**，不需要实例化对象，我们可以使用类方法来创建不同的构造函数。
 
-```python linenums="1" hl_lines="6-9 "
+```python
 class Person:
     tag = "Shanghai"
 
@@ -365,19 +363,18 @@ print(Student.print_tag2())  # Shanghai
 
 下面我们总结一下静态方法和类方法之间的联系与区别：
 
-| 特性           | 静态方法 `@staticmethod`         | 类方法 `@classmethod`       |
+| 特性           | 静态方法 `@staticmethod`       | 类方法 `@classmethod`     |
 | -------------- | -------------------------------- | --------------------------- |
-| 第一个参数     | 无（不传 `self`/`cls`）          | `cls`（类本身）             |
-| 能否访问实例？ | ❌ 不能                           | ❌ 不能（没有 `self`）       |
-| 能否访问类？   | ❌ 不能                           | ✅ 可以通过 `cls`            |
+| 第一个参数     | 无（不传 `self`/`cls`）      | `cls`（类本身）           |
+| 能否访问实例？ | ❌ 不能                          | ❌ 不能（没有 `self`）    |
+| 能否访问类？   | ❌ 不能                          | ✅ 可以通过 `cls`         |
 | 典型用途       | 工具方法、与类逻辑相关的辅助函数 | 访问/修改类属性，返回类实例 |
 
-
-## 7. 枚举 enum
+## 5. 枚举 enum
 
 `enum` 类似于枚举，但是 `enum` 是一个类，而枚举是一个对象。
 
-```python linenums="1"
+```python
 from enum import Enum
 
 class Color(Enum):
@@ -391,11 +388,11 @@ print(Color(1))
 print(Color['RED'])
 ```
 
-## 5. getter 和 setter
+## 6. getter 和 setter
 
 `Getter` 和 `Setter` 是一种用于控制属性访问的机制，它可以用来限制对属性的访问和修改。在 Python 中，我们可以使用 `@property` 和 `@setter` 来实现 `Getter` 和 `Setter`。其中 `@property` 装饰器可以将一个方法转换为属性，使得可以像访问属性一样访问方法。
 
-```python linenums="1"
+```python
 class BankAccount:
     def __init__(self, balance: float):
         self.__balance = balance
@@ -419,6 +416,60 @@ print(account.balance)
 
 在这个示例中，`__balance` 是一个私有属性，外部不能直接访问，只能通过 `balance` 方法来获取状态，并通过 `setter` 实现赋值。
 
+## 7. 访问限制
+
+封装是指将对象的属性和方法隐藏起来，只对外提供必要的接口。在 Python 中，可以使用单下划线（`_`）和双下划线（`__`）给函数命名来实现封装。通常这只是一种命名约定，而不是强制性的访问控制，但多数情况下，只能起到提醒作用。
+
+### 7.1 受保护属性和方法
+
+使用 `_` 开头表示私有方法，不能在类外访问。
+
+```python
+class MyClass:
+    def __init__(self):
+        self._protected_variable = "Protected"
+  
+    def _protected_method(self):
+        return "这是一个受保护方法"
+```
+
+在上面的代码中，`__private_variable` 和 `__private_method` 在内部实际上被改写为 `_MyClass__private_variable` 和 `_MyClass__private_method`。这种改写是自动的，所以从类的外部直接访问 `__private_variable` 会导致一个属性错误。
+
+```python
+class MyClass:
+    def __init__(self):
+        self.__private_variable = "Private"
+  
+    def __private_method(self):
+        return "这是一个私有方法"
+```
+
+### 7.2 私有属性和方法
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def withdraw(self, amount):
+        if amount <= self.__balance:
+            self.__balance -= amount
+        else:
+            print("Insufficient funds.")
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount(1000)
+account.deposit(500)
+account.withdraw(200)
+print(account.get_balance())  # 输出: 1300
+```
+
+
 ## 8. 构造函数
 
 类构造函数是一个非常重要的概念，它是类中的一个特殊方法，用于在创建类的实例时初始化对象的属性。
@@ -427,7 +478,7 @@ print(account.balance)
 
 我们在 `__init__` 方法中初始化对象的属性，确保对象在创建时具有正确的初始状态。当创建一个类的实例时，Python 会自动调用这个方法来初始化对象的属性。`__init__` 方法是类中的一个实例方法，它的第一个参数通常是 `self`，用于引用类的实例本身。`self` 参数之后可以跟随其他参数，用于接收创建实例时传递的值。
 
-```python linenums="1"
+```python
 class Person:
     def __init__(self, name: str, age: int):
         self.name = name
@@ -444,9 +495,9 @@ print(p.age)   # 输出: 25
 
 构造函数依然是函数，它的参数可以有默认值，这样在创建实例时可以不传递这些参数。例如：
 
-```python linenums="1"
+```python
 class Circle:
-    def __init__(self, radius=1):
+    def __init__(self, radius: int = 1):
         self.radius = radius
 
     def area(self):
@@ -463,7 +514,7 @@ print(c2.area())  # 输出: 78.5
 
 下面我们看一个实际案例，在 Python 连接 Impala 数据库，并提供执行 SQL 获取结果的功能。
 
-```python linenums="1"
+```python
 from impala.dbapi import connect
 
 class ImpalaRunner:
@@ -489,7 +540,7 @@ db.close()
 
 `__new__` 是一个创建对象的静态方法，它在 `__init__` 之前调用。通常情况下，使用 `__init__` 就足够了，但在某些特殊情况下，如创建单例模式时，可以使用 `__new__` 方法。
 
-```python linenums="1"
+```python
 class Singleton:
     _instance = None
 
@@ -508,7 +559,7 @@ print(s1 is s2)  # 输出 True，说明 s1 和 s2 是同一个对象
 
 ### 8.4 `__repr__` 和 `__str__`
 
-```python linenums="1"
+```python
 class Point:
     # 初始化一个新创建的对象
     def __init__(self, x: int = 0, y: int = 0):
@@ -527,7 +578,7 @@ class Point:
     # 返回一个“非正式”的表示，用于打印或日志
     def __str__(self):
         return f"({self.x}, {self.y})"
-        
+      
 # 测试一下：
 p = Point(1, 2)      # 输出: 创建点 (1, 2)
 print(p)             # 输出: (1, 2)
@@ -546,9 +597,9 @@ del p                # 输出: 点 (1, 2) 被销毁
 
 如果有多个变量同时指向一个对象，那么要等到所有指向这个对象的变量都被删除后，才会真正调用 `__del__` 销毁对象。
 
-```python linenums="1"
+```python
 class Point:
-    def __init__(self, x=0, y=0):
+    def __init__(self, x: int = 0, y: int=0):
         self.x = x
         self.y = y
         print(f"创建点 ({self.x}, {self.y})")
@@ -581,7 +632,7 @@ del q                # 所有变量均被删除，调用析构函数销毁对象
 
 假设我们要创建一个类，该类在设置任何属性时都会存储历史记录，并且我们想要确保某些属性名称不能被设置。
 
-```python linenums="1"
+```python
 class HistoricalAttributes:
     def __init__(self):
         # 使用字典来存储属性历史记录
@@ -594,12 +645,12 @@ class HistoricalAttributes:
             # 禁止设置某些属性
             if name in self._forbidden_attributes:
                 raise AttributeError(f"'{name}' 是一个只读属性。")
-            
+          
             # 将属性值添加到历史记录中
             if name not in self._history:
                 self._history[name] = []
             self._history[name].append(value)
-        
+      
         # 使用超类的__setattr__方法来实际设置属性
         super().__setattr__(name, value)
 
@@ -631,15 +682,14 @@ print(obj.history_of('y'))  # 输出：[5]
 
 Python 内置有一个 Fraction 类，它用于表示数学上的分数。我们下面编写一个简化版的 Fraction 类，用它来演示算术魔法方法的实现与使用。Fraction 类有两个属性分别表示分子和分母。它的实现方法如下：
 
-
-```python linenums="1"
+```python
 from math import gcd
 
 class Fraction:
-    def __init__(self, numerator, denominator=1):
+    def __init__(self, numerator: int, denominator: int = 1):
         if denominator == 0:
             raise ValueError("分母不能为 0！")
-        
+      
         common = gcd(numerator, denominator)
         self.numerator = numerator // common
         self.denominator = denominator // common
@@ -681,19 +731,19 @@ print(f"{f1} / {f2} = {f1 / f2}")       # 输出: 3/4 / 5/6 = 9/10
 
 运算符两端的对象可以不是同类型的数据，只要第一个对象的 `__add__` 方法支持就行。比如，我们可以把这个 Fraction 类中的 `__add__` 方法改造一下，让它能够与一个整数相加：
 
-```python linenums="1"
+```python
 from math import gcd
 
 class Fraction:
-    def __init__(self, numerator, denominator=1):
+    def __init__(self, numerator: int, denominator: int = 1):
         if denominator == 0:
             raise ValueError("分母不能为 0！")
-        
+      
         common = gcd(numerator, denominator)
         self.numerator = numerator // common
         self.denominator = denominator // common
 
-    def __add__(self, other):
+    def __add__(self, other: Fraction | int):
         if isinstance(other, Fraction):
             new_numerator = self.numerator * other.denominator + other.numerator * self.denominator
             new_denominator = self.denominator * other.denominator
@@ -702,12 +752,12 @@ class Fraction:
             new_denominator = self.denominator
         else:
             raise TypeError("加法运算仅支持 Fraction 或整数类型")
-        
+      
         return Fraction(new_numerator, new_denominator)
 
     def __repr__(self):
         return f"{self.numerator}/{self.denominator}"
-        
+      
 # 测试代码
 frac1 = Fraction(1, 2)
 frac2 = Fraction(3, 4)
@@ -734,14 +784,14 @@ print(result2)           # 输出:  7/2
 
 我们可以继续使用简化的 Fraction 类，比较魔法方法，比较两个分数之间的大小。
 
-```python linenums="1"
+```python
 from math import gcd
 
 class Fraction:
-    def __init__(self, numerator, denominator=1):
+    def __init__(self, numerator: int, denominator: int = 1):
         if denominator == 0:
             raise ValueError("分母不能为 0！")
-        
+      
         common = gcd(numerator, denominator)
         self.numerator = numerator // common
         self.denominator = denominator // common
@@ -786,11 +836,12 @@ print(f1 >= f2)  # False
 
 我们仍然使用简化的 Fraction 类，用它演示类型转换方法，例如转换为整数、浮点数和布尔值。
 
-```python linenums="1"
+```python
 class Fraction:
-    def __init__(self, numerator, denominator):
+    def __init__(self, numerator: int, denominator: int):
         if denominator == 0:
             raise ValueError("分母不能为 0！")
+      
         self.numerator = numerator
         self.denominator = denominator
 
@@ -833,9 +884,9 @@ print(bool(f_zero))  # False, 因为分子是 0
 
 假设我们要创建一个简单的排序序列类，该类的行为类似 Python 自带的列表的基本功能，独特之处在于它内部的数据总是按大小排序。为了简单起见，我们在其内部用普通列表来保存数据，虽然这样效率不高。
 
-```python linenums="1"
+```python
 class SortedList:
-    def __init__(self, initial_data=None):
+    def __init__(self, initial_data: list = None):
         self.data = sorted(initial_data)
 
     def __len__(self):
@@ -884,7 +935,7 @@ print(lst)           # [0, 2, 5]
 
 假设， 我们需要编写一个计时器类，这个计时器会在 with 块的代码执行时开始计时，并在代码执行完成后停止计时，然后打印出执行时间。
 
-```python linenums="1"
+```python
 import time
 
 class Timer:
@@ -910,12 +961,11 @@ with Timer() as t:
 
 除了 `__dict__` 和 `__slots__` 外， 还有 `__name__`、`__module__`、`__doc__`、`__bases__`、`__class__` 常用魔术方法，这里不一一进行介绍。
 
-
 #### `__dict__`
 
 这是一个字典，包含了对象的所有属性。当创建一个对象时，Python 通常会为其创建一个字典来保存所有属性，这样可以在运行时动态地向对象添加新的属性。
 
-```python linenums="1"
+```python
 class MyClass:
     def __init__(self, x, y):
         self.x = x
@@ -932,14 +982,14 @@ print(obj.__dict__)  # 输出：{'x': 1, 'y': 2, 'value': 3}
 
 使用字典保存对象的属性虽然灵活，但字典有额外的内存开销。如果我们已经知道对象只需要固定的几个属性，那么使用 `__slots__` 可以避免这种字典开销，从而更有效地使用内存。定义 `__slots__` 的方法是在类中创建一个名为 `__slots__` 的属性，并将期望的属性名作为字符串保存在一个元组或列表中。
 
-```python linenums="1"
+```python
 class Fraction:
     __slots__ = ('numerator', 'denominator')
-    
+  
     def __init__(self, numerator, denominator=1):
         if denominator == 0:
             raise ValueError("分母不能为 0！")
-        
+      
         common = gcd(numerator, denominator)
         self.numerator = numerator // common
         self.denominator = denominator // common
@@ -953,61 +1003,7 @@ f = Fraction(1, 2)  # 1/2
 
 在上面的例子中，我们只能为 Fraction 的实例设置 numerator 和 denominator 这两个属性。尝试设置其他属性会抛出一个 AttributeError。
 
-## 9. 访问限制
-
-封装是指将对象的属性和方法隐藏起来，只对外提供必要的接口。在 Python 中，可以使用单下划线（`_`）和双下划线（`__`）给函数命名来实现封装。通常这只是一种命名约定，而不是强制性的访问控制，但多数情况下，只能起到提醒作用。
-
-### 9.2 受保护属性和方法
-
-使用 `_` 开头表示私有方法，不能在类外访问。
-
-```python linenums="1"
-class MyClass:
-    def __init__(self):
-        self._protected_variable = "Protected"
-    
-    def _protected_method(self):
-        return "这是一个受保护方法"
-```
-
-在上面的代码中，`__private_variable` 和 `__private_method` 在内部实际上被改写为 `_MyClass__private_variable` 和 `_MyClass__private_method`。这种改写是自动的，所以从类的外部直接访问 `__private_variable` 会导致一个属性错误。
-
-
-```python linenums="1"
-class MyClass:
-    def __init__(self):
-        self.__private_variable = "Private"
-    
-    def __private_method(self):
-        return "这是一个私有方法"
-```
-
-### 9.1 私有属性和方法
-
-```python linenums="1"
-class BankAccount:
-    def __init__(self, balance):
-        self.__balance = balance
-
-    def deposit(self, amount):
-        self.__balance += amount
-
-    def withdraw(self, amount):
-        if amount <= self.__balance:
-            self.__balance -= amount
-        else:
-            print("Insufficient funds.")
-
-    def get_balance(self):
-        return self.__balance
-
-account = BankAccount(1000)
-account.deposit(500)
-account.withdraw(200)
-print(account.get_balance())  # 输出: 1300
-```
-
-## 11. 小结
+## 9. 小结
 
 **遵循单一职责原则**
 
@@ -1020,10 +1016,8 @@ print(account.get_balance())  # 输出: 1300
 **保持构造函数简洁**
 : 构造函数的主要目的是初始化对象的属性，应该尽量保持简洁。避免在构造函数中执行复杂的计算或逻辑操作，这些操作可以放在其他方法中实现。
 
-
 **合理使用属性和方法**
 : 尽量将相关的属性和方法封装在同一个类中，提高代码的内聚性。避免在类中定义过多的属性和方法，保持类的简洁性。
-
 
 **适当使用继承和多态**
 : 继承和多态可以提高代码的复用性和可扩展性。但要避免过度使用，以免增加代码的复杂度。
@@ -1031,4 +1025,3 @@ print(account.get_balance())  # 输出: 1300
 **合理使用类变量和实例变量**
 
 : 在设计类时，我们应该根据变量的用途来选择使用类变量还是实例变量。如果变量的值需要被所有实例共享，那么应该使用类变量；如果变量的值需要根据实例的不同而不同，那么应该使用实例变量。
-
