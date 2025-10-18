@@ -405,6 +405,7 @@ nav:
         - 异常处理: backend/python/base/exception.md
         - 函数: backend/python/base/functions.md
         - 类: backend/python/base/class.md
+        - 协程: backend/python/base/coroutine.md
           
         - 包管理: 
           - backend/python/pkg_management/index.md

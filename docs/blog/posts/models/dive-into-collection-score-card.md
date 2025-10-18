@@ -3,7 +3,7 @@ date: 2025-02-14
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控模型
 tags:
   - 转载
   - 催收评分卡

@@ -3,7 +3,7 @@ date: 2025-06-09
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控策略
 tags:
   - 转载
   - 风控策略

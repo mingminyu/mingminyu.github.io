@@ -3,7 +3,7 @@ date: 2025-09-13
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控策略
 tags:
   - 风控策略
   - 征信报告

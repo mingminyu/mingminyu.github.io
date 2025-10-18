@@ -3,10 +3,9 @@ date: 2025-09-15
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控模型
 tags:
   - 转载
-  - 风控模型
 slug: transform-prob-to-credit-score
 readtime: 2
 ---

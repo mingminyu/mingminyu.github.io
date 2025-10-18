@@ -3,9 +3,9 @@ date: 2024-07-25
 authors:
   - mingminyu
 categories:
-  - 金融风控
-tags:
   - 风控策略
+tags:
+  - 转载
 slug: fin-risk
 readtime: 2
 ---

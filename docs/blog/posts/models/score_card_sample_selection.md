@@ -3,10 +3,9 @@ date: 2024-07-12
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控模型
 tags:
   - 转载
-  - 风控模型
   - 样本切分
 slug: risk_model
 readtime: 2

@@ -3,10 +3,9 @@ date: 2025-07-19
 authors:
   - mingminyu
 categories:
-  - 金融风控
+  - 风控策略
 tags:
   - 转载
-  - 风控策略
 slug: business-workflow
 readtime: 2
 ---
