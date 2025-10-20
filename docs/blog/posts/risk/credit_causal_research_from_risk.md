@@ -6,7 +6,6 @@ categories:
   - 风控策略
 tags:
   - 转载
-  - 风控策略
 slug: credit-causal-research-from-risk
 readtime: 2
 ---

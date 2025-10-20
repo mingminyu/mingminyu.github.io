@@ -5,7 +5,6 @@ authors:
 categories:
   - 风控策略
 tags:
-  - 风控策略
   - 征信报告
 slug: frequent-8-mistake-in-user-credit-report
 readtime: 2

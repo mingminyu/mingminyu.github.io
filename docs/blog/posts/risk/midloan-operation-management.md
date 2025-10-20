@@ -6,8 +6,7 @@ categories:
   - 风控策略
 tags:
   - 转载
-  - 风控策略
-slug: quant_risk_ctrl
+slug: midloan-operation-management
 readtime: 2
 ---
 

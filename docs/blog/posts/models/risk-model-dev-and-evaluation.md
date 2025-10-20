@@ -3,10 +3,9 @@ date: 2025-09-01
 authors:
   - mingminyu
 categories:
-  - 风控策略
+  - 风控模型
 tags:
   - 转载
-  - 风控模型
 slug: model-dev-and-evaluation
 readtime: 2
 ---

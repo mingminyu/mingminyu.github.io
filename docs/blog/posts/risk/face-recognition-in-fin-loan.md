@@ -6,7 +6,6 @@ categories:
   - 风控策略
 tags:
   - 转载
-  - 风控策略
 slug: face-recognition-in-fin-loan
 readtime: 2
 ---

@@ -6,7 +6,6 @@ categories:
   - 风控策略
 tags:
   - 转载
-  - 风控策略
 slug: data-driven-policy-for-risk
 readtime: 2
 ---

@@ -6,7 +6,6 @@ categories:
   - 风控策略
 tags:
   - 转载
-  - 风控策略
 slug: analysis-vintage-mob-with-python
 readtime: 2
 ---
