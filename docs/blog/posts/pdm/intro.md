@@ -1,3 +1,13 @@
+---
+date: 2025-02-16
+authors:
+  - mingminyu
+categories:
+  - PDM
+slug: pdm-introduction
+readtime: 20
+---
+
 # PDM 简介
 
 如前所述，PDM 是一个支持最新 PEP 标准的现代 Python 包和依赖项管理器。但它不仅仅是一个包管理器。它可以在各个方面提升您的开发工作流程。
@@ -11,6 +21,8 @@ PDM 有许多功能亮点:
 - 多功能用户脚本。
 - 使用 indygreg's python-build-standalone 进行安装其他版本的 Python。
 - 参考 PNPM 设计思路，选择加入集中式安装缓存。
+
+<!-- more -->
 
 ## 1. Virtualenv 和 PEP 582
 

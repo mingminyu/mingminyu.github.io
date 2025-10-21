@@ -6,15 +6,15 @@ ReportML 作为一款跨平台的机器学习框架，它不仅是支持快速�
 
 === "1. SETUP"
 
-    ![SETUP](https://mingminyu.github.io/webassets/images/20250211-01.png)
+    ![SETUP](https://mingminyu.github.io/webassets/images/20250211/01.png)
 
 === "2. 数据报告"
 
-    ![数据报告](https://mingminyu.github.io/webassets/images/20250211-02.png)
+    ![数据报告](https://mingminyu.github.io/webassets/images/20250211/02.png)
 
 === "3. 变量WoE表"
 
-    ![WoE表](https://mingminyu.github.io/webassets/images/20250211-03.png)
+    ![WoE表](https://mingminyu.github.io/webassets/images/20250211/03.png)
 
 === "4. 变量WoE图"
 
@@ -22,17 +22,17 @@ ReportML 作为一款跨平台的机器学习框架，它不仅是支持快速�
 
 === "5. 变量逐月稳定性"
 
-    ![变量逐月稳定性](https://mingminyu.github.io/webassets/images/20250211-04.png)
+    ![变量逐月稳定性](https://mingminyu.github.io/webassets/images/20250211/04.png)
 
 === "6. LR 模型结果"
 
-    ![LR 模型结果1](https://mingminyu.github.io/webassets/images/20250211-05.png)
-    ![LR 模型结果2](https://mingminyu.github.io/webassets/images/20250211-06.png)
+    ![LR 模型结果1](https://mingminyu.github.io/webassets/images/20250211/05.png)
+    ![LR 模型结果2](https://mingminyu.github.io/webassets/images/20250211/06.png)
 
 === "7. LGBM 模型结果"
 
-    ![LGBM 模型结果1](https://mingminyu.github.io/webassets/images/20250211-07.png)
-    ![LGBM 模型结果2](https://mingminyu.github.io/webassets/images/20250211-08.png)
+    ![LGBM 模型结果1](https://mingminyu.github.io/webassets/images/20250211/07.png)
+    ![LGBM 模型结果2](https://mingminyu.github.io/webassets/images/20250211/08.png)
 
 ## 2. 安装
 

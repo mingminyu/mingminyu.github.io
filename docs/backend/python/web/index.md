@@ -1,7 +1,3 @@
----
-icon: simple/django
----
-
 # Python WEB 开发
 
 ## 1. Web 框架

@@ -48,13 +48,18 @@ icon: simple/antdesign
     ---
     通用性 UI 组件
 
+- :simple-shadcnui: &nbsp; __[Origin UI]__(https://coss.com/origin)
+
+    ---
+    通用性 UI 组件
+
 
 - :simple-shadcnui: &nbsp; __[ReCharts](https://recharts.org/)__
 
     ---
     ReCharts
 
-- :simple-shadcnui: &nbsp; _[AgCharts](https://www.ag-grid.com/charts)__
+- :simple-shadcnui: &nbsp; __[AgCharts](https://www.ag-grid.com/charts)__
 
     ---
     AgCharts
@@ -69,7 +74,7 @@ icon: simple/antdesign
     ---
     通用性 UI 组件
 
-- :sailboat: &nbsp; __[Sailboat UI][sailboat_ui]__
+- :material-sail-boat: &nbsp; __[Sailboat UI][sailboat_ui]__
 
     ---
     通用性 UI 组件

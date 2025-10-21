@@ -1,0 +1,16 @@
+nav:
+  - 首页:
+    - index.md
+    - 个人项目:
+      - ReportML:
+        - 简介: projects/reportml/overview.md
+      - BenchmarkML:
+        - 简介: projects/benchmark-ml/overview.md
+  - 前端: frontend
+  - 后端: backend
+  - 数据库: databases
+  - 版本控制: vcs
+  - 容器化: container
+  - 人工智能: ai
+  - 博客:
+    - blog/index.md

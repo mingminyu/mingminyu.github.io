@@ -1,0 +1,41 @@
+nav:
+  - index.md
+  - 基础知识: 
+    - 安装: base/install.md
+    - 包管理: package-management.md
+    - 数据结构:
+      - 字符串: base/string.md
+      - 列表: base/list.md
+      - 字典: base/dict.md
+      - 元组和集合: base/tuple-set.md
+    - 流程控制: base/condition-control.md
+    - 异常处理: base/exception.md
+    - 函数: base/functions.md
+    - 类: base/class.md
+    - 协程: base/coroutine.md
+    - 日志处理: python-log-process.md
+    - 常用库: most-used-pkgs.md
+    - 打包: python-packging.md
+    - 操作数据库: python-databases.md
+
+  - 爬虫: 
+    - spider/index.md
+
+  - 可视化: 
+    - visualization/index.md
+
+  - 任务调度: 
+    - schedule/index.md
+
+  - 办公自动化: 
+    - auto-office/index.md
+    - auto-office/send-mail.md
+
+  - 数据处理: 
+    - data-process/index.md
+
+  - WEB 开发: 
+    - web/index.md
+    
+  - GUI 开发: 
+    - gui/index.md

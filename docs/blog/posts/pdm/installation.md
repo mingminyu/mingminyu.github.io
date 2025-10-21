@@ -1,6 +1,18 @@
-# 安装
+---
+date: 2025-02-16
+authors:
+  - mingminyu
+categories:
+  - PDM
+slug: pdm-installation
+readtime: 20
+---
+
+# PDM 安装
 
 PDM 需要安装 3.8 以上的 Python 版本。它适用于多个平台，包括 Windows、Linux 和 MacOS。
+
+<!-- more -->
 
 ## 1. 推荐安装方式
 
