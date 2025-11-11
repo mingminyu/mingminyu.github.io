@@ -656,6 +656,13 @@ Polars 支持两种操作模式：**惰性**（lazy）和 **即时**（eager）�
 
 === "Rust"
 
-```rust linenums="1"
-
-```
+        ```rust linenums="1"
+        let q = LazyCsvReader::new(PlPath::new("datasets/iris.csv"))
+            .with_has_header(true)
+            .finish()?
+            .filter(col("sepal_length").gt(lit(5.0)))
+            .group_by(vec![col("species")])
+            .agg([col("sepal_width").mean()])?;
+        let df = q.collect()?;
+        println!("{df}");
+        ```
