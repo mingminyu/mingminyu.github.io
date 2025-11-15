@@ -1,0 +1,40 @@
+nav:
+  - index.md
+  - 快速入门:
+    - 安装: installation.md
+    - 快速开始: quickstart.md
+
+  - 推理:
+    - 与 Qwen2 交互: chat_with_qwen2.md
+  
+  - 本地运行:
+    - llama.cpp: llama.cpp.md
+    - MLX-LM: mlx-lm.md
+    - Ollama: ollama.md
+
+  - WEB UI:
+    - Text Generation Web UI: text-generate-web-ui.md
+  
+  - 量化:
+    - AWQ: awq.md
+    - GPTQ: gptq.md
+    - GGUF: gguf.md
+
+  - 部署:
+    - vLLM: vllm.md
+    - TGI: tgi.md
+    - SkyPilot: skypilot.md
+
+  - 训练:
+    - 微调示例: sft_example.md
+    - LLaMA Factory: sft_llama_factory.md
+
+  - 框架:
+    - 函数调用: function_call.md
+    - Agent: qwen_agent.md
+    - LlamaIndex: llamaindex.md
+    - LangChain: langchain.md
+
+  - 评测:
+    - 模型效果: quantization_benchmark.md
+    - 效率评估: speed_benchmark.md

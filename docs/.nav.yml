@@ -12,5 +12,6 @@ nav:
   - 版本控制: vcs
   - 容器化: container
   - 人工智能: ai
+  - 文档学习: learn
   - 博客:
     - blog/index.md

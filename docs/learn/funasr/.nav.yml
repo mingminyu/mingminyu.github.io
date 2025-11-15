@@ -1,0 +1,19 @@
+nav:
+  - index.md
+  - 安装: installation.md
+  - 命令行参数: cli.md
+  - 基础功能:    
+    - 语音识别: asr.md
+    - 语音端点检测: vad.md
+    - 标点恢复: ct_punc.md
+    - 情感识别: emotion.md
+    - 时间戳预测: fa.md
+  
+  - 训练: train.md
+  #   - 数据准备:
+  #   - 微调:
+  #   - 测试:
+  - 导出模型: export_model.md
+  - 服务部署: deploy.md
+  - 模型仓库: model_repo.md
+  - 更新日志: changelog.md

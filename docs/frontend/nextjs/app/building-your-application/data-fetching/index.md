@@ -1,7 +1,3 @@
----
-icon: material/liquid-spot
---- 
-
 # 数据获取
 
 <div class="grid cards" markdown>

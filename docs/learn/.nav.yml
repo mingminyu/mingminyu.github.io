@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - DBT: dbt
+  - FunASR: funasr
+  # - DBT Cloud: dbt-cloud

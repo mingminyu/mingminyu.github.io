@@ -1,0 +1,122 @@
+nav:
+  - NextJS:
+  - frontend/nextjs/index.md
+  - App Router:
+    - frontend/nextjs/app/index.md
+    - 构建你的应用:
+      - frontend/nextjs/app/building-your-application/index.md
+      - 路由:
+        - frontend/nextjs/app/building-your-application/routing/index.md
+        - 路由定义: frontend/nextjs/app/building-your-application/routing/defining-routes.md
+        - 页面: frontend/nextjs/app/building-your-application/routing/pages.md
+        - 页面和布局: frontend/nextjs/app/building-your-application/routing/pages-and-layouts.md
+        - 链接和导航: frontend/nextjs/app/building-your-application/routing/linking-and-navigating.md
+        - 错误处理: frontend/nextjs/app/building-your-application/routing/error-handling.md
+        - 加载UI和流式传输: frontend/nextjs/app/building-your-application/routing/loading-ui-and-streaming.md
+        - 重定向: frontend/nextjs/app/building-your-application/routing/redirecting.md
+        - 路由组: frontend/nextjs/app/building-your-application/routing/route-groups.md
+        - 项目组织与文件托管: frontend/nextjs/app/building-your-application/routing/project-organization-and-file-colocation.md
+        - 动态路由: frontend/nextjs/app/building-your-application/routing/dynamic-routes.md
+        - 并行路由: frontend/nextjs/app/building-your-application/routing/parallel-routes.md
+        - 拦截路由: frontend/nextjs/app/building-your-application/routing/intercepting-routes.md
+        - 路由处理: frontend/nextjs/app/building-your-application/routing/route-handlers.md
+        - 中间件: frontend/nextjs/app/building-your-application/routing/middleware.md
+        - 国际化: frontend/nextjs/app/building-your-application/routing/internationalization.md
+
+      - 数据获取:
+        - frontend/nextjs/app/building-your-application/data-fetching/index.md
+        - 数据获取与缓存: frontend/nextjs/app/building-your-application/data-fetching/fetching-and-caching.md
+        - 服务器操作和突变: frontend/nextjs/app/building-your-application/data-fetching/server-actions-and-mutations.md
+        - 增量静态再生: frontend/nextjs/app/building-your-application/data-fetching/incremental-static-regeneration.md
+
+      - 渲染:
+        - frontend/nextjs/app/building-your-application/rendering/index.md
+        - 服务端组件: frontend/nextjs/app/building-your-application/rendering/server-components.md
+        - 客户端组件: frontend/nextjs/app/building-your-application/rendering/client-components.md
+        - 组合模式: frontend/nextjs/app/building-your-application/rendering/server-and-client-composition-patterns.md
+        - 部分预渲染: frontend/nextjs/app/building-your-application/rendering/partial-prerendering.md
+        - 运行时: frontend/nextjs/app/building-your-application/rendering/runtimes.md
+
+      - 缓存: frontend/nextjs/app/building-your-application/caching.md
+      - 样式:
+        - frontend/nextjs/app/building-your-application/styling/index.md
+        - CSS: frontend/nextjs/app/building-your-application/styling/css.md
+        - Tailwind CSS: frontend/nextjs/app/building-your-application/styling/tailwind-css.md
+        - Sass: frontend/nextjs/app/building-your-application/styling/sass.md
+        - JS 中的 CSS: frontend/nextjs/app/building-your-application/stylingcss-in-js.md
+
+      - 优化:
+        - frontend/nextjs/app/building-your-application/optimizing/index.md
+        - 图像优化: frontend/nextjs/app/building-your-application/optimizing/images.md
+        - 视频优化: frontend/nextjs/app/building-your-application/optimizing/videos.md
+        - 字体优化: frontend/nextjs/app/building-your-application/optimizing/fonts.md
+        - 元数据: frontend/nextjs/app/building-your-application/optimizing/metadata.md
+        - 脚本优化: frontend/nextjs/app/building-your-application/optimizing/scripts.md
+        - 打包优化: frontend/nextjs/app/building-your-application/optimizing/package-bundling.md
+        - 惰性加载: frontend/nextjs/app/building-your-application/optimizing/lazy-loading.md
+        - 分析: frontend/nextjs/app/building-your-application/optimizing/analytics.md
+        - 仪表: frontend/nextjs/app/building-your-application/optimizing/instrumentation.md
+        - 遥测: frontend/nextjs/app/building-your-application/optimizing/open-telemetry.md
+        - 静态资源: frontend/nextjs/app/building-your-application/optimizing/static-assets.md
+        - 第三方库: frontend/nextjs/app/building-your-application/optimizing/third-party-libraries.md
+        - 内存使用: frontend/nextjs/app/building-your-application/optimizing/memory-usage.md
+
+      - 配置: 
+        - frontend/nextjs/app/building-your-application/configuring/index.md
+        - TypeScript: frontend/nextjs/app/building-your-application/configuring/typescript.md
+        - ESLint: frontend/nextjs/app/building-your-application/configuring/eslint.md
+        - 环境变量: frontend/nextjs/app/building-your-application/configuring/environment-variables.md
+        - 绝对导入和模块路径别名: frontend/nextjs/app/building-your-application/configuring/absolute-imports-and-module-aliases.md
+        - MDX: frontend/nextjs/app/building-your-application/configuring/mdx.md
+        - src目录: frontend/nextjs/app/building-your-application/configuring/src-directory.md
+        - 自定义服务器: frontend/nextjs/app/building-your-application/configuring/custom-server.md
+        - 草稿模式: frontend/nextjs/app/building-your-application/configuring/draft-mode.md
+        - 内容安全策略: frontend/nextjs/app/building-your-application/configuring/content-security-policy.md
+        - 调试: frontend/nextjs/app/building-your-application/configuring/debugging.md
+        - 渐进式WEB应用: frontend/nextjs/app/building-your-application/configuring/progressive-web-apps.md
+
+      - 测试:
+        - frontend/nextjs/app/building-your-application/testing/index.md
+        - Vitest: frontend/nextjs/app/building-your-application/testing/vitest.md
+        - Jest: frontend/nextjs/app/building-your-application/testing/jest.md
+        - Playwright: frontend/nextjs/app/building-your-application/testing/playwright.md
+        - Cypress: frontend/nextjs/app/building-your-application/testing/cypress.md
+
+      - 授权: frontend/nextjs/app/building-your-application/authorization.md
+      - 部署:
+        - frontend/nextjs/app/building-your-application/deploying/index.md
+        - 生产清单: frontend/nextjs/app/building-your-application/deploying/production-checklist.md
+        - 静态导出: frontend/nextjs/app/building-your-application/deploying/static-export.md
+        - 多区域: frontend/nextjs/app/building-your-application/deploying/multi-zones.md
+      
+      - 升级: frontend/nextjs/app/building-your-application/upgrading.md
+      - 案例: frontend/nextjs/app/building-your-application/examples.md
+
+    # - API 参考:
+    #   - 组件:
+    #     - frontend/nextjs/api-reference/components/index.md
+    #     - 字体: frontend/nextjs/api-reference/components/font.md
+    #     - 表单: frontend/nextjs/api-reference/components/form.md
+    #     - 图像: frontend/nextjs/api-reference/components/image.md
+    #     - 链接: frontend/nextjs/api-reference/components/link.md
+    #     - 脚本: frontend/nextjs/api-reference/components/script.md
+    #   - 文件约定:
+    #     - frontend/nextjs/app/api-reference/file-conventions/index.md
+    #   - 函数:
+    #     - frontend/nextjs/app/api-reference/functions/index.md
+    #   - NextJS配置选项:
+    #     - frontend/nextjs/app/api-reference/next-config-js/index.md
+    #   - 命令行工具:
+    #     - frontend/nextjs/api-reference/cli/index.md
+    #     - next-create-app: frontend/nextjs/api-reference/cli/next-create-app.md
+    #     - Next CLI: frontend/nextjs/api-reference/cli/next.md
+      
+    #   - Edge Runtime: api-reference/edge-runtime.md
+
+  # - 架构:
+  #   - frontend/nextjs/architecture/index.md
+  #   - 可访问性: frontend/nextjs/architecture/accessibility.md
+  #   - 快速刷新: frontend/nextjs/architecture/fast-refresh.md
+  #   - 编译器: frontend/nextjs/architecture/nextjs-compiler.md
+  #   - 支持浏览器: frontend/nextjs/architecture/supported-browsers.md
+  #   - Turbopack: frontend/nextjs/architecture/turbopack.md

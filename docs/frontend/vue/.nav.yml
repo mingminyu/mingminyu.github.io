@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 开始:
+    - 快速入门: quickstart/quickstart.md
+    - 第一个Vue应用: quickstart/fst_vue_app.md

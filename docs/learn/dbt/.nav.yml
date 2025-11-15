@@ -1,0 +1,23 @@
+nav:
+  - index.md
+  - 快速入门: quickstart.md
+  - 支持的数据平台: supported-data-platforms.md
+  - 搭建 DBT: 
+    - 运行项目: setup/run-dbt-projects.md
+    - 使用线程: setup/use-threads.md
+  - 构建 DBT 项目:
+    - 关于 DBT 项目: build_dbt_projects/about-project.md
+    - DBT 提示与技巧: build_dbt_projects/dbt-tips-and-tricks.md
+  
+  - 指南:
+    - 手动安装DBT Core: guides/manual-install.md
+
+  - 参考:
+    - references/index.md
+    - 项目配置: references/project-configs.md
+    - 特定平台配置: references/platform-configs.md
+    - 资源配置和属性: 
+      - references/resource-configs-properties/index.md
+      - 资源路径: references/resource-configs-properties/resource-paths.md
+      - 通用属性: references/resource-configs-properties/general-properties.md
+      - 通用配置: references/resource-configs-properties/general-configs.md

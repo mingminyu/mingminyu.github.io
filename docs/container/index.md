@@ -6,12 +6,12 @@ icon: material/docker
 
 <div class="grid cards" markdown>
 
-- :databases-hive-logo: &nbsp; __[Docker][docker]__
+- :simple-docker: &nbsp; __[Docker][docker]__
 
     ---
     Hive 是基于 Hadoop 平台的一款主流的关系型数据库
 
-- :databases-hive-logo: &nbsp; __[Kubernetes][kubernetes]__
+- :simple-kubernetes: &nbsp; __[Kubernetes][kubernetes]__
 
     ---
     Hive 是基于 Hadoop 平台的一款主流的关系型数据库

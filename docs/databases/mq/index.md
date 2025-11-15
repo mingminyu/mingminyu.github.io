@@ -1,5 +1,5 @@
 ---
-icon: simple/rabbitmq
+icon: simple/apacherocketmq
 ---
 
 # 消息队列

@@ -1,0 +1,12 @@
+nav:
+  - index.md
+
+  - 基础知识:
+    - 快速入门: backend/rust/rust-base/rust-quickstart.md
+    - 包管理器: backend/rust/rust-base/rust-cargo.md
+    - 变量与数据类型: backend/rust/rust-base/rust-variable-and-types.md
+    - 所有权机制: backend/rust/rust-base/rust-ownership.md
+    - 字符串: backend/rust/rust-base/rust-string.md
+    - 枚举值和匹配: backend/rust/rust-base/rust-enum-and-match.md
+    - 结构体: backend/rust/rust-base/rust-struct.md
+    - 堆、栈以及复制与转移: backend/rust/rust-base/rust-stack-heap-copy-move.md

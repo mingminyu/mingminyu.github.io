@@ -1,0 +1,8 @@
+nav:
+  - index.md
+  - 机器学习: machine-learning
+  - 深度学习: deep-learning
+  - 自然语言处理: nlp
+  - 语音处理: speech
+  - 图像处理: cv
+  - 大模型: aigc
