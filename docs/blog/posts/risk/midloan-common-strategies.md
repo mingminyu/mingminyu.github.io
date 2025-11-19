@@ -12,7 +12,9 @@ readtime: 2
 
 # 贷中通用策略：分群、支用、调额、提价、预警
 
-> 原文地址: https://mp.weixin.qq.com/s/oMpP7PLjDh_1mnXNBO-naQ
+> 原文地址: 
+> - https://mp.weixin.qq.com/s/oMpP7PLjDh_1mnXNBO-naQ
+> - https://mp.weixin.qq.com/s/1aSpYsl-3iJxG4cKw60XHQ
 
 从产品上来说，一般期限较长的循环贷比如现金贷是必须要做贷中管理的，而像海外 714 超短期限的产品一般不需要做贷中，所以做贷中首先也要结合业务和产品来定，不是全部都需要。我们就以第一种比较全面的来介绍。
 

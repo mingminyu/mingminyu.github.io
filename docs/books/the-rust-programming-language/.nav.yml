@@ -1,0 +1,5 @@
+nav:
+  - index.md
+  - 1.入门指南: ch01-getting-started.md
+  - 2.猜数字游戏: ch02-guessing-game-tutorial.md
+  
