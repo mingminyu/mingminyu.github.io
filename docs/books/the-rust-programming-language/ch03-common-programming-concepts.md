@@ -1,4 +1,4 @@
-# 通用编程概念
+# 第三章：通用编程概念
 
 本章几乎涵盖了每种编程语言都出现的概念，并介绍它们在 Rust 中的工作原理。许多编程语言的核心部分都有很多共同点。本章提到的概念都不是 Rust 特有的，我们将在 Rust 的背景下讨论它们，并解释使用这些概念的约定。
 
@@ -162,9 +162,987 @@ error: could not compile `variables` due to previous error
 
 ## 2. 数据类型
 
+Rust 的每个值都有确切的 **数据类型**（*data type*），该类型告诉 Rust 数据是被指定成哪类数据，从而让 Rust 知道如何使用该数据。在本节中，我们将介绍两种数据类型：**标量类型** 和 **复合类型**。
+
+请记住 Rust 是一种 **静态类型**（*statically typed*）的语言，这意味着它必须在编译期知道所有变量的类型。编译器通常可以根据值和使用方式推导出我们想要使用的类型。在类型可能是多种情况时，例如在第 2 章[“比较猜测的数字和秘密数字”](https://rustwiki.org/zh-CN/book/ch02-00-guessing-game-tutorial.html#比较猜测的数字和秘密数字)中当我们使用 `parse` 将 `String` 转换成数值类型时，我们必须加上一个类型标注，如下所示：
+
+```rust
+let guess: u32 = "42".parse().expect("Not a number!");
+```
+
+如果我们在这里不添加类型标注的话，Rust 将显示以下错误，意思是编译器需要我们提供更多信息来确定我们到底想用什么类型：
+
+```console
+$ cargo build
+   Compiling no_type_annotations v0.1.0 (file:///projects/no_type_annotations)
+error[E0282]: type annotations needed
+ --> src/main.rs:2:9
+  |
+2 |     let guess = "42".parse().expect("Not a number!");
+  |         ^^^^^ consider giving `guess` a type
+
+For more information about this error, try `rustc --explain E0282`.
+error: could not compile `no_type_annotations` due to previous error
+```
+
+对于其他数据类型，你将看到不同的类型标注。
+
+### 2.1 标量类型
+
+**标量**（*scalar*）类型表示单个值。Rust 有 4 个基本的标量类型：**整型**、**浮点型**、**布尔型**和**字符**。你可能从其他语言了解过这些类型。下面我们深入了解它们在 Rust 中的用法。
+
+#### 2.1.1 整数类型
+
+**整数**（*integer*）是没有小数部分的数字。我们在第 2 章使用过一个整数类型（整型），即 `u32` 类型。此类型声明表明它关联的值应该是占用 32 位空间的无符号整型（有符号整型以 `i` 开始，`i` 是英文单词 *integer* 的首字母，与之相反的是 `u`，代表无符号 `unsigned` 类型）。表 3-1 显示了 Rust 中的内置的整数类型。我们可以使用这些定义形式中的任何一个来声明整数值的类型。
+
+表 3-1: Rust 中的整型
+
+| 长度   | 有符号类型 | 无符号类型 |
+| ------ | ---------- | ---------- |
+| 8 位   | `i8`       | `u8`       |
+| 16 位  | `i16`      | `u16`      |
+| 32 位  | `i32`      | `u32`      |
+| 64 位  | `i64`      | `u64`      |
+| 128 位 | `i128`     | `u128`     |
+| arch   | `isize`    | `usize`    |
+
+每个定义形式要么是有符号类型要么是无符号类型，且带有一个显式的大小。**有符号**和**无符号**表示数字能否取负数——也就是说，这个数是否可能是负数（有符号类型），或一直为正而不需要带上符号（无符号类型）。就像在纸上写数字一样：当要强调符号时，数字前面可以带上正号或负号；然而，当很明显确定数字为正数时，就不需要加上正号了。有符号数字以[二进制补码](https://en.wikipedia.org/wiki/Two's_complement)（译者补充：[“补码”百度百科](https://baike.baidu.com/item/补码/6854613)）形式存储。
+
+每个有符号类型规定的数字范围是 -(2n - 1) ~ 2n - 1 - 1，其中 `n` 是该定义形式的位长度。所以 `i8` 可存储数字范围是 -(27) ~ 27 - 1，即 -128 ~ 127。无符号类型可以存储的数字范围是 0 ~ 2n - 1，所以 `u8` 能够存储的数字为 0 ~ 28 - 1，即 0 ~ 255。
+
+此外，`isize` 和 `usize` 类型取决于程序运行的计算机体系结构，在表中表示为“arch”：若使用 64 位架构系统则为 64 位，若使用 32 位架构系统则为 32 位。
+
+你可按表 3-2 中所示的任意形式来编写整型的字面量。注意，可能属于多种数字类型的数字字面量允许使用类型后缀来指定类型，例如 `57u8`。数字字面量还可以使用 `_` 作为可视分隔符以方便读数，如 `1_000`，此值和 `1000` 相同。
+
+表 3-2: Rust 的整型字面量
+
+| 数字字面量         | 示例          |
+| ------------------ | ------------- |
+| 十进制             | `98_222`      |
+| 十六进制           | `0xff`        |
+| 八进制             | `0o77`        |
+| 二进制             | `0b1111_0000` |
+| 字节 (仅限于 `u8`) | `b'A'`        |
+
+那么该使用哪种类型的整型呢？如果不确定，Rust 的默认形式通常是个不错的选择，整型默认是 `i32`。`isize` 和 `usize` 的主要应用场景是用作某些集合的索引。
+
+!!! note "整型溢出"
+
+    比方说有一个 `u8` ，它可以存放从 0 到 255 的值。那么当你将其修改为范围之外的值，比如 256，则会发生 **整型溢出**（*integer overflow*），这会导致两种行为的其中一种。当在调试（debug）模式编译时，Rust 会检查整型溢出，若存在这些问题则使程序在编译时 *panic*。Rust 使用 panic 这个术语来表明程序因错误而退出。第 9 章 [“`panic!` 与不可恢复的错误”](https://rustwiki.org/zh-CN/book/ch09-01-unrecoverable-errors-with-panic.html)会详细介绍 panic。
+    
+    在当使用 `--release` 参数进行发布（release）模式构建时，Rust **不** 检测会导致 panic 的整型溢出。相反当检测到整型溢出时，Rust 会进行一种被称为二进制补码包裹（*two’s complement wrapping*）的操作。简而言之，大于该类型最大值的数值会被“包裹”成该类型能够支持的对应数字的最小值。比如在 `u8` 的情况下，256 变成 0，257 变成 1，依此类推。程序不会 panic，但是该变量的值可能不是你期望的值。依赖整型溢出包裹的行为不是一种正确的做法。
+
+    要显式处理溢出的可能性，可以使用标准库针对原始数字类型提供的以下一系列方法：
+
+    - 使用 `wrapping_*` 方法在所有模式下进行包裹，例如 `wrapping_add`
+    - 如果使用 `checked_*` 方法时发生溢出，则返回 `None` 值
+    - 使用 `overflowing_*` 方法返回该值和一个指示是否存在溢出的布尔值
+    - 使用 `saturating_*` 方法使值达到最小值或最大
+
+#### 2.1.2 浮点类型
+
+**浮点数**（*floating-point number*）是带有小数点的数字，在 Rust 中浮点类型（简称浮点型）数字也有两种基本类型。Rust 的浮点型是 `f32` 和 `f64`，它们的大小分别为 32 位和 64 位。默认浮点类型是 `f64`，因为在现代的 CPU 中它的速度与 `f32` 的几乎相同，但精度更高。所有浮点型都是有符号的。
+
+下面是一个演示浮点数的示例：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let x = 2.0; // f64
+
+    let y: f32 = 3.0; // f32
+}
+```
+
+浮点数按照 IEEE-754 标准表示。`f32` 类型是单精度浮点型，`f64` 为双精度浮点型。
+
+#### 2.1.3 数字运算
+
+Rust 的所有数字类型都支持基本数学运算：加法、减法、乘法、除法和取模运算。整数除法会向下取整。下面代码演示了各使用一条 `let` 语句来说明相应数字运算的用法：
+
+文件名：src/main.rs
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    // 加
+    let sum = 5 + 10;
+
+    // 减
+    let difference = 95.5 - 4.3;
+
+    // 乘
+    let product = 4 * 30;
+
+    // 除
+    let quotient = 56.7 / 32.2;
+    let floored = 2 / 3; // Results in 0
+
+    // 除余
+    let remainder = 43 % 5;
+}
+```
+
+这些语句中的每个表达式都使用了数学运算符，并且计算结果为一个值，然后绑定到一个变量上。[附录 B](https://rustwiki.org/zh-CN/book/appendix-02-operators.html) 罗列了 Rust 提供的所有运算符的列表。
+
+#### 2.1.4 布尔类型
+
+和大多数编程语言一样，Rust 中的布尔类型也有两个可能的值：`true` 和 `false`。布尔值的大小为 1 个字节。Rust 中的布尔类型使用 `bool` 声明。例如：
+
+文件名：src/main.rs
+
+```rust title="src/main.rs"
+fn main() {
+    let t = true;
+
+    let f: bool = false; // with explicit type annotation
+}
+```
+
+使用布尔值的主要地方是条件判断，如 `if` 表达式。我们将会在[“控制流”](https://rustwiki.org/zh-CN/book/ch03-05-control-flow.html#控制流)章节中介绍 `if` 表达式在 Rust 中的用法。
+
+#### [字符类型](https://rustwiki.org/zh-CN/book/ch03-02-data-types.html#字符类型)
+
+Rust 的 `char`（字符）类型是该语言最基本的字母类型，下面是一些声明 `char` 值的例子：
+
+文件名：src/main.rs
+
+```rust
+fn main() {
+    let c = 'z';
+    let z = 'ℤ';
+    let heart_eyed_cat = '😻';
+}
+```
+
+注意，我们声明的 `char` 字面量采用单引号括起来，这与字符串字面量不同，字符串字面量是用双引号括起来。Rust 的字符类型大小为 4 个字节，表示的是一个 Unicode 标量值，这意味着它可以表示的远远不止是 ASCII。标音字母，中文/日文/韩文的文字，emoji，还有零宽空格(zero width space)在 Rust 中都是合法的字符类型。Unicode 值的范围为 `U+0000` ~ `U+D7FF` 和 `U+E000`~`U+10FFFF`。不过“字符”并不是 Unicode 中的一个概念，所以人在直觉上对“字符”的理解和 Rust 的字符概念并不一致。我们将在第 8 章[“使用字符串存储 UTF-8 编码的文本”](https://rustwiki.org/zh-CN/book/ch08-02-strings.html#使用字符串存储-utf-8-编码的文本)中详细讨论这个主题。
+
+### 2.2 复合类型
+
+**复合类型**（*compound type*）可以将多个值组合成一个类型。Rust 有两种基本的复合类型：**元组**（tuple）和 **数组**（array）。
+
+#### 2.2.1 元组类型
+
+元组是将多种类型的多个值组合到一个复合类型中的一种基本方式。元组的长度是固定的：声明后，它们就无法增长或缩小。
+
+我们通过在小括号内写入以逗号分隔的值列表来创建一个元组。元组中的每个位置都有一个类型，并且元组中不同值的类型不要求是相同的。我们在下面示例中添加了可选的类型标注：
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+}
+```
+
+变量 `tup` 绑定到整个元组，因为元组被认作是单个复合元素。想从元组中获取个别值，我们可以使用模式匹配来 **解构**（destructure）元组的一个值，如下所示：
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let tup = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
+
+    println!("The value of y is: {}", y);
+}
+```
+
+该程序首先创建一个元组并将其绑定到变量 `tup` 上。 然后它借助 `let` 来使用一个模式匹配 `tup`，并将它分解成三个单独的变量 `x`、`y` 和 `z`。这过程称为 **解构**（*destructuring*），因为它将单个元组分为三部分。最后，程序打印出 `y` 值，为 `6.4`。
+
+除了通过模式匹配进行解构外，我们还可以使用一个句点（`.`）连上要访问的值的索引来直接访问元组元素。例如：
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+
+    let five_hundred = x.0;
+
+    let six_point_four = x.1;
+
+    let one = x.2;
+}
+```
+
+该程序创建一个元组 `x`，然后通过使用它们的索引为每个元素创建新的变量。和大多数编程语言一样，元组中的第一个索引为 0。
+
+没有任何值的元组 `()` 是一种特殊的类型，只有一个值，也写成 `()`。该类型被称为 **单元类型**（*unit type*），该值被称为 **单元值**（*unit value*）。如果表达式不返回任何其他值，就隐式地返回单元值。
+
+#### 2.2.2 数组类型
+
+将多个值组合在一起的另一种方式就是使用 **数组**（*array*）。与元组不同，数组的每个元素必须具有相同的类型。与某些其他语言中的数组不同，Rust 中的数组具有固定长度。
+
+我们在方括号内以逗号分隔的列表形式将值写到数组中：
+
+```rust linenums="1"
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+}
+```
+
+当你希望将数据分配到栈（stack）而不是堆（heap）时（我们将在[第 4 章](https://rustwiki.org/zh-CN/book/ch04-01-what-is-ownership.html#栈stack与堆heap)中进一步讨论栈和堆），或者当你希望确保始终具有固定数量的元素时，数组特别有用。但它们不像 vector（译注：中文字面翻译为“向量”，在 Rust 中意义为“动态数组，可变数组”）类型那么灵活。vector 类型类似于标准库中提供的集合类型，其大小 **允许** 增长或缩小。如果不确定是使用数组还是 vector，那就应该使用一个 vector。[第 8 章](https://rustwiki.org/zh-CN/book/ch08-01-vectors.html) 将详细地讨论 vector。
+
+不过当你明确元素数量不需要改变时，数组会更有用。例如，如果你在程序中使用月份的名称，你很可能希望使用的是数组而不是 vector，因为你知道它始终包含 12 个元素：
+
+```rust linenums="1"
+let months = ["January", "February", "March", "April", "May", "June", "July",
+              "August", "September", "October", "November", "December"];
+```
+
+使用方括号编写数组的类型，其中包含每个元素的类型、分号，然后是数组中的元素数，如下所示：
+
+```rust 
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+```
+
+这里，`i32` 是每个元素的类型。分号之后，数字 `5` 表明该数组包含 5 个元素。
+
+以这种方式编写数组的类型看起来类似于初始化数组的另一种语法：如果要为每个元素创建包含相同值的数组，可以指定初始值，后跟分号，然后在方括号中指定数组的长度，如下所示：
+
+```rust linenums="1"
+let a = [3; 5];
+```
+
+变量名为 `a` 的数组将包含 `5` 个元素，这些元素的值初始化为 `3`。这种写法与 `let a = [3, 3, 3, 3, 3];` 效果相同，但更简洁。
+
+##### 访问数组元素
+
+数组是可以在栈上分配的已知固定大小的单个内存块。可以使用索引访问数组的元素，如下所示：
+
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+
+    let first = a[0];
+    let second = a[1];
+}
+```
+
+在这个例子中，名为 `first` 的变量将获得值 `1`，因为它是数组中索引 `[0]` 处的值。名为 `second` 的变量将从数组中的索引 `[1]` 中获取得 `2`。
+
+##### 无效的数组元素访问
+
+如果尝试访问超出数组末尾的数组元素，会发生什么？ 假如你将示例更改为以下内容，使用类似于第 2 章猜数字游戏的代码那样从用户获取数组索引：
+
+```rust title="src/main.rs" linenums="1"
+use std::io;
+
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+
+    println!("Please enter an array index.");
+
+    let mut index = String::new();
+
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line");
+
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Index entered was not a number");
+
+    let element = a[index];
+
+    println!(
+        "The value of the element at index {} is: {}",
+        index, element
+    );
+}
+```
+
+此代码编译成功。如果使用 `cargo run` 来运行此代码并输入 0、1、2、3 或 4，则程序将打印数组对应索引的值。如果输入的是超出数组末尾的数字，例如 10，则会看到类似以下的输出：
+
+```console
+thread 'main' panicked at 'index out of bounds: the len is 5 but the index is 10', src/main.rs:19:19
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
+
+该程序在索引操作中使用无效值时导致**运行时**（*runtime*）错误。程序退出并显示错误消息，未执行后面的 `println!` 语句。当你尝试使用索引访问元素时，Rust 将检查你指定的索引是否小于数组长度。如果索引大于或等于数组长度，Rust 会出现 `panic`。这种检查必须在运行时进行，尤其是在这种情况下，因为编译器可能无法知道用户之后运行代码时将输入什么值。
+
+这是 Rust 在实践中安全原则的第一个例子。在很多低级语言中，并不进行这种检查，而且在你使用不正确的索引时，可以访问无效的内存。Rust 通过立即退出来的方式防止这种错误，而不是允许内存访问并继续运行程序。第 9 章将进一步讨论 Rust 的错误处理。
+
 ## 3. 函数
+
+函数在 Rust 代码中很普遍。你已经见过语言中最重要的函数之一：`main` 函数，它是很多程序的入口点。你也见过 `fn` 关键字，它用来声明新函数。
+
+Rust 代码中的函数和变量名使用下划线命名法（*snake case*，直译为蛇形命名法）规范风格。在下划线命名法中，所有字母都是小写并使用下划线分隔单词。这是一个包含函数定义示例的程序：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    println!("Hello, world!");
+
+    another_function();
+}
+
+fn another_function() {
+    println!("Another function.");
+}
+```
+
+Rust 中的函数定义以 `fn` 开始，后跟着函数名和一对圆括号。大括号告诉编译器函数体在哪里开始和结束。
+
+可以使用函数名后跟圆括号来调用我们定义过的任意函数。因为程序中已定义 `another_function` 函数，所以可以在 `main` 函数中调用它。注意，源码中 `another_function` 定义在 `main` 函数**之后**；也可以定义在之前。Rust 不关心函数定义于何处，只要定义了就行。
+
+让我们新建一个叫做 *functions* 的二进制项目来进一步探讨函数。将上面的 `another_function` 例子写入 *src/main.rs* 中并运行。你应该会看到如下输出：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.28s
+     Running `target/debug/functions`
+Hello, world!
+Another function.
+```
+
+`main` 函数中的代码会按顺序执行。首先，打印 “Hello, world!” 信息，然后调用 `another_function` 函数并打印它的信息。
+
+### 3.1 参数
+
+函数也可以被定义为拥有 **参数**（*parameter*），参数是特殊变量，是函数签名的一部分。当函数拥有参数（形参）时，可以为这些参数提供具体的值（实参）。技术上讲，这些具体值被称为 **实参**（*argument*），但是在日常交流中，人们倾向于不区分使用 *parameter* 和 *argument* 来表示函数定义中的变量或调用函数时传入的具体值。
+
+在这个版本的 `another_function` 中，我们添加了一个参数：
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    another_function(5);
+}
+
+fn another_function(x: i32) {
+    println!("The value of x is: {}", x);
+}
+```
+
+尝试运行程序，将会输出如下内容：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.21s
+     Running `target/debug/functions`
+The value of x is: 5
+```
+
+`another_function` 的声明中有一个命名为 `x` 的参数。`x` 的类型被指定为 `i32`。当将 `5` 传给 `another_function` 时，`println!` 宏将 `5` 放入格式化字符串中大括号的位置。
+
+在函数签名中，**必须** 声明每个参数的类型。这是一个 Rust 设计中经过慎重考虑的决定：要求在函数定义中提供类型标注，意味着编译器几乎从不需要你在代码的其他地方注明类型来指出你的意图。
+
+当一个函数有多个参数时，使用逗号分隔，像这样：
+
+文件名: src/main.rs
+
+```rust
+fn main() {
+    print_labeled_measurement(5, 'h');
+}
+
+fn print_labeled_measurement(value: i32, unit_label: char) {
+    println!("The measurement is: {}{}", value, unit_label);
+}
+```
+
+这个例子创建了一个有两个参数的名为 `print_labeled_measurement` 的函数。第一个参数名为 `value`， 类型是 `i32`。第二个参数是 `unit_label` ，类型是 `char`。接着该函数打印包含 `value` 和 `unit_label` 的文本。
+
+让我们尝试运行这段代码。使用上面的例子替换当前 *functions* 项目的 *src/main.rs* 文件，并用 `cargo run` 运行它：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/functions`
+The measurement is: 5h
+```
+
+因为我们使用 `5` 作为 `value` 的值，`h` 作为 `unit_label` 的值来调用函数，所以程序的输出包含这些值。
+
+### 3.2 语句和表达式
+
+函数体由一系列语句组成，也可选择以表达式结尾。目前为止，我们介绍的函数还没有包含结尾表达式，不过你已经看到了表达式作为语句的一部分。因为 Rust 是一门基于表达式（expression-based）的语言，所以这是一个需要理解的重要区别。其他语言没有这样的区别，所以让我们看看语句和表达式分别是什么，以及它们的区别如何影响函数体。
+
+**语句**（*statement*）是执行一些操作但不返回值的指令。表达式（*expression*）计算并产生一个值。实际上，我们已经使用过语句和表达式了，使用 `let` 关键字创建变量并绑定一个值是一个语句。下面示例中，`let y = 6;` 是一个语句。
+
+```rust linenums="1" title="src/main.rs" hl_lines="2"
+fn main() {
+    let y = 6;
+}
+```
+
+函数定义也是语句，上面整个例子本身就是一个语句。语句不返回值。因此，不能把 `let` 语句赋值给另一个变量，就像下面的代码尝试做的那样，会产生一个错误：
+
+```rust title="src/main.rs"
+fn main() {
+    let x = (let y = 6);  // 错误代码
+}
+```
+
+当运行这个程序时，会得到如下错误：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+error: expected expression, found statement (`let`)
+ --> src/main.rs:2:14
+  |
+2 |     let x = (let y = 6);
+  |              ^^^^^^^^^
+  |
+  = note: variable declaration using `let` is a statement
+
+error[E0658]: `let` expressions in this position are experimental
+ --> src/main.rs:2:14
+  |
+2 |     let x = (let y = 6);
+  |              ^^^^^^^^^
+  |
+  = note: see issue #53667 <https://github.com/rust-lang/rust/issues/53667> for more information
+  = help: you can write `matches!(<expr>, <pattern>)` instead of `let <pattern> = <expr>`
+
+warning: unnecessary parentheses around assigned value
+ --> src/main.rs:2:13
+  |
+2 |     let x = (let y = 6);
+  |             ^         ^
+  |
+  = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+  |
+2 -     let x = (let y = 6);
+2 +     let x = let y = 6;
+  | 
+
+For more information about this error, try `rustc --explain E0658`.
+warning: `functions` (bin "functions") generated 1 warning
+error: could not compile `functions` due to 2 previous errors; 1 warning emitted
+```
+
+`let y = 6` 语句并不返回值，所以没有可以绑定到 `x` 上的值。这与其他语言不同，例如 C 和 Ruby，它们的赋值语句会返回所赋的值。在这些语言中，可以这么写 `x = y = 6`，这样 `x` 和 `y` 的值都是 `6`；Rust 中不能这样写。
+
+表达式会计算出一个值，并且你接下来要用 Rust 编写的大部分代码都由表达式组成。考虑一个数学运算，比如 `5 + 6`，这是一个表达式并计算出值 `11`。表达式可以是语句的一部分：在示例 3-1 中，语句 `let y = 6;` 中的 `6` 是一个表达式，它计算出的值是 `6`。函数调用是一个表达式。宏调用是一个表达式。我们用来创建新作用域的大括号（代码块） `{}` 也是一个表达式，例如：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("The value of y is: {}", y);
+}
+```
+
+这个表达式：
+
+```rust linenums="1"
+{
+    let x = 3;
+    x + 1
+}
+```
+
+是一个代码块，在这个例子中计算结果是 `4`。这个值作为 `let` 语句的一部分被绑定到 `y` 上。注意，`x + 1` 行的末尾没有分号，这与你目前见过的大部分代码行不同。表达式的结尾没有分号。如果在表达式的末尾加上分号，那么它就转换为语句，而语句不会返回值。在接下来探讨函数返回值和表达式时，请记住这一点。
+
+### 3.3 带有返回值的函数
+
+函数可以向调用它的代码返回值。我们并不对返回值命名，但要在箭头（`->`）后声明它的类型。在 Rust 中，函数的返回值等同于函数体最后一个表达式的值。使用 `return` 关键字和指定值，可以从函数中提前返回；但大部分函数隐式返回最后一个表达式。这是一个有返回值函数的例子：
+
+```rust linenums="1" title="src/main.rs"
+fn five() -> i32 {
+    5
+}
+
+fn main() {
+    let x = five();
+
+    println!("The value of x is: {}", x);
+}
+```
+
+在 `five` 函数中没有函数调用、宏，甚至没有 `let` 语句——只有数字 `5` 本身。这在 Rust 中是一个完全有效的函数。注意，函数返回值的类型也被指定好，即 `-> i32`。尝试运行代码；输出应如下所示：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.30s
+     Running `target/debug/functions`
+The value of x is: 5
+```
+
+`five` 函数的返回值是 `5`，所以返回值类型是 `i32`。让我们仔细检查一下这段代码。有两个重要的部分：首先，`let x = five();` 这一行表明我们使用函数的返回值初始化一个变量。因为 `five` 函数返回 `5`，这一行与如下代码相同：
+
+```rust
+let x = 5;
+```
+
+其次，`five` 函数没有参数并定义了返回值类型，不过函数体只有单单一个 `5` 也没有分号，因为这是一个表达式，正是我们想要返回的值。
+
+让我们看看另一个例子：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let x = plus_one(5);
+
+    println!("The value of x is: {}", x);
+}
+
+fn plus_one(x: i32) -> i32 {
+    x + 1
+}
+```
+
+运行代码会打印出 `The value of x is: 6`。==但如果在包含 `x + 1` 的行尾加上一个分号，把它从表达式变成语句==，我们将得到一个错误。
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let x = plus_one(5);
+
+    println!("The value of x is: {}", x);
+}
+
+fn plus_one(x: i32) -> i32 {
+    x + 1;
+}
+```
+
+运行代码会产生一个错误，如下：
+
+```console
+$ cargo run
+   Compiling functions v0.1.0 (file:///projects/functions)
+error[E0308]: mismatched types
+ --> src/main.rs:7:24
+  |
+7 | fn plus_one(x: i32) -> i32 {
+  |    --------            ^^^ expected `i32`, found `()`
+  |    |
+  |    implicitly returns `()` as its body has no tail or `return` expression
+8 |     x + 1;
+  |          - help: consider removing this semicolon
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `functions` due to previous error
+```
+
+主要的错误信息 “mismatched types”（类型不匹配）揭示了这段代码的核心问题。函数 `plus_one` 的定义说明它要返回一个 `i32` 类型的值，不过语句并不会返回值，此值由单元类型 `()` 表示，表示不返回值。因为不返回值与函数定义相矛盾，从而出现一个错误。在输出中，Rust 提供了一条信息，可能有助于纠正这个错误：它建议删除分号，这将修复错误。
 
 ## 4. 注释
 
+所有的开发者都在努力使他们的代码容易理解，但有时需要额外的解释。在这种情况下，开发者在他们的源码中留下**注释**，编译器将会忽略掉这些内容，但阅读源码的人可能会发现有用。
+
+这是一条简单的注释：
+
+```rust
+// Hello, world.
+```
+
+在 Rust 中，惯用的注释形式以两个斜杆开头，直到该行尾结束。对于超出单行的注释，需要在每行的行首加上 `//`，如下所示：
+
+```rust
+// 我们在这里处理一些复杂事情，需要足够长的解释，使用
+// 多行注释可做到这点。哇！我们希望这个注释将解释接下
+// 来要实现的内容。
+```
+
+注释也可以放在包含代码的行后面：
+
+```rust title="src/main.rs" hl_lines="2" linenums="1"
+fn main() {
+    let lucky_number = 7; // I’m feeling lucky today
+}
+```
+
+不过下面的这种格式会更常见，将注释放到需要解释的代码上面的单独行：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    // I’m feeling lucky today
+    let lucky_number = 7;
+}
+```
+
+Rust 还具有另一种注释，即文档注释，我们将在第 14 章的 “将 crate 发布到 Crates.io” 章节中进行讨论。
+
 ## 5. 控制流
+
+根据条件是否为真来决定是否执行某些代码，或根据条件是否为真来重复运行一段代码，是大部分编程语言的基本组成部分。Rust 代码中最常见的用来控制执行流的结构是 `if` 表达式和循环。
+
+### 5.1 `if` 表达式
+
+`if` 表达式允许根据条件执行不同的代码分支。你提供一个条件并表示 “如果条件满足，运行这段代码；如果条件不满足，不运行这段代码。”
+
+在 *projects* 目录新建一个名为 *branches* 的项目用来学习 `if` 表达式。在 *src/main.rs* 文件中，输入如下内容：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let number = 3;
+
+    if number < 5 {
+        println!("condition was true");
+    } else {
+        println!("condition was false");
+    }
+}
+```
+
+所有的 `if` 表达式都以 `if` 关键字开头，其后跟一个条件。在这个例子中，条件检查变量 `number` 的值是否小于 5。在条件为真时希望执行的代码块位于紧跟条件之后的大括号中。`if` 表达式中与条件关联的代码块有时被叫做**分支**（*arm*），就像第 2 章[“比较猜测的数字和秘密数字”](https://rustwiki.org/zh-CN/book/ch02-00-guessing-game-tutorial.html#比较猜测的数字和秘密数字)部分中讨论到的 `match` 表达式中的分支一样。
+
+也可以包含一个可选的 `else` 表达式来提供一个在条件为假时应当执行的代码块，这里我们就这么做了。如果不提供 `else` 表达式并且条件为假时，程序会直接忽略 `if` 代码块并继续执行下面的代码。
+
+尝试运行代码，应该能看到如下输出：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/branches`
+condition was true
+```
+
+尝试改变 `number` 的值使条件为 `false` 时看看会发生什么：
+
+```rust
+let number = 7;
+```
+
+再次运行程序并查看输出：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/branches`
+condition was false
+```
+
+另外值得注意的是代码中的条件 **必须** 是 `bool` 值。如果条件不是 `bool` 值，我们将得到一个错误。例如，尝试运行以下代码：
+
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let number = 3;
+
+    if number {
+        println!("number was three");
+    }
+}
+```
+
+这里 `if` 条件的值是 `3`，Rust 抛出了一个错误：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+error[E0308]: mismatched types
+ --> src/main.rs:4:8
+  |
+4 |     if number {
+  |        ^^^^^^ expected `bool`, found integer
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `branches` due to previous error
+```
+
+这个错误表明 Rust 期望一个 `bool` 却得到了一个整数。不像 Ruby 或 JavaScript 这样的语言，Rust 并不会尝试自动地将非布尔值转换为布尔值。你必须自始至终显式地使用布尔值作为 `if` 的条件。例如，如果想要 `if` 代码块只在一个数字不等于 `0` 时执行，可以把 `if` 表达式修改成下面这样：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let number = 3;
+
+    if number != 0 {
+        println!("number was something other than zero");
+    }
+}
+```
+
+运行代码会打印出 `number was something other than zero`。
+
+#### 5.1.1 使用 `else if` 处理多重条件
+
+可以将 `if` 和 `else` 组成的 `else if` 表达式来实现多重条件。例如：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let number = 6;
+
+    if number % 4 == 0 {
+        println!("number is divisible by 4");
+    } else if number % 3 == 0 {
+        println!("number is divisible by 3");
+    } else if number % 2 == 0 {
+        println!("number is divisible by 2");
+    } else {
+        println!("number is not divisible by 4, 3, or 2");
+    }
+}
+```
+
+这个程序有 4 个可能的执行路径。运行后应该能看到如下输出：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/branches`
+number is divisible by 3
+```
+
+当执行这个程序时，它按顺序检查每个 `if` 表达式并执行第一个条件为真的代码块。注意即使 6 可以被 2 整除，也不会输出 `number is divisible by 2`，更不会输出 `else` 块中的 `number is not divisible by 4, 3, or 2`。原因是 Rust 只会执行第一个条件为真的代码块，并且一旦它找到一个以后，甚至都不会检查剩下的条件了。
+
+使用过多的 `else if` 表达式会使代码显得杂乱无章，所以如果有多于一个 `else if` 表达式，最好重构代码。为处理这些情况，第 6 章会介绍一个强大的 Rust 分支结构（branching construct），叫做 `match`。
+
+#### 5.1.2 在 `let` 语句中使用 `if`
+
+因为 `if` 是一个表达式，我们可以在 `let` 语句的右侧使用它来将结果赋值给一个变量，例如在如下示例中：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let condition = true;
+    let number = if condition { 5 } else { 6 };
+
+    println!("The value of number is: {}", number);
+}
+```
+
+`number` 变量将会绑定到表示 `if` 表达式结果的值上。运行这段代码看看会出现什么：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.30s
+     Running `target/debug/branches`
+The value of number is: 5
+```
+
+记住，代码块的值是其最后一个表达式的值，而数字本身就是一个表达式。在这个例子中，整个 `if` 表达式的值取决于哪个代码块被执行。这意味着 `if` 的每个分支的可能的返回值都必须是相同类型；在示例 3-2 中，`if` 分支和 `else` 分支的结果都是 `i32` 整型。如果它们的类型不匹配，如下面这个例子，则会产生一个错误：
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let condition = true;
+
+    let number = if condition { 5 } else { "six" };
+
+    println!("The value of number is: {}", number);
+}
+```
+
+当编译这段代码时，会得到一个错误。`if` 和 `else` 分支的值类型是不相容的，同时 Rust 也准确地指出在程序中的何处发现的这个问题：
+
+```console
+$ cargo run
+   Compiling branches v0.1.0 (file:///projects/branches)
+error[E0308]: `if` and `else` have incompatible types
+ --> src/main.rs:4:44
+  |
+4 |     let number = if condition { 5 } else { "six" };
+  |                                 -          ^^^^^ expected integer, found `&str`
+  |                                 |
+  |                                 expected because of this
+
+For more information about this error, try `rustc --explain E0308`.
+error: could not compile `branches` due to previous error
+```
+
+`if` 代码块中的表达式返回一个整数，而 `else` 代码块中的表达式返回一个字符串。这不可行，因为变量必须只有一个类型。Rust 需要在编译时就确切地知道 `number` 变量的类型，这样它就可以在编译时验证在每处使用的 `number` 变量的类型是有效的。若 `number` 的类型仅在运行时确定，则 Rust 将无法做到这一点；而且若编译器必须跟踪任意变量的多种假设类型，则编译器会变得更复杂，并且对代码的保证也会减少。
+
+### 5.2 使用循环重复执行
+
+多次执行同一段代码是很常用的，Rust 为此提供了多种**循环**（*loop*），它们遍历执行循环体中的代码直到结尾并紧接着回到开头继续执行。为了试验循环，让我们新建一个名为 *loops* 的项目。
+
+Rust 有三种循环：`loop`、`while` 和 `for`。我们每一个都试试。
+
+#### 5.2.1 使用 `loop` 重复执行代码
+
+`loop` 关键字告诉 Rust 一遍又一遍地执行一段代码直到你明确要求停止。
+
+例如，将 *loops* 目录中的 *src/main.rs* 文件修改为如下：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    loop {
+        println!("again!");
+    }
+}
+```
+
+当运行这个程序时，我们会看到连续的反复打印 `again!`，直到我们手动停止程序。大部分终端都支持一个快捷键 ctrl-c 来终止一个陷入无限循环的程序。尝试一下：
+
+```console
+$ cargo run
+   Compiling loops v0.1.0 (file:///projects/loops)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.29s
+     Running `target/debug/loops`
+again!
+again!
+again!
+again!
+^Cagain!
+```
+
+符号 `^C` 代表你在这按下了ctrl-c。在 `^C` 之后你可能看到也可能看不到 `again!` ，这取决于在接收到终止信号时代码执行到了循环的何处。
+
+幸运的是，Rust 也提供了一种从代码中跳出循环的方法。可以使用 `break` 关键字来告诉程序何时停止循环。回忆一下在第 2 章猜数字游戏的 [“猜测正确后退出”](https://rustwiki.org/zh-CN/book/ch02-00-guessing-game-tutorial.html#猜测正确后退出) 章节使用过它来在用户猜对数字赢得游戏后退出程序。
+
+我们在猜数字游戏中也使用了 `continue`。循环中的 `continue` 关键字告诉程序跳过这个循环迭代中的任何剩余代码，并转到下一个迭代。
+
+如果存在嵌套循环，`break` 和 `continue` 应用于此时最内层的循环。你可以选择在一个循环上指定一个**循环标签**（*loop label*），然后将标签与 `break` 或 `continue` 一起使用，使这些关键字应用于已标记的循环而不是最内层的循环。下面是一个包含两个嵌套循环的示例：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {}", count);
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {}", remaining);
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {}", count);
+}
+```
+
+外层循环有一个标签 `counting_up`，它将从 0 数到 2。没有标签的内部循环从 10 向下数到 9。第一个没有指定标签的 `break` 将只退出内层循环。`break 'counting_up;` 语句将退出外层循环。这个代码打印:
+
+```console
+$ cargo run
+   Compiling loops v0.1.0 (file:///projects/loops)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.58s
+     Running `target/debug/loops`
+count = 0
+remaining = 10
+remaining = 9
+count = 1
+remaining = 10
+remaining = 9
+count = 2
+remaining = 10
+End count = 2
+```
+
+#### 5.2.2 从循环返回
+
+`loop` 的一个用例是重试可能会失败的操作，比如检查线程是否完成了任务。然而你可能会需要将操作的结果从循环中传递给其它的代码。为此，你可以在用于停止循环的 `break` 表达式添加你想要返回的值；该值将从循环中返回，以便您可以使用它，如下所示：
+
+```rust
+fn main() {
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
+    };
+
+    println!("The result is {}", result);
+}
+```
+
+在循环之前，我们声明了一个名为 `counter` 的变量并初始化为 `0`。接着声明了一个名为 `result` 来存放循环的返回值。在循环的每一次迭代中，我们将 `counter` 变量加 `1`，接着检查计数是否等于 `10`。当相等时，使用 `break` 关键字返回值 `counter * 2`。循环之后，我们通过分号结束赋值给 `result` 的语句。最后打印出 `result` 的值，也就是 20。
+
+#### 5.2.3 `while` 条件循环
+
+在程序中计算循环的条件也很常见。当条件为真，执行循环。当条件不再为真，调用 `break` 停止循环。这个循环类型可以通过组合 `loop`、`if`、`else` 和 `break` 来实现；如果你喜欢的话，现在就可以在程序中试试。然而，这个模式太常用了，Rust 为此内置了一个语言结构，它被称为 `while` 循环。示例 3-3 使用了 `while` 来程序循环 3 次，每次数字都减 1。接着在循环结束后，打印出另一个信息并退出。
+
+
+```rust title="src/main.rs" linenums="1"
+fn main() {
+    let mut number = 3;
+
+    while number != 0 {
+        println!("{}!", number);
+
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+}
+```
+
+示例 3-3: 当条件为真时，使用 `while` 循环运行代码
+
+这种结构消除了很多使用 `loop`、`if`、`else` 和 `break` 时所必须的嵌套，这样更加清晰。当条件为真就执行，否则退出循环。
+
+#### 5.2.4 使用 `for` 遍历集合
+
+可以使用 `while` 结构来遍历集合中的元素，比如数组。例如，示例 3-4 中的循环打印数组 `a` 中的每个元素。
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < 5 {
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+}
+```
+
+在这里，代码对数组中的元素进行计数。它从索引 `0` 开始，并接着循环直到遇到数组的最后一个索引（即 `index < 5` 不再为真时）。运行这段代码会打印出数组中的每一个元素：
+
+```console
+$ cargo run
+   Compiling loops v0.1.0 (file:///projects/loops)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.32s
+     Running `target/debug/loops`
+the value is: 10
+the value is: 20
+the value is: 30
+the value is: 40
+the value is: 50
+```
+
+数组中的 5 个元素全部都如期被打印出来。尽管 `index` 在某一时刻会到达值 `5`，不过循环在其尝试从数组获取第 6 个值（会越界）之前就停止了。
+
+但是这个过程很容易出错；如果索引值或测试条件不正确会导致程序 panic。例如，如果将 `a` 数组的定义更改为包含 4 个元素，但忘记将条件更新为`while index < 4`，则代码会出现 panic。这也使程序更慢，因为编译器增加了运行时代码来对每次循环进行条件检查，以确定在循环的每次迭代中索引是否在数组的边界内。
+
+作为更简洁的替代方案，可以使用 `for` 循环来对一个集合的每个元素执行一些代码。`for` 循环看起来如示例 3-5 所示：
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    let a = [10, 20, 30, 40, 50];
+
+    for element in a {
+        println!("the value is: {}", element);
+    }
+}
+```
+
+当运行这段代码时，将看到与示例 3-4 一样的输出。更为重要的是，我们增强了代码安全性，并消除了可能由于超出数组的结尾或遍历长度不够而缺少一些元素而导致的 bug。
+
+使用 `for` 循环的话，就不需要惦记着在改变数组元素个数时修改其他的代码了，就像使用示例 3-4 中使用的方法一样。
+
+`for` 循环的安全性和简洁性使得它成为 Rust 中使用最多的循环结构。即使是在想要循环执行代码特定次数时，例如示例 3-3 中使用 `while` 循环的倒计时例子，大部分 Rustacean 也会使用 `for` 循环。这么做的方式是使用 `Range`，它是标准库提供的类型，用来生成从一个数字开始到另一个数字之前结束的所有数字的序列。
+
+下面是一个使用 `for` 循环来倒计时的例子，它还使用了一个我们还未讲到的方法，`rev`，用来反转区间（range）:
+
+
+```rust linenums="1" title="src/main.rs"
+fn main() {
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+    println!("LIFTOFF!!!");
+}
+```
+
+这段代码更好一些，不是吗？
+
+## 6. 总结
+
+你做到了！这是一个大章节：你学习了变量、标量和复合数据类型、函数、注释、`if` 表达式和循环！要练习本章讨论的概念，请尝试编写程序来实现以下操作：
+
+- 在华氏温度和摄氏度之间转换温度。
+- 生成 n 阶斐波那契数列。
+- 打印圣诞颂歌 “The Twelve Days of Christmas” 的歌词，利用歌曲中的重复部分（编写循环）。
+
+当你准备好继续前进时，我们将讨论一个其他语言中 **并不** 常见的概念：所有权（ownership）。
 
