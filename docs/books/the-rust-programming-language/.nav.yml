@@ -4,5 +4,7 @@ nav:
   - ch02-guessing-game-tutorial.md
   - ch03-common-programming-concepts.md
   - ch04-understanding-ownership.md
+  - ch05-structs.md
+  - ch06-enums.md
 
   
