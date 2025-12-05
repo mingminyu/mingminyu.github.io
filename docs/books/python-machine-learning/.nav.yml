@@ -1,0 +1,13 @@
+nav:
+  - index.md
+  - 1.赋予计算机学习数据的能力: ch01-giving-computer-ability-to-learn-from-data.md
+  - 2.机器学习分类算法: ch02-training-ml-algorithms-for-classification.md
+  - 3.使用sklearn实现分类算法: ch03-a-tour-of-ml-classifiers-using-sciit-learn.md
+  - 4.数据预处理: ch04-build-good-training-sets-data-preprocessing.md
+  - 5.通过降维压缩数据: ch05-compressing-data-via-dimensionality-reduction.md
+  - 6.模型评估与参数调优实战: ch06-learning-best-practices-for-model-evaluation-and-hyperparameter-tuning.md
+  - 7.集成学习实战: ch07-combining-different-models-for-ensembel-learning.md
+  - 8.使用机器学习进行情感分析: ch08-apply-ml-to-sentiment-analysis.md
+  - 9.在Web应用中嵌入机器学习模型: ch09-embedding-a-ml-model-into-a-web-app.md
+  - 10.使用回归分析预测连续型目标变量: ch10-predict-continuous-target-variables-with-regression-analysis.md
+  - 11.聚类分析: ch11-working-with-unlabeled-data-clustering-analysis.md

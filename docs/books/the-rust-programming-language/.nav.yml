@@ -1,10 +1,9 @@
 nav:
   - index.md
-  - ch01-getting-started.md
-  - ch02-guessing-game-tutorial.md
-  - ch03-common-programming-concepts.md
-  - ch04-understanding-ownership.md
-  - ch05-structs.md
-  - ch06-enums.md
-
-  
+  - 1.入门指南: ch01-getting-started.md
+  - 2.猜数字游戏: ch02-guessing-game-tutorial.md
+  - 3.通用编程概念: ch03-common-programming-concepts.md
+  - 4.认识所有权: ch04-understanding-ownership.md
+  - 5.使用结构体组织相关联的数据: ch05-structs.md
+  - 6.枚举和模式匹配: ch06-enums.md
+  - 7.使用包、Crate和模块管理不断增长的项目: ch07-managing-growing-projects-with-packages-crates-and-modules.md

@@ -45,7 +45,7 @@ route(IpAddrKind::V6);
 
 使用枚举甚至还有更多优势。进一步考虑一下我们的 IP 地址类型，目前没有一个存储实际 IP 地址 **数据** 的方法；只知道它是什么 **类型** 的。考虑到已经在第 5 章学习过结构体了，你可能会像示例 6-1 那样处理这个问题：
 
-```rust linenums="1" title="将IP地址的数据和IpAddrKind成员存储在结构体中"
+```rust linenums="1" title="示例6-1: 将IP地址的数据和IpAddrKind成员存储在结构体中"
 enum IpAddrKind {
     V4,
     V6,
@@ -71,14 +71,13 @@ let loopback = IpAddr {
 
 我们可以使用一种更简洁的方式来表达相同的概念，仅仅使用枚举并将数据直接放进每一个枚举成员而不是将枚举作为结构体的一部分。`IpAddr` 枚举的新定义表明了 `V4` 和 `V6` 成员都关联了 `String` 值：
 
-```rust
+```rust linenums="1"
 enum IpAddr {
     V4(String),
     V6(String),
 }
 
 let home = IpAddr::V4(String::from("127.0.0.1"));
-
 let loopback = IpAddr::V6(String::from("::1"));
 ```
 
@@ -98,7 +97,7 @@ let loopback = IpAddr::V6(String::from("::1"));
 
 这些代码展示了使用枚举来存储两种不同 IP 地址的几种可能的选择。然而，事实证明存储和编码 IP 地址实在是太常见了[以致标准库提供了一个开箱即用的定义！](https://rustwiki.org/zh-CN/std/net/enum.IpAddr.html)让我们看看标准库是如何定义 `IpAddr` 的：它正有着跟我们定义和使用的一样的枚举和成员，不过它将成员中的地址数据嵌入到了两个不同形式的结构体中，它们对不同的成员的定义是不同的：
 
-```rust
+```rust linenums="1"
 struct Ipv4Addr {
   // --snip--
 }
@@ -119,7 +118,7 @@ enum IpAddr {
 
 来看看示例 6-2 中的另一个枚举的例子：它的成员中内嵌了多种多样的类型：
 
-```rust linenums="1"
+```rust linenums="1" title="示例6-2: Message 枚举的每个成员都存储了不同数量和类型的值"
 enum Message {
     Quit,
     Move { x: i32, y: i32 },
@@ -127,8 +126,6 @@ enum Message {
     ChangeColor(i32, i32, i32),
 }
 ```
-
-示例 6-2：一个 `Message` 枚举，其每个成员都存储了不同数量和类型的值
 
 这个枚举有四个含有不同类型的成员：
 
@@ -191,7 +188,7 @@ enum Option<T> {
 }
 ```
 
-`Option<T>` 枚举是如此有用以至于它甚至被包含在了 prelude 之中，你不需要将其显式引入作用域。另外，它的成员也是如此，可以不需要 `Option::` 前缀来直接使用 `Some` 和 `None`。即便如此 `Option<T>` 也仍是常规的枚举，`Some(T)` 和 `None` 仍是 `Option<T>` 的成员。
+`Option<T>` 枚举是如此有用以至于它甚至被包含在了 `prelude` 之中，你不需要将其显式引入作用域。另外，它的成员也是如此，可以不需要 `Option::` 前缀来直接使用 `Some` 和 `None`。即便如此 `Option<T>` 也仍是常规的枚举，`Some(T)` 和 `None` 仍是 `Option<T>` 的成员。
 
 `<T>` 语法是一个我们还未讲到的 Rust 功能。它是一个泛型类型参数，第 10 章会更详细的讲解泛型。目前，所有你需要知道的就是 `<T>` 意味着 `Option` 枚举的 `Some` 成员可以包含任意类型的数据。这里是一些包含数字类型和字符串类型 `Option` 值的例子：
 
@@ -245,7 +242,7 @@ Rust 有一个叫做 `match` 的极为强大的控制流运算符，它允许我
 
 因为刚刚提到了硬币，让我们用它们来作为一个使用 `match` 的例子！我们可以编写一个函数来获取一个未知的硬币，并以一种类似验钞机的方式，确定它是何种硬币并返回它的美分值，如示例 6-3 中所示。
 
-```rust linenums="1"
+```rust linenums="1" title="示例6-3：一个枚举和一个以枚举成员作为模式的 match 表达式"
 enum Coin {
     Penny,
     Nickel,
@@ -263,7 +260,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 }
 ```
 
-示例 6-3：一个枚举和一个以枚举成员作为模式的 `match` 表达式
+
 
 拆开 `value_in_cents` 函数中的 `match` 来看。首先，我们列出 `match` 关键字后跟一个表达式，在这个例子中是 `coin` 的值。这看起来非常像 `if` 使用的表达式，不过这里有一个非常大的区别：对于 `if`，表达式必须返回一个布尔值，而这里它可以是任何类型的。例子中的 `coin` 的类型是示例 6-3 中定义的 `Coin` 枚举。
 
@@ -273,7 +270,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 每个分支相关联的代码是一个表达式，而表达式的结果值将作为整个 `match` 表达式的返回值。
 
-如果分支代码较短的话通常不使用大括号，正如示例 6-3 中的每个分支都只是返回一个值。如果想要在分支中运行多行代码，可以使用大括号。例如，如下代码在每次使用`Coin::Penny` 调用时都会打印出 “Lucky penny!”，同时仍然返回代码块最后的值，`1`：
+如果分支代码较短的话通常不使用大括号，正如示例 6-3 中的每个分支都只是返回一个值。如果想要在分支中运行多行代码，可以使用大括号。例如，如下代码在每次使用 `Coin::Penny` 调用时都会打印出 “Lucky penny!”，同时仍然返回代码块最后的值，`1`：
 
 ```rust linenums="1"
 fn value_in_cents(coin: Coin) -> u8 {
@@ -295,7 +292,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 作为一个例子，让我们修改枚举的一个成员来存放数据。1999 年到 2008 年间，美国在 25 美分的硬币的一侧为 50 个州的每一个都印刷了不同的设计。其他的硬币都没有这种区分州的设计，所以只有这些 25 美分硬币有特殊的价值。可以将这些信息加入我们的 `enum`，通过改变 `Quarter` 成员来包含一个 `State` 值，示例 6-4 中完成了这些修改：
 
-```rust linenums="1"
+```rust linenums="1" title="示例6-4：Quarter 成员也存放了一个 UsState 值的 Coin 枚举"
 #[derive(Debug)] // 这样可以立刻看到州的名称
 enum UsState {
     Alabama,
@@ -310,8 +307,6 @@ enum Coin {
     Quarter(UsState),
 }
 ```
-
-示例 6-4：`Quarter` 成员也存放了一个 `UsState` 值的 `Coin` 枚举
 
 想象一下我们的一个朋友尝试收集所有 50 个州的 25 美分硬币。在根据硬币类型分类零钱的同时，也可以报告出每个 25 美分硬币所对应的州名称，这样如果我们的朋友没有的话，他可以将其加入收藏。
 
@@ -341,7 +336,7 @@ fn value_in_cents(coin: Coin) -> u8 {
 
 得益于 `match`，编写这个函数非常简单，它将看起来像示例 6-5 中这样：
 
-```rust linenums="1"
+```rust linenums="1" title="示例6-5：一个在 Option 上使用 match 表达式的函数"
 fn plus_one(x: Option<i32>) -> Option<i32> {
     match x {
         None => None,
@@ -353,10 +348,6 @@ let five = Some(5);
 let six = plus_one(five);
 let none = plus_one(None);
 ```
-
-示例 6-5：一个在 `Option<i32>` 上使用 `match` 表达式的函数
-
-#### 2.2.1 匹配 `Some(T)`
 
 让我们更仔细地检查 `plus_one` 的第一行操作。当调用 `plus_one(five)` 时，`plus_one` 函数体中的 `x` 将会是值 `Some(5)`。接着将其与每个分支比较。
 
@@ -439,7 +430,7 @@ Rust 还提供了一个模式，当我们不想使用通配模式获取的值时
 
 让我们改变游戏规则，当你掷出的值不是 3 或 7 的时候，你必须再次掷出。这种情况下我们不需要使用这个值，所以我们改动代码使用 `_` 来替代变量 `other` ：
 
-```rust
+```rust linenums="1"
 let dice_roll = 9;
 match dice_roll {
     3 => add_fancy_hat(),
@@ -476,15 +467,13 @@ fn remove_fancy_hat() {}
 
 `if let` 语法让我们以一种不那么冗长的方式结合 `if` 和 `let`，来处理只匹配一个模式的值而忽略其他模式的情况。考虑示例 6-6 中的程序，它匹配一个 `Option<u8>` 值并只希望当值为 3 时执行代码：
 
-```rust linenums="1"
+```rust linenums="1" title="match 只关心当值为 Some(3) 时执行代码"
 let some_u8_value = Some(0u8);
 match some_u8_value {
     Some(3) => println!("three"),
     _ => (),
 }
 ```
-
-示例 6-6：`match` 只关心当值为 `Some(3)` 时执行代码
 
 我们想要对 `Some(3)` 匹配进行操作但是不想处理任何其他 `Some<u8>` 值或 `None` 值。为了满足 `match` 表达式（穷尽性）的要求，必须在处理完这唯一的成员后加上 `_ => ()`，这样也要增加很多样板代码。
 
