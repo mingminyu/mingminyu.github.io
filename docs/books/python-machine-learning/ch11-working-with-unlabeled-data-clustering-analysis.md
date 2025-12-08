@@ -1,14 +1,14 @@
 # 第11章：聚类分析
 
-GitHub Notebook 地址: https://nbviewer.jupyter.org/github/rasbt/python-machine-learning-book/blob/master/code/ch11/ch11.ipynb
+> GitHub Notebook 地址: https://nbviewer.jupyter.org/github/rasbt/python-machine-learning-book/blob/master/code/ch11/ch11.ipynb
 
 在前面的章节中，使用了监督学习技术来构建机器学习模型，其中训练数据都是事先已知预测结果的，即训练数据中已提供了数据的类标。在本章中，我们将转而研究聚类分析，它是一种无监督学习(unsupervised learning) 技术，可以在事先不知道正确结果(即无类标信息或逾期输出值)的情况下，发现数据本身所蕴含的结构等信息。聚类的目标是发现数据中自然形成的分组，使得每个簇内样本的相似度大于其他簇内样本的相似性。
 
 由于聚类本身带有探索的性质，因此更能激发人们的兴趣。本章通过学习如下概念，我们能够更加有效地组织数据:
 
--   使用 KMeans 算法发现簇中心
--   使用自底向上的方法构建层次聚类树
--   基于密度聚类方法发现任意形状簇
+- 使用 KMeans 算法发现簇中心
+- 使用自底向上的方法构建层次聚类树
+- 基于密度聚类方法发现任意形状簇
 
 ## 1. 使用KMeans算法对相似对象进行分组
 
