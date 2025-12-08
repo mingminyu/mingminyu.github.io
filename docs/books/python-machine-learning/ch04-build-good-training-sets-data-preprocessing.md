@@ -138,7 +138,7 @@ print(df.dropna(subset=['C']))
 
 ### 1.2 缺失数据填充
 
-通常情况下，删除样本或者删除数据集中的整个特征列是不可行的，因为这样可能会丢失过多有价值的数据。在此情况下，我们可以使用不同的插值技术，通过数据集中其他训练样本的数据来估计缺失值。最常用的插值技术之一就是**均值插补**(meaneinputation)，即使用相应的特征均值来替换缺失值。我们可使用 scikit-learn 中的 `Imputer` 类方法方便地实现此方法，代码如下:
+通常情况下，删除样本或者删除数据集中的整个特征列是不可行的，因为这样可能会丢失过多有价值的数据。在此情况下，我们可以使用不同的插值技术，通过数据集中其他训练样本的数据来估计缺失值。最常用的插值技术之一就是 **均值插补**(meaneinputation)，即使用相应的特征均值来替换缺失值。我们可使用 scikit-learn 中的 `Imputer` 类方法方便地实现此方法，代码如下:
 
 ```python
 from sklearn.preprocessing import Imputer
@@ -172,16 +172,16 @@ print(imputed_data)
 
 在上一节中，我们使用了 scikit-learn 中的 `Imputer` 类填充我们数据集中的缺失值。`Imputer` 类属于 scikit-learn 中的转换器类，主要用于数据的转换。这些类中常用的两个方法是 `fit` 和 `transform`。其中，`fit` 方法用于对数据集中的参数进行识别并构建相应的数据补齐模型，而 `transform` 方法则使用刚构建的数据补齐模型对数据集中相应参数的缺失值进行补齐。所有待补齐数据的维度应该与数据补齐模型中其他数据的维度相同。下图解释了转换器如何对训练和测试数据进行数据处理(在此是数据补齐):
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231456782.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/48.png)
+
 
 我们在第3章中用到了分类器，它们在 scikit-learn 中属于预估器类别，其中 API 的设计与转换器非常相似。在后续内容中我们看到，预估器类包含一个 `predict` 方法，同时也包含一个 `transform` 方法。读者应该记得，我们在训练预估器用于分类任务时，同样使用了一个 `fit` 方法来对参数进行设定。在监督学习中，我们额外提供了类标用于构建模型，而模型可通过 `predict` 方法对新的样本数据展开预测，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231520569.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/49.png)
 
 ## 2. 处理类别数据
 
-到目前为止，我们仅学习了处理数值型数据的方法。然而，在真实数据集中，经常会出现一个或多个类别数据的特征列。我们在讨论类别数据时，又可以进一步将他们划分为**标称特征**(normal feature) 和**有序特征**(ordinal feature)。可以将有序特征理解为类别的值是有序的或者是可以排序的。如Ｔ恤衫的尺寸就是一个有序特征，因为我们可以为其值排序 `XL` > `L` > `M`。相反，标称数据则不具备排序的特征。继续刚才的例子，我们可以将Ｔ恤衫的颜色看做一个标称特征，因为一般说来，对颜色进行比较，如红色大于蓝色这种说法不符合常理的。
+到目前为止，我们仅学习了处理数值型数据的方法。然而，在真实数据集中，经常会出现一个或多个类别数据的特征列。我们在讨论类别数据时，又可以进一步将他们划分为 **标称特征**(normal feature) 和 **有序特征**(ordinal feature)。可以将有序特征理解为类别的值是有序的或者是可以排序的。如Ｔ恤衫的尺寸就是一个有序特征，因为我们可以为其值排序 `XL` > `L` > `M`。相反，标称数据则不具备排序的特征。继续刚才的例子，我们可以将Ｔ恤衫的颜色看做一个标称特征，因为一般说来，对颜色进行比较，如红色大于蓝色这种说法不符合常理的。
 
 在探索类别数据的处理技巧之前，我们先构建了一个数据集用来描述问题:
 
@@ -558,27 +558,26 @@ $$
 
 为了更好地理解 L1 正则化如何对数据进行稀疏化，我们先退一步，来看一下正则化的几何解释。我们先绘制权重系数 $w_1$ 和 $w_2$ 的凸代价函数的等高线。在此，我们将使用第2章中 Adaline 算法所采用的代价函数——误差平方和(sum of the squared errors, SSE) 作为代价函数，因为它的图像是对称的，且比逻辑斯蒂回归的代价函数易于绘制。在后续内容中，我们将再次使用此代价函数。请记住，我们的目标是找到一个权重系数的组合，能够使得训练数据的代价函数最小，如下图所示(椭圆中心的圆点):
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190901225251516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/50.png)
+
 
 至此，我们可以将正则化看作是在代价函数中增加一个惩罚项，以对小的权重做出激励，换句话说，我们对大的权重做出了惩罚。
 
 这样，通过正则化参数 $\lambda$ 来增加正则化项的强度，使得权重向 0 收缩，就降低了模型对训练数据的依赖程度。我们使用下图来阐述 L2 惩罚项的概念。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231649922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/50.png)
 
 我们使用阴影表示的球代表二次的 L2 正则化项。在此，我们的权重系数不能超出正则化的区域——权重的组合不能落在阴影以外的区域。另一方面，我们仍然希望能够使得代价函数最小化。在惩罚项的约束下，最好的选择就是 L2 球与不含有惩罚项的代价函数等高线的切点。正则化参数 $\lambda$ 的值越大，含有惩罚项的代价函数增长得就越快，L2 的球就会越小。例如，如果增大正则化参数的值，使之趋向于无穷大，权重系数将趋近于0，即图像上所示的 L2 球的圆心。总结一下这个例子的主要内容: 我们的目标是使得代价函数和惩罚项之和最小，这可以理解为通过增加偏差使得模型趋向于简单，以降低在训练数据不足的情况下拟合得到的模型的方差。
 
 现在来讨论 L1 正则化与稀疏问题。L1 正则化的主要概念与我们之前所讨论的相类似。不过，由于 L1 的惩罚项是权重系数的绝对值的和(请记住L2惩罚项是二次的)，我们可以将其表示为菱形区域，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231703737.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/51.png)
 
 在上图中，代价函数等高线与 L1 菱形在 $w_1$ 处相交。由于 L1 的边界不是圆滑的，这个交叉点更有可能是最优的——也就是说，椭圆形的代价函数边界与 L1 菱形边界的交点位于坐标轴上，这也就使得模型更加稀疏。L1 正则化如何导致数据稀疏的数学论证已经超出了本书的范围。如果你感兴趣，请参阅 Trevor Hastie、Robert Tibshirani 和 Jerome Friedman 的著作 The Elements of Statistical Learning 中的第3，4节，里面有关于 L2 与 L1 正则化的精彩论述。
 
 对于 scikit-learn 中支持 L1 的正则化模型，我们可以通过将 `penalty` 参数设定为 `'l1'` 来进行简单的数据稀疏处理:
 
-```python
+```python linenums="1"
 from sklearn.linear_model import LogisticRegression
 LogisticRegression(penalty='l1')	
 ```
@@ -652,7 +651,7 @@ $$
 
 最后，我们来绘制一下正则化效果的图，它展示了将权重系数(正则化参数) 应用于多个特征上时产生的不同的正则化效果:
 
-```python
+```python linenums="1"
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -701,12 +700,11 @@ plt.show()
 
 通过下图，我们能对 L1 正则化有个更深入的认识。可以看到，在强的正则化参数(C < 0.1)作用下，惩罚项使得所有的特征权重都趋近于 0，这里，C 是正则化参数 $\lambda$ 的倒数。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231734667.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/52.png)
 
 ### 5.2 序列特征选择算法
 
-另外一种降低模型复杂度从而解决过拟合问题的方法是通过特征选择**降维**(dimensionality reduction)，该方法对未经正则化处理的模型特别有效。降维技术主要分为两个大类: 特征选择和特征提取。通过特征选择，我们可以选出原始特征的一个子集。而在特征提取中，通过对现有的特征信息进行推演，构造出一个新的特征子空间。在本节，我们将着眼于一些经典的特征选择算法。第5章会介绍几种特征抽取技术，以将数据集压缩到低维的特征子空间。
+另外一种降低模型复杂度从而解决过拟合问题的方法是通过特征选择 **降维**(dimensionality reduction)，该方法对未经正则化处理的模型特别有效。降维技术主要分为两个大类: 特征选择和特征提取。通过特征选择，我们可以选出原始特征的一个子集。而在特征提取中，通过对现有的特征信息进行推演，构造出一个新的特征子空间。在本节，我们将着眼于一些经典的特征选择算法。第5章会介绍几种特征抽取技术，以将数据集压缩到低维的特征子空间。
 
 序列特征选择算法是一种贪婪搜索算法，用于将原始的 $d$ 维特征空间压缩到一个 $k$ 维特征子空间，其中 $k<d$。使用特征选择算法出于以下考虑: 能够剔除不不相关特征或噪声，自动选出与问题最相关的特征子集，从而提高计算效率或是降低模型的泛化误差。这在模型不支持正则化尤为有效。一个经典的序列特征选择算法时序列后向选择算法(Sequential Backward Selection, SBS),其目的是在分类性能衰减的约束下，降低原始特征空间上的数据维度，以提高效率。在某些情况下，SBS 甚至可以在模型面临过拟合问题时提高模型的能力。
 
@@ -723,7 +721,7 @@ SBS 算法背后的理念非常简单，SBS 依次从特征集合中删除某些
 
 遗憾的是，scikit-learn 中并没有实现 SBS 算法。不过它相当简单，我们可以使用 Python 来实现:
 
-```python
+```python linenums="1"
 from sklearn.base import clone
 from itertools import combinations
 import numpy as np
@@ -823,7 +821,8 @@ plt.show()
 
 通过下图可以看到: 当我们减少了特征的数量后，KNN 分类器在验证数据集上的准确率提高了，这可能归因于在第3章中介绍 KNN 算法时讨论的“维度灾难”。此外，图中还显示，当 `k={5, 6, 7, 8, 9, 10}` 时，算法可以达到百分百的准确率。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231800305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/53.png)
+
 
 为了满足一下自己的好奇心，现在让我们看一下是哪5个特征在验证数据集上有如此好的表现:
 
@@ -872,8 +871,9 @@ print('Test accuracy: ', knn.score(X_test_std[:, k5], y_test))
 
 当特征数量不及葡萄酒输几局原始特征数量的一半时，在测试数据集上的预测准确率提升了两个百分点。同时，通过测试数据集(约为 96.3%) 和训练数据集(约为96.0%)上准确率之间的微小差别可以发现，过拟合现象得以缓解。
 
-> $\color {red}{scikit-learn 中的特征选择算法}$
-> scikit-learn 提供了许多其他的特征选择算法，包括: 基于特征权重的递归后向消除算法(recursive backward elimination based on feature weights)、基于特征重要性的特征选择树方法(tree-based methods to select features by importance)，以及单变量统计测试(univariate statistical tests)。对特征选择方法进行更深入的讨论已经超出了本书的范围，对这些算法的总结性描述及其示例请参见链接: http://scikit-learn.org/stable/modules/feature_selection.html 。
+???+ note "scikit-learn 中的特征选择算法"
+
+		scikit-learn 提供了许多其他的特征选择算法，包括: 基于特征权重的递归后向消除算法(recursive backward elimination based on feature weights)、基于特征重要性的特征选择树方法(tree-based methods to select features by importance)，以及单变量统计测试(univariate statistical tests)。对特征选择方法进行更深入的讨论已经超出了本书的范围，对这些算法的总结性描述及其示例请参见链接: http://scikit-learn.org/stable/modules/feature_selection.html 。
 
 ## 6. 通过随机森林判定特征的重要性
 
@@ -935,11 +935,11 @@ plt.show()
 
 执行上述代码后，根据特征在葡萄酒数据集中的相对重要性，绘制出根据特征重要性排序的图，请注意，这些特征重要性经过归一化处理，其和为 1.0。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830231834808.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/54.png)
 
 由上图我们讨论得到结论: 基于 10 000 棵决策树平均不纯度衰减的计算，数据集上最具判别效果的特征是 'alcohol'。有趣的是，上图中排名靠前的四个特征中有三个也出现在前面章节中使用 SBS 算法所选的五个特征中。不过，就可解释性而言，随机森林有一个重要的特征性值得一提。例如: 如果两个或者更多个特征是高度相关的，一个特征的相关特征未被完全包含进来，那么此特征可能会得到一个较高的评分。另一方面，如果我们的关注点仅在模型的预测性能上，scikit-learn 还实现了一个 transform 方法，可以在用户设定阈值的基础上进行特征选择，这在我们将 RandomForestClassifier 作为特征选择器，并将其作为 scikit-learn 实现分析流程环节中的一个步骤时尤为有效，它使得我们可以通过同一个预估器来连接不同的预处理步骤，我们将在第6章中对这些相关内容进行他探讨。例如，将阈值设为 0.15，我们可以使用下列代码将数据压缩到是哪个最重要的特征: Alcohol、Malic acid 和 Ash:
 
-```python
+```python linenums="1"
 X_selected = forest.transform(X_train, threshold=0.15)
 print(X_selected.shape)
 ```

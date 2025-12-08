@@ -14,7 +14,7 @@ GitHub Notebook 地址: https://nbviewer.jupyter.org/github/rasbt/python-machine
 -   回归模型的评估及常见问题
 -   基于非线性数据拟合回归问题
 
-# 10.1 简单的线性回归模型初探
+## 1. 简单的线性回归模型初探
 
 简单(单变量)线性回归的目标是: 通过模型来描述某一特征(解释变量 $X$)与连续型输出(目标变量 $y$)之间的关系。当只有一个解释变量时，线性模型的函数定义如下:
 
@@ -26,7 +26,7 @@ $$
 
 基于前面定义的线性方程，线性回归可看作是求解样本点的最佳拟合直线，如下图所示。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019090220343331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/107.png)
 
 这条最佳拟合线也被成为**回归线**(regression line)，回归线与样本之间的垂直连线即所谓的**偏移**(offset) 或**残差**(residual)——预测的误差。
 
@@ -39,7 +39,7 @@ $$
 
 其中，$w_0$ 为 $x_0=1$ 时在 $y$ 轴上的截距。
 
-# 10.2 波士顿房屋数据集
+## 2. 波士顿房屋数据集
 
 在实现第一个线性回归模型之前，先介绍一个新的数据集: 波士顿房屋数据集(Housing Dataset)，它是由 D.Harrison 和 D.L.Rubinfled 于 1978 年收集的波士顿郊区房屋的信息。此房屋数据可免费试用，读者可在 UCI 机器学习数据库中下载:  https://archive.ics.uci.edu/ml/datasets/Housing 。
 
@@ -74,9 +74,9 @@ df.head()
 
 为了确保数据已经正确加载，我们先显示数据集的前5行。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902203513412.png)
+![](https://mingminyu.github.io/webassets/images/20251208/108.png)
 
-## 10.2.1 可视化数据集的重要特征
+### 2.1 可视化数据集的重要特征
 
 **探索性数据分析**(Exploratory Data Analysis, EDA) 是机器学习模型训练之前的一个重要步骤。在本节的后续内容中，借助 EDA 图形工具箱中那些简单切且有效的技术，可以帮助我们直观地发现数中的异常情况、数据的分布情况，以及特征间的相互关系。
 
@@ -102,7 +102,7 @@ sns.reset_orig()
 
 出于篇幅限制及可读性的考虑，我们仅绘制了数据集中的 5列: LSTAT、INDUS、NOX、RM 和 MEDV。不过，建议读者绘制整个 DataFrame 的散点图矩阵，以对数据做进一步的探索。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902203600795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/109.png)
 
 通过此散点图矩阵，我们可以快速了解数据是如何分布的，以及其中是否包含异常值。例如，我们可直观看出 RM 和房屋价格 MEDV(第5列和第4行) 之间存在线性关系。此外，从 MEDV 直方图(散点图矩阵的右下角子图)中可以发现: MEDV 呈正态分布，但包含几个异常值。
 
@@ -167,15 +167,15 @@ plt.show()
 
 从结果图像中可见，相关系数矩阵为我们提供了另外一种有用的图形化数据描述方式，由此可以根据各特征间的线性相关性进行特征选择:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902203836350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/110.png)
 
 为了拟合线性回归模型，我们主要关注那些跟目标变量 MEDV 高度相关的特征。观察前面的相关系数矩阵，可以发现 MEDV 与变量 LSTAT 的相关性最大(-0.74)。大家应该还记得，前面的散点图矩阵显示 LSTAT 和 MEDV 之间存在明显的非线性关系。另一方面，正如散点图矩阵所示，RM 和 MEDV 间的相关性也较高(0.70)，考虑到从散点图中观察到了这两个变量之间的线性关系，因此，在后续小节中使用 RM 作为解释变量进行简单线性回归模型训练，是一个较好的选择。
 
-# 10.3 基于最小二乘法构建线性回归模型
+## 3. 基于最小二乘法构建线性回归模型
 
 在本章开始时讨论过，可将线性回归模型看作通过训练数据的样本点来寻找一条最佳拟合直线。不过，在此既没有对最佳拟合做出定义，也没有研究拟合类似模型的各种技术。在接下来的小节中，我们将消除读者对上述问题的疑惑: 通过最小二乘法(Ordinary Least Squares, OLS) 估计回归曲线的参数，使得回归曲线到样本点垂直距离(残差或误差)的平方和最小。
 
-## 10.3.1 通过梯度下降计算回归参数
+### 3.1 通过梯度下降计算回归参数
 
 回顾一下第2章中介绍的自适应线性神经元(Adaptive Linear Neuron, Adaline): 人工神经元中使用了一个线性激励函数，同时还定义了一个代价函数 $J(\cdot)$，通过梯度下降(Gradient Descent，GD)、随机梯度下降(Stochastic Gradient Descent，GD) 等优化算法使得代价函数最小，从而得到相应的权重。Adaline 中的代价函数就是**误差平方和**(Sum of Squared Error，SSE)，它等同于我们定义的 OLS 代价函数:
 
@@ -239,7 +239,7 @@ plt.show()
 
 从下图中可以看到，经过第5次迭代后，GD 算法收敛了:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902204352974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/111.png)
 
 接下来，我们将线性回归曲线与训练数据拟合情况绘制成图。为达到此目的，我们定义了一个辅助函数用来绘制训练样本的散点图，同时绘制出相应的回归曲线:
 
@@ -261,7 +261,7 @@ plt.show()
 
 正如下图所示，线性回归曲线反映出了一般趋势，随着房间数量的增加，房价呈增长趋势:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902204414806.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/112.png)
 
 上述结论是基于直觉观察得到的，但是数据也同样告诉我们，房间数在很多情况下并不能很好地解释房价。本章后续内容将讨论如何量化回归模型的性能。有趣的是，我们观察到一条奇怪的直线 `y=3`，这意味着房价被限定了上界。在某些应用中，给出变量在原始取值区间上的预测值也是非常重要的。为了将预测价格缩放到以 1000 美元为价格单位的坐标轴上，我们使用 `StandardScaler` 的 `inverse_transform` 方法:
 
@@ -283,7 +283,7 @@ print('Intercept: %.3f' % lr.w_[0])
 # Intercept: -0.000
 ```
 
-## 10.3.2 使用 scikit-learn 估计回归模型的系数
+### 3.2 使用 scikit-learn 估计回归模型的系数
 
 上一小节中，我们实现了一个可用的回归分析模型。不过在实际应用中，我们可能会更关注如何高效地实现模型，例如 scikit-learn 中的 `LinearRegression` 对象中使用 `LIBLINEAR` 库以及先进的优化算法，可以更好地使用经过标准化的变量。这正是特定应用所需要的:
 
@@ -308,7 +308,7 @@ plt.show()
 
 上述代码绘制出了训练数据和拟合模型的图像，从图中可以看出，总体结果与 GD 算法实现的模型是一致的:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902204643362.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/113.png)
 
 >   在大多数介绍统计科学的教科书中，都可以找到使用最小二乘法求解线性方程组的封闭方法:
 >   $$ w_1 = (X^TX)^{-1}X^Ty \\ w_0 = \mu_y - \mu_{\hat y}\mu_{\hat y}$$ 
@@ -318,7 +318,7 @@ plt.show()
 
 若读者对如何得到正规方程感兴趣，建议阅读 Stephen Pollck 博士在英国莱斯特大学演讲讲义中的章节“The Classical Linear Regression Model”，可通过链接 http://www.le.ac.uk/users/dsgp1/COURSES/MESOMET/ECMETXT/06mesmet.pdf 获取。
 
-# 10.4 使用 RANSAC 拟合高鲁棒性回归模型
+## 4. 使用 RANSAC 拟合高鲁棒性回归模型
 
 异常值对线性回归模型具有严重的影响。某些情况下，数据集的一个非常小的子集也可能会对模型参数的估计造成很大的影响。目前已有许多统计检测方法能够检测异常值，但该部分内容已超出本书范围。不过，作为数据方面的研究人员，我们需要根据相关领域的专业知识，并结合自身的判断清除异常值。
 
@@ -365,7 +365,7 @@ plt.show()
 
 从下面的散点图可以看出，线性回归模型是通过内点(圆)集合拟合得到的:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902204735732.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/114.png)
 
 
 我们使用下面的代码来显示模型的斜率和截距，可以看到结果与前面未使用 RANSAC 得到的拟合曲线稍有不同:
@@ -379,7 +379,7 @@ print('Intercept: %.3f' % ransac.estimator_.intercept_)
 
 使用 RANSAC，我们降低了数据集中异常点的潜在影响，但无法确定该方法对未知数据的预测性能是或否存在正面影响。因此，下一节中将讨论回归模型评估的不同方法，这是预测模型构造系统中的一个重要组成部分。
 
-# 10.5 线性回归模型性能的评估
+## 5. 线性回归模型性能的评估
 
 在前面的小节中，我们讨论了如何在训练数据上拟合回归模型。然而，通过前面章节的学习，我们了解到: 为了获得模型性能的无偏估计，在训练过程中使用未知数据对模型进行测试是至关重要的。
 
@@ -417,7 +417,7 @@ plt.show()
 
 执行上述代码，我们应该看到如下残差图像，其中包含一条穿过 $x$ 轴原点的直线，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019090220490864.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/115.png)
 
 完美的预测结果其残差应为 0，但在实际应用中，这种情况可能永远都不会发生。不过，**对于一个好的回归模型，我们期望误差是随机分布的，同时残差也随机分布与中心线附近**。如果我们从残差图中找出规律，这意味着模型遗漏了某些能够影响残差的解释信息，就如图刚看到的残差图那样，其中有着些许规律。另外，我们还可以使用残差图来发现异常值，这些异常值点看上去距离中心线有较大的偏差。
 
@@ -468,7 +468,7 @@ print('r^2 train: %.3f, test: %.3f' % (
     mean_squared_error(y_test, y_test_pred)))
 ```
 
-# 10.6 回归中的正则化方法
+## 6. 回归中的正则化方法
 
 正如第3章中所讨论的，**正则化**是通过模型中加入额外信息来解决过拟合信息来解决过拟合问题的一种方法，引入惩罚项增加了模型复杂性，但却降低了模型参数的影响。最常见的正则化线性回归方法就是所谓的**岭回归**(Ridge Regression)、**最小绝对收缩**及**算子选择**(Least Absolute Shrinkage and Selection Operator，LASSO) 以及**弹性网络**(Elastic Net) 等。
 
@@ -522,7 +522,7 @@ lasso = Lasso(alpha=1.0)
 
 例如，如果将 `l1_ratio` 设置为 1.0，此时 ElasticNet 回归等同于 LASSO 回归。如果想了解线性回归不同实现方式的更多信息请参数: http://scikit-learn.org/stable/modules/linear_model.html 。
 
-# 10.7 线性回归模型的曲线化-多项式回归
+## 7. 线性回归模型的曲线化-多项式回归
 
 在前面的小结中，我们假定了单一解释变量与响应变量的线性关系。对于不符合线性假设的问题，一种常用的解释方法就是通过加入多项式项来使用多项式回归模型:
 $$
@@ -566,7 +566,7 @@ plt.show()
 
 从结果图像中可以看出，与线性拟合相比，多项式拟合可以更好地捕获到解释变量与响应变量之间的关系。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902203250177.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/116.png)
 
 
 
@@ -585,7 +585,7 @@ print('Training R^2 linear: %.3f, quadratic: %.3f' % (
 
 执行上述代码后，MSE 的值有线性拟合的 580 下降到了二次拟合的 61。同时，与线性拟合的结果($R^2$=0.832)相比，二次模型的判断系数的结果($R^2$=0.982)更好，说明二次拟合在此问题上的效果更佳。
 
-## 10.7.1 房屋数据集中的非线性关系建模
+### 7.1 房屋数据集中的非线性关系建模
 
 在上一小节中，我们通过一个简单问题，讨论了如何通过多项式特征来拟合非线性关系。现在来看一个更加具体的例子，并将这些概念应用到房屋数据集中。通过执行下面的代码，我们将使用二次和三次多项式对房屋价格和 LSTAT(弱势群体人口所占比例)之间的关系进行建模，并与线性拟合进行对比。
 
@@ -634,7 +634,7 @@ plt.show()
 
 由图像结果可知，相较于线性拟合和二次拟合，三次拟合更好地捕获了房屋价格与 LSTAT 之间的关系。不过，我们应该意识到，加入越来越多的多项式特征会增加模型的复杂度，从而更易导致过拟合。由此，在实际应用中，建议在单独的测试数据集上评价模型的性能，进而对泛化性能进行评估:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902213106377.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/117.png)
 
 此外，多项式特征并非总是非线性关系建模的最佳选择。例如，仅就 MEDV-LSTAT 的散点图来说，我们可将 LSTAT 特征变量的对数值以及 MEDV 的平方根映射到一个线性特征空间，并使用线性回归进行拟合。可通过执行下面的代码对此假设进行验证:
 
@@ -661,9 +661,9 @@ plt.show()
 
 在将解释变量映射到对数空间以及取目标变量的平方根后，我们可以捕获到两者之间的线性关系，其拟合度 $R^2=0.69$ 看似优于前面使用的任何一种多项式回归:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902214131160.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/118.png)
 
-## 10.7.2 使用随机森林处理非线性关系
+### 7.2 使用随机森林处理非线性关系
 
 在本节，我们将了解一下**随机森林**(random forest) 回归，它从概念上异于本章中介绍的其他回归模型。随机森林是多棵**决策树**(decision tree)，与先前介绍的线性回归和多项式回归不同，它可以被理解为分段线性函数的集成。换句话说，通过决策树算法，我们把输入空间细分为更小的区域以更好地管理。
 
@@ -699,11 +699,11 @@ plt.show()
 
 从结果图中可以看到，决策树捕捉到了数据的整体趋势。不过，此模型的一个局限在于: 它无法捕获期望预测的连续型与可导性。此外，我们还需注意要为树选择合适的深度，以免造成过拟合或欠拟合，在此例中，深度为3的树看起来是比较合适的:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019090221424754.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/119.png)
 
 下一节，我们将学习一种更鲁棒性的决策树拟合方法: 随机森林。
 
-2.  **随机森林回归**
+1.  **随机森林回归**
 
 正如我们在第3章讨论的那样，随机森林算法是组合多棵决策树的一种集成技术。由于随机性有助于降低模型的方差，与单棵决策树相比，随机森林通常具有更好的泛化性能。随机森林的另一个优势在于: 它对数据集中的异常值不敏感，且无需过多的参数调优。随机森林中唯一需要我们通过实验来获得的参数就是待集成决策树的数量。随机森林用于回归的基本方法与我们在第3章中讨论过的随机森林用于分类的方法基本一致。唯一的区别在于: 随机森林回归使用 MSE 作为当棵决策树生成的标准，同时所有决策树预测值的平均数作为预测目标变量的值。
 
@@ -753,11 +753,11 @@ plt.show()
 
 根据决定系数 $R^2$ 的值可知，模型在训练数据上的拟合效果要好于测试数据，这与下图中 $y$ 轴方向出现异常值所反映的情况一致。此外，残差没有完全随机分布在中心点附近，这意味着模型无法捕获所有的解释信息。不过，与本章前面小节中绘制的线性模型的残差图相比，随机森林回归的残差图有了很大的改进:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190902214313729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/120.png)
 
 >   :bookmark: 在第3章中，我们已经讨论过核技巧，并将其应用到了支持向量机(SVM) 的分类中，若需要处理非线性问题，此技巧是非常有用的。虽然此话题已经超出了本书的范围，但是支持向量机的确可以用于非线性回归任务。关于支持向量机在回归中的应用问题，S.R.Gunn 在其报告中做了精彩的论述: S.R.Gunn et al. Vector Machines for Classification and Regression.(ISIS technical report, 14, 1998)，感兴趣的读者都可以通过此文件了解更多信息。scikit-learn 中已经实现了支持向量机的回归模型，关于其详细信息请见链接: http://scikit-learn.org/stable/modules/generated/sklarn.svm,SVR.html#sklearn.svm.SVR 。
 
-# 10.8 本章小结
+## 8. 本章小结
 
 本章开始，我们学习了如何使用简单回归模型对单个解释变量和连续目标变量之间的关系进行建模。进而，我们讨论了一种用于了解数据中模式与异常点的解释性数据分析技术，这是预测模型构建中最重要的一步。
 

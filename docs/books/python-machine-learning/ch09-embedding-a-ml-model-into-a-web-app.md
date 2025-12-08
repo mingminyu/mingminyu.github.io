@@ -11,7 +11,7 @@ GitHub Notebook 地址: http://nbviewer.ipython.org/github/rasbt/python-machine-
 -   使用 Flask 框架开发 Web 应用程序
 -   在公共 Web 服务上部署机器学习应用
 
-# 9.1 序列化通过 scikit-learn 拟合的模型
+## 1. 序列化通过 scikit-learn 拟合的模型
 
 正如我们在第8章中所讨论的那样，训练机器学习模型会带来很高的计算成本。当然，我们不希望每次进行预测分析都打开 Python 交互窗口来训练模型，或者重新加载 Web 应用程序。模型持久化的一个方法就是使用 Python 内嵌的 pickle 模块$^1$，它使得我们可以在 Python 对象与字节码之间进行转换(序列化与反序列化)，这样就可以将分类器当前的状态保存下来。当需要对新的样本进行分类时，可以直接加载已保存的分类器，而不必再次通过训练数据对模型进行训练。执行下列代码前，请确保已经使用第 8章中介绍的方法完成了外存 Logistic 回归模型的训练，并且已经在 Python 会话中:
 
@@ -93,7 +93,7 @@ Probability: 86.00%
 
 >   注3: 情绪的概率，最终的类别是通过 np.max 得到的概率较高的那个。
 
-# 9.2 使用 SQLite 数据库存储数据
+## 2. 使用 SQLite 数据库存储数据
 
 在本节中，我们将创建一个简单的 SQLite 数据库以手机 Web 应用的用户对于预测结果的反馈。基于这些反馈，我们可以对分类模型进行更新。SQLite 是一款开源的 SQL 数据库引擎，由于它无需运行单独的服务器，因此成为小型项目和简单 Web 应用的理想选择。从本质上来说，SQLite 数据库可以看做是一个单一的、自包含(不依赖其他模块与组件)的数据库文件，它允许我们直接存储文件。此外，SQLite 无需任何针对特定系统的设置，常用操作系统也都支持。其出色的可靠性为其赢得了良好的声誉，被广泛应用于 Google、Mozilla、Adobe、Apple、Microsoft 等知名公司。如果读者想要详细了解 SQLite，请访问其官方网站: http://www.sqlite.org 。
 
@@ -145,11 +145,11 @@ print(results)
 
 此外，还可以使用免费的火狐浏览插件 SQLite Manager$^2$，如下图所示，此插件提供了一个访问 SQLite 数据库的图形用户界面:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000704168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/99.png)
 
 >   注2: 可通过链接 https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/ 获取。
 
-# 9.3 使用 Flask 开发 Web 应用
+## 3. 使用 Flask 开发 Web 应用
 
 上一节完成了用于电影分类的代码，现在来讨论 Flask 狂阿基开发 Web 应用的基础知识。自2010年 Armin Ronacher 发布 Flask 以来，此框架获得了广泛的关注，并被流行的应用 LinkedIn 及 Pinterest 所使用。由于 Flask 使用 Python 开发，它为 Python 程序员嵌入已有 Python 代码提供了方便的接口，在此我们将嵌入电影分类器。
 
@@ -161,7 +161,7 @@ print(results)
 → pip install flask
 ```
 
-## 9.3.1 第一个 Flask Web 应用
+### 3.1 第一个 Flask Web 应用
 
 在小节中，在实现电影分类之前，先开发一个简单的 Web 应用来熟悉以下 Flask API。首先，按照如下目录结构创建 Web 应用的框架:
 
@@ -221,7 +221,7 @@ if __name__ == '__main__':
 
 此输出包含我们本地服务器的地址。我们可以在浏览器中输入该地址以查看 Web 程序运行效果。如果一切都运行正常，将看到一个显示如下内容的网页: “Hi, this is my first Flask Web app!”。
 
-## 9.3.2 表单验证及渲染
+### 3.2 表单验证及渲染
 
 在本小节中，将使用 HTML 的表单升级 Flask Web 应用，以学习如何使用 WTForms 库$^1$收集数据，WTForms 可通过 pip 安装:
 
@@ -233,11 +233,11 @@ if __name__ == '__main__':
 
 Web 应用会提示用户在文本框中输入自己的名字，如下所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000729353.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/100.png)
 
 在点击提交按钮(Say Hello)后，程序将验证表单，同时返回一个新的 HTML 页面显示用户输入的名字:
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDkvOS0zLmpwZw)
+![](https://mingminyu.github.io/webassets/images/20251208/101.png)
 
 新的应用所需的目录结构看起来如下所示:
 
@@ -372,23 +372,25 @@ body {
 
 >   🔖 对初步 Web 开发的读者来说，某些概念乍看好像非常复杂。若遇到这种情况，建议读者现在某个目录中设置前面体积的文件并仔细检查。你会发现 Flask Web 框架其实非常易用，也不像最初看上去那样复杂。关于 Flask 更多的帮助信息，请访问其出色的在线文档和示例: http://flask.pocoo.org/docs/0.10/ 。
 
-# 9.4 将电影分类器嵌入 Web 应用
+## 4. 将电影分类器嵌入 Web 应用
 
 目前，我们对使用 Flask 进行 Web 开发有了一定的认识，下面更进一步，将电影分类器嵌入到 Web 应用中。在本节，我们先开发一个 Web 应用，此应用会提示用户输入一个电影评论，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000753968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/102.png)
 
 在评论提交后，会返回一个新的页面，页面中会显示预测类标及评论属于此类别的概率。此外，用户还可以使用“正确”(Correct)或者“不正确”(Incorrect)两个按钮对预测结果做出反馈，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000804931.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/103.png)
 
 如果用户点击了“正确”或者“不正确”按钮，分类模型将基于用户的反馈进行更新。此外，对于用户输入的评论文本，以及从按钮点击中推测出的类标等信息，我们将使用 SQLite 数据库进行保存，为将来的预测提供参考。用户点击反馈后看到第三个页面，显示了简单的感谢信息和一个“提交其他评论”(Submit anoter review)按钮，此按钮将页面重定向到其实页面。如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000821176.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)在详细学习此 Web 应用的代码之前，建议读者通过 http://raschkas.pythonanywhere.com 了解一些此应用的示例，以对本小节待讲解内容有个更好的认识。
+![](https://mingminyu.github.io/webassets/images/20251208/104.png)
+
+在详细学习此 Web 应用的代码之前，建议读者通过 http://raschkas.pythonanywhere.com 了解一些此应用的示例，以对本小节待讲解内容有个更好的认识。
 
 从全局角度出发，我们先看一下此电影评论应用的目录结构，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000837379.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/105.png)
 
 在本章前面的小节中，我们已经创建了 vectorizer.py 文件、SQLite 数据库 reviews.sqlite，以及可以保存序列化的 Python 对象的 pkl_objects 子目录。
 
@@ -588,7 +590,7 @@ python app.py
 
 完成 Web 应用的测试后，不要忘记将 app.py 脚本中 `app.run()` 命令的 `debug=True` 参数去掉。
 
-# 9.5 在公共服务器上部署 Web 应用
+## 5. 在公共服务器上部署 Web 应用
 
 当完成应用的本地测试后，我们现在可以将其部署到公共 Web 服务器上了。在本书中，我们将使用 PythonAnywhere 托管 Web 服务，它专门用于 Python Web 用于的托管。此外，PythonAnywhere 还提供了初学者账户，我们可以免费运行一个 Web 应用程序。
 
@@ -597,14 +599,14 @@ python app.py
 不过，免费账户无法在命令行终端通过 SSH 协议访问远程服务器。因此，只能使用 PythonAnywhere Web 界面管理我们的 Web 应用。在上传 Web 应用之前，需要事先在 PythonAnywhere 账户中创建一个新的 Web 应用。点击右上角的 “Dashboard”按钮，就可以看到页面顶部显示的控制面板。接下来，点击页面顶部的“Web”标签，然后点击左侧的“Add a new Web app”按钮创建一个新的基于 Python3.4 的 Flask Web 应用，并将其命名为 movieclassifier。
 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831001001129.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/106.png)
 
 
 最后，我们再次选择 “Web” 标签，并点击 “Reload<读者自己注册的用户名>.pythonanywhere.com” 按钮发送更新，刷新 Web 应用。这时，Web 应用应该已经启动和运行起来了，可访问 `<读者自己注册的用户名>.pythonanywhere.com`。
 
 >   不幸的是，Web 服务器可能对 Web 程序中的细微问题也相当敏感。如果读者通过浏览器访问在 PythonAnywhere 中的应用程序时出错，可以在个人账号主页的“Web”标签下检查服务器日志信息，以更好地帮助查找问题所在。
 
-## 9.5.1 更新电影评分分类器
+### 5.1 更新电影评分分类器
 
 当收到用户关于分类的反馈后，模型会自定即时更新，但是如果服务器崩溃或重启，clf 对象就会被重置。如果我们重新加载 Web 应用，clf 对象将通过 classifier.pkl 文件重新初始化。使得更新能够持久保存的一个方法就是: 模型一旦被更新就立刻序列化新的 clf 对象。但是，随着用户的增多，此方案效率会逐渐低下，而且如果用户同时提交反馈信息，有可能会损坏序列化文件。另一种解决方案就是使用 SQLite 数据库保存的反馈信息更新模型。我们可以从 PythonAnywhere 的服务器上下载 SQLite 数据库，在本地计算机上更新 clf 对象，并上传新的序列化文件到 PythonAnywhere。为了在本地计算机更新分类器，我们在 movieclassifier 目录下创建一个 update.py 脚本文件，并键入以下代码:
 
@@ -663,7 +665,7 @@ if __name__ == '__main__':
 
 ```
 
-# 9.6 本章小结
+## 6. 本章小结
 
 在本章，读者学到了许多对扩充我们机器学习理论知识的实用主题。我们学习了如何在模型训练完后对其进行持久化，以及如何在日后重新实用经过持久化的模型。此外，我们使用 SQLite 数据库高效地存储数据，并创建了一个 Web 应用，使得我们电影分类器可以供外界使用。
 

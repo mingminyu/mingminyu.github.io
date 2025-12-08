@@ -8,17 +8,19 @@
 - 通过对训练数据集的重复抽样和随机组合降低模型的过拟合
 - 通过弱学习机在误分类数据上的学习构建性能更好的模型
 
-# 7.1 集成学习
+## 1. 集成学习
 
 集成方法(ensemble method)的目标是: 将不同的分类器组合称为一个元分类器，与包含于其中的单个分类器相比，元分类器具有更好的泛化性能。例如: 假设我们收集了 10位专家的预测结果，集成方法允许我们一定策略将这 10位专家的预测进行组合，与每位专家单独的预测相比，它具有更好的准确性和鲁棒性。本章我们将介绍几种不同的分类器集成方法。在本节，我们先介绍集成方法是如何工作的，以及它们为何能具备良好的泛化性能。
 
 本章聚焦几种最流行的集成方法，它们都使用了多数投票(majority voting) 原则。多数投票则是指将大多数分类器预测的结果作为最终类标，也就是说，将得票率超过 50% 的结果作为类标。严格来说，多数投票仅用于二类别分类情形。不过，很容易将多数投票原则推广到多类别分类，也称作简单多数票法(plurality voting)。在此，我们选择得票的类标。下图解释了集成 10个分类器时，多数及简单多数票法表决的概念，其中每个单独的符号(三角形、正方形和圆)分别代表一个类标:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235543122.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/88.png)
+
 
 基于训练集，我们首先训练 m 个不同的成员分类器($C_1,\dots,C_m$)。在多数投票原则下，可集成不同的分类算法，如决策树、支持向量机、Logistic回归等。此外，我们也可以使用相同的成员分类算法拟合不同的训练子集。这种方法典型的例子就是随机森林算法，它组合了不同的决策树分类器。下图解释了使用多数投票原则的通用集成方法的概念:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235614165.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/89.png)
+
 
 想要通过简单的多数投票原则对类标进行预测，我们要汇总分类器 $C_j$ 的预测类标，并选出得票率最高的类标 $\hat y$:
 
@@ -99,12 +101,13 @@ plt.grid()
 plt.show()
 ```
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDcvNy0zLmpwZw)
+![](https://mingminyu.github.io/webassets/images/20251208/90.png)
+
 
 
 从结果图像可见: 当成员分类器出错率低于随机猜测时($\varepsilon < 0.5$)，集成分类器的出错率要低于单个分类器。请注意: y轴同时标识了成员分类器的出错率(虚线)和集成分了器的出错率(实现):
 
-# 7.2 实现一个简单的多数投票分类器
+## 2. 实现一个简单的多数投票分类器
 
 通过上一小节的介绍，我们已经过集成学习有了初步的了解，现在来做一个热身练习: 基于多数投票原则，使用 Python 实现一个简单的集成分类器。虽然下述算法可通过简单错输投票推广到多分类器的情形，不过为了简单期间，我们仍旧使用更常出现在文献中的术语: 多数投票(majority voting)。
 
@@ -395,11 +398,11 @@ class MajorityVoteClassifier(BaseEstimator, ClassifierMixin):
 
 🔖 主要出于演示的目的，我们才实现了 MajorityVoteClassifier 类，不过这也完成了 scikit-learn 中关于多数投票的一个相对复杂的版本。它将出现在下一个版本(v.0.17) 的 sklearn.ensemble.VotingClassifier 类中。
 
-## 7.2.1 基于多数投票原则组合不同的分类算法
+### 2.1 基于多数投票原则组合不同的分类算法
 
 现在我们可以将上一小节实现的 MajorityVoteClassifier 用于实战了。不过，先准备一个可以用于测试的数据集。既然已经书写了从 CSV 文件中读取数据的方法，我们就走捷径从 scikit-learn 的 dataset 模块中加载鸢尾花数据结集。此外，为了使分类更具挑战，我们只选择其中的两个特征: 萼片宽度和花瓣长度。虽然 MajorityVoteClassifier 可应用到多类别分类问题，但我们只区分两个类别的样本: Iris-Versicolor 和 Iris-Virginica，并绘制其 ROC AUC。代码如下:
 
-```py
+```python linenums="1"
 from sklearn import datasets
 from sklearn.cross_validation import train_test_split
 from sklearn.preprocessing import StandardScaler, LabelEncoder
@@ -482,7 +485,7 @@ Accuracy: 0.97 (+/- 0.10) [Majority Voting]
 
 正如我们所见，以 10折交叉验证作为评估标准，MajorityVotingClassifier 的性能与单个成员分类器相比有着质的提高。
 
-# 7.3 评估与调优集成分类器
+## 3. 评估与调优集成分类器
 
 在本节，我们将在测试数据上计算 MajorityVoteClassifier 类的 ROC 曲线，以验证其在位置数据上的泛化能力。请记住，训练数据并未应用于模型选择，使用它们的唯一目的就是对分类系统的泛化能力做出无偏差的估计。代码如下:
 
@@ -514,7 +517,7 @@ plt.show()
 
 由 ROC 结果我们可以看到，集成分类器在测试集上表现优秀(ROC AUC=0.95)，而 KNN 分类器对于训练数据有些过拟合(训练集上的 ROC AUC=0.93，测试集上 ROC AUC=0.86):
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235737653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/91.png)
 
 因为只使用了分类样本中的两个特征，集成分类器的决策区域到底是什么样子可能会引起我们的兴趣。由于 Logistic 回归和 KNN 流水线会自动对数据进行预处理，因此不必实现对训练特征进行标准化。不过出于可视化考虑，也就是在相同的度量标准上实现决策区域，我们在此对训练数据集做了标准化处理。代码如下:
 
@@ -568,7 +571,8 @@ plt.show()
 
 尽管有趣，但也如我们所预期的那样，集成分类器的决策区域看起来像是各成员分类器决策区域的混合。乍看之下，多数投票的决策区域与 KNN 分类器很相似。不过，正如单层决策树那样，我们可以看到它在 sepal width $\ge$ 1时正交于 y轴:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235753833.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/92.png)
+
 
 在集成分类的成员分类器调优之前，我们调用一下 get_param 方法，以便对如何访问 GridSearch 对象内的单个参数有个基本的认识:
 
@@ -716,16 +720,16 @@ Accuracy: 1.00
 
 🔖 我们在本节实现的多数投票方法有时也称为堆叠(stacking)。不过，堆叠算法更典型地应用于组合 Logistic 回归模型，以各独立分类器的输出作为输入，通过针对这些输入结果的继承来预测最终的类标，详情请参阅 David H.Wolpert 的论文: Stacked generalization.Neural networks,5(2):241——259,1992。
 
-# 7.4 bagging—通过 bootstrap 样本构建集成分类器
+## 4. bagging—通过 bootstrap 样本构建集成分类器
 
 bagging 是一种与上一节实现的 MajorityVoteClassifier 关系紧密的集成学习技术，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235845185.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/93.png)
+
 
 不过，此算法没有使用相同的训练集拟合集成分类器中的单个成员分类器。由于原始训练集使用了 bootstrap 抽样(有放回的随机抽样)，这也就是 bagging 被称为 bootstrap aggregating 的原因。为了用更具体的例子来解释 botstraping 的工作原理，我们使用下图所示的示例来说明。在此，我们🈶 7个不同的训练样例(使用索引1~7来表示)，在每一轮的 bagging 循环中，它们都被可放回随机抽样。每个 bootstrap 抽样都被用于分类器 $C_j$ 的悬链，这就是一棵典型的未剪枝的决策树:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235906566.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/94.png)
 
 bagging 还与我们在第3章中曾经介绍过的随机森林紧密相关。实际上，随机森林是 bagging 的一个特例，它使用了随机的特征子集去拟合单棵决策。bagging 最早由 Leo Breiman 在1994年的一份技术报告中提出。他还表示，bagging 可以提高不稳定的准确率，并且可以降低过拟合的程度。我强烈建议读者阅读 L.Breiman 的论文$1$，以更深入了解 bagging。此文献可在网上免费获取。
 
@@ -868,11 +872,12 @@ plt.show()
 
 由结果图像可见，与深度为 3的决策树线性分段边界相比，bagging 集成分类器的决策边界显得更平滑:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235930575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/95.png)
+
 
 本节我们只是简单通过示例了解了 bagging。在实战中，分类任务会更加复杂，数据集维度会更高，使用单棵树很容易产生过拟合，这时 bagging 算法就可显示出其优势了。最后，我们需要注意 bagging 算法是降低模型方差的一种有效防范。然而，bagging 在降低模型偏差方面作用不大，这也是我们选择未剪枝决策树等低偏差分类器作为集成算法成员分类器的原因。
 
-# 7.5 通过自适应 boosting 提高弱学习机的性能
+## 5. 通过自适应 boosting 提高弱学习机的性能
 
 在本节对集成方法的介绍中，我们将重点讨论 boosting 算法中一个常用例子:
 
@@ -892,7 +897,8 @@ plt.show()
 
 AdaBoost 与这里讨论的原始 boosting 过程不同，它使用整个训练集来训练弱学习机，其中训练样本在每次迭代中都会重新被赋予一个权重，在上一弱学习机错误地基础上进行学习，进而构建一个更强大的分类器。在深入到 AdaBoost 算法具体细节之前，先通过下图更深入了解一下 AdaBoost 的基本概念:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235950580.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/96.png)
+
 
 为循序渐进地介绍 AdaBoost，我们从子图1开始，它代表了一个二类别分类问题的训练集，其中所有的样本都被赋予相同的权重。基于此训练集，我们得到一棵单层决策树(以虚线表示)，它尝试尽可能通过最小化代价函数(或者是特殊情况下决策树集成中的不纯度得分)划分两类样本(三角形和圆形)。在下一轮(子图2)中，我们为前面误分类的样本(圆形)赋予更高的权重。此外，我们还降低被正确分类样本的权重。下一棵单层决策树将更加专注于具有最大权重的训练样本，也就是那些难于区分的样本。如子图2所示，弱学习机错误划分了圆形类的三个样本，它们在子图3中被赋予更大的权重。假定 AdaBoost 集成只包含 3轮 boosting 过程，我们就能够用加权多数投票将不同重采样训练子集上得到的三个弱学习机进行组合，如子图4所示。
 
@@ -912,7 +918,8 @@ AdaBoost 与这里讨论的原始 boosting 过程不同，它使用整个训练�
 
 虽然 AdaBoost 算法看上去很简单，我们接下来用下面表格中的 10 个样本作为讯轮机，通过一个具体的例子更深入地了解此算法:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190831000023348.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/97.png)
+
 
 表格的第 1列为样本的索引序号，为 1~10。假设此表格代表了一个一维的数据集，第 2列就相当于单个样本的值。第 3列是对应于训练样本 $x_i$ 的真实类标 $y_i$，其中 $y_i \in \{1, -1\}$。第 4列为样本的初始权重，权重值相等，且通过归一化使其和为 1。在训练样本数量为 10 的情况下，我们将权重 $w$ 中的权重向量 $w$ 中的权值 $w_i$ 都设定为 0.1。假定我们的划分标准为 $x \leq 0.3$，第 5列存储了预测类标 $\hat y$。基于前面的伪代码给出的权重更新规则，最后一列存储了更新后的权重值。
 
@@ -1056,7 +1063,8 @@ plt.show()
 
 通过观察决策区域，我们可以看到 AdaBoost 的决策区域比单层决策树的决策区域复杂得多。此外，还注意到 AdaBoost 对待特征空间的划分与上一节中训练的 bagging 分类器十分类似。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019083100005055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/98.png)
+
 
 对集成技术做一个总结: 毋庸置疑，与单层分类器相比，集成学习提高了计算复杂度。但在实践中，我们需仔细衡量是否愿意为适度预测性你那个而付出更多的计算成本。
 
@@ -1066,7 +1074,7 @@ plt.show()
 > 注4: 请参见 http://techblog.netflix.com/2012/04/netflix-recommendations-beyond-5-stars.html 。
 
 
-# 7.6 本章小结
+## 6. 本章小结
 
 在本章中，我们介绍了集成领域中最热门且应用最广泛的技术。集成方法通过组合不同的分类器模型来抵消分类器固有的缺陷，通常能够得到一个稳定且性能优异的模型，因此在业界和机器学习领域得到了广泛的追捧。
 

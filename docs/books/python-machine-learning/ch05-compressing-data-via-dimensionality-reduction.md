@@ -1,7 +1,7 @@
 # 第5章：通过降维压缩数据
 
 > GitHub Notebook 地址: http://nbviewer.ipython.org/github/rasbt/python-machine-learning-book/blob/master/code/ch05/ch05.ipynb
-> 
+
 在第4章中，我们介绍了通过不同的特征选择技术对数据集进行降维的方法。另一种常用于降维的特征选择方法就是特征抽取。在本章中，读者将学习三种可以帮助我们归纳总结数据集内所蕴含信息的技术，它们都可以将原始数据集变换到一个维度更低的新的特征子空间。数据压缩也是机器学习领域中的一个重要内容，随着现代技术的发展，将会产生越来越多的数据，数据压缩技术可以帮助我们队数据进行存储和分析。本章将涵盖如下主题:
 
 - 无监督数据压缩——主成分分析(Principal Component Analysis, PCA)
@@ -9,13 +9,14 @@
 - 通过核主成分分析(kernel principal component analysis) 进行非线性降维
 
 
-# 5.1 无监督数据降维技术——主成分分析
+## 1. 无监督数据降维技术——主成分分析
 
 与特征选择类似，我们可以使用特征抽取来减少数据集中特征的数量。不过，当使用序列后向选择等特征选择算法时，能够保持数据的原始特征，而特征抽取算法则会将数据转换或者映射到一个新的特征空间。基于降维在数据预处理领域的含义，特征抽取可以理解为: 在尽可能多地保持相关信息的情况下，对数据进行压缩的一种方法。特征抽取通常用于提高计算效率，同样也可以帮助我们降低“维度灾难”——尤其当模型不适于正则化处理时。
 
 主成分分析(principal component analysis, PCA) 是一种广泛应用于不同领域的无监督线性数据转换技术，其突出作用是降维。PCA 的其他常用领域包括: 股票交易市场的探索性分析和信号去噪，以及生物信息学领域的基因组和基因表达水平数据分析等。PCA 可以帮助我们基于特征之间的关系识别出数据内在的模式。简而言之，PCA 的目标是在高维数据中找到最大方差的方向，并将数据映射到一个维度不大于原始数据的新的子空间上。如下图所示，以新特征的坐标是相互正交为约束条件，新的子空间上正交的坐标轴(主成分)可被解释为方差最大的方向。在此，$x_1$ 和 $x_2$ 为原始特征的坐标轴，而 PC1 和 PC2 即为主成分。
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDUvNS0xLmpwZw)
+![](https://mingminyu.github.io/webassets/images/20251208/55.png)
+
 
 如果使用 PCA 降维，我们将构建一个 $d \times k$的转换矩阵 $W$。这样就可以将一个样本向量 $x$ 映射到一个新的 $k$ 维特征子空间上去，此空间的维度小于原始的 $d$ 维特征空间:
 
@@ -38,7 +39,7 @@ $$
 5. 通过前 $k$ 个特征向量构造映射矩阵 $W$。
 6. 通过映射矩阵 $W$ 将 d 维的输入数据集 $X$ 转换到新的 $k$ 维特征子空间。
 
-## 5.1.1 总体方差与贡献方差
+### 1.1 总体方差与贡献方差
 
 在本小节中，我们将学习主成分分析算法的前四个步骤: 数据标准化、构造协方差矩阵、获得协方差举着你的特征值和特征向量，以及按降序排列特征值对所对应的特征向量，以及按降序排列特征值所对应的特征向量:
 
@@ -123,11 +124,12 @@ plt.show()
 ```
 由下图可以看到，第一主成分占方差总和的 40% 左右；此外，还可以看出前两个主成分占总体方差的近 60%:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232237240.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/56.png)
+
 
 虽然方差贡献率图像可以让我们联想到第4章中通过随机森林计算出的关于特征的重要程度，但我们应该注意: PCA 是一种无监督方法，这意味着我们可以忽略类标信息。相对而言，随机森林通过类标信息来计算及节点不纯度，而方差度量的是特征值在轴线上的分布。
 
-## 5.1.2 特征转换
+### 1.2 特征转换
 
 在将方差矩阵分解为特征对后，我们继续执行 PCA 方法的最后三个步骤，将葡萄酒数据集中的信息转换到新的主成分轴上。在本小节中，我们将对特征值按降序进行排列，并通过挑选出对应的特征向量构造出映射矩阵，然后使用映射矩阵转换到低维的子空间上。
 
@@ -198,12 +200,13 @@ plt.legend(loc='lower left')
 plt.show()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232257555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+在下图中可以看到，相较于第二主成分(y轴)，数据更多地沿着x轴(第一主成分)方向分布，这与我们在上一小节中绘制的方差贡献率图是一致的。而且，可以直观地看到，线性分类器能够很好地对其进行划分：
 
+![](https://mingminyu.github.io/webassets/images/20251208/57.png)
 
 为了演示散点图，我们使用了类标信息，但请注意 PCA 是无监督方法，无需类标信息。
 
-## 5.1.3 使用 scikit-learn 进行主成分分析
+### 1.3 使用 scikit-learn 进行主成分分析
 
 通过上一小节中详尽的介绍，我们了解了 PCA 内部的工作原理，接下来讨论如何使用 scikit-learn 中提供的 PCA 类。PCA 也是 scikit-learn 中的一个数据转换类，在使用相同的模型参数对训练数据和测试数据进行转换之前，我们首先使用训练数据对模型进行拟合。下面，我们使用 scikit-learn 中的 PCA 对葡萄酒数据集做预处理，然后使用逻辑斯特回归对转换后的数据进行分类，最后用第2章定义的 plot_decision_region 函数对决策区域进行可视化展示。
 
@@ -250,12 +253,11 @@ plt.show()
 
 执行上述代码后，我们可以看到将训练数据转换到两个主成分轴后生成的决策区域。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232508970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
-
+![](https://mingminyu.github.io/webassets/images/20251208/60.png)
 
 如果比较 scikit-learn 中提供的 PCA 类与我们自己实现的 PCA 类的分析结果，可以发现: 上图可以看作是我们此前自己完成 PCA 方法所得到沿 y 轴进行旋转后的结果。出现此差异的原因，不是两种方法在实现中出现了什么错误，而在于特征分析方法: 特征向量可以为正或者为负。这不是重点，因为有需要时我们可以在数据上乘以 -1 来实现图像的镜像。注意，特征向量通常会缩放到单位长度1。为了保证整个分析过程的完整性，我们绘制一下逻辑斯特回归在转换后的测试数据上所得到的决策区域，看其是否能很好地将各类分开:
 
-```python
+```python linenums="1"
 plot_decision_regions(X_test_pca, y_test, classifier=lr)
 plt.xlabel('PC1')
 plt.ylabel('PC2')
@@ -265,7 +267,7 @@ plt.show()
 
 执行上述代码，我们绘制出了测试集的决策区域，可以看到: 逻辑斯特回归在这个小的二维特征子空间上表现优异，只误判了一个样本。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232525298.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/61.png)
 
 如果我们队不同主成分的方差贡献率感兴趣，可以将 PCA 类中的 n_components 参数设置为 None。由此，可以保留所有的主成分，并且可以通过 explained_variance_ratio_ 属性得到相应的方差贡献率:
 
@@ -280,7 +282,7 @@ array([0.37329648, 0.18818926, 0.10896791, 0.07724389, 0.06478595,
 
 请注意，在初始化 PCA 类时，如果我们将 n_components 设置为 None，那么它将按照方差贡献率递减顺序返回所有的主成分，而不是进行降维操作。
 
-# 5.2 通过线性判别分析压缩无监督数据
+## 2. 通过线性判别分析压缩无监督数据
 
 线性判别分析(Linear Discriminant Analysis，LDA) 是一种可作为特征抽取的技术，它可以提高数据分析过程中的计算效率，同时，对于不适用正则化的模型，它可以降低因维度灾难带来的过拟合。
 
@@ -294,7 +296,7 @@ LDA 的基本概念与 PCA 非常相似，PCA 视图在数据集中找到方差�
 
 下图解释了二类别分类中 LDA 的概念。类别1、类别2 中的样本分别用叉号和原点来表示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232540862.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/62.png)
 
 如上图所示，在 x 轴方向(LD1)，通过现象判定，可以很好地将正态分布的两个类分开。虽然沿 y 轴(LD2) 方向的线性判定保持了数据集的较大方差，但是沿此方向无法提供关于类别区分的任何信息，因此它不是一个好的线性判定。
 
@@ -314,7 +316,7 @@ LDA 的基本概念与 PCA 非常相似，PCA 视图在数据集中找到方差�
 > 🔖 特征呈正态分布且特征间相互独立是我们使用 LDA 时所作的假设。同时，LDA 算法假定各个类别的协方差矩阵是一致的。然而，即使我们违背了上述假设，LDA 算法仍旧能很好地完成数据降维及分类任务(R.O.Duda，P.E.Hart，and D.G.Stork.Pattern Classification.2nd.Edition.New York, 2001)。
 
 
-## 5.2.1 计算散步矩阵
+### 2.1 计算散步矩阵
 
 本节伊始，在讲解 PCA 时就对普泡酒数据集做了标准化处理，因此我们将跳过第一步直接计算均值向量。计算中，我们将分别构建内散布矩阵和类间散布矩阵。均值向量 $m_i$ 存储了类别 $i$ 中样本的特征均值 $\mu_m$:
 
@@ -428,7 +430,7 @@ print('Between-class scatter matrix: %sx%s' % (S_W.shape[0], S_W.shape[1]))
 Between-class scatter matrix: 13x13
 ```
 
-## 5.2.2 在新特征子空间上选取线性判别算法
+### 2.2 在新特征子空间上选取线性判别算法
 
 LDA 余下的步骤与 PCA 的步骤相似。不过，这里我们部队协方差矩阵做特征做特征分解，而是求解矩阵 $S_W^{-1}S_B$ 广义特征值:
 
@@ -486,7 +488,7 @@ plt.show()
 
 从结果图像中可以看到，前两个线性判别几乎获取到了葡萄酒训练数据集中全部有用信息:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232813255.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/63.png)
 
 下面我们叠加这两个判别能力最强的特征向量列来构建转换矩阵 $W$:
 
@@ -513,7 +515,7 @@ Matrix W:
 ```
 
 
-## 5.2.3 将样本映射到新的特征空间
+### 2.3 将样本映射到新的特征空间
 
 通过上一小节中构建的矩阵 $W$，我们可以通过乘积的方式对训练集进行转换:
 
@@ -535,10 +537,10 @@ plt.show()
 
 通过结果图像可见，三个葡萄酒类在新的特征子空间上是线性可分的:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830232834955.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/64.png)
 
 
-## 5.2.4 使用 scikit-learn 进行 LDA 分析
+### 2.4 使用 scikit-learn 进行 LDA 分析
 
 自己写代码逐步实现 LDA，对于理解 LDA 内部的工作原理及其与 PCA 的差别是一种很好的体验。下面我们来看看 scikit-learn 中对 LDA 类的实现:
 
@@ -563,7 +565,7 @@ plt.show()
 
 从结果图像中可以看到，逻辑斯特回归模型只错误地判断了类别2中的一个样本:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/201908302329488.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/65.png)
 
 
 通过降低正则化强度，我们或许可以对决策树边界进行调整，以使得逻辑斯特回归模型可以正确地对训练数据进行分类。下面，我们再来看一下模型在测试数据集上的效果:
@@ -579,22 +581,22 @@ plt.show()
 
 正如从结果图像中看到的那样，当我们使用只有两维的特征子空间来替代原始数据集中的13个葡萄酒特征时，逻辑斯特回归在测试数据集上对样本的分类结果可谓完美:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830233000629.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/66.png)
 
-# 5.3 使用核主成分分析进行非线性映射
+## 3. 使用核主成分分析进行非线性映射
 
 许多机器学习算法都嘉定输入数据是线性可分的。感知器为了保证其收敛性，甚至要求悬链数据是完美线性可分的。我们目前学习过的算法中，像 Adaline、逻辑斯特回归和(标准)支持向量机等，都无法实现完美的线性划分的原因归咎于噪声。然而，在现实世界中，大多数情况下我们面对的是非线性问题，针对此类问题，通过降维技术，如 PCA 和 LDA 等，将其转化为线性问题并不是最好的方法。在本小节中，我们将了解一下利用核技巧的 PCA，或者称为核 PCA，这与在第3章中我们介绍过的核支持向量机的概念有一定相关性。使用核 PCA，我们将学习如何将非线性可分的数据转换到一个适合对其进行线性分类的新的低维子空间上。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830233026120.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/67.png)
 
-
-## 5.3.1 核函数与核技巧
+### 3.1 核函数与核技巧
 
 会议一下我们再第三章中曾讨论的基于核的支持向量机，通过将非线性可分问题映射到维度更高的特征空间，使其在新的特征空间上线性可分。为了将样本 $x \in R^d$ 转换到维度更高的 $k$ 维子空间，我们定义如下非线性映射函数 $\varphi$:
 
 $$
 \phi: R^d \rightarrow R^k (k >> d)
 $$
+
 我们可以将 $\varphi$看作是一个函数，它能够对原始特征进行非线性组合，以将原始的 $d$ 维数据集映射到更高维的 $k$ 维特征空间。例如，对于二维(d=2) 特征向量$x \in R^d$($x$ 是包含 $d$ 个特征的列向量)来说，可用如下映射将其转换到三维空间:
 
 $$
@@ -763,11 +765,11 @@ $$
 
 下一小节中，我们将基于这三个步骤使用 Python 实现 PCA。
 
-## 5.3.2 使用 Python 实现核主成分分析
+### 3.2 使用 Python 实现核主成分分析
 
 在千米你的小节中，我们讨论了核 PCA 相关的核心概念。现在根据之前总结过的实现核 PCA 方法的三个步骤，使用 Python 实现基于 RBF 核的 PCA。借助于 SciPy 和 NumPy 的函数，我们将会看到，实现 PCA 实际上很简单。
 
-```python
+```python linenums="1"
 from scipy.spatial.distance import pdist, squareform
 from scipy import exp
 from scipy.linalg import eigen
@@ -819,7 +821,7 @@ def rbf_kernel_pca(X, gamma, n_components):
 
 采用 RBF 核函数实现的 PCA 进行降维时存在一个问题，就是我们必须制定先验证参数 r，需要通过实验来找到一个合适的 r 值，最好是通过参数调优来确定，例如网格搜索算法，我们将在第6章中对其进行深入探讨。
 
-### 示例1: 分离半月形数据
+#### 示例1: 分离半月形数据
 
 现在，我们将实现 rbf_kernel_pca 方法应用于非线性示例数据集。我们首先创建一个包含 100 个样本点的二维数据集，以两个半月形状表示:
 
@@ -833,11 +835,11 @@ plt.show()
 
 处于演示的需要，使用三角符号标识的标识一个类别中的样本，使用圆形符号标识的表示另一类别的样本:
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDUvNS0xMi5qcGc)
+![](https://mingminyu.github.io/webassets/images/20251208/68.png)
 
 显然，这两个半月形不是线性可分的，而我们的目标是通过核 PCA 将这两个半月形数据展开，使得数据成为适用于某一线性分类器的输入数据。首先，我们通过标准的 PCA 将数据映射到主成分上，并观察其形状:
 
-```python
+```python linenums="1"
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
@@ -864,7 +866,7 @@ plt.show()
 
 很明显，经过标准 PCA 的转换后，线性分类器未必能很好地发挥作用:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830233126814.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/69.png)
 
 请注意，当我们仅回执第一主成分的图像时(见右子图)，我们分别将三角形和圆形代表的样本向上或向下做了轻微调整，以更好地展示类间重叠。
 
@@ -902,11 +904,11 @@ plt.show()
 
 可以看到，两个类别(圆形和三角形) 此时是线性可分的，这使得转换后的数据适合作为线性分类器的训练数据集:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830233222891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/70.png)
 
 不过，对于可调整参数 $\gamma$，没有一个通用的值使其适用于不同的数据集。针对给定问题找到一个适宜的参数值需要通过实验来解决。在第6章中，我们将讨论可自动进行参数优化等任务的技术。这里，我使用了一个已有的能够生成良好结果的值。
 
-### 示例2. 分离同心圆
+#### 示例2. 分离同心圆
 
 在上一小节，我们演示了如何通过核 PCA 分离半月形数据。既然我们已经投入了如此多的经历去理解核 PCA 的概念，就再看一下另外一个关于非线性问题的有趣例子——同心圆。
 
@@ -924,7 +926,7 @@ plt.show()
 
 同样，我们假设了一个涉及两个类别的问题，三角形和圆形分别标识不同类别的样本:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830233239192.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/71.png)
 
 
 首先使用标准 PCA 方法，以便将结果与基于 RBF 核的 PCA 生成的结果进行比较:
@@ -957,8 +959,7 @@ plt.show()
 
 再一次发现，通过标准 PCA 无法得到适合于线性分类器的训练数据:
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDUvNS0yMS5qcGc)
-
+![](https://mingminyu.github.io/webassets/images/20251208/72.png)
 
 给定一个合适的 $\gamma$ 值，来看看基于 RBF 的核 PCA 实现能够得到令人满意的结果:
 
@@ -988,9 +989,9 @@ plt.show()
 
 基于 RBF 的核 PCA 再一次将数据映射到了一个新的子空间中，使两个类别变得线性可分:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234012878.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/73.png)
 
-## 5.3.3 映射新的数据点
+### 3.3 映射新的数据点
 
 在上述两个核 PCA 应用的例子(半月形和同心圆)中，我们都将单一数据集映射到一个新的特征上。但在实际应用中，我们可能需要转换多个数据集，例如，训练数据、测试数据，以及在完成模型构建和评估后所要收集的新样本。本节将介绍如何映射训练数据集以外的数据点。
 
@@ -1012,9 +1013,10 @@ $$
 $$
 Ka = \lambda a
 $$
+
 在完成新样本与训练数据集内样本间相似度的计算后，我们还需通过特征向量对应的特征值来对其进行归一化处理。可以通过修改早前实现过的 rbf_kernel_pca 函数来让其返回矩阵的特征值:
 
-```python
+```python linenums="1"
 from scipy.spatial.distance import pdist, squareform
 from scipy import exp
 from scipy.linalg import eigh
@@ -1091,7 +1093,7 @@ array([ 0.4816, -0.3551])
 array([ 0.1192])
 ```
 
-通过执行下面的代码，我们可以重现原始映射。使用 project_x 函数，还可以映射新的数据样本。代码如下:
+通过执行下面的代码，我们可以重现原始映射。使用 `project_x` 函数，还可以映射新的数据样本。代码如下:
 
 ```python
 def project_x(x_new, X, gamma, alphas, lambdas):
@@ -1126,8 +1128,7 @@ plt.show()
 
 从下图可见，我们将样本 $x'$ 正确映射到了第一主成分上:
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDUvNS0xNy5qcGc)
-
+![](https://mingminyu.github.io/webassets/images/20251208/74.png)
 
 ```python
 X, y = make_moons(n_samples=100, random_state=123)
@@ -1152,7 +1153,7 @@ plt.scatter(x_reproj, 0, color='green',
 plt.legend(scatterpoints=1)
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234252410.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/75.png)
 
 
 ```python
@@ -1170,7 +1171,8 @@ plt.tight_layout()
 plt.show()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234241974.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/76.png)
+
 
 ## 5.3.4 scikit-learn 中的核主成分分析
 
@@ -1200,12 +1202,12 @@ plt.show()
 
 从结果图像中可见，通过 scikit-learn 中 KernelPCA 得到的结果与我们自己实现的结果一致:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234219894.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/77.png)
 
 
 > 🔖 scikit-learn 实现了一些高级的非线性降维技术，这些内容已经超出了本书的范围。读者可以通过链接 http://scikit-learn.org/stable/modules.mainfold.html 来了解相关内容概述及其示例。
 
-# 5.4 本章小结
+## 4. 本章小结
 
 在本章中，读者学习了三种不同的基于特征提取的基本降维技术: 标准 PCA、LDA，以及核 PCA。使用 PCA，我们可以在忽略类标的情况下，将数据映射到一个低维的子空间上，并沿正交的特征坐标方向使方差最大化。与 PCA 不同，LDA 是一种监督降维技术，这意味着: 在线性特征中尝试类别最大可分时，需要使用训练数据集中的类别信息。最后，我们学习了核 PCA，通过核 PCA 可以将非线性数据集映射到一个低维的特征空间中，使得数据线性可分。
 

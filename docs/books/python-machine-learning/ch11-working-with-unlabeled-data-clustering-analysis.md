@@ -10,7 +10,7 @@ GitHub Notebook 地址: https://nbviewer.jupyter.org/github/rasbt/python-machine
 -   使用自底向上的方法构建层次聚类树
 -   基于密度聚类方法发现任意形状簇
 
-# 11.1 使用KMeans算法对相似对象进行分组
+## 1. 使用KMeans算法对相似对象进行分组
 
 本节将讨论一种最流行的聚类算法: KMeans 算法，它在学术领域及业界都得到了广泛应用。聚类(或称为聚类分析)是一种可以找到相似对象群组的技术，与组间对象相比，组内对象之间具有更高的相似度。聚类在商业领域的应用包括: 按照**不同主题**对文档、音乐、电影等进行分组，或基于常见的购买行为，发现有相同兴趣爱好的顾客，并以此构建推荐引擎。
 
@@ -31,7 +31,7 @@ plt.show()
 
 我们刚才创建的数据集包含 150 个随机生成的点，它们大致分为三个高密度区域，其二维散点图如下:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903112003227.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/121.png)
 
 在聚类算法的实际应用中，我们没有任何关于这些样本的类别基础信息；否则算法就要划分到监督学习的范畴了。由此，我们的目标就是根据样本自身特征的相似性对其进行分组，对此可采用 KMeans 算法，具有有如下四个步骤:
 
@@ -66,7 +66,7 @@ y_km = km.fit_predict(X)
 
 不过，在 KMeans 算法的某轮迭代中，可能会发生无法收敛的情况，特别是当我们设置了较大的 `max_iter` 值时，更有可能产生此类问题。解决收敛问题的一个方法就是 `tol` 参数设置一个较大的值，此参数控制对簇内误差平方和的容忍度，此容忍度用于判定算法是或否收敛。在上述代码中，我们设置的容忍度为 0.0001 。
 
-## 11.1.1 KMeans++
+### 1.1 KMeans++
 
 到目前为止，我们已经讨论了经典的 KMeans 算法，它使用随机点作为初始中心点，若初始中心点选择不当，有可能会导致簇效果不佳或产生收敛速度慢等问题。解决此问题的一种方案就是在数据集上多次运行 KMeans 算法，并根据误差平方和(SSE) 选择性能最好的模型。另一种方案就是使用 KMeans++ 算法让初始中心点彼此尽可能远离，相比传统 KMeans 算法，它能够产生更好、更一致的结果[^1]。
 
@@ -105,11 +105,11 @@ plt.show()
 
 虽然 KMeans 算法在这一简单数据集上运行良好，但我们还要注意 KMeans 算法面临的一些挑战。KMeans 的缺点之一就是我们必须指定一个先验的簇数量 k，但在实际应用中，簇数量并非总是显而易见的，特别当我们面对的是一个无法可视化展现的高维数据集。KMeans 的另一个特点就是簇不可重叠，也不可分层，并且假定每个簇至少会有一个样本。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190903192033167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/122.png)
 
 [^1]: D.Arthur and S.Vassilvitskii.k-means++: The Advantages of Careful Seeding. In Proceedings of the eighteenth annual ACM-SIAM symposium on Discrete algorithms, pages 1027-1035. Society for Industrial and Applied Mathematics, 2007. 
 
-## 11.1.2 硬聚类与软聚类
+### 1.2 硬聚类与软聚类
 
 **硬聚类**(hard clustering) 指的是数据集中每个样本只能划至一个簇的算法，例如我们在上一小节中讨论过的 KMeans 算法。相反，**软聚类**(soft clustering，有时也称作**模糊聚类**(fuzzy clustering)) 算法可以将一个样本划分到一个或者多个簇。一个常见的软聚类算法是**模糊 C-means**(fuzzy C-means，FCM) 算法(也称为 soft k-menas 或者 fuzzy k-means)。关于软聚类的最初构想可以追溯到 20世纪70年代，当时 Joseph C.Dunn 第一个提出了模糊聚类的早期版本，以提高 KMeans 的性能[^2]。10 年之后，James C.Bedzek 发表了他对模糊聚类算法进行改进的研究成果，即 FCM 算法[^3]。
 
@@ -161,7 +161,7 @@ $$
 [^3]: J.C.Bezdek. Pattern Recognition with Fuzzy Object Function Algorithms. Springer Science & Business Media, 2013.
 [^4]: S.Ghosh and S.K.Dubey. Comparative Analysis of KMeans and Fuzzy c-means Alogorithms. IJASCSA, 4:35-38, 2013.
 
-## 11.1.3 使用肘方法确定簇的最佳数量
+### 1.3 使用肘方法确定簇的最佳数量
 
 无监督学习中存在一个问题，就是我们并不知道问题的确切答案。由于没有数据集样本类标的确切数据，所以我们无法在无监督学习中使用第6章中用来评估监督学习模型性能的相关技术。因此，为了对聚类效果进行定量分析，我们需要使用模型内部的固有度量来比较不同的 KMeans 聚类结果的性能，例如本章先前讨论的簇内误差平方和(即聚类偏差)。在完成 KMeans 模型的拟合后，簇内误差平方和可以通过 `inertia` 属性来访问，因此，我们无需再次计算就可以直接拿来使用。
 
@@ -192,9 +192,9 @@ plt.show()
 
 如下图，当 k=3 时图案呈现了肘型，这标明对于此数据集来说，k=3 的确实一个号的选择:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190911201914764.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/123.png)
 
-## 11.1.4 通过轮廓图定量分析聚类质量
+### 1.4 通过轮廓图定量分析聚类质量
 
 另一种评估聚类质量的定量分析方法是**轮廓分析**(silhouette analysis)，此方法也可用于 KMeans 之外的聚类方法。轮廓分析可以使用一个图形工具来度量簇中样本聚集的密集程度。通过如下三个步骤，我们可以计算三个步骤，我们可以计算数据集中单个样本的**轮廓系数**(silhouette coefficient)。
 
@@ -243,7 +243,7 @@ plt.show()
 
 通过观察轮廓图，我们可以快速知晓不同簇的大小，而且能够判断簇中是否包含异常点。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190911210958873.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/124.png)
 
 由上图可见，轮廓系数未接近 0 点，此指标显示聚类效果不错。此外，为了评价聚类效果的优劣，我们在图中增加了轮廓系数的平均值(虚线)。
 
@@ -266,7 +266,7 @@ plt.show()
 
 由下图可见，样本点形成了三个球状分组，其中一个中心点落在了两个球状分组的中间。尽管聚类结果看上去不是特别糟糕，但它并不是最合适的结果。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190911213651110.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/122.png)
 
 接下来，我们绘制轮廓图对聚类结果进行评估。请记住，在实际应用中，我们常常处理的是高维数据，因此并不奢望使用二维散点图对数据集记性可视化。
 
@@ -298,9 +298,9 @@ plt.show()
 
 由结果图像可见，轮廓具有明显不同的长度和宽度，这更进一步证明该聚类并非最优结果。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019091121380758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/126.png)
 
-# 11.2 层次聚类
+## 2. 层次聚类
 
 在本节中，我们将学习另一种基于原型的聚类: **层次聚类**(hierarchical clustering)。层次聚类的算法的一个优势在于: 它能够使我们绘制出**树状图**(dendrogram，基于二叉层次聚类的可视化)，这有助于我们使用有意义的分类法解释聚类效果。层次聚类的另一优势在于我们无需事先指定簇数量。
 
@@ -308,7 +308,7 @@ plt.show()
 
 在凝聚层次聚类汇总，判断簇间距离的两个标准方法分别是**单连接**(single linkage)和**全连接**(complete linkage)。我们可以使用单连接方法计算每一对簇中最相似两个样本的距离，并合并距离最近的两个样本所属簇。与之相反，全连接的方法是通过比较找到分布于两个簇中最不相似的样本(距离最远的样本)，进而完成簇的合并。如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190911215818896.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/125.png)
 
 >   :bookmark: 凝聚层次剧烈中其他常用的方法还有**平均连接**(average linkage)和 **ward 连接**(ward linkage)。使用平均连接时，合并两个簇间所有成员间平均距离最小的两个簇。当使用 ward 连接时，被合并的是使得 SSE 增量最小的两个簇。
 
@@ -342,7 +342,7 @@ df = pd.DataFrame(X, columns=variables, index=lables)
 | ID_3 | 3.921175 | 3.431780 | 7.290497 |
 | ID_4 | 4.385722 | 0.596779 | 3.980443 |
 
-## 11.2.1 基于距离矩阵进行层次聚类
+### 2.1 基于距离矩阵进行层次聚类
 
 我们使用 SciPy 中 `spatial.distinct` 子模块下的 `pdist` 函数来计算距离矩阵，此矩阵作为层次聚类算法的输入:
 
@@ -427,11 +427,11 @@ plt.show()
 
 如果是通过执行上述代码生成的图像，或者阅读本书的电子版本，会发现树状图的分支使用了不同的颜色。着色方案来自 matplotlib 的一个色彩列表，它基于树状图中的距离阈值循环生成不同的颜色。例如，通过删除上述代码中相关注释符，就可以使用黑色来绘制此树状图。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190912122810413.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/129.png)
 
 此树状图描述了采用凝聚层次聚类合并生成不同簇的过程。例如，从图中可见，首先是 ID_0 和 ID_4 合并，接下来是 ID_1 和 ID_2 合并，也就是基于欧几里得距离矩阵，选择最不相似的样本进行合并。
 
-## 11.2.2 树状图与热度图的关联
+### 2.2 树状图与热度图的关联
 
 在实际应用中，层次聚类的树状图通常与热度图(heat map) 结合使用，这样我们可以使用不同的颜色来代表样本矩阵中的独立值。在本节中，我们讨论如何将树状图附加到热度图上，并同时显示在一行上。
 
@@ -473,11 +473,11 @@ plt.show()
 
 通过上述步骤，便可看到热度图和树状图并列显示的图像:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190912122949706.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/130.png)
 
 如上图所示，热度图中的行反映了树状图中样本聚类的情况。除了简单的树状图外，热度图中用颜色代表的各样本及其特征为我们提供了关于数据集的一个良好的概括。
 
-## 11.2.3 通过 scikit-learn 进行凝聚聚类
+### 2.3 通过 scikit-learn 进行凝聚聚类
 
 在本节中，我们将使用 scikit-learn 进行基于凝聚的层次聚类。不过，scikit-learn 中已经实现了一个 `AgglomerativeClustering` 类，它允许我们选择返回簇的数量。当我们想要对层次聚类树进行剪枝时，这个功能是非常有用的。将参数 `n_cluster` 的值设定为 2，我们可以采用与前面相同的完全连接方法，基于欧几里得距离矩阵，将样本划分为两个簇:
 
@@ -492,7 +492,7 @@ print('Cluster labels: %s' % labels)
 
 通过对簇类标的预测结果进行分析，我们可以看出: 第一、第四、第五个(ID_0，ID_3 和 ID_4) 样本被划分至第一个簇(ID_0)，样本 ID_1 和 ID_2 被划分到第二个簇(1)，这与此外通过树状图得到的结果一致。
 
-# 11.3 使用DBSCAN划分高密度区域
+## 3. 使用DBSCAN划分高密度区域
 
 尽管无法在本章中介绍大量的聚类算法，但我们至少可以再介绍另一种聚类方法: (包含噪声情况下) 基于密度空间的聚类算法(Density-based Spatial Clustering of Applications with Noise，DBSCAN)。在 DBSCAN 中，密度被定义为指定半径 $\varepsilon$  范围内样本点的数量。
 
@@ -510,7 +510,7 @@ print('Cluster labels: %s' % labels)
 
 在实现具体算法之前，为了让读者对 DBSCAN 有个更好的直观认识，我们通过下图来了解核心点、边界点和噪声点:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190912123028447.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/131.png)
 
 与 KMneans 算法不同，DBSCAN 的簇空间不一定是球状的，这也是此算法的优势之一。此外，不同于 KMeans 和层次聚类，由于 DBSCAN 可以识别并移除噪声点，因此它不一定回将所有的样本点都划分到某一簇中。
 
@@ -526,7 +526,7 @@ plt.show()
 
 由结果图像可见，数据集明显被划分为两个半月形的分组，每个分组包含 100 个样本点:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190912123053466.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/132.png)
 
 我们首先使用前面讨论过的 KMeans 算法和基于全连接的层次聚类算法，看它们是否能够成功识别出半月形的簇。代码如下:
 
@@ -553,7 +553,7 @@ plt.show()
 
 从聚类结果图像可见，KMeans 算法无法将两个簇分开，而这种复杂形状的数据对层次聚类算法来说也是一种挑战:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019091212311898.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/133.png)
 
 最后，我们尝试一下 DBSCAN 算法在数据集上的效果，看其是否能使用基于密度的方法发现两个半月形的簇:
 
@@ -572,15 +572,15 @@ plt.show()
 
 DBSCAN 算法可以成功地对半月形数据进行划分，这也是 DBSCAN 的优势之一(可对任意形状的数据进行聚类)。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019091212314168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/134.png)
 
 同时，我们也应该注意到 DBSCAN 算法的一些缺点。对于一个给定样本数量的训练数据集，随着数据集中特征的增加，**维度灾难**(curse of dimensionality) 的负面影响会随之递增。在使用欧几里得距离度量时，此问题尤为突出。不过，并不是只有 DBSCAN 算法面临维度灾难问题，使用欧几里得距离度量的其他聚类算法，如 KMeans 和层次聚类算法也都面临此问题。此外，为了能够生成更优的聚类结果，需要对 DBSCAN 中的两个超参(MinPts 和 $\varepsilon$) 进行优化。如果数据集中的密度差异较大，则找到合适的 MinPts 和 $\varepsilon$ 的组合较为困难。
 
->   :bookmark: 到目前为止，我们介绍了三种最基本的聚类方法: KMeans 基于原型的聚类、凝聚层次聚类、使用 DBSCAN 基于密度的聚类。在此，有必要提一下另一种更为先进的聚类方法: **图聚类**。而图聚累系列中最为突出的方法应该是**谱聚类**方法。虽然实现谱聚类有多重不同的方法，但它们的共同之处在于: 均使用基于相似矩阵的特征向量来获得簇间的关系。由于谱聚类超出本书的讲解范围，有兴趣的读者可以通过以下链接了解详细内容: http://arxiv.org/pdf/0711.0819v1.pdf (U.Von Luxburg. A Tutorial on Spectral Clustering. Statistics and computing, 17(4):395-416, 2007)。
+>   :bookmark: 到目前为止，我们介绍了三种最基本的聚类方法: KMeans 基于原型的聚类、凝聚层次聚类、使用 DBSCAN 基于密度的聚类。在此，有必要提一下另一种更为先进的聚类方法: **图聚类**。而图聚累系列中最为突出的方法应该是 **谱聚类** 方法。虽然实现谱聚类有多重不同的方法，但它们的共同之处在于: 均使用基于相似矩阵的特征向量来获得簇间的关系。由于谱聚类超出本书的讲解范围，有兴趣的读者可以通过以下链接了解详细内容: http://arxiv.org/pdf/0711.0819v1.pdf (U.Von Luxburg. A Tutorial on Spectral Clustering. Statistics and computing, 17(4):395-416, 2007)。
 
 **请注意**，在实际应用中，对于给定的数据集，往往不太确定选择哪种算法是最为适宜的，特别是面对难以或者无法进行可视化处理的高维数据集。此外，需要强调的是，一个好的聚类并不仅仅依赖于算法及其超参的调整。相反，选择合适的距离度量标准和专业领域知识再实验设定时的应用可能会更有帮助。
 
-# 11.4 本章小结
+## 4. 本章小结
 
 本章中，读者学习了三种不同的聚类算法，它们可以帮助我们发现隐藏数据背后的结构或信息。本章开始就介绍了基于原型的 KMeans 算法，此算法可以基于指定数量的簇中心，将样本划分为球形的簇。由于聚类是一种无监督方法，我们无法奢求根据真实的类标来衡量模型的性能。因此，我们使用数据内在有用的性能指标(如肘方法，或者轮廓分析)来尝试对聚类的质量进行量化评定。
 

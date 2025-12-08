@@ -9,11 +9,11 @@
 - 机器学习模型调优
 - 使用不同的性能指标评估预测模型
 
-# 6.1 基于流水线的工作流
+## 6.1 基于流水线的工作流
 
 我们在前面章节中学习了不同的数据预处理技术，无论是第4张中介绍的用于特征缩放的标准化方法，还是第5章中介绍的用于介绍数据压缩的主成分分析等，我们在使用训练数据对模型进行拟合时就得到了一些参数，但将模型用于新数据时需重设这些参数。本节读者将学到一个方便使用的工具: scikit-learn 中的 Pipeline 类。它使得我们可以拟合出包含任意多个处理步骤的模型，并将模型用于新数据的预测。
 
-## 6.1.1 加载威斯康星乳腺癌数据集
+### 1.1 加载威斯康星乳腺癌数据集
 
 本章我们将使用威斯康星乳腺癌(Breast Cancer Wisconsin) 数据集进行讲解，此数据集共包含 569 个恶性或者良性肿瘤细胞样本。数据集中的前两列分别存储了样本唯一的 ID 以及对样本的诊断结果(M 代表恶性，B 代表良性)。数据集的 3~32 列包含了 30个从细胞核照片汇总提取、用实数值标识的特征，它们可以用于构建判定模型，对肿瘤是良性还是恶性做出预测，威斯康星乳腺癌数据集已经存储子 UCI 机器学习数据库中，关于此数据集更多的信息请访问链接: https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)。
 
@@ -51,7 +51,7 @@ from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=1)
 ```
 
-## 6.1.2 在流水线中集成数据转换及评估操作
+### 1.2 在流水线中集成数据转换及评估操作
 
 通过前面章节的学习，我们了解到: 处于性能优化的目的，许多学习算法要求将不同特征的值缩放到相同的范围。这样，我们在使用 Logistic 回归模型等线性分类器分析 Wisconsin 乳腺癌数据集之前，需要对其特征列做标准化处理。此外，我们还想通过第5章中介绍过的主成分分析(PCA) —— 使用特征抽取进行降维的技术，将最初的 30 维数据压缩到一个二维的子空间上。我们无需再训练数据集和测试数据集上分别进行模型拟合、数据转换，而是通过流水线将 StandScaler、PCA，以及 LogisticRegression 对象串联起来:
 
@@ -75,13 +75,13 @@ Pipeline 对象采用元素的序列作为输入，其中每个元组的第一�
 
 流水线中包含 scikit-learn 中用于数据预处理的类，最后还包括一个评估器。在前面的示例代码中，流水线中有两个预处理环节，分别是用于数据缩放和转换的 StandardScaler 及 PCA，最后还有一个座位评估器的 Logistic 回归分类器。当在流水线 pipe_lr 上执行 fit 方法时，StandScaler 会在训练集上执行 fit 和 trans 和 transform 操作，经过转换后的训练数据将传递给流水线上的下一个对象——PCA。与前面的步骤类似，PCA 会在前一步转换后的输入数据上执行 fit 和 transform 操作，并将处理过的数据传递给流水线中的最后一个对象——评估器。我们应该注意到: 流水线没有限定中间步骤的数量。流水线的工作方式可用下图来描述:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234731685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/78.png)
 
-# 6.2 使用 k 折交叉验证评估模型性能
+## 2. 使用 k 折交叉验证评估模型性能
 
 构建机器学习模型的一个关键步骤就是在新数据上对模型的性能进行评估。现在假设我们使用训练数据对模型进行拟合，并且使用同样的数据对其性能进行评估。回忆一下 3.3.4 节，如果一个模型过于简单，将会面临欠拟合(高偏差)的问题，而模型基于训练数据构造得过于复杂，则会导致过拟合(高方差)的问题。为了在偏差和方差之间找到可接受的折中方案，我们需要对模型进行评估。在本节，读者将学到有用的交叉验证技术: holdout 交叉验证(holdout cross_validation) 和 k折交叉验证(k-fold cross_validation)，借助于这两种方法，我们可以得到模型泛化误差的可靠估计，即模型在新数据上的性能表现。
 
-## 6.2.1 holdout 方法
+### 2.1 holdout 方法
 
 holdout 交叉验证是评估机器学习模型泛化能力的一个景点且常用的方法。通过 holdout 方法，我们将最初的数据集划分为训练集和测试数据集: 前者用于模型的训练，而后者则用于性能的评估。然而，在典型的机器学习应用中，为进一步提高模型在预测未知数据上的性能，我们还要对不同参数设置进行调优和比较。该过程称为模型选择(model selection)，指的是针对给定分类问题，我们调整参数以寻求最优值(也称为超参，hyperparamter)的过程。
 
@@ -89,7 +89,7 @@ holdout 交叉验证是评估机器学习模型泛化能力的一个景点且常
 
 使用 holdout 进行模型选择更好的方法是将数据划分为三个部分吗: 训练数据集、验证数据集和测试数据集。悬链数据集用于不同模型的拟合，模型在验证数据集上的性能表现作为模型选择的标准。使用模型训练集模型选择阶段不曾使用的数据作为测试数据集的优势在于: 评估模型应用于新数据上能够获得较小的偏差。下图介绍了 holdout 交叉验证的一些概念。交叉验证中，在使用不同参数值对模型进行训练之后，我们使用验证数据集反复进行模型性能的评估。一旦参数优化获得较为满意的结果，我们就可以在测试数据集上对模型的泛化能力误差进行评估:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234750293.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/79.png)
 
 holdout 方法的一个缺点在于: 模型性能的评估对训练数据集划分为训练及验证子集的方法是敏感的；评价的结果会随着样本的不同而发生改变。在下一小节中，我们将学习一种鲁棒性更好的性能评价技术: k折交叉验证，我们将在 k个训练数据子集上重复 holdout 方法措多次。
 
@@ -105,7 +105,7 @@ holdout 方法的一个缺点在于: 模型性能的评估对训练数据集划�
 
 由于 k 折交叉验证使用了无重复抽样技术，该方法的有时在于(每次迭代过程中) 每个样本点只有一次被划入训练集或测试数据集的机会，与 holdout 方法相比，这将使得模型性能的评估的评估具有较小的方差。下图总结了 k 折交叉验证的相关概念，其中 k=10。训练数据集被划分为 10 块，在 10 次迭代中，每次迭代都将 9 块用于训练，剩余的 1块作为测试集用于模型的评估。此外，每次迭代中得到的心梗评价指标 $E_i$(例如，分类的准确性或者误差) 可用来计算模型的估计平均性能 E:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019083023483857.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/80.png)
 
 
 k 折交叉验证中 k 的标准值为 10，这对大多数应用来说都是合理的。但是，如果训练数据集相对较小，那就有必要加大 k 的值。如果我们增大 k 的值，在每次迭代中将会有更多的数据用于模型的训练，这样通过计算各性能评估结果的平均值对模型的泛化能力进行评价时，可以得到较小的偏差。但是，k 值的增加将导致交叉验证算法运行时间延长，而且由于各训练块间高度相似，也会导致评价结果方差较高。另一方面，如果数据集较大，则可以选择较小的 k 值，如 k=5，这不光能够降低模型在不同数据上进行重复拟合和性能评估的计算成本，还可以在平均性能的基础上获得对模型的准确评估。
@@ -172,15 +172,15 @@ cross_val_score 方法具备一个极为有用的特点，它可以将不同分�
 > 注2: M.Markatou, H. Tian, S. Biswas, and G.M.Hripcsak. Analysis of Variance of Cross_validation Estimators of the Generalization Error. Journal of Machine Learning Research, 6:1127-1168, 2005.
 > 注3: B.Efron and R.Tibshirani. Improvements on Cross_validation: The 632+ Bootstrap Method. Journal of American Statistical Assocation, 92(438): 548-560, 1997.
 
-# 6.3 通过学习及验证曲线来调试算法
+## 3. 通过学习及验证曲线来调试算法
 
 在本节，我们将学习两个有助于提高学习算法的简单但功能强大的判定工具: 学习曲线(learning curve)与验证曲线(validation curve)。在下一小节中，我们将讨论如何使用学习曲线来判定学习算法是否面临过拟合(高方差)或欠拟合(高偏差)问题。此外，我们还将了解一下验证权限，它可以曲线我们找到学习算法中的常见问题。
 
-## 6.3.1 使用学习曲线判定偏差和方差问题
+### 3.1 使用学习曲线判定偏差和方差问题
 
 如果一个模型在给定训练数据上构造得过于复杂——模型中有太多的自由度或者参数，这时模型可能对训练数据过拟合，而对未知数据泛化能力低下。通常情况下，收集更多的训练样本有助于降低模型的过拟合程度。但是，在实践中，收集更多数据会带来高昂的成本，或者根本不可行。通过将模型的训练及准确性验证看作是训练数据集大小的函数，并绘制其图像，我们可以很容易看出模型是面临高方差还是高偏差的问题，以及收集更多的数据是否有助于解决问题。在讲解如何通过 scikit-learn 绘制学习曲线之前，我们先通过下图来讨论一下模型常见的两个问题:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234858516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/81.png)
 
 左上方图像显示的是一个高偏差模型。此模型的训练准确率和交叉验证准确率都很低，这表明此模型未能很好地拟合数据。解决此问题的常用方法是增加模型中参数的数量，例如，收集或构建额外特征，或者降低类似于 SVM 和 Logistic 回归器等模型的正则化程度。右上方图像中模型面临高方差的问题，我们可以收集更多的训练数据或者降低模型的复杂度，如增加正则化的参数；对于不适合正则化的模型，也可以通过第4章介绍的特征选择，或者第5章中特征提取来降低特征的数量。需要注意的是: 收集更多的训练数据可以降低模型过拟合的概率。不过该方法并不适用于所有问题，例如: 训练数据中噪声数据比较多，或者模型本身已经接近于最优。
 
@@ -215,18 +215,18 @@ plt.ylim([0.8, 1.0])
 plt.show()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2019083023491751.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/82.png)
 
 
 通过 learning_curve 函数的 train_size 参数，我们可以控制用于生成学习曲线的样本的绝对或相对数量。在此，通过设置 `train_sizes=np.linspace(0.1,1.0,10)` 来使用训练数据集上等距间隔的 10 个样本。默认情况下，learning_curve 函数使用分层 k 折交叉验证来计算交叉验证的准确性，通过 cv 参数将 k 的值设置为 10。然后，我们可以简单地通过不同规模训练集上返回的交叉验证和测试评分来计算平均准确率，并且我们使用 matplotlib 的 plot 函数绘制出准确率的图像。此外，在绘制图像时，我们通过 fill_between 函数加入了平均准确率标准差的信息，用以表示评价结果的方差。
 
 通过前面学习曲线图像可见，模型在测试数据集上表现很好。但是，在训练准确率曲线与交叉验证准确率之间，存在着相对较小差距，这意味模型对训练数据有轻微的过拟合。
 
-## 6.3.2 通过验证曲线来判定过拟合与欠拟合
+### 3.2 通过验证曲线来判定过拟合与欠拟合
 
 验证曲线是一种通过定位过拟合或欠拟合等诸多问题所在，来帮助提高模型性能的有效工具。验证曲线与学习曲线相似，不会绘制的不是样本大小与悬链准确率、测试准确率之间的函数关系，而是准确率与模型参数之间的关系，例如 Logistic 回归模型中的正则化参数 C。我们继续看下如何使用 scikit-learn 来绘制验证曲线:
 
-```python
+```python linenums="1"
 from sklearn.learning_curve import validation_curve
 
 plt.style.use('ggplot')
@@ -254,19 +254,19 @@ plt.ylim([0.8, 1.0])
 plt.show()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830234937474.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/83.png)
 
 与 learning_curve 函数类似，如果我们使用的是分类算法，则 validation_curve 函数默认使用分层 k 折交叉验证来评价模型的性能。在 validation_curve 函数内，我们可以指定想要验证的参数。在本例中，需要验证的是参数 C，即定义在 scikit-learn 流水线中的 Logistic 回归分类器的正则化参数，我们将其记为 `'clf__C'`，并通过 param_range 参数类设定其值的范围。与上一节的学习曲线类似，我们绘制了平均训练准确率、交叉验证准确率及对应的标准差。
 
 虽然不同 C 值之间的准确率的异常非常小，但我们可以看到，如果加大正则化强度(较小的 C 值)，会导致模型轻微的欠拟合；如果增加 C 值，这意味着降低正则化的强度，因此模型会趋向于过拟合。在本例中，最优点在 `C=0.1` 附近。
 
-# 6.4 使用网格搜索调优机器学习模型
+## 4. 使用网格搜索调优机器学习模型
 
 在机器学习中，有两类参数: 通过训练数据学习得到的参数，如 Logistic 回归中的回归系数；以及学习算法中需要单独进行优化的参数。后者即为调优参数，也称为超参，对模型来说，就如 Logistic 回归中的正则化系数，或者决策树中的深度参数。
 
 在上一节中，我们使用验证曲线通过调优超参提高模型的性能。本节中，我们将学习一种功能强大的超参数优化技巧: 网格搜索(grid search)，它通过寻找最优的超参值的组合以进一步提高模型的性能。
 
-## 6.4.1 使用网格搜索调优超参
+### 4.1 使用网格搜索调优超参
 
 网格搜索法非常简单，它通过我们指定的不同超参列表进行暴力穷举搜索，并计算评估每个组合对模型性能的影响，以获得参数的最优组合。
 
@@ -311,13 +311,13 @@ Test accuracy: 0.985
 
 > 🔖 虽然网格搜索是寻找最优参数集合的一种功能强大的方法，但评估所有参数组合的计算成本也是相当昂贵的。使用 scikit-learn 抽取不同参数组合的另一种方法就是随机搜索(randomized search)。借助于 scikit-learn 中的 RandomoizedSearchCV 类，我们可以以特定的代价从抽样分布中抽取随机的参数组合。关于此方法的更详细细节及其示例请访问链接: http://scikit-learn.org/stable/modules/grid_search.html#randomized-paramter-optimation 。
 
-## 6.4.2 通过嵌套交叉验证选择算法
+### 4.2 通过嵌套交叉验证选择算法
 
 在上一节中我们看到，结合网格搜索进行 k 折交叉验证，通过超参数值的改动对机器学习模型进行调优，这是一种有效提高机器学习模型性能的方法。如果要在不同机器学习算法中做出选择，则推荐另外一种方法——嵌套交叉验证，在一项对误差估计的偏差情形研究中，Varma 和 Simon 给出了如下结论: 使用嵌套交叉验证，估计的真实误差与在测试集上得到的结果几乎没有差距$^{注1}$。
 
 在嵌套交叉验证的外围循环中，我们将数据划分为训练块及测试块；而在用于模型选择的内部循环中，我们则基于这些训练块使用 k 折交叉验证。下图通过 5个外围模块及2个内部模型解释了嵌套交叉验证的概念，这适用于计算性能要求比较高的大规模数据集。这种特殊类型的嵌套交叉验证也称为 5x2 交叉验证(5x2 cross-validation):
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235002772.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/84.png)
 
 
 借助于 scikit-learn，我们可以通过如下方式使用嵌套交叉验证:
@@ -352,7 +352,7 @@ CV accuracy: 0.972 +/- 0.012
 
 代码返回的交叉验证准确率平均值对模型超参调优的预期值给出了很好的估计，且使用该值优化过的模型能够预测未知数据。例如，我们可以使用嵌套交叉验证方法比较 SVM 模型与简单的决策树分类器了；为了简单起见，我们只调优树的深度参数:
 
-```python
+```python linenums="1"
 if Version(sklearn_version) < '0.18':
     from sklearn.grid_search import GridSearchCV
 else:
@@ -381,15 +381,15 @@ CV accuracy: 0.910 +/- 0.044
 > 注1: A.Varma and R.Simon.Bias in Error Estimation When Using Crossing-validation for Model Selection. BMC bioinfomatics, 7(1):91,2006.
 
 
-# 6.5 了解不同的性能评价指标
+## 5. 了解不同的性能评价指标
 
 在前面章节中，我们使用模型准确性对模型进行了评估，这是通常情况下有效量化模型性能的一个指标。不过还有其他几个性能指标就可以用来衡量模型的相关性能，比如准确率(precision)、召回率(recall) 以及F1分数(F1-score)。
 
-## 6.5.1 读取混淆矩阵
+### 5.1 读取混淆矩阵
 
 在我们详细讨论不同评分标准之前，先回执一个所谓的混淆矩阵(confusion matrix): 即展示学习算法性能的一种矩阵。混淆矩阵是一个简单的方阵3，用于展示一个分类器预测结果——真正(true positive)、真负(false negative)、假正(false positive)即假负(false negative)——数量，如下图所示:
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235032141.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/85.png)
 
 虽然这指标的数据可以通过人工比较真实类标与预测类标来获得，不过 scikit-learn 提供了一个方便使用的 confusion_matrix 函数，其使用方法如下:
 
@@ -430,11 +430,11 @@ plt.show()
 
 下图所示的混淆矩阵
 
-![](https://imgconvert.csdnimg.cn/aHR0cDovL2dpdGh1Yi5jb20vbWluZ21pbnl1L2ltYWdlcy9yYXcvbWFzdGVyL3B5dGhvbi1tYWNoaW5lLWxlYXJuaW5nL2NoMDYvNi05LmpwZw)
+![](https://mingminyu.github.io/webassets/images/20251208/86.png)
 
 在本例中，嘉定类别 1(恶性)为正类，模型正确地预测了 71 个术语类别 0 的样本(真负)，以及 40 个属于类别 1的样本(真正)。不过，我们的模型也错误地将两个属于类别 0的样本划分到了类别 1(假负)，另外还将一个恶性肿瘤误判为良性的(假正)。在下一节中，我们将使用这些信息计算不同的误差度量。
 
-## 6.5.3 优化分类模型的准确率和召回率
+### 5.2 优化分类模型的准确率和召回率
 
 预测误差(error, ERR)和准确率(accuracy, AUC) 都提供了误分类样本数量的相关信息。误差可以理解为预测错误样本的数量与所有被预测样本数量的比值，而准确率计算方法则是正确预测样本的数量与所有被预测样本数量的比值:
 
@@ -490,7 +490,7 @@ F1: 0.964
 
 请记住 scikit-learn 中将正类类标标识为 1。如果我们想指定一个不同的正类类标，可通过 make_scorer 函数来构建我们自己的评分，那样我们就可以将其以参数的形式提供给 GridSearchCV:
 
-```py
+```python
 from sklearn.metrics import make_scorer, f1_score
 from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
@@ -506,7 +506,7 @@ scorer = make_scorer(f1_score, pos_label=0)
 gs = GridSearchCV(estimator=pipe_svc, param_grid=param_grid, scoring=scorer, cv=10)
 ```
 
-## 6.5.3 绘制 ROC 曲线
+### 5.3 绘制 ROC 曲线
 
 受试者工作特征曲线(receiver operator characteristic, ROC)是基于模型假正率和真正率等性能指标进行分类模型选择的有用工具，假正率和真正率可以通过移动分类器的分类阈值来计算。ROC 的对角线可以理解为随机猜测，如果分类器性能曲线在对角线以下，那么其性能就比随机猜测还差。对于完美的分类器来说，其真正率为 1，假正率为 0，这时的 ROC 曲线即为横轴 0 与纵轴 1 组成的折线。基于 ROC 曲线，我们就可以计算所谓的 ROC 线下区域(area under the curve, AUC)，用来刻画分类模型的性能。
 
@@ -514,7 +514,7 @@ gs = GridSearchCV(estimator=pipe_svc, param_grid=param_grid, scoring=scorer, cv=
 
 在下面的代码中，我们只使用了 Wisconsin 乳腺癌数据集中的两个特征来判定肿瘤是良性还是恶性，并绘制了相应的 ROC 曲线。虽然再次使用了前面定义的 Logistic 回归流水线，但是为了使 ROC 曲线视觉上更加生动，我们队分类器的设置比过去更具有挑战性。处于相同的考虑，我们还将 StratifiedKFold 验证器中分块数量减少为 3。代码如下:
 
-```py
+```python
 from sklearn.metrics import roc_curve, auc
 from scipy import interp
 from sklearn.cross_validation import StratifiedKFold
@@ -551,7 +551,7 @@ plt.legend(loc='lower right')
 plt.show()
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20190830235115212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0x1Q2gxTW9uc3Rlcg==,size_16,color_FFFFFF,t_70)
+![](https://mingminyu.github.io/webassets/images/20251208/87.png)
 
 前面的示例代码使用了 scikit-learn 中我们已经熟悉的 StratifiedKFold 类，并且在 pipe_lr 流水线的每次迭代中都石永红了 sklearn.metrics 模块中的 roc_curve 函数，以计算 Logistic-Regression 分类器的 ROC 性能。此外，我们通过 SciPy 中的 interp 函数利用三个块数据对 ROC 曲线的内插均值进行了计算，并使用 auc 函数计算了低于 ROC 曲线区域的面积。最终的 ROC 曲线表明不同的块之间存在一定的方差，且平均 ROC AUC(0.75) 位于最理想情况(1.0) 与随机猜测(0.5) 之间。
 
@@ -575,7 +575,7 @@ Accuracy: 0.728
 
 > 注1: A.P.Bradley. The Use of the Area Under the ROC Curve in the Evaluation of Machine Learning Algorithms. Pattern recognition, 30(7): 1145-1159, 1997.
 
-## 6.5.4 多类别分类的评价标准
+### 5.4 多类别分类的评价标准
 
 本节中讨论的评分标准都是基于二类别分类系统的。不过，scikit-learn 实现了 macro(宏)及 micro(微)均值方法。旨在通过一对多(One vs All, OvA)的方式将评分标准扩展到了多类别分类问题。微均值是通过系统的真正、真负、假正，以及假负来计算的。例如，k 类别分类系统的准确率评分的微均值可按如下公式进行计算:
 
@@ -601,7 +601,7 @@ pre_scorer = make_scorer(score_func=precision_score, pos_label=1,
                          greater_is_better=True, average='micro')
 ```
 
-# 6.6 本章小结
+## 6. 本章小结
 
 在本章的开始时，我们讨论了通过便捷的流水线模型串联不同的数据转换技术与分类器，以帮助我们更高效地训练与评估机器学习模型。进而我们使用流水线进行 k 折交叉验证，k 折交叉验证是模型选择及评估的一种基本技术。使用 k 折交叉验证，我们绘制了学习曲线和验证曲线以诊断学习算法中过拟合与欠拟合等常见问题。使用网格搜索，进一步对模型进行微调。最后我们学习了混淆矩阵以及各种不同性能评价指标，在针对特定问题需要进一步优化模型时，这些指标可能是非常有用的。到目前为止，我们已经具备了使用监督机器学习模型来成功构建分类器的基本技能。
 
