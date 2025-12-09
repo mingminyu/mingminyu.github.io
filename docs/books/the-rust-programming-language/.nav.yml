@@ -7,3 +7,8 @@ nav:
   - 5.使用结构体组织相关联的数据: ch05-structs.md
   - 6.枚举和模式匹配: ch06-enums.md
   - 7.使用包、Crate和模块管理不断增长的项目: ch07-managing-growing-projects-with-packages-crates-and-modules.md
+  - 8.常见集合: ch08-common-collections.md
+  - 9.错误处理: ch09-error-handling.md
+  - 10.泛型类型、特质和生命周期: ch10-generics.md
+  - 11.编写自动化测试: ch11-testing.md
+  
