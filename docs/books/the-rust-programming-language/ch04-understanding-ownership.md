@@ -50,14 +50,13 @@ let s = "hello";
 
 变量 `s` 绑定到了一个字符串字面量，这个字符串值是硬编码进程序代码中的。该变量从声明的那一刻开始直到当前 **作用域** 结束时都是有效的。示例 4-1 的注释标明了变量 `s` 的有效范围。
 
-```rust linenums="1"
+```rust linenums="1" title="示例 4-1：变量的作用域"
 {                      // s 在这里无效, 它尚未声明
     let s = "hello";   // 从此处起，s 开始有效
 
     // 使用 s
 }                      // 此作用域已结束，s 不再有效
 ```
-
 
 换句话说，这里有两个重要的时间点：
 
@@ -68,17 +67,17 @@ let s = "hello";
 
 ### 1.3 `String` 类型
 
-为了演示所有权的规则，我们需要一个比第 3 章[“数据类型”](https://rustwiki.org/zh-CN/book/ch03-02-data-types.html#数据类型)中讲到的都要复杂的数据类型。前面介绍的类型都是已知大小的，可以存储在栈中，并且当离开作用域时被移出栈，如果代码的另一部分需要在不同的作用域中使用相同的值，可以快速简单地复制它们来创建一个新的独立实例。不过我们需要寻找一个存储在堆上的数据来探索 Rust 是如何知道该在何时清理数据的。
+为了演示所有权的规则，我们需要一个比第 3 章 “数据类型” 中讲到的都要复杂的数据类型。前面介绍的类型都是已知大小的，可以存储在栈中，并且当离开作用域时被移出栈，如果代码的另一部分需要在不同的作用域中使用相同的值，可以快速简单地复制它们来创建一个新的独立实例。不过我们需要寻找一个存储在堆上的数据来探索 Rust 是如何知道该在何时清理数据的。
 
-这里使用 `String` 作为例子，并专注于 `String` 与所有权相关的部分。这些方面也同样适用于标准库提供的或你自己创建的其他复杂数据类型。在[第 8 章](https://rustwiki.org/zh-CN/book/ch08-02-strings.html)会更深入地讲解 `String`。
+这里使用 `String` 作为例子，并专注于 `String` 与所有权相关的部分。这些方面也同样适用于标准库提供的或你自己创建的其他复杂数据类型。在第 8 章会更深入地讲解 `String`。
 
-我们已经见过字符串字面量，即被硬编码进程序里的字符串值。字符串字面量是很方便的，不过它们并不适合使用文本的每一种场景。原因之一就是它们是不可变的。另一个原因是并非所有字符串的值都能在编写代码时就知道：例如，要是想获取用户输入并存储该怎么办呢？为此，Rust 有第二个字符串类型，`String`。这个类型管理被分配到堆上的数据，所以能够存储在编译时未知大小的文本。可以使用 `from` 函数基于字符串字面量来创建 `String`，如下：
+我们已经见过字符串字面量，即被硬编码进程序里的字符串值。字符串字面量是很方便的，不过它们并不适合使用文本的每一种场景，原因之一就是它们是不可变的。另一个原因是并非所有字符串的值都能在编写代码时就知道：例如，要是想获取用户输入并存储该怎么办呢？为此，Rust 有第二个字符串类型，`String`。这个类型管理被分配到堆上的数据，所以能够存储在编译时未知大小的文本。可以使用 `from` 函数基于字符串字面量来创建 `String`，如下：
 
 ```rust
 let s = String::from("hello");
 ```
 
-双冒号（`::`）运算符允许我们将特定的 `from` 函数置于 `String` 类型的命名空间（namespace）下，而不需要使用类似 `string_from` 这样的名字。我们将在第 5 章的[“方法语法”（“Method Syntax”）](https://rustwiki.org/zh-CN/book/ch05-03-method-syntax.html#方法语法)以及第 7 章的[“路径用于引用模块树中的项”](https://rustwiki.org/zh-CN/book/ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html)中讨论模块的命名空间时，再详细说明此语法。
+双冒号（`::`）运算符允许我们将特定的 `from` 函数置于 `String` 类型的命名空间（namespace）下，而不需要使用类似 `string_from` 这样的名字。我们将在第 5 章的“方法语法”（“Method Syntax”）以及第 7 章的“路径用于引用模块树中的项”中讨论模块的命名空间时，再详细说明此语法。
 
 **可以** 修改此类字符串 ：
 
@@ -86,7 +85,6 @@ let s = String::from("hello");
 let mut s = String::from("hello");
 
 s.push_str(", world!"); // push_str() 在字符串后追加字面值
-
 println!("{}", s); // 将打印 `hello, world!`
 ```
 
@@ -94,7 +92,7 @@ println!("{}", s); // 将打印 `hello, world!`
 
 ### 1.4 内存与分配
 
-就字符串字面量来说，我们在编译时就知道其内容，所以文本被直接硬编码进最终的可执行文件中。这使得字符串字面量快速且高效。不过这些特性都只得益于字符串字面量的不可变性。不幸的是，我们不能为了每一个在编译时大小未知的文本而将一块内存放入二进制文件中，并且它的大小还可能随着程序运行而改变。
+就字符串字面量来说，我们在编译时就知道其内容，所以文本被直接硬编码进最终的可执行文件中，这使得字符串字面量快速且高效，不过这些特性都只得益于字符串字面量的不可变性。不幸的是，我们不能为了每一个在编译时大小未知的文本而将一块内存放入二进制文件中，并且它的大小还可能随着程序运行而改变。
 
 对于 `String` 类型，为了支持一个可变，可增长的文本片段，需要在堆上分配一块在编译时未知大小的内存来存放内容。这意味着：
 
@@ -124,11 +122,11 @@ Rust 采取了一个不同的策略：内存在拥有它的变量离开作用域
 
 这个模式对编写 Rust 代码的方式有着深远的影响。现在它看起来很简单，不过在更复杂的场景下代码的行为可能是不可预测的，比如当有多个变量使用在堆上分配的内存时。现在让我们探索一些这样的场景。
 
-#### 1.4.1 变量与数据交互的方式（一）：移动
+#### 1.4.1 变量与数据交互的方式：移动
 
 在 Rust 中，多个变量能够以不同的方式与同一数据交互。让我们看看示例 4-2 中一个使用整型的例子。
 
-```rust
+```rust linenums="1"
 let x = 5;
 let y = x;
 ```
@@ -139,32 +137,28 @@ let y = x;
 
 现在看看这个 `String` 版本：
 
-```rust
+```rust linenums="1"
 let s1 = String::from("hello");
 let s2 = s1;
 ```
 
 这看起来与上面的代码非常类似，所以我们可能会假设他们的运行方式也是类似的：也就是说，第二行可能会生成一个 `s1` 的拷贝并绑定到 `s2` 上。不过，事实上并不完全是这样。
 
-看看下图以了解 `String` 的底层会发生什么。`String` 由三部分组成，如图左侧所示：一个指向存放字符串内容内存的指针，一个长度，和一个容量。这一组数据存储在栈上。右侧则是堆上存放内容的内存部分。
+看看图4-1 以了解 `String` 的底层会发生什么。`String` 由三部分组成，如图左侧所示：一个指向存放字符串内容内存的指针，一个长度，和一个容量。这一组数据存储在栈上。右侧则是堆上存放内容的内存部分。
 
-![String in memory](https://rustwiki.org/zh-CN/book/img/trpl04-01.svg)
-
-将值 `"hello"` 绑定给 `s1` 的 `String` 在内存中的表现形式
+![图4-1：将值 "hello" 绑定给 s1 的 String 在内存中的表现形式](https://mingminyu.github.io/webassets/images/20251212/01.svg)
 
 长度表示 `String` 的内容当前使用了多少字节的内存。容量是 `String` 从分配器总共获取了多少字节的内存。长度与容量的区别是很重要的，不过在当前上下文中并不重要，所以现在可以忽略容量。
 
 当我们将 `s1` 赋值给 `s2`，`String` 的数据被复制了，这意味着我们从栈上拷贝了它的指针、长度和容量。我们并没有复制指针指向的堆上数据。换句话说，内存中数据的表现如下图所示。
 
-![s1 and s2 pointing to the same value](https://rustwiki.org/zh-CN/book/img/trpl04-02.svg)
+![图4-2：变量 s2 的内存表现，它有一份 s1 指针、长度和容量的拷贝](https://mingminyu.github.io/webassets/images/20251212/02.svg)
 
 变量 `s2` 的内存表现，它有一份 `s1` 指针、长度和容量的拷贝
 
 这个表现形式看起来 **并不像** 图 4-3 中的那样，如果 Rust 也拷贝了堆上的数据，那么内存看起来就是这样的。如果 Rust 这么做了，那么操作 `s2 = s1` 在堆上数据比较大的时候会对运行时性能造成非常大的影响。
 
-![s1 and s2 to two places](https://rustwiki.org/zh-CN/book/img/trpl04-03.svg)
-
-图 4-3：另一个 `s2 = s1` 时可能的内存表现，如果 Rust 同时也拷贝了堆上的数据的话
+![图4-3：另一个 s2 = s1 时可能的内存表现，如果 Rust 同时也拷贝了堆上的数据的话](https://mingminyu.github.io/webassets/images/20251212/03.svg)
 
 之前我们提到过当变量离开作用域后，Rust 自动调用 `drop` 函数并清理变量的堆内存。不过图 4-2 展示了两个数据指针指向了同一位置。这就有了一个问题：当 `s2` 和 `s1` 离开作用域，他们都会尝试释放相同的内存。这是一个叫做 **二次释放**（*double free*）的错误，也是之前提到过的内存安全性 bug 之一。两次释放（相同）内存会导致内存污染，它可能会导致潜在的安全漏洞。
 
@@ -199,15 +193,13 @@ error: could not compile `ownership` due to previous error
 
 如果你在其他语言中听说过术语 **浅拷贝**（*shallow copy*）和 **深拷贝**（*deep copy*），那么拷贝指针、长度和容量而不拷贝数据可能听起来像浅拷贝。不过因为 Rust 同时使第一个变量无效了，这个操作被称为 **移动**（*move*），而不是浅拷贝。上面的例子可以解读为 `s1` 被 **移动** 到了 `s2` 中。那么具体发生了什么，如图 4-4 所示。
 
-![s1 moved to s2](https://rustwiki.org/zh-CN/book/img/trpl04-04.svg)
-
-图 4-4：`s1` 无效之后的内存表现
+![图4-4：s1 无效之后的内存表现](https://mingminyu.github.io/webassets/images/20251212/04.svg)
 
 这样就解决了我们的问题！因为只有 `s2` 是有效的，当其离开作用域，它就释放自己的内存，完毕。
 
 另外，这里还隐含了一个设计选择：Rust 永远也不会自动创建数据的 “深拷贝”。因此，任何 **自动** 的复制可以被认为对运行时性能影响较小。
 
-#### 1.4.2 变量与数据交互的方式（二）：克隆
+#### 1.4.2 变量与数据交互的方式：克隆
 
 如果我们 **确实** 需要深度复制 `String` 中堆上的数据，而不仅仅是栈上的数据，可以使用一个叫做 `clone` 的通用函数。第 5 章会讨论方法语法，不过因为方法在很多语言中是一个常见功能，所以之前你可能已经见过了。
 
@@ -239,7 +231,7 @@ println!("x = {}, y = {}", x, y);
 
 原因是像整型这样的在编译时已知大小的类型被整个存储在栈上，所以拷贝其实际的值是快速的。这意味着没有理由在创建变量 `y` 后使 `x` 无效。换句话说，这里没有深浅拷贝的区别，所以这里调用 `clone` 并不会与通常的浅拷贝有什么不同，我们可以不用管它。
 
-Rust 有一个叫做 `Copy` trait 的特殊标注，可以用在类似整型这样的存储在栈上的类型上（第 10 章详细讲解 trait）。如果一个类型实现了 `Copy` trait，那么一个旧的变量在将其赋值给其他变量后仍然可用。Rust 不允许自身或其任何部分实现了 `Drop` trait 的类型使用 `Copy` trait。如果我们对其值离开作用域时需要特殊处理的类型使用 `Copy` 标注，将会出现一个编译时错误。要学习如何为你的类型添加 `Copy` 标注以实现该 trait，请阅读附录 C 中的 [“可派生的 trait”](https://rustwiki.org/zh-CN/book/appendix-03-derivable-traits.html)。
+Rust 有一个叫做 `Copy` trait 的特殊标注，可以用在类似整型这样的存储在栈上的类型上（第 10 章详细讲解 trait）。如果一个类型实现了 `Copy` trait，那么一个旧的变量在将其赋值给其他变量后仍然可用。Rust 不允许自身或其任何部分实现了 `Drop` trait 的类型使用 `Copy` trait。如果我们对其值离开作用域时需要特殊处理的类型使用 `Copy` 标注，将会出现一个编译时错误。要学习如何为你的类型添加 `Copy` 标注以实现该 trait，请阅读附录 C 中的 “可派生的 trait”。
 
 那么哪些类型实现了 `Copy` trait 呢？你可以查看给定类型的文档来确认，不过作为一个通用的规则，任何一组简单标量值的组合都可以实现 `Copy`，任何不需要分配内存或某种形式资源的类型都可以实现 `Copy` 。如下是一些 `Copy` 的类型：
 
@@ -251,33 +243,31 @@ Rust 有一个叫做 `Copy` trait 的特殊标注，可以用在类似整型这�
 
 ### 1.5 所有权与函数
 
-将值传递给函数在语义上与给变量赋值相似。向函数传递值可能会移动或者复制，就像赋值语句一样。示例 4-3 使用注释展示变量何时进入和离开作用域：
+将值传递给函数在语义上与给变量赋值相似，向函数传递值可能会移动或者复制，就像赋值语句一样。示例4-3 使用注释展示变量何时进入和离开作用域：
 
-```rust title="src/main.rs"
+```rust linenums="1" title="示例4-3：带有所有权和作用域注释的函数"
 fn main() {
-  let s = String::from("hello");  // s 进入作用域
+    let s = String::from("hello");  // s 进入作用域
 
-  takes_ownership(s);             // s 的值移动到函数里 ...
-                                  // ... 所以到这里不再有效
+    takes_ownership(s);  // s 的值移动到函数里 ...
+                         // ... 所以到这里不再有效
 
-  let x = 5;                      // x 进入作用域
+    let x = 5;  // x 进入作用域
 
-  makes_copy(x);                  // x 应该移动函数里，
-                                  // 但 i32 是 Copy 的，所以在后面可继续使用 x
+    makes_copy(x);  // x 应该移动函数里，
+                    // 但 i32 是 Copy 的，所以在后面可继续使用 x
 
 } // 这里, x 先移出了作用域，然后是 s。但因为 s 的值已被移走，
   // 所以不会有特殊操作
 
-fn takes_ownership(some_string: String) { // some_string 进入作用域
-  println!("{}", some_string);
-} // 这里，some_string 移出作用域并调用 `drop` 方法。占用的内存被释放
+fn takes_ownership(some_string: String) {  // some_string 进入作用域
+    println!("{}", some_string);
+}  // 这里，some_string 移出作用域并调用 `drop` 方法。占用的内存被释放
 
-fn makes_copy(some_integer: i32) { // some_integer 进入作用域
-  println!("{}", some_integer);
-} // 这里，some_integer 移出作用域。不会有特殊操作
+fn makes_copy(some_integer: i32) {  // some_integer 进入作用域
+    println!("{}", some_integer);
+}  // 这里，some_integer 移出作用域。不会有特殊操作
 ```
-
-示例 4-3：带有所有权和作用域注释的函数
 
 当尝试在调用 `takes_ownership` 后使用 `s` 时，Rust 会抛出一个编译时错误。这些静态检查使我们免于犯错。试试在 `main` 函数中添加使用 `s` 和 `x` 的代码来看看哪里能使用他们，以及所有权规则会在哪里阻止我们这么做。
 
@@ -285,40 +275,36 @@ fn makes_copy(some_integer: i32) { // some_integer 进入作用域
 
 返回值也可以转移所有权。示例 4-4 与示例 4-3 一样带有类似的注释。
 
-```rust title="src/main.rs" linenums="1"
+```rust title="示例4-4: 转移返回值的所有权" linenums="1"
 fn main() {
-  let s1 = gives_ownership();         // gives_ownership 将返回值
-                                      // 移给 s1
+    let s1 = gives_ownership();  // gives_ownership 将返回值
+                                 // 移给 s1
 
-  let s2 = String::from("hello");     // s2 进入作用域
-  let s3 = takes_and_gives_back(s2);  // s2 被移动到
-                                      // takes_and_gives_back 中,
+    let s2 = String::from("hello");     // s2 进入作用域
+    let s3 = takes_and_gives_back(s2);  // s2 被移动到
+                                        // takes_and_gives_back 中,
                                       // 它也将返回值移给 s3
 } // 这里, s3 移出作用域并被丢弃。s2 也移出作用域，但已被移走，
   // 所以什么也不会发生。s1 移出作用域并被丢弃
 
 fn gives_ownership() -> String {           // gives_ownership 将返回值移动给
                                            // 调用它的函数
-  let some_string = String::from("yours"); // some_string 进入作用域
+    let some_string = String::from("yours"); // some_string 进入作用域
 
-  some_string                              // 返回 some_string 并移出给调用的函数
+    some_string                              // 返回 some_string 并移出给调用的函数
 }
 
 // takes_and_gives_back 将传入字符串并返回该值
 fn takes_and_gives_back(a_string: String) -> String { // a_string 进入作用域
-  a_string  // 返回 a_string 并移出给调用的函数
+    a_string  // 返回 a_string 并移出给调用的函数
 }
 ```
 
-示例 4-4: 转移返回值的所有权
-
 变量的所有权总是遵循相同的模式：将值赋给另一个变量时移动它。当持有堆中数据值的变量离开作用域时，其值将通过 `drop` 被清理掉，除非数据被移动为另一个变量所有。
 
-在每一个函数中都获取所有权并接着返回所有权有些啰嗦。如果我们想要函数使用一个值但不获取所有权该怎么办呢？如果我们还要接着使用它的话，每次都传进去再返回来就有点烦人了，除此之外，我们也可能想返回函数体中产生的一些数据。
+在每一个函数中都获取所有权并接着返回所有权有些啰嗦。如果我们想要函数使用一个值但不获取所有权该怎么办呢？如果我们还要接着使用它的话，每次都传进去再返回来就有点烦人了，除此之外，我们也可能想返回函数体中产生的一些数据。我们可以使用元组来返回多个值，如示例 4-5 所示。
 
-我们可以使用元组来返回多个值，如示例 4-5 所示。
-
-```rust title="src/main.rs" linenums="1"
+```rust title="示例4-5: 返回参数的所有权" linenums="1"
 fn main() {
     let s1 = String::from("hello");
     let (s2, len) = calculate_length(s1);
@@ -332,8 +318,6 @@ fn calculate_length(s: String) -> (String, usize) {
 }
 ```
 
-示例 4-5: 返回参数的所有权
-
 但是这未免有些形式主义，而且这种场景应该很常见。幸运的是，Rust 对此提供了一个功能，叫做 **引用**（*references*）。
 
 ## 2. 引用与借用
@@ -342,7 +326,7 @@ fn calculate_length(s: String) -> (String, usize) {
 
 下面是如何定义并使用一个（新的）`calculate_length` 函数，它以一个对象的引用作为参数而不是获取值的所有权：
 
-```rust title="src/main.rs" linenums="1"
+```rust linenums="1"
 fn main() {
     let s1 = String::from("hello");
     let len = calculate_length(&s1);
@@ -359,9 +343,7 @@ fn calculate_length(s: &String) -> usize {
 
 这些 `&` 符号就是 **引用**，它们允许你使用值但不获取其所有权。图 4-5 展示了一张示意图。
 
-![&String s pointing at String s1](https://rustwiki.org/zh-CN/book/img/trpl04-05.svg)
-
-图 4-5：`&String s` 指向 `String s1` 示意图
+![图4-5：&String s 指向 String s1 示意图](https://mingminyu.github.io/webassets/images/20251212/05.svg)
 
 !!! warning "注意"
 
@@ -391,7 +373,7 @@ fn calculate_length(s: &String) -> usize { // s 是对 String 的引用
 
 如果我们尝试修改借用的变量呢？尝试示例 4-6 中的代码。剧透：这行不通！
 
-```rust title="src/main.rs" linenums="1"
+```rust title="示例4-6：尝试修改借用的值" linenums="1"
 fn main() {
     let s = String::from("hello");
     change(&s);
@@ -401,8 +383,6 @@ fn change(some_string: &String) {
     some_string.push_str(", world");
 }
 ```
-
-示例 4-6：尝试修改借用的值
 
 这里是错误：
 
@@ -427,7 +407,7 @@ error: could not compile `ownership` due to previous error
 
 我们通过一个小调整就能修复示例 4-6 代码中的错误：
 
-```rust title="src/main.rs" linenums="1"
+```rust linenums="1"
 fn main() {
     let mut s = String::from("hello");
     change(&mut s);
@@ -670,9 +650,9 @@ let bytes = s.as_bytes();
 for (i, &item) in bytes.iter().enumerate() {
 ```
 
-我们将在[第 13 章](https://rustwiki.org/zh-CN/book/ch13-02-iterators.html)详细讨论迭代器。现在，只需知道 `iter` 方法返回集合中的每一个元素，而 `enumerate` 包装了 `iter` 的结果，将这些元素作为元组的一部分来返回。`enumerate` 返回的元组中，第一个元素是索引，第二个元素是集合中元素的引用。这比我们自己计算索引要方便一些。
+我们将在第 13 章详细讨论迭代器。现在，只需知道 `iter` 方法返回集合中的每一个元素，而 `enumerate` 包装了 `iter` 的结果，将这些元素作为元组的一部分来返回。`enumerate` 返回的元组中，第一个元素是索引，第二个元素是集合中元素的引用。这比我们自己计算索引要方便一些。
 
-因为 `enumerate` 方法返回一个元组，我们可以使用模式来解构，我们将在[第 6 章](https://rustwiki.org/zh-CN/book/ch06-02-match.html#patterns-that-bind-to-values)中进一步讨论有关模式的问题。所以在 `for` 循环中，我们指定了一个模式，其中元组中的 `i` 是索引而元组中的 `&item` 是单个字节。因为我们从 `.iter().enumerate()` 中获取了集合元素的引用，所以模式中使用了 `&`。
+因为 `enumerate` 方法返回一个元组，我们可以使用模式来解构，我们将在第 6 章中进一步讨论有关模式的问题。所以在 `for` 循环中，我们指定了一个模式，其中元组中的 `i` 是索引而元组中的 `&item` 是单个字节。因为我们从 `.iter().enumerate()` 中获取了集合元素的引用，所以模式中使用了 `&`。
 
 在 `for` 循环中，我们通过字节的字面量语法来寻找代表空格的字节。如果找到了一个空格，返回它的位置。否则，使用 `s.len()` 返回字符串的长度：
 
@@ -717,7 +697,7 @@ fn second_word(s: &String) -> (usize, usize) {
 
 **字符串 slice**（*string slice*）是 `String` 中一部分值的引用，它看起来像这样：
 
-```rust linenums="1"
+```rust linenums="1" title="示例4-7：first_word 函数返回 String 参数的一个字节索引值"
 let s = String::from("hello world");
 
 let hello = &s[0..5];
@@ -728,11 +708,7 @@ let world = &s[6..11];
 
 可以使用一个由中括号中的 `[starting_index..ending_index]` 指定的 range 创建一个 slice，其中 `starting_index` 是 slice 的第一个位置，`ending_index` 则是 slice 最后一个位置的后一个值。在其内部，slice 的数据结构存储了 slice 的开始位置和长度，长度对应于 `ending_index` 减去 `starting_index` 的值。所以对于 `let world = &s[6..11];` 的情况，`world` 将是一个包含指向 `s` 索引 6 的指针和长度值 5 的 slice。
 
-图 4-6 展示了一个图例。
-
-![world containing a pointer to the byte at index 6 of String s and a length 5](https://rustwiki.org/zh-CN/book/img/trpl04-06.svg)
-
-图 4-6：引用了部分 `String` 的字符串 slice
+![图4-6：引用了部分String 的字符串slice](https://mingminyu.github.io/webassets/images/20251212/06.svg)
 
 对于 Rust 的 `..` range 语法，如果想要从索引 0 开始，可以不写两个点号之前的值。换句话说，如下两个语句是相同的：
 
@@ -749,7 +725,6 @@ let slice = &s[..2];
 let s = String::from("hello");
 
 let len = s.len();
-
 let slice = &s[3..len];
 let slice = &s[3..];
 ```
@@ -760,14 +735,13 @@ let slice = &s[3..];
 let s = String::from("hello");
 
 let len = s.len();
-
 let slice = &s[0..len];
 let slice = &s[..];
 ```
 
 !!! warning "注意"
 
-    字符串 slice range 的索引必须位于有效的 UTF-8 字符边界内，如果尝试从一个多字节字符的中间位置创建字符串 slice，则程序将会因错误而退出。出于介绍字符串 slice 的目的，本部分假设只使用 ASCII 字符集；第 8 章的[“使用字符串存储 UTF-8 编码的文本”](https://rustwiki.org/zh-CN/book/ch08-02-strings.html#使用字符串存储-utf-8-编码的文本)部分会更加全面的讨论 UTF-8 处理问题。
+    字符串 slice range 的索引必须位于有效的 UTF-8 字符边界内，如果尝试从一个多字节字符的中间位置创建字符串 slice，则程序将会因错误而退出。出于介绍字符串 slice 的目的，本部分假设只使用 ASCII 字符集；第 8 章的“使用字符串存储UTF-8编码的文本”部分会更加全面的讨论 UTF-8 处理问题。
 
 在记住所有这些知识后，让我们重写 `first_word` 来返回一个 slice。“字符串 slice” 的类型声明写作 `&str`：
 
@@ -857,7 +831,7 @@ fn first_word(s: &str) -> &str {
 
 示例 4-9: 通过将 `s` 参数的类型改为字符串 slice 来改进 `first_word` 函数
 
-如果有一个字符串 slice，可以直接传递它。如果有一个 `String`，则可以传递整个 `String` 的 slice 或对 `String` 的引用。这种灵活性利用了 *deref coercions* 的优势，这个特性我们将在[“函数和方法的隐式解引用强制转换”](https://rustwiki.org/zh-CN/book/ch15-02-deref.html#函数和方法的隐式解引用强制转换)章节中介绍。定义一个获取字符串 slice 而不是 `String` 引用的函数使得我们的 API 更加通用并且不会丢失任何功能：
+如果有一个字符串 slice，可以直接传递它。如果有一个 `String`，则可以传递整个 `String` 的 slice 或对 `String` 的引用。这种灵活性利用了 *deref coercions* 的优势，这个特性我们将在“函数和方法的隐式解引用强制转换”章节中介绍。定义一个获取字符串 slice 而不是 `String` 引用的函数使得我们的 API 更加通用并且不会丢失任何功能：
 
 ```rust title="src/main.rs" linenums="1"
 fn main() {
@@ -892,15 +866,14 @@ let a = [1, 2, 3, 4, 5];
 
 就跟我们想要获取字符串的一部分那样，我们也会想要引用数组的一部分。我们可以这样做：
 
-```rust
+```rust linenums="1"
 let a = [1, 2, 3, 4, 5];
-
 let slice = &a[1..3];
 ```
 
 这个 slice 的类型是 `&[i32]`。它跟字符串 slice 的工作方式一样，通过存储第一个集合元素的引用和一个集合总长度。你可以对其他所有集合使用这类 slice。第 8 章讲到 vector 时会详细讨论这些集合。
 
-## 3.3 总结
+## 4. 总结
 
 所有权、借用和 slice 这些概念让 Rust 程序在编译时确保内存安全。Rust 语言提供了跟其他系统编程语言相同的方式来控制你使用的内存，但拥有数据所有者在离开作用域后自动清除其数据的功能意味着你无须额外编写和调试相关的控制代码。
 

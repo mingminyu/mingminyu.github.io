@@ -10,5 +10,14 @@ nav:
   - 8.常见集合: ch08-common-collections.md
   - 9.错误处理: ch09-error-handling.md
   - 10.泛型类型、特质和生命周期: ch10-generics.md
-  - 11.编写自动化测试: ch11-testing.md
-  
+  - 11.自动化测试: ch11-testing.md
+  - 12.IO项目: ch12-an-io-project.md
+  - 13.迭代器与闭包: ch13-functional-features.html
+  - 14.认识Cargo和Crates.io: ch14-more-about-cargo.md
+  - 15.智能指针: ch15-smart-pointers.md
+  - 16.并发: ch16-concurrency.md
+  - 17.面对对象特征:zheng: ch17-oop.md
+  - 18.模式和匹配: ch18-patterns.md
+  - 19.高级特征: ch19-advanced-features.md
+  - 20.构建多线程Web服务器: ch20-final-project-a-web-server.md
+  - 21.附录: ch21-appendix.md
