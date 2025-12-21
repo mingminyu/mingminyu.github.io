@@ -5,4 +5,4 @@ nav:
   - 自然语言处理: nlp
   - 语音处理: speech
   - 图像处理: cv
-  - 大模型: aigc
+  - AI工具: tools.md

@@ -2,4 +2,5 @@ nav:
   - index.md
   - DBT: dbt
   - FunASR: funasr
-  # - DBT Cloud: dbt-cloud
+  - NextJS: nextjs
+  - 通义千问: qwen

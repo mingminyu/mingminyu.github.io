@@ -1,5 +1,5 @@
 nav:
+  - index.md
   - React: react
-  - NextJS: nextjs
   - ReactFlow: reactflow
   - Vue: vue

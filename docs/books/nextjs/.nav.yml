@@ -1,5 +1,11 @@
 nav:
   - index.md
+  - 入门:
+    - getting-started/index.md
+    - 安装: getting-started/installation.md
+    - 项目结构: getting-started/project-structure.md
+
+
   - App Router:
     - app/index.md
     - 构建你的应用:

@@ -79,11 +79,6 @@ nohup bash run_server.sh \
 ```
 
 
-
-
-
-
 [^1]: 
     CPU Benchmark (ONNX-cpp): https://github.com/modelscope/FunASR/blob/main/runtime/docs/benchmark_onnx_cpp.md
-
 
