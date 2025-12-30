@@ -164,6 +164,36 @@ Next.js 对于如何组织和放置项目文件没有任何意见，但它确实
 
 ![](https://mingminyu.github.io/webassets/images/nextjs/02.png)
 
+### 2.2 托管
+
+在 `app` 目录中，嵌套文件夹定义路由结构。每个文件夹代表一个路由段，该路由段映射到 URL 路径中的相应段。
+
+但是，即使路由结构是通过文件夹定义的，在将 `page.js` 或 `route.js` 文件添加到路由段之前，路由也 **无法公开访问**。
+
+![](https://mingminyu.github.io/webassets/images/nextjs/03.png)
+
+而且，即使路由可供公开访问，也只有 `page.js` 或 `route.js` 返回的内容会发送到客户端。
+
+![](https://mingminyu.github.io/webassets/images/nextjs/04.png)
+
+这意味着项目文件可以安全地放置在 `app` 目录的路由段内，而不会意外地被路由。
+
+![](https://mingminyu.github.io/webassets/images/nextjs/05.png)
+
+!!! note "备注"
+
+    虽然您可以在 `app` 中并置项目文件，但您不必这么做。如果您愿意，可以将它们保留在 `app` 目录之外。
+
+### 2.3 私有文件夹
+
+可以通过在文件夹前添加下划线前缀来创建私人文件夹： `_folderName`。这表明该文件夹是私有实现细节，路由系统不应考虑该文件夹，因此该文件夹及其所有子文件夹都不进行路由。
+
+![](https://mingminyu.github.io/webassets/images/nextjs/06.png)
+
+由于默认情况下可以安全地托管 `app` 目录中的文件，但一般含的私有文件夹不需要托管。然而，它们可用于：
+
+- 将 UI 逻辑与路由逻辑分离；
+- 跨项目和 Next.js 生态系统一致地组织内部文件。
 
 
 ## 4. 页面路由约定
