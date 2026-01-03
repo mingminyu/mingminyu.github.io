@@ -13,6 +13,6 @@ nav:
   - 容器化: container
   - 人工智能: ai
   - 文档: learn
-  # - 图书馆: books
+  - 图书馆: books
   - 博客:
     - blog/index.md
