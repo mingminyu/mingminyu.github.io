@@ -1,5 +1,7 @@
 # 安装
 
+> 原文地址: https://nextjs.org/docs/app/getting-started/installation
+
 创建一个新的 Next.js 应用程序并在本地运行它。
 
 ## 1. 快速开始
