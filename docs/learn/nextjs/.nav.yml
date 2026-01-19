@@ -4,98 +4,100 @@ nav:
     - getting-started/index.md
     - 安装: getting-started/installation.md
     - 项目结构: getting-started/project-structure.md
+    - 页面和布局: getting-started/layouts-and-pages.md
+    - 链接和导航: getting-started/linking-and-navigating.md
+    - 服务端和客户端组件: getting-started/server-and-client-components.md
 
+  # - App Router:
+  #   - app/index.md
+  #   - 构建你的应用:
+  #     - app/building-your-application/index.md
+  #     - 路由:
+  #       - app/building-your-application/routing/index.md
+  #       - 路由定义: app/building-your-application/routing/defining-routes.md
+  #       - 页面: app/building-your-application/routing/pages.md
+  #       - 页面和布局: app/building-your-application/routing/pages-and-layouts.md
+  #       - 链接和导航: app/building-your-application/routing/linking-and-navigating.md
+  #       - 错误处理: app/building-your-application/routing/error-handling.md
+  #       - 加载UI和流式传输: app/building-your-application/routing/loading-ui-and-streaming.md
+  #       - 重定向: app/building-your-application/routing/redirecting.md
+  #       - 路由组: app/building-your-application/routing/route-groups.md
+  #       - 项目组织与文件托管: app/building-your-application/routing/project-organization-and-file-colocation.md
+  #       - 动态路由: app/building-your-application/routing/dynamic-routes.md
+  #       - 并行路由: app/building-your-application/routing/parallel-routes.md
+  #       - 拦截路由: app/building-your-application/routing/intercepting-routes.md
+  #       - 路由处理: app/building-your-application/routing/route-handlers.md
+  #       - 中间件: app/building-your-application/routing/middleware.md
+  #       - 国际化: app/building-your-application/routing/internationalization.md
 
-  - App Router:
-    - app/index.md
-    - 构建你的应用:
-      - app/building-your-application/index.md
-      - 路由:
-        - app/building-your-application/routing/index.md
-        - 路由定义: app/building-your-application/routing/defining-routes.md
-        - 页面: app/building-your-application/routing/pages.md
-        - 页面和布局: app/building-your-application/routing/pages-and-layouts.md
-        - 链接和导航: app/building-your-application/routing/linking-and-navigating.md
-        - 错误处理: app/building-your-application/routing/error-handling.md
-        - 加载UI和流式传输: app/building-your-application/routing/loading-ui-and-streaming.md
-        - 重定向: app/building-your-application/routing/redirecting.md
-        - 路由组: app/building-your-application/routing/route-groups.md
-        - 项目组织与文件托管: app/building-your-application/routing/project-organization-and-file-colocation.md
-        - 动态路由: app/building-your-application/routing/dynamic-routes.md
-        - 并行路由: app/building-your-application/routing/parallel-routes.md
-        - 拦截路由: app/building-your-application/routing/intercepting-routes.md
-        - 路由处理: app/building-your-application/routing/route-handlers.md
-        - 中间件: app/building-your-application/routing/middleware.md
-        - 国际化: app/building-your-application/routing/internationalization.md
+  #     - 数据获取:
+  #       - app/building-your-application/data-fetching/index.md
+  #       - 数据获取与缓存: app/building-your-application/data-fetching/fetching-and-caching.md
+  #       - 服务器操作和突变: app/building-your-application/data-fetching/server-actions-and-mutations.md
+  #       - 增量静态再生: app/building-your-application/data-fetching/incremental-static-regeneration.md
 
-      - 数据获取:
-        - app/building-your-application/data-fetching/index.md
-        - 数据获取与缓存: app/building-your-application/data-fetching/fetching-and-caching.md
-        - 服务器操作和突变: app/building-your-application/data-fetching/server-actions-and-mutations.md
-        - 增量静态再生: app/building-your-application/data-fetching/incremental-static-regeneration.md
+  #     - 渲染:
+  #       - app/building-your-application/rendering/index.md
+  #       - 服务端组件: app/building-your-application/rendering/server-components.md
+  #       - 客户端组件: app/building-your-application/rendering/client-components.md
+  #       - 组合模式: app/building-your-application/rendering/server-and-client-composition-patterns.md
+  #       - 部分预渲染: app/building-your-application/rendering/partial-prerendering.md
+  #       - 运行时: app/building-your-application/rendering/runtimes.md
 
-      - 渲染:
-        - app/building-your-application/rendering/index.md
-        - 服务端组件: app/building-your-application/rendering/server-components.md
-        - 客户端组件: app/building-your-application/rendering/client-components.md
-        - 组合模式: app/building-your-application/rendering/server-and-client-composition-patterns.md
-        - 部分预渲染: app/building-your-application/rendering/partial-prerendering.md
-        - 运行时: app/building-your-application/rendering/runtimes.md
+  #     - 缓存: app/building-your-application/caching.md
+  #     - 样式:
+  #       - app/building-your-application/styling/index.md
+  #       - CSS: app/building-your-application/styling/css.md
+  #       - Tailwind CSS: app/building-your-application/styling/tailwind-css.md
+  #       - Sass: app/building-your-application/styling/sass.md
+  #       - JS 中的 CSS: app/building-your-application/stylingcss-in-js.md
 
-      - 缓存: app/building-your-application/caching.md
-      - 样式:
-        - app/building-your-application/styling/index.md
-        - CSS: app/building-your-application/styling/css.md
-        - Tailwind CSS: app/building-your-application/styling/tailwind-css.md
-        - Sass: app/building-your-application/styling/sass.md
-        - JS 中的 CSS: app/building-your-application/stylingcss-in-js.md
+  #     - 优化:
+  #       - app/building-your-application/optimizing/index.md
+  #       - 图像优化: app/building-your-application/optimizing/images.md
+  #       - 视频优化: app/building-your-application/optimizing/videos.md
+  #       - 字体优化: app/building-your-application/optimizing/fonts.md
+  #       - 元数据: app/building-your-application/optimizing/metadata.md
+  #       - 脚本优化: app/building-your-application/optimizing/scripts.md
+  #       - 打包优化: app/building-your-application/optimizing/package-bundling.md
+  #       - 惰性加载: app/building-your-application/optimizing/lazy-loading.md
+  #       - 分析: app/building-your-application/optimizing/analytics.md
+  #       - 仪表: app/building-your-application/optimizing/instrumentation.md
+  #       - 遥测: app/building-your-application/optimizing/open-telemetry.md
+  #       - 静态资源: app/building-your-application/optimizing/static-assets.md
+  #       - 第三方库: app/building-your-application/optimizing/third-party-libraries.md
+  #       - 内存使用: app/building-your-application/optimizing/memory-usage.md
 
-      - 优化:
-        - app/building-your-application/optimizing/index.md
-        - 图像优化: app/building-your-application/optimizing/images.md
-        - 视频优化: app/building-your-application/optimizing/videos.md
-        - 字体优化: app/building-your-application/optimizing/fonts.md
-        - 元数据: app/building-your-application/optimizing/metadata.md
-        - 脚本优化: app/building-your-application/optimizing/scripts.md
-        - 打包优化: app/building-your-application/optimizing/package-bundling.md
-        - 惰性加载: app/building-your-application/optimizing/lazy-loading.md
-        - 分析: app/building-your-application/optimizing/analytics.md
-        - 仪表: app/building-your-application/optimizing/instrumentation.md
-        - 遥测: app/building-your-application/optimizing/open-telemetry.md
-        - 静态资源: app/building-your-application/optimizing/static-assets.md
-        - 第三方库: app/building-your-application/optimizing/third-party-libraries.md
-        - 内存使用: app/building-your-application/optimizing/memory-usage.md
+  #     - 配置: 
+  #       - app/building-your-application/configuring/index.md
+  #       - TypeScript: app/building-your-application/configuring/typescript.md
+  #       - ESLint: app/building-your-application/configuring/eslint.md
+  #       - 环境变量: app/building-your-application/configuring/environment-variables.md
+  #       - 绝对导入和模块路径别名: app/building-your-application/configuring/absolute-imports-and-module-aliases.md
+  #       - MDX: app/building-your-application/configuring/mdx.md
+  #       - src目录: app/building-your-application/configuring/src-directory.md
+  #       - 自定义服务器: app/building-your-application/configuring/custom-server.md
+  #       - 草稿模式: app/building-your-application/configuring/draft-mode.md
+  #       - 内容安全策略: app/building-your-application/configuring/content-security-policy.md
+  #       - 调试: app/building-your-application/configuring/debugging.md
+  #       - 渐进式WEB应用: app/building-your-application/configuring/progressive-web-apps.md
 
-      - 配置: 
-        - app/building-your-application/configuring/index.md
-        - TypeScript: app/building-your-application/configuring/typescript.md
-        - ESLint: app/building-your-application/configuring/eslint.md
-        - 环境变量: app/building-your-application/configuring/environment-variables.md
-        - 绝对导入和模块路径别名: app/building-your-application/configuring/absolute-imports-and-module-aliases.md
-        - MDX: app/building-your-application/configuring/mdx.md
-        - src目录: app/building-your-application/configuring/src-directory.md
-        - 自定义服务器: app/building-your-application/configuring/custom-server.md
-        - 草稿模式: app/building-your-application/configuring/draft-mode.md
-        - 内容安全策略: app/building-your-application/configuring/content-security-policy.md
-        - 调试: app/building-your-application/configuring/debugging.md
-        - 渐进式WEB应用: app/building-your-application/configuring/progressive-web-apps.md
+  #     - 测试:
+  #       - app/building-your-application/testing/index.md
+  #       - Vitest: app/building-your-application/testing/vitest.md
+  #       - Jest: app/building-your-application/testing/jest.md
+  #       - Playwright: app/building-your-application/testing/playwright.md
+  #       - Cypress: app/building-your-application/testing/cypress.md
 
-      - 测试:
-        - app/building-your-application/testing/index.md
-        - Vitest: app/building-your-application/testing/vitest.md
-        - Jest: app/building-your-application/testing/jest.md
-        - Playwright: app/building-your-application/testing/playwright.md
-        - Cypress: app/building-your-application/testing/cypress.md
-
-      - 授权: app/building-your-application/authorization.md
-      - 部署:
-        - app/building-your-application/deploying/index.md
-        - 生产清单: app/building-your-application/deploying/production-checklist.md
-        - 静态导出: app/building-your-application/deploying/static-export.md
-        - 多区域: app/building-your-application/deploying/multi-zones.md
+  #     - 授权: app/building-your-application/authorization.md
+  #     - 部署:
+  #       - app/building-your-application/deploying/index.md
+  #       - 生产清单: app/building-your-application/deploying/production-checklist.md
+  #       - 静态导出: app/building-your-application/deploying/static-export.md
+  #       - 多区域: app/building-your-application/deploying/multi-zones.md
       
-      - 升级: app/building-your-application/upgrading.md
-      - 案例: app/building-your-application/examples.md
+  #     - 升级: app/building-your-application/upgrading.md
+  #     - 案例: app/building-your-application/examples.md
 
     # - API 参考:
     #   - 组件:
