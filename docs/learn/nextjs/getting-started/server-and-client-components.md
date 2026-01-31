@@ -230,3 +230,164 @@ export default function Page() {
   )
 }
 ```
+
+在这种模式中，所有服务端组件都将提前在服务器上渲染，包括那些作为 props 的组件，所生成的 RSC 有效负载将包含应在组件树中呈现客户端组件的位置的引用。
+
+### 3.5 上下文提供者
+
+React 上下文通常用于共享全局状态，例如当前主题。但是，服务端组件不支持 React 上下文。
+
+要使用上下文，请创建一个接受 `children` props 的客户端组件：
+
+```tsx linenums="1" title="app/ui/theme-provider.tsx" hl_lines="3"
+'use client'
+ 
+import { createContext } from 'react'
+ 
+export const ThemeContext = createContext({})
+ 
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return <ThemeContext.Provider value="dark">{children}</ThemeContext.Provider>
+}
+```
+
+然后，将其导入服务端组件（例如布局）：
+
+```tsx linenums="1" title="app/layout.tsx"
+import ThemeProvider from './theme-provider'
+ 
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+服务端组件现在可以直接呈现 provider，并且应用程序中的所有其他客户端组件将能够使用此上下文。
+
+!!! note "备注"
+
+    您应该在树中尽可能深地渲染 provider，请注意 `ThemeProvider` 如何仅包装 `{children}` 而不是整个 `<html>` 文档。这使得 Next.js 可以更轻松地优化服务端组件的静态部分。
+
+### 3.6 三方组件
+
+当使用依赖于仅客户端功能的第三方组件时，我们可以将其包装在客户端组件中以确保其按预期工作。例如，`<Carousel />` 可以从 `acme-carousel` 包导入。该组件使用 `useState`，但它还没有 `"use client"` 指令。
+
+如果你在客户端组件中使用了 `<Carousel />` ，它将按预期工作：
+
+```tsx linenums="1" title="app/gallery.tsx"
+'use client'
+ 
+import { useState } from 'react'
+import { Carousel } from 'acme-carousel'
+ 
+export default function Gallery() {
+  const [isOpen, setIsOpen] = useState(false)
+ 
+  return (
+    <div>
+      <button onClick={() => setIsOpen(true)}>View pictures</button>
+      {/* Works, since Carousel is used within a Client Component */}
+      {isOpen && <Carousel />}
+    </div>
+  )
+}
+```
+
+但是，如果我们尝试直接在服务器组件中使用它，则将看到错误。这是因为 Next.js 不知道 `<Carousel />` 正在使用仅限客户端的功能。
+
+要解决此问题，我们可以将依赖于仅客户端功能的第三方组件包装在自己的客户端组件中：
+
+```tsx linenums="1" title="app/carousel.tsx"
+'use client'
+ 
+import { Carousel } from 'acme-carousel'
+ 
+export default Carousel
+```
+
+现在，可以在服务端组件中直接使用 `<Carousel />`：
+
+```tsx linenums="1" title="app/page.tsx"
+import Carousel from './carousel'
+ 
+export default function Page() {
+  return (
+    <div>
+      <p>View pictures</p>
+      {/*  Works, since Carousel is a Client Component */}
+      <Carousel />
+    </div>
+  )
+}
+```
+
+!!! tip "给库作者的建议"
+
+    如果您正在构建组件库，请将 `"use client"` 指令添加到依赖于仅限客户端功能的入口点，这使用户可以将组件导入到服务端组件中，而无需创建包装器。
+
+    值得注意的是，一些捆绑程序可能会删除 `"use client"` 指令。您可以找到有关如何配置 esbuild 以在 React Wrap Balancer 和 Vercel Analytics 存储库中包含 `"use client"`  指令的示例。
+
+### 3.7 防止环境中毒
+
+JavaScript 模块可以在服务端和客户端组件模块之间共享，这意味着可能会意外地将仅服务端代码导入客户端。例如，考虑以下函数：
+
+```ts linenums="1" title="app/data.ts"
+export async function getData() {
+  const res = await fetch('https://external-service.com/data', {
+    headers: {
+      authorization: process.env.API_KEY,
+    },
+  })
+ 
+  return res.json()
+}
+```
+
+该函数包含一个永远不应该暴露给客户端的 `API_KEY`。
+
+在 Next.js 中，客户端捆绑包中仅包含前缀为 `NEXT_PUBLIC_` 的环境变量。如果变量没有前缀，Next.js 会将它们替换为空字符串。
+
+因此，即使 `getData()` 可以在客户端导入并执行，它也不会按预期工作。
+
+为了防止在客户端组件中的意外使用，我们可以使用 `server-only` 包。然后，将该包导入到包含仅服务端代码的文件中：
+
+```ts linenums="1" title="app/data.ts"
+import 'server-only'
+ 
+export async function getData() {
+  const res = await fetch('https://external-service.com/data', {
+    headers: {
+      authorization: process.env.API_KEY,
+    },
+  })
+ 
+  return res.json()
+}
+```
+
+现在，如果再尝试将该模块导入客户端组件，则会出现构建时错误。
+
+相应的 `client-only` 包可用于标记包含仅客户端的逻辑（例如访问 `window` 对象的代码）的模块。
+
+在 Next.js 中，安装 `server-only` 或 `client-only` 是可选的。但是，如果您的 linting 规则标记了无关的依赖项，您可以安装它们以避免出现问题。
+
+```bash
+npm install server-only
+```
+
+Next.js 在内部处理 `server-only` 和 `client-only` 导入，以便在错误环境中使用模块时提供更清晰的错误消息。 Next.js 不使用 NPM 中的这些包的内容。
+
+Next.js 还为 `server-only` 和 `client-only` 以及 `noUncheckedSideEffectImports` 处于活动状态的 TypeScript 配置提供了自己的类型声明。
