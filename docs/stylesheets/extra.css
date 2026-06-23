@@ -1,0 +1,9 @@
+.md-grid {
+    max-width: 96%;
+  }
+
+.md-header__inner {
+    /* max-width: 96%; */
+    width: 100vw;
+    flex-shrink: 0; 
+}

@@ -1,0 +1,293 @@
+{% extends "base.html" %}
+{% block header %}
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<style>
+  :root {
+    /* 核心配色：深邃午夜蓝 */
+    --bg-color: #0b1120; 
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --input-bg: rgba(15, 23, 42, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
+
+  /* 背景装饰：更加柔和的光晕 */
+  .login-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 100%); */
+
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  /* 动态背景光斑 - 模拟参考图的深邃感 */
+  .glow-effect {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .login-card {
+    position: relative;
+    width: 420px;
+    padding: 48px 40px;
+    z-index: 10;
+    border-radius: 24px;
+    
+    /* 高级毛玻璃效果 */
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .logo-wrapper {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 16px;
+    background: var(--primary-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.4);
+  }
+
+  .title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 40px;
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .input-wrapper {
+    position: relative;
+  }
+
+  .form-group input {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box; /* 防止padding撑大宽度 */
+    border: 1px solid transparent;
+    outline: none;
+    border-radius: 12px;
+    padding: 0 16px;
+    font-size: 15px;
+    color: white;
+    background: var(--input-bg);
+    transition: all 0.3s ease;
+  }
+
+  .form-group input::placeholder {
+    color: rgba(148, 163, 184, 0.4);
+  }
+
+  .form-group input:focus {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+
+  .toggle-pwd {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .toggle-pwd:hover {
+    opacity: 1;
+  }
+
+  .login-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    background: var(--primary-gradient);
+    margin-top: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+  }
+
+  .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .login-btn:active {
+    transform: translateY(0);
+  }
+
+  .error-msg {
+    text-align: center;
+    color: #ef4444;
+    font-size: 14px;
+    margin-top: 20px;
+    min-height: 20px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .error-msg.show {
+    opacity: 1;
+  }
+
+  .footer {
+    text-align: center;
+    color: rgba(148, 163, 184, 0.4);
+    margin-top: 40px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .login-card {
+      width: 90%;
+      padding: 32px 24px;
+    }
+  }
+</style>
+
+<div class="login-container">
+  <!-- 顶部柔光背景 -->
+  <div class="glow-effect"></div>
+
+  <div class="login-card">
+      <div class="logo-wrapper">
+        R
+      </div>
+    <!-- <div class="subtitle">请先登录</div> -->
+    <div class="form-group">
+      <label>用户名</label>
+      <div class="input-wrapper">
+        <input id="username" type="text" placeholder="请输入用户名" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>密码</label>
+      <div class="input-wrapper">
+        <input id="password" type="password" placeholder="请输入密码" autocomplete="off">
+      </div>
+    </div>
+
+    <button class="login-btn" onclick="login()">登录</button>
+    
+    <div id="error" class="error-msg">账号密码错误</div>
+
+    <div class="footer">
+      © 2026, Powered by mingminyu
+    </div>
+  </div>
+</div>
+
+
+<script>
+  // 检查登录状态
+  if (sessionStorage.getItem("authenticated")) {
+    location.href = "/";
+  }
+
+  function login() {
+    const user = document.getElementById("username").value.trim();
+    const pwd = document.getElementById("password").value;
+    const errorEl = document.getElementById("error");
+
+    const TARGET_HASH = "b116c06936184ad3fabffeeab485ade2"; 
+    const currentHash = md5(user + pwd);
+
+    // 简单的模拟验证
+    if (currentHash === TARGET_HASH) {
+      sessionStorage.setItem("authenticated", "true");
+      // 增加一点加载感的延迟，体验更好
+      const btn = document.querySelector('.login-btn');
+      btn.innerText = "登录中...";
+      btn.disabled = true; // 防止重复点击
+      setTimeout(() => {
+          location.href = "/";
+      }, 500);
+    } else {
+      errorEl.classList.add('show');
+      // 震动效果提示错误
+      const card = document.querySelector('.login-card');
+      card.animate([
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-5px)' },
+        { transform: 'translateX(5px)' },
+        { transform: 'translateX(0)' }
+      ], { duration: 300 });
+    }
+  }
+
+  function togglePwd() {
+    const el = document.getElementById("password");
+    el.type = el.type === "password" ? "text" : "password";
+  }
+
+  // 回车登录
+  document.addEventListener("keydown", e => {
+    if (e.key === "Enter") {
+      login();
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector(".md-header")?.classList.add("hidden");
+  });
+</script>
+{% endblock %}
