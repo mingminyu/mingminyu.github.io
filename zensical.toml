@@ -423,3 +423,6 @@ default = "lucide/hash"
 [project.extra.tags]
 
 [project.extra.status]
+[project.markdown_extensions.zensical.extensions.glightbox]
+auto_themed = true
+auto_caption = true
