@@ -426,3 +426,5 @@ default = "lucide/hash"
 [project.markdown_extensions.zensical.extensions.glightbox]
 auto_themed = true
 auto_caption = true
+
+[project.plugins.markdown-exec]
