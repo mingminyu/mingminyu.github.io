@@ -79,7 +79,8 @@ nav = [
           {
             "Hello Agents" = [
               { "前言" = "books/hello-agents/index.md" },
-              { "1. 初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
+              { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
+              { "2.智能体的发展史" = "books/hello-agents/ch02-智能体发展史.md" },
             ]
           }
         ]
