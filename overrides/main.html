@@ -3,3 +3,48 @@
 {% block htmltitle %}
 <script src="{{ base_url }}/javascripts/auth.js"></script>
 {% endblock %}
+
+
+{% block footer %}
+{{ super() }}
+
+<!-- 左下角的切换按钮 -->
+<button id="sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    // 获取侧边栏元素
+    const sidebar = document.querySelector('.md-sidebar--primary');
+
+    // 安全检查：确保按钮和侧边栏都存在
+    if (toggleBtn && sidebar) {
+      // 1. 创建包裹层 div
+      const wrapper = document.createElement('div');
+      wrapper.className = 'sidebar-wrapper';
+      
+      // 2. 将 wrapper 插入到侧边栏原来的位置
+      sidebar.parentNode.insertBefore(wrapper, sidebar);
+      
+      // 3. 将侧边栏移入 wrapper
+      wrapper.appendChild(sidebar);
+
+      // 4. 点击事件处理
+      toggleBtn.addEventListener('click', function() {
+        // 切换 class
+        wrapper.classList.toggle('sidebar-hidden');
+        
+        // 可选：更改按钮图标或样式反馈
+        if (wrapper.classList.contains('sidebar-hidden')) {
+          toggleBtn.innerHTML = '➤'; // 折叠时的图标
+        } else {
+          toggleBtn.innerHTML = '☰'; // 展开时的图标
+          toggleBtn.style.left = '2rem';
+        }
+      });
+    } else {
+      console.warn('Sidebar toggle initialization failed: Elements not found.');
+    }
+  });
+</script>
+{% endblock %}

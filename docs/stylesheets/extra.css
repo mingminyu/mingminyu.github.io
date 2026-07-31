@@ -1,9 +1,96 @@
-.md-grid {
-    max-width: 96%;
-  }
+.md-main__inner.md-grid {
+  width: 96%;
+  max-width: 100rem !important;
+  margin-top: 0.2rem !important;
+}
 
-.md-header__inner {
-    /* max-width: 96%; */
-    width: 100vw;
-    flex-shrink: 0; 
+
+.md-header__inner.md-grid{
+    width: 96%;
+    max-width: 200rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.md-tabs > .md-grid{
+    width: 96%;
+    max-width: 200rem !important;
+}
+
+.md-header__source {
+  display: none;
+}
+
+.md-tabs__list {
+  width: 96%;
+  max-width: 200rem !important;
+}
+
+/* 1. 切换按钮样式 */
+#sidebar-toggle {
+  position: fixed;
+  left: 2rem;
+  bottom: 1rem;
+  z-index: 200; /* 确保在最上层 */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background-color 0.2s;
+
+  /* 【新增】使用 Flexbox 实现完美居中 */
+  display: flex;             /* 开启 Flex 布局 */
+  justify-content: center;   /* 水平居中 */
+  align-items: center;       /* 垂直居中 */
+  
+  /* 可选：微调图标大小，使其视觉重心更稳 */
+  font-size: 1.2rem; 
+  line-height: 1;            /* 消除文字默认行高带来的额外空间 */
+}
+
+#sidebar-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* 2. 外层容器：负责伸缩动画 */
+.sidebar-wrapper {
+  display: flex !important;
+  flex-direction: column;
+  height: 100% !important; /* 撑满高度 */
+  
+  /* 初始状态：展开 */
+  flex-basis: 12.2rem !important; 
+  min-width: 12.2rem !important;
+  
+  transition: flex-basis 0.3s ease, min-width 0.3s ease, opacity 0.3s ease !important;
+  overflow: hidden; /* 折叠时隐藏溢出的内容 */
+}
+
+/* 折叠状态 */
+.sidebar-wrapper.sidebar-hidden {
+  flex-basis: 0 !important;
+  min-width: 0 !important;
+  opacity: 0; /* 辅助视觉隐藏 */
+}
+
+/* 3. 内部侧边栏：保持刚性，不被压缩 */
+.sidebar-wrapper .md-sidebar--primary {
+  width: 12.2rem !important; /* 强制保持原始宽度 */
+  min-width: 12.2rem !important;
+  margin: 0 !important; /* 清除可能的 margin 干扰 */
+  
+  /* 确保内部滚动条正常工作 */
+  height: 100% !important; 
+  position: sticky !important; /* 保持粘性定位 */
+  top: 0 !important;
+}
+
+/* 4. 修复主内容区自适应 */
+.md-main__inner {
+  /* 当侧边栏消失时，主内容区自动填满剩余空间 */
+  transition: margin-left 0.3s ease; 
 }

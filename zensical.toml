@@ -439,3 +439,5 @@ auto_themed = true
 auto_caption = true
 
 [project.plugins.markdown-exec]
+[project.markdown_extensions.pymdownx.blocks.caption]
+
