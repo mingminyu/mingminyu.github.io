@@ -81,6 +81,7 @@ nav = [
               { "前言" = "books/hello-agents/index.md" },
               { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
               { "2.智能体的发展史" = "books/hello-agents/ch02-智能体发展史.md" },
+              { "3.大语言模型基础" = "books/hello-agents/ch03-大语言模型基础.md" },
             ]
           }
         ]
@@ -142,7 +143,11 @@ extra_css = ["stylesheets/extra.css"]
 # The path provided should be relative to the "docs_dir".
 #
 # Read more: https://zensical.org/docs/customization/#additional-javascript
-extra_javascript = ["javascripts/auth.js"]
+extra_javascript = [
+  "javascripts/auth.js",
+  "javascripts/mathjax.js",
+  "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+]
 
 # ----------------------------------------------------------------------------
 # Section for configuring theme options
