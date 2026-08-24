@@ -89,6 +89,7 @@ nav = [
               { "8.记忆与检索" = "books/hello-agents/ch08-记忆与检索.md" },
               { "9.上下文工程" = "books/hello-agents/ch09-上下文工程.md" },
               { "10.智能体通信协议" = "books/hello-agents/ch10-智能体通信协议.md" },
+              { "11.AgenticR RL" = "books/hello-agents/ch11-Agentic-RL.md" },
             ]
           }
         ]
