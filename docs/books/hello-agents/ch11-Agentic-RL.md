@@ -302,27 +302,16 @@ GSM8K(Grade School Math 8K)[^4]是一个高质量的小学数学应用题数据�
 
 这个问题需要两步推理:首先计算 5 月份卖出的数量(48 的一半)，然后计算总数(4 月+5 月)。答案中的`<<48/2=24>>`是中间计算步骤的标记，`#### 72`标记最终答案。
 
-GSM8K 数据集需要转换为不同的格式，以适应不同的训练方法，如图 11.4 所示。
+GSM8K 数据集需要转换为不同的格式，以适应不同的训练方法，如图4 所示。
 
-
-| 属性 | 值 |
-| :--- | :--- |
-| 训练集大小 | 7,473个问题 |
-| 测试集大小 | 1,319个问题 |
-| 难度等级 | 小学数学(2-8年级) |
-| 题型 | 应用题 |
-| 推理步骤 | 2-8步 |
-| 答案类型 | 数值 |
-
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-4.png" alt="" width="85%"/>
-  <p>图 11.4 GSM8K 数据格式转换</p>
-</div>
-
+![图4：GSM8K 数据格式转换](images/ch11-04.png){width="80%"}
+/// caption
+图4：GSM8K 数据格式转换
+///
 
 原始格式直接来自数据集，包含问题(question)和答案(answer，含解题步骤)，适合人类阅读。SFT 格式用于监督微调，将问题转换为对话格式的 prompt，将完整解答作为 completion。例如:
 
-```python
+```python linenums="1"
 {
     "prompt": "<|im_start|>user\nNatalia sold clips to 48 of her friends...<|im_end|>\n<|im_start|>assistant\n",
     "completion": "Let me solve this step by step.\n\nStep 1: ...\n\nFinal Answer: 72<|im_end|>"
@@ -333,7 +322,7 @@ GSM8K 数据集需要转换为不同的格式，以适应不同的训练方法�
 
 RL 格式用于强化学习，只提供问题和正确答案，不提供解题过程。例如:
 
-```python
+```python linenums="1"
 {
     "prompt": "<|im_start|>user\nNatalia sold clips to 48 of her friends...<|im_end|>\n<|im_start|>assistant\n",
     "ground_truth": "72"
