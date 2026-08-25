@@ -200,7 +200,7 @@ pip install -e ".[rl]"
 
 然后运行快速训练示例:
 
-```python linenums="1"
+```python linenums="1" linenums="1"
 import sys
 import json
 
@@ -311,7 +311,7 @@ GSM8K 数据集需要转换为不同的格式，以适应不同的训练方法�
 
 原始格式直接来自数据集，包含问题(question)和答案(answer，含解题步骤)，适合人类阅读。SFT 格式用于监督微调，将问题转换为对话格式的 prompt，将完整解答作为 completion。例如:
 
-```python linenums="1"
+```python linenums="1" linenums="1"
 {
     "prompt": "<|im_start|>user\nNatalia sold clips to 48 of her friends...<|im_end|>\n<|im_start|>assistant\n",
     "completion": "Let me solve this step by step.\n\nStep 1: ...\n\nFinal Answer: 72<|im_end|>"
@@ -322,7 +322,7 @@ GSM8K 数据集需要转换为不同的格式，以适应不同的训练方法�
 
 RL 格式用于强化学习，只提供问题和正确答案，不提供解题过程。例如:
 
-```python linenums="1"
+```python linenums="1" linenums="1"
 {
     "prompt": "<|im_start|>user\nNatalia sold clips to 48 of her friends...<|im_end|>\n<|im_start|>assistant\n",
     "ground_truth": "72"
@@ -339,7 +339,7 @@ RL 格式用于强化学习，只提供问题和正确答案，不提供解题�
 </div>
 HelloAgents 提供了便捷的数据集加载函数。让我们通过代码来加载和查看数据集:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 import json
 
@@ -373,7 +373,7 @@ print(f"样本字段: {rl_data['sample_keys']}")
 
 可以看到，SFT 格式包含完整的解题过程，用于监督学习;RL 格式只包含最终答案，模型需要自己生成推理过程。`max_samples`参数控制加载的样本数量，方便快速测试。
 
-### 11.2.2 奖励函数设计
+### 2.2 奖励函数设计
 
 奖励函数是强化学习的核心，它定义了什么是"好的行为"。一个好的奖励函数能够引导智能体学习到正确的策略，而一个糟糕的奖励函数可能导致训练失败或学到错误的行为。
 
@@ -393,13 +393,15 @@ $$
 
 奖励函数的设计直接影响训练效果。好的奖励函数应该能清楚地定义什么是成功、能够提供梯度信号、不会产生过大的方差、容易调整和组合。糟糕的奖励函数可能只在任务结束时给奖励，中间步骤无反馈、存在奖励欺骗，使得智能体找到"作弊"方式获得高奖励、多个目标相互矛盾、方差过大，训练不收敛。
 
-HelloAgents 提供了三种内置奖励函数，可以单独使用或组合使用，如图 11.5 所示。
+HelloAgents 提供了三种内置奖励函数，可以单独使用或组合使用，如图5 所示。
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-5.png" alt="" width="85%"/>
-  <p>图 11.5 奖励函数设计</p>
-</div>
-**（1）准确率奖励**
+![图5：奖励函数设计](images/ch11-05.png){width="85%"}
+/// caption
+图5：奖励函数设计
+///
+
+
+#### 1）准确率奖励
 
 准确率奖励(AccuracyReward)是最基础的奖励函数，它只关心答案是否正确。数学定义为:
 
@@ -416,7 +418,7 @@ $$
 
 使用示例:
 
-```python
+```python linenums="1" linenums="1"
 from hello_agents.tools import RLTrainingTool
 import json
 rl_tool = RLTrainingTool()
@@ -445,7 +447,7 @@ print(f"描述: {reward_data['description']}")
 
 准确率奖励的优点是简单直接，容易理解和实现，适合有明确正确答案的任务。缺点是奖励稀疏，只有答案完全正确才有奖励，无法区分"接近正确"和"完全错误"，可能导致训练初期缺乏有效反馈。
 
-**（2）长度惩罚**
+#### 2）长度惩罚
 
 长度惩罚(LengthPenaltyReward)鼓励模型生成简洁的回答，避免冗长啰嗦。数学定义为:
 
@@ -459,7 +461,7 @@ $$
 
 使用示例:
 
-```python
+```python linenums="1" linenums="1"
 # 创建长度惩罚奖励函数
 reward_result = rl_tool.run({
     "action": "create_reward",
@@ -486,7 +488,7 @@ print(f"惩罚权重: {reward_data['penalty_weight']}")
 
 长度惩罚的优点是鼓励简洁表达，避免模型生成冗余内容，可以控制推理成本(更短的输出意味着更少的 token 消耗)。缺点是可能抑制详细推理，需要仔细调整惩罚系数，不同任务的最优长度差异很大。
 
-**（3）步骤奖励**
+#### 3）步骤奖励
 
 步骤奖励(StepReward)鼓励模型生成清晰的推理步骤，提高可解释性。数学定义为:
 
@@ -500,7 +502,7 @@ $$
 
 使用示例:
 
-```python
+```python linenums="1" linenums="1"
 # 创建步骤奖励函数
 reward_result = rl_tool.run({
     "action": "create_reward",
@@ -548,7 +550,7 @@ $$
 
 使用示例:
 
-```python
+```python linenums="1"
 # 组合奖励函数:准确率 + 长度惩罚 + 步骤奖励
 # 注意: RLTrainingTool目前支持单一奖励类型
 # 组合奖励需要在训练配置中通过reward_fn参数指定
@@ -588,35 +590,41 @@ print("步骤奖励:", json.loads(step_result)['description'])
   - 步骤奖励: +0.3
 ```
 
-如表 11.4 所示，不同奖励函数适合不同的应用场景。
+如表4 所示，不同奖励函数适合不同的应用场景。
 
-<div align="center">
-  <p>表 11.4 奖励函数对比</p>
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-4.png" alt="" width="85%"/>
-</div>
+表4：奖励函数对比
 
-### 11.2.3 自定义数据集和奖励函数
+| 奖励函数 | 优点 | 缺点 | 适用场景 |
+| --- | --- | --- | --- |
+| 准确率 | 简单直接 | 奖励稀疏 | 基础训练 |
+| 长度惩罚 | 鼓励简洁 | 可能抑制推理 | 对话系统 |
+| 步骤奖励 | 可解释性强 | 可能冗余 | 教育应用 |
+| 组合奖励 | 全面优化 | 调参复杂 | 生产环境 |
+
+### 2.3 自定义数据集和奖励函数
 
 虽然 HelloAgents 提供了 GSM8K 数据集和常用奖励函数，但在实际应用中，你可能需要使用自己的数据集或设计特定的奖励函数。本节将介绍如何扩展框架。
 
 在使用自定义数据集之前，需要了解两种训练格式的数据要求:
 
 **SFT 格式**:用于监督微调，需要包含以下字段:
+
 - `prompt`: 输入提示(包含 system 和 user 消息)
 - `completion`: 期望的输出
 - `text`: 完整的对话文本(可选)
 
 **RL 格式**:用于强化学习，需要包含以下字段:
+
 - `question`: 原始问题
 - `prompt`: 输入提示(包含 system 和 user 消息)
 - `ground_truth`: 正确答案
 - `full_answer`: 完整答案(包含推理过程)
 
-**（1）使用 format_math_dataset 转换**
+#### 1）使用 `format_math_dataset` 转换
 
 最简单的方法是准备包含`question`和`answer`字段的原始数据，然后使用`format_math_dataset()`函数自动转换:
 
-```python
+```python linenums="1"
 from datasets import Dataset
 from hello_agents.rl import format_math_dataset
 
@@ -658,11 +666,11 @@ print(f"RL数据集: {len(rl_dataset)}个样本")
 print(f"字段: {rl_dataset.column_names}")
 ```
 
-**（2）直接传入自定义数据集**
+#### 2）直接传入自定义数据集
 
 使用 RLTrainingTool 时，可以通过`custom_dataset`参数直接传入自定义数据集:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -692,11 +700,11 @@ result = rl_tool.run({
 })
 ```
 
-（3）注册自定义数据集(推荐)
+#### 3）注册自定义数据集(推荐)
 
 对于需要多次使用的数据集，推荐使用注册方式:
 
-```python
+```python linenums="1"
 # 1. 注册数据集
 rl_tool.register_dataset("my_math_dataset", rl_dataset)
 
@@ -713,7 +721,7 @@ result = rl_tool.run({
 
 奖励函数用于评估模型生成的答案质量。自定义奖励函数需要遵循以下签名:
 
-```python
+```python linenums="1"
 from typing import List
 import re
 
@@ -771,7 +779,7 @@ def custom_reward_function(
 
 **（1）直接传入**
 
-```python
+```python linenums="1"
 result = rl_tool.run({
     "action": "train",
     "algorithm": "grpo",
@@ -784,7 +792,7 @@ result = rl_tool.run({
 
 **（2）注册使用(推荐)**
 
-```python
+```python linenums="1"
 # 1. 注册奖励函数
 rl_tool.register_reward_function("my_reward", custom_reward_function)
 
@@ -800,7 +808,7 @@ result = rl_tool.run({
 
 以下是一个完整的自定义数据集和奖励函数示例:
 
-```python
+```python linenums="1"
 from datasets import Dataset
 from hello_agents.tools import RLTrainingTool
 from hello_agents.rl import format_math_dataset
@@ -865,11 +873,11 @@ result = rl_tool.run({
 })
 ```
 
-## 11.3 SFT 训练
+## 3. SFT 训练
 
 监督微调(Supervised Fine-Tuning， SFT)是强化学习训练的第一步，也是最重要的基础。SFT 让模型学习任务的基本格式、对话模式和初步的推理能力。没有 SFT 的基础，直接进行强化学习往往会失败，因为模型连基本的输出格式都不会。
 
-### 11.3.1 为什么需要 SFT
+### 3.1 为什么需要 SFT
 
 在开始强化学习之前，我们需要先进行 SFT 训练。这是因为预训练模型虽然具备强大的语言能力，但它并不知道如何完成特定任务。预训练模型的训练目标是预测下一个词，而不是解决数学问题或使用工具。预训练模型的输出格式是自由文本，而我们需要结构化的输出(如"Step 1: ...， Step 2: ...， Final Answer: ...")。预训练模型没有见过任务相关的数据，不知道什么是"好的"推理过程。
 
@@ -877,7 +885,7 @@ SFT 的作用是教会模型任务的基本规则。首先，学习输出格式�
 
 让我们通过一个对比实验来理解 SFT 的重要性。假设我们直接用预训练模型解决 GSM8K 问题:
 
-```python
+```python linenums="1"
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 # 加载预训练模型
@@ -913,7 +921,7 @@ I can help you with that. Let me think about this problem. Natalia sold clips to
 
 现在让我们看看 SFT 后的模型:
 
-```python
+```python linenums="1"
 # 加载SFT模型(假设已经训练好)
 sft_model_path = "./models/sft_model"
 sft_model = AutoModelForCausalLM.from_pretrained(sft_model_path)
@@ -948,16 +956,17 @@ Final Answer: 72<|im_end|>
 
 如图 11.6 所示，SFT 是从预训练模型到强化学习的桥梁。
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-6.png" alt="" width="85%"/>
-  <p>图 11.6 SFT 在训练流程中的作用</p>
-</div>
+![图6：SFT 在训练流程中的作用](images/ch11-06.png){width="80%"}
+/// caption
+图6：SFT 在训练流程中的作用
+///
 
-### 11.3.2 LoRA:参数高效微调
+
+### 3.2 LoRA:参数高效微调
 
 直接微调整个模型需要大量的计算资源和显存。对于 Qwen3-0.6B(0.6B 参数)，全量微调需要约 12GB 显存(FP16)或 24GB 显存(FP32)。对于更大的模型(如 7B、13B)，全量微调几乎不可能在消费级 GPU 上进行。
 
-LoRA(Low-Rank Adaptation)[3]是一种参数高效微调方法，它只训练少量的额外参数，而保持原模型参数冻结。LoRA 的核心思想是:模型微调时的参数变化可以用低秩矩阵表示。
+LoRA(Low-Rank Adaptation)[^3]是一种参数高效微调方法，它只训练少量的额外参数，而保持原模型参数冻结。LoRA 的核心思想是:模型微调时的参数变化可以用低秩矩阵表示。
 
 假设原模型的权重矩阵为 $W \in \mathbb{R}^{d \times k}$，微调后的权重为 $W' = W + \Delta W$。LoRA 假设 $\Delta W$ 可以分解为两个低秩矩阵的乘积:
 
@@ -979,22 +988,26 @@ $$
 
 因此可以总结 LoRA 的优势:显存占用大幅降低、训练速度更快、易于部署、防止过拟合。不过训练的效果通常情况会比全量调参更差一些。
 
-如表 11.5 所示，LoRA 在不同模型规模下的效果对比。
+如表5 所示，LoRA 在不同模型规模下的效果对比。
 
-<div align="center">
-  <p>表 11.5 LoRA vs 全量微调对比</p>
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-5.png" alt="" width="85%"/>
-</div>
+表5：LoRA vs 全量微调对比
+
+| 模型 | 全量参数 | LoRA参数(r=8) | 显存(全量) | 显存(LoRA) |
+| :--- | :--- | :--- | :--- | :--- |
+| Qwen3-0.6B | 0.6B | 2.4M | 12GB | 4GB |
+| Qwen3-1.5B | 1.5B | 6.0M | 24GB | 8GB |
+| Qwen3-7B | 7B | 28M | 112GB | 28GB |
+
 
 LoRA 的关键超参数包括:秩(rank，r)，控制 LoRA 矩阵的秩，越大表达能力越强，但参数量也越多，典型值为 4-64，默认 8;Alpha($\alpha$)，LoRA 的缩放因子，实际更新为 $\Delta W = \frac{\alpha}{r} BA$，控制 LoRA 的影响强度，典型值等于 rank;目标模块(target_modules)，指定哪些层应用 LoRA，通常选择注意力层(q_proj， k_proj， v_proj， o_proj)，也可以包括 MLP 层(gate_proj， up_proj， down_proj)。
 
-### 11.3.3 SFT 训练实战
+### 3.3 SFT 训练实战
 
 现在让我们使用 HelloAgents 进行 SFT 训练。完整的训练流程包括:准备数据集、配置 LoRA、设置训练参数、开始训练、保存模型。
 
 基础训练示例:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 # 创建训练工具
@@ -1033,7 +1046,7 @@ print(f"  - 最终损失: {result['final_loss']:.4f}")
 
 如果训练过程中损失逐渐下降，说明模型正在学习。
 
-**（1）训练参数详解**
+#### 1）训练参数详解
 
 让我们详细了解各个训练参数的含义和调优建议。
 
@@ -1060,11 +1073,11 @@ print(f"  - 最终损失: {result['final_loss']:.4f}")
 - `weight_decay`: 权重衰减，防止过拟合。默认 0.01，可以尝试 0.001-0.1。
 - `warmup_ratio`: 学习率预热比例。前 warmup_ratio 的步数学习率线性增加，然后线性衰减。默认 0.1(前 10%步数预热)。
 
-**（2）完整训练示例**
+#### 2）完整训练示例
 
 让我们进行一次完整的 SFT 训练，使用全部数据和最佳实践:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -1105,25 +1118,23 @@ print(f"训练完成! 模型保存在: {result['model_path']}")
 
 这个配置适合在 8GB 显存的 GPU 上训练，预计耗时 30-60 分钟。
 
-**（3）训练监控和调试**
+#### 3）训练监控和调试
 
 在训练过程中，我们需要监控三个关键指标。损失(Loss)应该逐渐下降，如果不下降可能是学习率太小或数据有问题，如果下降后又上升则可能是学习率太大或出现过拟合。梯度范数(Gradient Norm)应该在 0.1-10 的合理范围内，过大(>100)说明出现梯度爆炸需要降低学习率，过小(<0.01)说明梯度消失需要检查模型配置。学习率(Learning Rate)应该按照 warmup 策略变化，前 10%步数线性增加，然后线性衰减到 0。
 
 训练中常见的问题及解决方案:显存不足时可以减小 batch_size 或 max_length，使用梯度累积或更小的模型;训练速度慢时可以增大 batch_size，减少 logging 频率，或使用混合精度训练;损失不下降时可以增大学习率，检查数据格式，或增加训练轮数;过拟合时可以增大 weight_decay，减少训练轮数，或使用更多数据。
 
-### 11.3.4 模型评估
+### 3.4 模型评估
 
 训练完成后，我们需要评估模型的效果。评估指标包括:
 
 - **准确率(Accuracy)**:答案完全正确的比例，最直接的指标，范围 0-1，越高越好。
-
 - **平均奖励(Average Reward)**:所有样本的平均奖励，综合考虑准确率、长度、步骤等因素，范围取决于奖励函数设计。
-
 - **推理质量(Reasoning Quality)**:推理过程的清晰度和逻辑性，需要人工评估或使用专门的评估模型。
 
 使用 HelloAgents 评估模型:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -1147,7 +1158,7 @@ print(f"  - 测试样本数: {eval_data['num_samples']}")
 
 为了更好地理解 SFT 的效果，我们可以对比不同阶段的模型:
 
-```python
+```python linenums="1"
 # 评估预训练模型(未经SFT)
 base_result = rl_tool.run({
     "action": "evaluate",
@@ -1174,11 +1185,11 @@ print(f"SFT模型准确率: {sft_data['accuracy']}"
 
 在本节中，我们学习了 SFT 的重要性(学习格式、建立基线)、LoRA 原理(低秩分解、参数高效)、SFT 训练实战(参数配置、训练监控)、模型评估(准确率、对比分析）。
 
-## 11.4 GRPO 训练
+## 4. GRPO 训练
 
 在完成 SFT 训练后，我们已经得到了一个能够生成结构化答案的模型。但是，SFT 模型只是学会了"模仿"训练数据中的推理过程，并没有真正学会"思考"。强化学习可以让模型通过试错来优化推理策略，从而超越训练数据的质量。
 
-### 11.4.1 从 PPO 到 GRPO
+### 4.1 从 PPO 到 GRPO
 
 在强化学习领域，PPO(Proximal Policy Optimization)[1]是最经典的算法之一。PPO 通过限制策略更新的幅度，保证训练的稳定性。但是，PPO 在 LLM 训练中存在一些问题:需要训练 Value Model(价值模型)，增加了训练复杂度和显存占用;需要同时维护四个模型(Policy Model、Reference Model、Value Model、Reward Model)，工程实现复杂;训练不稳定，容易出现奖励崩塌或策略退化。
 
@@ -1206,6 +1217,12 @@ $$
 
 如图 11.7 所示，PPO 和 GRPO 的训练流程对比。
 
+![图7：PPO vs GRPO 训练流程](images/ch11-06.png){width="80%"}
+/// caption
+图7：PPO vs GRPO 训练流程
+///
+
+
 <div align="center">
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-7.png" alt="" width="85%"/>
   <p>图 11.7 PPO vs GRPO 训练流程</p>
@@ -1213,24 +1230,28 @@ $$
 
 可以看到，GRPO 省去了 Value Model 的训练，大大简化了流程。
 
-如表 11.6 所示，PPO 和 GRPO 的详细对比。
+如表6 所示，PPO 和 GRPO 的详细对比。
 
-<div align="center">
-  <p>表 11.6 PPO vs GRPO 对比</p>
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-6.png" alt="" width="85%"/>
-</div>
+表6：PPO vs GRPO 对比
 
-
+| 维度 | PPO | GRPO |
+| :--- | :--- | :--- |
+| 模型数量 | 4个(Policy, Ref, Value, Reward) | 2个(Policy, Ref) |
+| 优势估计 | Value Model | 组内相对奖励 |
+| 显存占用 | 高(需要Value Model) | 低(无Value Model) |
+| 训练稳定性 | 中等 | 较高 |
+| 实现复杂度 | 高 | 低 |
+| 适用场景 | 通用RL | LLM微调 |
 
 对于 LLM 训练，GRPO 是更好的选择，因为它更简单、更稳定、显存占用更低。
 
-### 11.4.2 GRPO 训练实战
+### 4.2 GRPO 训练实战
 
 现在让我们使用 HelloAgents 进行 GRPO 训练。GRPO 训练的前提是已经完成 SFT 训练，因为 GRPO 需要一个合理的初始策略。
 
 基础 GRPO 训练示例:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 # 创建训练工具
@@ -1297,7 +1318,7 @@ GRPO 有一些特定的参数需要理解和调优。
 
 让我们进行一次完整的 GRPO 训练，使用全部数据和最佳实践:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -1350,27 +1371,23 @@ result = rl_tool.run({
 print(f"训练完成! 模型保存在: {result['model_path']}")
 ```
 
-### 11.4.3 GRPO 训练过程解析
+### 4.3 GRPO 训练过程解析
 
 让我们深入理解 GRPO 的训练过程，看看每一步都发生了什么。
 
-**（1）训练循环**
+#### 1）训练循环
 
 GRPO 的训练循环包括以下步骤:
 
 1. **采样阶段**:对于每个问题，使用当前策略生成多个答案(`num_generations`个)。这些答案构成一个"组"，用于计算相对奖励。
-
 2. **奖励计算**:对每个生成的答案计算奖励 $r_i$。奖励可以是准确率、长度惩罚、步骤奖励或它们的组合。
-
 3. **相对奖励**:计算组内平均奖励 $\bar{r} = \frac{1}{N}\sum_{i=1}^{N} r_i$，然后计算相对奖励 $\hat{r}_i = r_i - \bar{r}$。这样做的好处是减少奖励方差，使训练更稳定。
-
 4. **策略更新**:使用相对奖励更新策略，同时添加 KL 散度惩罚，防止策略偏离参考模型太远。
-
 5. **重复**:重复上述步骤，直到完成所有训练轮次。
 
 让我们通过一个具体例子来理解:
 
-```python
+```python linenums="1"
 # 假设我们有一个问题
 question = "What is 48 + 24?"
 
@@ -1401,7 +1418,7 @@ relative_rewards = [
 
 可以看到，相对奖励机制鼓励模型生成"比平均水平更好"的答案，而不是简单地追求高奖励。这样可以减少奖励方差，提高训练稳定性。
 
-**（2）KL 散度惩罚**
+#### 2）KL 散度惩罚
 
 KL 散度惩罚是 GRPO 的关键组成部分，它防止策略偏离参考模型太远。KL 散度定义为:
 
@@ -1423,16 +1440,13 @@ KL 散度越大，说明当前策略与参考模型差异越大。通过添加 K
 - 太大(0.5):策略更新受限，学习缓慢，难以超越 SFT 模型
 - 建议(0.05-0.1):平衡探索和稳定性
 
-**（3）训练监控**
+#### 3）训练监控
 
 在 GRPO 训练过程中，我们需要监控以下指标:
 
 - **平均奖励(Average Reward)**:应该逐渐上升。如果奖励不上升，可能是学习率太小、KL 惩罚太大、奖励函数设计不合理。如果奖励先升后降，可能是过拟合或奖励崩塌。
-
 - **KL 散度(KL Divergence)**:应该保持在合理范围内(0.01-0.1)。如果 KL 散度过大(>0.5)，说明策略偏离太远，需要增大 kl_coef 或降低学习率。如果 KL 散度过小(<0.001)，说明策略几乎没有更新，需要减小 kl_coef 或增大学习率。
-
 - **准确率(Accuracy)**:应该逐渐提升。这是最直观的指标，反映模型的实际能力。
-
 - **生成质量(Generation Quality)**:需要人工检查生成的答案，确保格式正确、推理清晰。
 
 HelloAgents 集成了两种主流的训练监控工具:Weights & Biases(wandb)和 TensorBoard。
@@ -1441,7 +1455,7 @@ HelloAgents 集成了两种主流的训练监控工具:Weights & Biases(wandb)�
 
 Weights & Biases 是目前最流行的机器学习实验跟踪平台，提供了强大的可视化和实验管理功能。
 
-```python
+```python linenums="1"
 import os
 
 # 1. 设置wandb(需要先注册账号: https://wandb.ai)
@@ -1474,7 +1488,7 @@ wandb 会自动记录以下指标:
 
 TensorBoard 是 TensorFlow 提供的可视化工具，也支持 PyTorch 训练。
 
-```python
+```python linenums="1"
 # 1. 训练时会自动在output_dir下创建tensorboard日志
 result = rl_tool.run({
     "action": "train",
@@ -1496,7 +1510,7 @@ result = rl_tool.run({
 
 如果不想使用 wandb 或 TensorBoard，也可以通过训练日志进行监控:
 
-```python
+```python linenums="1"
 # 训练过程会打印详细日志
 result = rl_tool.run({
     "action": "train",
@@ -1522,15 +1536,15 @@ result = rl_tool.run({
 
 GRPO 训练的显存占用比 SFT 高，因为需要同时生成多个答案并存储参考模型输出，容易出现 OOM。可以通过减小 num_generations(从 8 到 4)、batch_size(从 4 到 2)或 max_new_tokens(从 512 到 256)，或使用梯度检查点和混合精度训练来缓解。
 
-## 11.5 模型评估与分析
+## 5. 模型评估与分析
 
 训练完成后，我们需要全面评估模型的性能，不仅要看准确率这一个指标，还要深入分析模型的推理质量、错误模式、泛化能力等。本节将介绍如何系统地评估和分析 Agentic RL 模型。
 
-### 11.5.1 评估指标体系
+### 5.1 评估指标体系
 
 一个好的评估体系应该是多维度的，从不同角度衡量模型的能力。我们将评估指标分为三类:准确性指标、效率指标、质量指标。
 
-**（1）准确性指标**
+#### 1）准确性指标
 
 准确性指标衡量模型是否能够得出正确答案。
 
@@ -1556,7 +1570,7 @@ $$
 
 这个指标可以区分"接近正确"(如预测 72.5，真实 72)和"完全错误"(如预测 100，真实 72)。
 
-**（2）效率指标**
+#### 2）效率指标
 
 效率指标衡量模型生成答案的成本。
 
@@ -1578,7 +1592,7 @@ $$
 
 **推理时间(Inference Time)**:生成一个答案所需的时间。这个指标在实际部署中很重要，影响用户体验。
 
-**（3）质量指标**
+#### 3）质量指标
 
 质量指标衡量答案的可读性和可解释性。
 
@@ -1593,19 +1607,26 @@ $$
 
 **可解释性(Explainability)**:答案是否容易理解和验证。包含清晰步骤的答案比直接给出结果的答案更具可解释性。
 
-如表 11.7 所示，不同指标的对比。
+如表7 所示，不同指标的对比。
 
-<div align="center">
-  <p>表 11.7 评估指标对比</p>
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-7.png" alt="" width="85%"/>
-</div>
+表7：评估指标对比
+
+| 类别 | 指标 | 优点 | 缺点 |
+| :--- | :--- | :--- | :--- |
+| 准确性 | Accuracy | 简单直观 | 过于粗糙 |
+| 准确性 | Accuracy@K | 反映潜力 | 需要多次采样 |
+| 准确性 | Numerical Error | 细粒度 | 仅适用数值任务 |
+| 效率 | Avg Length | 反映成本 | 不考虑质量 |
+| 效率 | Avg Steps | 反映推理风格 | 难以量化 |
+| 质量 | Format Correctness | 易于检测 | 不保证正确性 |
+| 质量 | Coherence | 全面评估 | 需要人工 |
 
 
-### 11.5.2 评估实战
+### 5.2 评估实战
 
 HelloAgents 提供了全面的评估功能，可以一次性计算多个指标。
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -1644,7 +1665,7 @@ print(f"  测试样本数: {eval_data['num_samples']}")
 
 我们可以对比预训练模型、SFT 模型、GRPO 模型的性能:
 
-```python
+```python linenums="1"
 # 评估三个模型
 models = [
     ("预训练模型", "Qwen/Qwen3-0.6B", False),
@@ -1673,13 +1694,13 @@ for name, result in results:
 print("=" * 70)
 ```
 
-### 11.5.3 错误分析
+### 5.3 错误分析
 
 仅仅知道准确率是不够的，我们需要深入分析模型在哪些类型的问题上容易出错，从而指导后续改进。模型的错误可以分为四类:计算错误(推理步骤正确但计算出错，如"48/2=25"，说明数值计算能力不足)、推理错误(推理逻辑错误导致解题思路不对，如先加后除而非先除后加，说明逻辑推理能力不足)、理解错误(没有正确理解问题，如问题问"总共"但只计算了一部分，说明语言理解能力不足)、格式错误(答案正确但格式不符合要求，如缺少"Final Answer:"标记，说明格式学习不足)。
 
 错误分析示例:
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -1741,7 +1762,7 @@ for error_type, count in error_types.items():
 
 可以看到，计算错误是最主要的错误类型(42.1%)，说明模型的数值计算能力需要加强。格式错误很少(5.3%)，说明 SFT 训练效果良好。我们还可以分析模型在不同难度的问题上的表现:
 
-```python
+```python linenums="1"
 # 按推理步骤数分组
 step_groups = {
     "简单(1-2步)": [],
@@ -1779,22 +1800,22 @@ for group_name, results in step_groups.items():
 
 可以看到，模型在简单问题上表现良好(78.5%)，但在困难问题上表现较差(31.6%)。这说明模型的多步推理能力还有待提升
 
-### 11.5.4 改进方向
+### 5.4 改进方向
 
 基于评估和分析结果，我们可以确定模型的改进方向，如图 11.8 所示。
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-8.png" alt="" width="85%"/>
-  <p>图 11.8 模型改进迭代流程</p>
-</div>
+![图8：模型改进迭代流程](images/ch11-08.png){width="80%"}
+/// caption
+图8：模型改进迭代流程
+///
 
 这是一个持续迭代的过程:训练模型 → 评估性能 → 分析错误 → 确定问题 → 选择改进方向 → 重新训练。通过多次迭代，模型性能会不断提升。
 
-## 11.6 完整训练流程实战
+## 6. 完整训练流程实战
 
 在前面的章节中，我们分别学习了数据准备、SFT 训练、GRPO 训练和模型评估。现在，让我们把这些知识整合起来，完成一个端到端的 Agentic RL 训练流程。
 
-### 11.6.1 端到端训练流程
+### 6.1 端到端训练流程
 
 一个完整的 Agentic RL 训练流程包括以下阶段:数据准备、SFT 训练、SFT 评估、GRPO 训练、GRPO 评估、模型部署。如图 11.9 所示。
 
@@ -1805,7 +1826,7 @@ for group_name, results in step_groups.items():
 
 让我们通过一个完整的脚本来实现这个流程:
 
-```python
+```python linenums="1"
 """
 完整的Agentic RL训练流程
 从数据准备到模型部署的端到端示例
@@ -2066,7 +2087,7 @@ if __name__ == "__main__":
 
 **数据质量检查**:在训练前检查数据质量，确保格式正确、答案准确、没有重复样本。可以使用以下代码:
 
-```python
+```python linenums="1"
 def check_data_quality(dataset):
     """检查数据质量"""
     issues = []
@@ -2102,15 +2123,15 @@ else:
 
 **数据增强**:如果数据量不足，可以考虑数据增强，如改写问题(保持答案不变)、生成相似问题、反向翻译(translate back)。但要注意保持数据质量，避免引入噪声。
 
-### 11.6.2 超参数调优
+### 6.2 超参数调优
 
 超参数调优是提升模型性能的关键。下面是一些常用的调优策略。
 
-**（1）网格搜索**
+#### 1）网格搜索
 
 网格搜索(Grid Search)是最简单的调优方法，遍历所有参数组合，选择最佳的一组。
 
-```python
+```python linenums="1"
 # 定义参数网格
 param_grid = {
     "learning_rate": [1e-5, 5e-5, 1e-4],
@@ -2154,11 +2175,11 @@ print(f"最佳准确率: {best_accuracy:.2%}")
 
 网格搜索的优点是简单直接，能找到全局最优。缺点是计算成本高，参数多时不可行。
 
-**（2）随机搜索**
+#### 2）随机搜索
 
 随机搜索(Random Search)随机采样参数组合，比网格搜索更高效。
 
-```python
+```python linenums="1"
 import random
 
 # 定义参数范围
@@ -2190,11 +2211,11 @@ print(f"最佳准确率: {best_accuracy:.2%}")
 
 随机搜索的优点是效率高，适合参数空间大的情况。缺点是可能错过最优解。
 
-**（3）贝叶斯优化**
+#### 3）贝叶斯优化
 
 贝叶斯优化(Bayesian Optimization)使用概率模型指导搜索，更加智能。可以使用 Optuna 等库:
 
-```python
+```python linenums="1"
 import optuna
 
 def objective(trial):
@@ -2235,12 +2256,17 @@ print(f"最佳准确率: {study.best_value:.2%}")
 
 如表 11.8 所示，不同调优方法的对比。
 
-<div align="center">
-  <p>表 11.8 超参数调优方法对比</p>
-  <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-8.png" alt="" width="85%"/>
-</div>
+表8：超参数调优方法对比
 
-### 11.6.3 分布式训练
+
+| 方法 | 优点 | 缺点 | 适用场景 |
+| :--- | :--- | :--- | :--- |
+| 网格搜索 | 简单,全局最优 | 计算成本高 | 参数少(2-3个) |
+| 随机搜索 | 效率高 | 可能错过最优 | 参数多(4-6个) |
+| 贝叶斯优化 | 样本效率高 | 实现复杂 | 计算资源有限 |
+
+
+### 6.3 分布式训练
 
 当数据量和模型规模增大时，单 GPU 训练会变得非常缓慢。这时我们需要使用分布式训练来加速训练过程。HelloAgents 基于 TRL 和 Hugging Face Accelerate，天然支持多 GPU 和多节点分布式训练
 
@@ -2250,7 +2276,7 @@ print(f"最佳准确率: {study.best_value:.2%}")
 - **大模型(>7B)**: 使用 DeepSpeed ZeRO-2 或 ZeRO-3
 - **多节点集群**: 使用 DeepSpeed ZeRO-3 + Offload
 
-**（1）配置 Accelerate**
+#### 1）配置 Accelerate
 
 首先需要创建 Accelerate 配置文件。运行以下命令:
 
@@ -2285,7 +2311,7 @@ How many GPU(s) should be used for distributed training?
 
 这会在`~/.cache/huggingface/accelerate/default_config.yaml`生成配置文件。
 
-**（2）使用 DDP 训练**
+#### 2）使用 DDP 训练
 
 **数据并行(DDP)**是最简单的分布式方案，每个 GPU 持有完整模型副本，数据被分割到各个 GPU 上。
 
@@ -2303,7 +2329,7 @@ mixed_precision: fp16
 
 **训练脚本** (无需修改):
 
-```python
+```python linenums="1"
 from hello_agents.tools import RLTrainingTool
 
 rl_tool = RLTrainingTool()
@@ -2330,7 +2356,7 @@ accelerate launch --config_file multi_gpu_ddp.yaml train_script.py
 accelerate launch --num_processes 4 --mixed_precision fp16 train_script.py
 ```
 
-**（3）使用 DeepSpeed ZeRO 训练**
+#### 3）使用 DeepSpeed ZeRO 训练
 
 **DeepSpeed ZeRO**通过分片优化器状态、梯度和模型参数，大幅降低显存占用，支持更大的模型和 batch size。
 
@@ -2389,7 +2415,7 @@ accelerate launch --config_file deepspeed_zero3.yaml train_script.py
   <img src="https://raw.githubusercontent.com/datawhalechina/Hello-Agents/main/docs/images/11-figures/11-table-9.png" alt="" width="85%"/>
 </div>
 
-**（4）多节点训练**
+#### 4）多节点训练
 
 对于超大规模训练，可以使用多个节点(机器)。
 
@@ -2434,13 +2460,13 @@ accelerate launch --config_file multi_node_worker2.yaml train_script.py
 accelerate launch --config_file multi_node_worker3.yaml train_script.py
 ```
 
-**（5）分布式训练最佳实践**
+#### 5）分布式训练最佳实践
 
 **1. Batch Size 调整**
 
 分布式训练时，总 batch size = `per_device_batch_size × num_gpus × gradient_accumulation_steps`
 
-```python
+```python linenums="1"
 # 单GPU: batch_size=4, gradient_accumulation=4, 总batch=16
 # 4GPU DDP: batch_size=4, gradient_accumulation=1, 总batch=16 (保持一致)
 ```
@@ -2449,14 +2475,14 @@ accelerate launch --config_file multi_node_worker3.yaml train_script.py
 
 使用线性缩放规则: `lr_new = lr_base × sqrt(total_batch_size_new / total_batch_size_base)`
 
-```python
+```python linenums="1"
 # 基准: 单GPU, batch=16, lr=5e-5
 # 4GPU: batch=64, lr=5e-5 × sqrt(64/16) = 1e-4
 ```
 
 **3. 监控和调试**
 
-```python
+```python linenums="1"
 # 启用详细日志
 export ACCELERATE_LOG_LEVEL=INFO
 
@@ -2467,15 +2493,15 @@ export NCCL_DEBUG=INFO
 watch -n 1 nvidia-smi
 ```
 
-### 11.6.4 生产部署
+### 6.4 生产部署
 
 训练完成后，我们需要将模型部署到生产环境。下面是一些部署建议。
 
-**（1）模型导出**
+#### 1）模型导出
 
 将 LoRA 权重合并到基础模型，方便部署:
 
-```python
+```python linenums="1"
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
@@ -2498,11 +2524,11 @@ tokenizer.save_pretrained("./models/merged_model")
 print("✓ 模型已导出到: ./models/merged_model")
 ```
 
-**（2）推理优化**
+#### 2）推理优化
 
 使用量化和优化技术加速推理:
 
-```python
+```python linenums="1"
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
@@ -2536,11 +2562,11 @@ answer = generate_answer(question)
 print(answer)
 ```
 
-**（3）API 服务**
+#### 3）API 服务
 
 使用 FastAPI 创建推理服务:
 
-```python
+```python linenums="1"
 from fastapi import FastAPI
 from pydantic import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -2585,11 +2611,11 @@ def generate(question: Question):
 
 
 
-## 11.8 本章小结
+## 7. 本章小结
 
 在本章中，我们系统地学习了 Agentic RL 的理论和实践，从基础概念到完整的训练流程，从数据准备到模型部署。让我们回顾一下本章的主要内容。
 
-**（1）Agentic RL 的本质**
+#### 1）Agentic RL 的本质
 
 Agentic RL 是将 LLM 作为可学习策略，嵌入到智能体的感知-决策-执行循环中，通过强化学习优化智能体在多步任务中的表现。它与传统的 PBRFT(Preference-Based Reinforcement Fine-Tuning)的核心区别在于:
 
@@ -2599,7 +2625,8 @@ Agentic RL 是将 LLM 作为可学习策略，嵌入到智能体的感知-决策
 - **奖励设计**:从单步质量评估扩展到长期累积回报
 - **优化目标**:从短期响应质量扩展到长期任务成功
 
-**（2）六大核心能力**
+
+#### 2）六大核心能力
 
 Agentic RL 旨在提升智能体的六大核心能力:
 
@@ -2610,7 +2637,7 @@ Agentic RL 旨在提升智能体的六大核心能力:
 5. **自我改进(Self-Improvement)**:自我反思优化，从错误中学习
 6. **感知(Perception)**:多模态理解，视觉推理和工具使用
 
-**（3）训练流程**
+#### 3）训练流程
 
 完整的 Agentic RL 训练流程包括:
 
@@ -2648,8 +2675,6 @@ Agentic RL 旨在提升智能体的六大核心能力:
 
 
 
-## 参考文献
-
 
 ## 习题
 
@@ -2657,37 +2682,37 @@ Agentic RL 旨在提升智能体的六大核心能力:
 
 1. 本章介绍了从 LLM 训练到 Agentic RL 的演进过程。请分析：
 
-   - 在 11.1.3 节的表 11.1 中，对比了 PBRFT（基于偏好的强化微调）和 Agentic RL 在 MDP 框架下的差异。请深入解释：为什么 Agentic RL 的状态空间 $s_t = (\text{prompt}, o_1, o_2, ..., o_t)$ 包含历史观察，而 PBRFT 的状态 $s_0 = \text{prompt}$ 只包含初始提示？这种差异对训练过程和最终效果有什么影响？
-   - 假设你要训练一个"智能代码调试助手"，它需要：（1）分析代码找出 bug；（2）查阅文档了解 API 用法；（3）修改代码；（4）运行测试验证修复效果。请将这个任务映射到强化学习框架，明确定义状态空间、行动空间、奖励函数和状态转移函数。
-   - 在 11.1.1 节中提到，传统监督学习存在"难以优化长期目标"的局限。请设计一个具体的多步推理任务（如数学证明、复杂问题求解），展示为什么监督学习难以优化中间步骤，而强化学习可以通过延迟奖励来解决这个问题。
+    - 在 11.1.3 节的表 11.1 中，对比了 PBRFT（基于偏好的强化微调）和 Agentic RL 在 MDP 框架下的差异。请深入解释：为什么 Agentic RL 的状态空间 $s_t = (\text{prompt}, o_1, o_2, ..., o_t)$ 包含历史观察，而 PBRFT 的状态 $s_0 = \text{prompt}$ 只包含初始提示？这种差异对训练过程和最终效果有什么影响？
+    - 假设你要训练一个"智能代码调试助手"，它需要：（1）分析代码找出 bug；（2）查阅文档了解 API 用法；（3）修改代码；（4）运行测试验证修复效果。请将这个任务映射到强化学习框架，明确定义状态空间、行动空间、奖励函数和状态转移函数。
+    - 在 11.1.1 节中提到，传统监督学习存在"难以优化长期目标"的局限。请设计一个具体的多步推理任务（如数学证明、复杂问题求解），展示为什么监督学习难以优化中间步骤，而强化学习可以通过延迟奖励来解决这个问题。
 
 2. SFT（监督微调）和 GRPO（群组相对策略优化）是本章的两个核心训练方法。基于 11.2 节和 11.3 节的内容，请深入思考：
 
-   > **提示**：这是一道动手实践题，建议实际操作
+    > **提示**：这是一道动手实践题，建议实际操作
 
-   - 在 11.2.4 节的 SFT 训练代码中，我们使用了 LoRA（低秩适配）技术来减少训练参数。请分析：LoRA 的核心思想是什么？为什么它能够用少量参数（如 0.16%）实现接近全参数微调的效果？在什么情况下应该选择 LoRA 而不是全参数微调？
-   - GRPO 算法（11.3 节）相比传统的 PPO 算法有什么优势？请对比两者的训练流程，分析 GRPO 如何通过"群组相对奖励"来简化训练过程并提升稳定性。如果要将 GRPO 应用到其他任务（如代码生成、对话优化），需要做哪些调整？
-   - 请基于 11.2.5 节的代码，扩展 SFT 训练流程，添加以下功能：（1）支持多轮对话数据的训练；（2）添加数据增强策略（如同义改写、难度调整）；（3）实现训练过程的可视化监控（如 loss 曲线、样本质量评估）。
+    - 在 11.2.4 节的 SFT 训练代码中，我们使用了 LoRA（低秩适配）技术来减少训练参数。请分析：LoRA 的核心思想是什么？为什么它能够用少量参数（如 0.16%）实现接近全参数微调的效果？在什么情况下应该选择 LoRA 而不是全参数微调？
+    - GRPO 算法（11.3 节）相比传统的 PPO 算法有什么优势？请对比两者的训练流程，分析 GRPO 如何通过"群组相对奖励"来简化训练过程并提升稳定性。如果要将 GRPO 应用到其他任务（如代码生成、对话优化），需要做哪些调整？
+    - 请基于 11.2.5 节的代码，扩展 SFT 训练流程，添加以下功能：（1）支持多轮对话数据的训练；（2）添加数据增强策略（如同义改写、难度调整）；（3）实现训练过程的可视化监控（如 loss 曲线、样本质量评估）。
 
 3. 奖励函数设计是 Agentic RL 的核心挑战。基于 11.3.3 节的内容，请完成以下扩展实践：
 
-   > **提示**：这是一道动手实践题，建议实际操作
+    > **提示**：这是一道动手实践题，建议实际操作
 
-   - 在 11.3.3 节中，我们为 GSM8K 数学问题设计了简单的二元奖励（正确+1，错误 0）。请设计一个更精细的奖励函数，能够：（1）对部分正确的答案给予部分奖励；（2）对推理过程的合理性进行评分；（3）惩罚过于冗长或低效的解题路径。这个奖励函数应该如何实现？
-   - 奖励函数的设计往往需要领域知识。请为以下三个不同的智能体任务设计奖励函数：（1）代码生成助手（需要考虑代码正确性、可读性、效率）；（2）客服对话智能体（需要考虑问题解决率、用户满意度、响应时间）；（3）游戏 AI（需要考虑胜率、策略多样性、对抗鲁棒性）。
-   - 在实际应用中，奖励函数可能存在"奖励黑客"（reward hacking）问题：智能体找到了获得高奖励的捷径，但并没有真正完成任务。请举例说明这种现象，并设计防御机制来避免奖励黑客。
+    - 在 11.3.3 节中，我们为 GSM8K 数学问题设计了简单的二元奖励（正确+1，错误 0）。请设计一个更精细的奖励函数，能够：（1）对部分正确的答案给予部分奖励；（2）对推理过程的合理性进行评分；（3）惩罚过于冗长或低效的解题路径。这个奖励函数应该如何实现？
+    - 奖励函数的设计往往需要领域知识。请为以下三个不同的智能体任务设计奖励函数：（1）代码生成助手（需要考虑代码正确性、可读性、效率）；（2）客服对话智能体（需要考虑问题解决率、用户满意度、响应时间）；（3）游戏 AI（需要考虑胜率、策略多样性、对抗鲁棒性）。
+    - 在实际应用中，奖励函数可能存在"奖励黑客"（reward hacking）问题：智能体找到了获得高奖励的捷径，但并没有真正完成任务。请举例说明这种现象，并设计防御机制来避免奖励黑客。
 
 4. 在 11.4 节的"数学推理智能体训练"案例中，我们看到了完整的训练流程。请深入分析：
 
-   - 案例中使用了 GSM8K 数据集进行训练和评估。请分析：这个数据集的特点是什么？它适合训练什么类型的推理能力？如果要训练一个能够处理更复杂数学问题（如高等数学、数学证明）的智能体，应该如何扩展数据集和训练方法？
-   - 在 11.4.3 节的训练结果中，我们观察到模型在训练集上的准确率提升，但可能存在过拟合风险。请设计一个"泛化能力评估"方案：如何测试模型是否真正学会了数学推理，而不是记住了训练数据？如何通过正则化、数据增强等技术提升泛化能力？
-   - 案例中的训练是离线的（使用预先收集的数据集）。请设计一个"在线学习"方案：智能体在实际使用过程中持续收集用户反馈，并自动更新模型。这个方案需要考虑哪些技术挑战（如数据质量控制、灾难性遗忘、安全性保障）？
+      - 案例中使用了 GSM8K 数据集进行训练和评估。请分析：这个数据集的特点是什么？它适合训练什么类型的推理能力？如果要训练一个能够处理更复杂数学问题（如高等数学、数学证明）的智能体，应该如何扩展数据集和训练方法？
+      - 在 11.4.3 节的训练结果中，我们观察到模型在训练集上的准确率提升，但可能存在过拟合风险。请设计一个"泛化能力评估"方案：如何测试模型是否真正学会了数学推理，而不是记住了训练数据？如何通过正则化、数据增强等技术提升泛化能力？
+      - 案例中的训练是离线的（使用预先收集的数据集）。请设计一个"在线学习"方案：智能体在实际使用过程中持续收集用户反馈，并自动更新模型。这个方案需要考虑哪些技术挑战（如数据质量控制、灾难性遗忘、安全性保障）？
 
 5. Agentic RL 的一个重要应用是让智能体学会使用工具。请思考：
 
-   - 在 11.1.3 节中提到，Agentic RL 适合优化"需要多步推理、工具使用、长期规划"的任务。请设计一个"工具学习"训练方案：给定一组工具（如搜索引擎、计算器、代码执行器），如何训练智能体学会在合适的时机选择合适的工具？奖励函数应该如何设计？
-   - 工具使用往往涉及复杂的依赖关系（如"必须先调用工具 A 获取信息，才能调用工具 B"）。请设计一个"分层强化学习"方案：高层策略负责任务规划，低层策略负责工具调用。这种分层结构如何训练？如何协调高层和低层的优化目标？
-   - 在实际应用中，工具的数量可能非常多（如 50+个 API），直接训练可能面临"探索效率低"的问题。请设计一个"课程学习"（curriculum learning）方案：从简单任务（使用少量工具）开始训练，逐步增加任务难度和工具数量。这个方案应该如何设计课程顺序？如何评估智能体是否准备好进入下一阶段？
+      - 在 11.1.3 节中提到，Agentic RL 适合优化"需要多步推理、工具使用、长期规划"的任务。请设计一个"工具学习"训练方案：给定一组工具（如搜索引擎、计算器、代码执行器），如何训练智能体学会在合适的时机选择合适的工具？奖励函数应该如何设计？
+      - 工具使用往往涉及复杂的依赖关系（如"必须先调用工具 A 获取信息，才能调用工具 B"）。请设计一个"分层强化学习"方案：高层策略负责任务规划，低层策略负责工具调用。这种分层结构如何训练？如何协调高层和低层的优化目标？
+      - 在实际应用中，工具的数量可能非常多（如 50+个 API），直接训练可能面临"探索效率低"的问题。请设计一个"课程学习"（curriculum learning）方案：从简单任务（使用少量工具）开始训练，逐步增加任务难度和工具数量。这个方案应该如何设计课程顺序？如何评估智能体是否准备好进入下一阶段？
 
 
 
