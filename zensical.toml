@@ -90,7 +90,11 @@ nav = [
               { "9.上下文工程" = "books/hello-agents/ch09-上下文工程.md" },
               { "10.智能体通信协议" = "books/hello-agents/ch10-智能体通信协议.md" },
               { "11.AgenticR RL" = "books/hello-agents/ch11-Agentic-RL.md" },
-              { "12.智能体旅行助手" = "books/hello-agents/ch12-智能体旅行助手.md" },
+              { "12.智能体性能评估" = "books/hello-agents/ch12-智能体性能评估.md" },
+              { "13.智能旅行助手" = "books/hello-agents/ch13-智能旅行助手.md" },
+              { "14.自动化深度研究智能体" = "books/hello-agents/ch14-自动化深度研究智能体.md" },
+              { "15.构建赛博小镇" = "books/hello-agents/ch15-构建赛博小镇.md" },
+              { "16.毕业设计" = "books/hello-agents/ch16-毕业设计.md" },
             ]
           }
         ]
