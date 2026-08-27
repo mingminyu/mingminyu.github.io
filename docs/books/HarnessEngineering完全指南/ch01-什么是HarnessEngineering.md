@@ -36,11 +36,11 @@ AI Agent 也是如此。模型（LLM）是那匹马——强大但未被驯化�
 
 要理解 Harness Engineering，把它拆成三根柱子来看最清晰。你可以把它想象成盖房子：Context Engineering 是打地基（确保信息到位），Architectural Constraints 是承重墙（确保结构不塌），Entropy Management 是物业维护（确保房子不老化）。
 
-- **上下文工程**(Context Engineering)：时间占比 45%，对于模型来说，看不到信息等于不存在。
+- **上下文工程**(Context Engineering)：时间占比 45%，对于模型来说，看不到信息等于不存在，它管理的信息可访问性、结构和时机。
     - 静态上下文：CLUADE.md、AGENTS.md、设计文档
     - 动态上下文：日志与指标、GIT状态、CI/CD 状态 
     - 上下文压缩：四级管道、按需加载、记忆系统
-- **架构约束**(Architectural Constraints)：时间占比 35%。
+- **架构约束**(Architectural Constraints)：时间占比 35%，通过机械执行而非建议来建立边界。
     - 权限模型：支持 5 种模式
     - 7级规则层级：AI分类器、工具约束、Schema验证、并发标记安全、延迟加载、安全边界、沙盒隔离、硬编码拒绝、终深防御。
 - **熵管理**(Entropy Management)：时间占比20%，但对长期稳定性至关重要。
@@ -62,3 +62,10 @@ AI Agent 也是如此。模型（LLM）是那匹马——强大但未被驯化�
 | Agent Engineering | 互补；Harness 工程师为 Agent 构建基础设施 |
 | DevOps | 重叠的基础设施技能，应用于 AI 上下文 |
 
+## 4. 停下来想一想
+
+在继续之前，试着回答这个问题：“如果你今天要构建一个 AI 编码助手，你会把 80% 的工程时间花在哪里——改进模型，还是改进模型周围的系统？”。
+
+如果你的回答是”模型”，那么 Harness Engineering 会挑战你的直觉。LangChain 的案例证明，仅改变 Harness 就能在基准测试上提升 14 个百分点。模型是”给定的”，Harness 才是你能控制的。
+
+## 5 定量证据：Harness 的投资回报率
