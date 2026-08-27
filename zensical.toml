@@ -76,8 +76,7 @@ nav = [
       },
       {
         "图书馆" = [
-          {
-            "Hello Agents" = [
+          { "Hello Agents" = [
               { "前言" = "books/hello-agents/index.md" },
               { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
               { "2.智能体的发展史" = "books/hello-agents/ch02-智能体发展史.md" },
@@ -97,6 +96,13 @@ nav = [
               { "16.毕业设计" = "books/hello-agents/ch16-毕业设计.md" },
             ]
           }
+        ]
+      },
+      {
+        "课程" = [
+          { "Harness工程实战指南" = [
+            { "前言" = "courses/Harness工程实战指南/index.md" },
+          ] }
         ]
       },
       {
