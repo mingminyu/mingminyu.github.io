@@ -77,7 +77,7 @@ nav = [
       {
         "图书馆" = [
           { "Hello Agents" = [
-              { "前言" = "books/hello-agents/index.md" },
+              { "前言" = "books/hello-agents/ch00.md" },
               { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
               { "2.智能体的发展史" = "books/hello-agents/ch02-智能体发展史.md" },
               { "3.大语言模型基础" = "books/hello-agents/ch03-大语言模型基础.md" },
@@ -94,6 +94,11 @@ nav = [
               { "14.自动化深度研究智能体" = "books/hello-agents/ch14-自动化深度研究智能体.md" },
               { "15.构建赛博小镇" = "books/hello-agents/ch15-构建赛博小镇.md" },
               { "16.毕业设计" = "books/hello-agents/ch16-毕业设计.md" },
+            ]
+          },
+          { "Harness Engineering 完全指南" = [
+              { "前言" = "books/HarnessEngineering完全指南/ch00.md" },
+              { "1.初识智能体" = "books/HarnessEngineering完全指南/ch01-什么是HarnessEngineering.md" },
             ]
           }
         ]
