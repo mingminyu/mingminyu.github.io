@@ -77,7 +77,7 @@ nav = [
       {
         "图书馆" = [
           { "Hello Agents" = [
-              { "前言" = "books/hello-agents/ch00.md" },
+              { "0.前言" = "books/hello-agents/ch00.md" },
               { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
               { "2.智能体的发展史" = "books/hello-agents/ch02-智能体发展史.md" },
               { "3.大语言模型基础" = "books/hello-agents/ch03-大语言模型基础.md" },
@@ -97,8 +97,10 @@ nav = [
             ]
           },
           { "Harness Engineering 完全指南" = [
-              { "前言" = "books/HarnessEngineering完全指南/ch00.md" },
+              { "0.前言" = "books/HarnessEngineering完全指南/ch00.md" },
               { "1.初识智能体" = "books/HarnessEngineering完全指南/ch01-什么是HarnessEngineering.md" },
+              { "2.Cluade Code架构全景" = "books/HarnessEngineering完全指南/ch02-CluadeCode架构全景.md" },
+              { "3.Agent Loop" = "books/HarnessEngineering完全指南/ch03-AgentLoop.md" }
             ]
           }
         ]
@@ -107,6 +109,7 @@ nav = [
         "课程" = [
           { "Harness工程实战指南" = [
             { "前言" = "courses/Harness工程实战指南/index.md" },
+
           ] }
         ]
       },
