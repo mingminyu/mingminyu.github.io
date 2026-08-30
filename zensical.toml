@@ -108,7 +108,7 @@ nav = [
       {
         "课程" = [
           { "Harness工程实战指南" = [
-            { "前言" = "courses/Harness工程实战指南/index.md" },
+            { "0.前言" = "courses/HarnessEngineering技术实战/ch00.md" },
 
           ] }
         ]
