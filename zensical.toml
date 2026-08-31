@@ -107,9 +107,9 @@ nav = [
       },
       {
         "课程" = [
-          { "Harness工程实战指南" = [
+          { "Harness技术实战" = [
             { "0.前言" = "courses/HarnessEngineering技术实战/ch00.md" },
-
+            { "1.通用智能体应用步入生产力阶段" = "courses/HarnessEngineering技术实战/ch01-通用智能体应用步入生产力阶段.md" },
           ] }
         ]
       },
