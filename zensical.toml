@@ -96,6 +96,11 @@ nav = [
               { "16.毕业设计" = "books/hello-agents/ch16-毕业设计.md" },
             ]
           },
+          { "智能体Harness工程指南" = [
+              { "0.前言" = "books/智能体Harness工程指南/ch00.md" },
+              { "1.Harness工程概述" = "books/智能体Harness工程指南/ch01.md" },
+            ]
+          },
           { "Harness Engineering 完全指南" = [
               { "0.前言" = "books/HarnessEngineering完全指南/ch00.md" },
               { "1.初识智能体" = "books/HarnessEngineering完全指南/ch01-什么是HarnessEngineering.md" },
