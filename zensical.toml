@@ -101,6 +101,10 @@ nav = [
               { "1.Harness工程概述" = "books/智能体Harness工程指南/ch01.md" },
               { "2.Harness架构全景" = "books/智能体Harness工程指南/ch02.md" },
               { "3.设计原则与方法论" = "books/智能体Harness工程指南/ch03.md" },
+              { "4.运行时引擎" = "books/智能体Harness工程指南/ch04.md" },
+              { "5.工具层设计" = "books/智能体Harness工程指南/ch05.md" },
+              { "6.记忆与上下文子系统" = "books/智能体Harness工程指南/ch06.md" },
+              { "7.模型输出与输出治理" = "books/智能体Harness工程指南/ch07.md" },
             ]
           },
           { "Harness Engineering 完全指南" = [
