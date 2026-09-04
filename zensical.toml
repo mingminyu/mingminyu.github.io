@@ -100,6 +100,7 @@ nav = [
               { "0.前言" = "books/智能体Harness工程指南/ch00.md" },
               { "1.Harness工程概述" = "books/智能体Harness工程指南/ch01.md" },
               { "2.Harness架构全景" = "books/智能体Harness工程指南/ch02.md" },
+              { "3.设计原则与方法论" = "books/智能体Harness工程指南/ch03.md" },
             ]
           },
           { "Harness Engineering 完全指南" = [
