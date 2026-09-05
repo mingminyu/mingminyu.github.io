@@ -105,6 +105,8 @@ nav = [
               { "5.工具层设计" = "books/智能体Harness工程指南/ch05.md" },
               { "6.记忆与上下文子系统" = "books/智能体Harness工程指南/ch06.md" },
               { "7.模型输出与输出治理" = "books/智能体Harness工程指南/ch07.md" },
+              { "8.任务编排与工作流引擎" = "books/智能体Harness工程指南/ch08.md" },
+              { "9.MCP与工具生态集成" = "books/智能体Harness工程指南/ch09.md" },
             ]
           },
           { "Harness Engineering 完全指南" = [
