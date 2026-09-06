@@ -107,6 +107,8 @@ nav = [
               { "7.模型输出与输出治理" = "books/智能体Harness工程指南/ch07.md" },
               { "8.任务编排与工作流引擎" = "books/智能体Harness工程指南/ch08.md" },
               { "9.MCP与工具生态集成" = "books/智能体Harness工程指南/ch09.md" },
+              { "10.生产级 Harness 构建" = "books/智能体Harness工程指南/ch10.md" },
+              { "11.容错模式与系统级恢复" = "books/智能体Harness工程指南/ch11.md" },
             ]
           },
           { "Harness Engineering 完全指南" = [
