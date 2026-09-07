@@ -109,7 +109,31 @@ nav = [
               { "9.MCP与工具生态集成" = "books/智能体Harness工程指南/ch09.md" },
               { "10.生产级 Harness 构建" = "books/智能体Harness工程指南/ch10.md" },
               { "11.容错模式与系统级恢复" = "books/智能体Harness工程指南/ch11.md" },
+              { "12.Harness安全体系" = "books/智能体Harness工程指南/ch12.md" },
+              { "13.评估与质量保障" = "books/智能体Harness工程指南/ch13.md" },
+              { "14.Harness工程的未来" = "books/智能体Harness工程指南/ch14.md" },
             ]
+          },
+          {
+            "大模型提示词工程指南" = []
+          },
+          {
+            "大模型上下文工程权威指南" = []
+          },
+          {
+            "智能体AI权威指南" = []
+          },
+          {
+            "Claude技术指南" = []
+          },
+          {
+            "大模型安全权威指南" = []
+          },
+          {
+            "大模型原理与架构" = []
+          },
+          {
+            "OpenClaw 从入门到精通" = []
           },
           { "Harness Engineering 完全指南" = [
               { "0.前言" = "books/HarnessEngineering完全指南/ch00.md" },
