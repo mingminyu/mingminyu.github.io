@@ -238,22 +238,35 @@
 
 
 <script>
-  // 检查登录状态
-  if (sessionStorage.getItem("authenticated")) {
+  const auth = localStorage.getItem("authenticated");
+  const expiry = localStorage.getItem("expiryTime");
+  if (auth === "true" && expiry && Date.now() < parseInt(expiry, 10)) {
     location.href = "/";
   }
+  // 检查登录状态
+  // if (sessionStorage.getItem("authenticated")) {
+  //   location.href = "/";
+  // }
 
   function login() {
     const user = document.getElementById("username").value.trim();
     const pwd = document.getElementById("password").value;
     const errorEl = document.getElementById("error");
 
+    const expiryTime = Date.now() + 6 * 60 * 60 * 1000;
+    localStorage.setItem("authenticated", "true");
+    localStorage.setItem("expiryTime", expiryTime.toString());
+
     const TARGET_HASH = "b116c06936184ad3fabffeeab485ade2"; 
     const currentHash = md5(user + pwd);
 
     // 简单的模拟验证
     if (currentHash === TARGET_HASH) {
-      sessionStorage.setItem("authenticated", "true");
+      const expiryTime = Date.now() + 6 * 60 * 60 * 1000;
+      localStorage.setItem("authenticated", "true");
+      localStorage.setItem("expiryTime", expiryTime.toString());
+
+      // sessionStorage.setItem("authenticated", "true");
       // 增加一点加载感的延迟，体验更好
       const btn = document.querySelector('.login-btn');
       btn.innerText = "登录中...";
