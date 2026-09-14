@@ -90,24 +90,6 @@ nav = [
               { "16.毕业设计" = "books/hello-agents/ch16-毕业设计.md" },
             ]
           },
-          { "智能体Harness工程指南" = [
-              { "0.前言" = "books/智能体Harness工程指南/ch00.md" },
-              { "1.Harness工程概述" = "books/智能体Harness工程指南/ch01.md" },
-              { "2.Harness架构全景" = "books/智能体Harness工程指南/ch02.md" },
-              { "3.设计原则与方法论" = "books/智能体Harness工程指南/ch03.md" },
-              { "4.运行时引擎" = "books/智能体Harness工程指南/ch04.md" },
-              { "5.工具层设计" = "books/智能体Harness工程指南/ch05.md" },
-              { "6.记忆与上下文子系统" = "books/智能体Harness工程指南/ch06.md" },
-              { "7.模型输出与输出治理" = "books/智能体Harness工程指南/ch07.md" },
-              { "8.任务编排与工作流引擎" = "books/智能体Harness工程指南/ch08.md" },
-              { "9.MCP与工具生态集成" = "books/智能体Harness工程指南/ch09.md" },
-              { "10.生产级 Harness 构建" = "books/智能体Harness工程指南/ch10.md" },
-              { "11.容错模式与系统级恢复" = "books/智能体Harness工程指南/ch11.md" },
-              { "12.Harness安全体系" = "books/智能体Harness工程指南/ch12.md" },
-              { "13.评估与质量保障" = "books/智能体Harness工程指南/ch13.md" },
-              { "14.Harness工程的未来" = "books/智能体Harness工程指南/ch14.md" },
-            ]
-          },
           {
             "大模型提示词工程指南" = [
               { "0.前言" = "books/大模型提示词工程指南/ch00.md" },
@@ -140,23 +122,54 @@ nav = [
               },
             ]
           },
+          { "智能体Harness工程指南" = [
+              { "0.前言" = "books/智能体Harness工程指南/ch00.md" },
+              { "1.Harness工程概述" = "books/智能体Harness工程指南/ch01.md" },
+              { "2.Harness架构全景" = "books/智能体Harness工程指南/ch02.md" },
+              { "3.设计原则与方法论" = "books/智能体Harness工程指南/ch03.md" },
+              { "4.运行时引擎" = "books/智能体Harness工程指南/ch04.md" },
+              { "5.工具层设计" = "books/智能体Harness工程指南/ch05.md" },
+              { "6.记忆与上下文子系统" = "books/智能体Harness工程指南/ch06.md" },
+              { "7.模型输出与输出治理" = "books/智能体Harness工程指南/ch07.md" },
+              { "8.任务编排与工作流引擎" = "books/智能体Harness工程指南/ch08.md" },
+              { "9.MCP与工具生态集成" = "books/智能体Harness工程指南/ch09.md" },
+              { "10.生产级 Harness 构建" = "books/智能体Harness工程指南/ch10.md" },
+              { "11.容错模式与系统级恢复" = "books/智能体Harness工程指南/ch11.md" },
+              { "12.Harness安全体系" = "books/智能体Harness工程指南/ch12.md" },
+              { "13.评估与质量保障" = "books/智能体Harness工程指南/ch13.md" },
+              { "14.Harness工程的未来" = "books/智能体Harness工程指南/ch14.md" },
+            ]
+          },
+          
           {
-            "大模型上下文工程权威指南" = []
+            "大模型上下文工程权威指南" = [
+              { "0.前言" = "books/大模型上下文工程权威指南/ch00.md" },
+            ]
           },
           {
-            "智能体AI权威指南" = []
+            "智能体AI权威指南" = [
+              { "0.前言" = "books/智能体AI权威指南/ch00.md" },
+            ]
           },
           {
-            "Claude技术指南" = []
+            "Claude技术指南" = [
+              { "0.前言" = "books/Claude技术指南/ch00.md" },
+            ]
           },
           {
-            "大模型安全权威指南" = []
+            "大模型安全权威指南" = [
+              { "0.前言" = "books/大模型安全权威指南/ch00.md" },
+            ]
           },
           {
-            "大模型原理与架构" = []
+            "大模型原理与架构" = [
+              { "0.前言" = "books/大模型原理与架构/ch00.md" },
+            ]
           },
           {
-            "OpenClaw 从入门到精通" = []
+            "OpenClaw从入门到精通" = [
+              { "0.前言" = "books/OpenClaw从入门到精通/ch00.md" },
+            ]
           },
           { "Harness Engineering 完全指南" = [
               { "0.前言" = "books/HarnessEngineering完全指南/ch00.md" },
