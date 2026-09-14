@@ -1,0 +1,63 @@
+# 附录 B：术语表
+
+| 术语 | 解释 |
+| --- | --- |
+| 自适应思考（Adaptive Thinking）| Claude Fable 5 / Mythos 5（常开且不可关闭）、Claude Opus 5（默认开启，关闭时受 `effort` 限制）、Claude Sonnet 5（默认开启）与 Opus 4.8、Opus 4.7、Opus 4.6、Sonnet 4.6 支持的推理模式（`type: "adaptive"`），由模型根据任务复杂度自动决定思考深度。Fable 5 / Mythos 5 已于 2026-07-01 恢复访问，Mythos 5 仍限获批客户；Sonnet 5 与 Opus 4.8 / 4.7 不支持手动 Extended Thinking，Opus 4.6 与 Sonnet 4.6 上的手动 Extended Thinking 已被标为 deprecated。 |
+| 智能体（Agent）| 能够自主感知环境、做出决策并采取行动的 AI 系统，通常具备规划、执行和反思能力。 |
+| 智能体驱动的检索增强生成（Agentic RAG）| 智能体驱动的检索增强生成，支持多轮自适应检索与推理，实现更灵活的知识检索与推理循环。 |
+| API（应用程序接口）| Application Programming Interface，允许应用程序之间相互通信的接口，大语言模型通常通过 API 提供服务。 |
+| APE（自动提示词工程）| Automatic Prompt Engineering，使用 AI 自动生成和优化提示词的技术。 |
+| Attention Mechanism（注意力机制）| Transformer 架构的核心机制，使模型能够关注输入序列中的不同部分。 |
+| Beam Search（束搜索）| 一种文本生成策略，在每步保留多个候选序列，平衡质量和多样性。 |
+| Bias（偏见）| 模型在输出中体现的系统性倾向，可能来源于训练数据或设计。 |
+| Chain-of-Thought（思维链）| 通过引导模型展示推理步骤来提升复杂任务表现的提示技术，简称 CoT。详见第 6 章。 |
+| ChatML| 一种用于格式化对话的标记语言，某些开源模型使用此格式。 |
+| Chunk（文档块）| RAG 系统中，将长文档分割成的较小片段，便于检索和处理。 |
+| 上下文工程（Context Engineering）| 超越提示词工程的范式，关注动态组装和管理 LLM 的完整输入上下文，包括系统指令、检索内容、记忆状态等。 |
+| Context Window（上下文窗口）| 模型一次能处理的最大 Token 数量，决定了输入和输出的总长度限制。 |
+| CoT（思维链）| Chain-of-Thought 的缩写，见 Chain-of-Thought。 |
+| Delimiter（分隔符）| 用于区分提示词不同部分的标记，如三引号、XML 标签等。 |
+| Embedding（嵌入）| 将文本转换为向量表示的过程，用于语义相似度计算。 |
+| Few-Shot Learning（少样本学习）| 在提示词中提供少量示例来引导模型学习任务模式的技术。详见第 5 章。 |
+| Fine-tuning（微调）| 在预训练模型基础上，使用特定数据进行进一步训练以适应特定任务。 |
+| Function Calling（函数调用）| 模型生成结构化的函数调用请求，以调用外部工具或 API 的能力。 |
+| Generative AI（生成式 AI）| 能够生成新内容（文本、图像、音频等）的人工智能技术。 |
+| Grounding（事实基础）| 将模型输出基于可靠的外部知识源，以减少幻觉和提高准确性。 |
+| 驭具工程（Harness Engineering）| 围绕 LLM 构建的执行控制层工程，包括工具管理、安全防护、可观测性等，是应用系统的基础设施层。 |
+| Hallucination（幻觉）| 模型生成看似合理但实际错误或虚构的信息。 |
+| In-Context Learning（上下文学习）| 模型通过提示词中的示例“学习”任务，而不改变模型参数。 |
+| Instruction Tuning（指令调优）| 通过大量指令-回复对训练模型，提升其遵循指令的能力。 |
+| JSON（JavaScript 对象表示法）| 一种轻量级的数据交换格式，常用于结构化输出。 |
+| LLM（大语言模型）| Large Language Model，基于大规模文本数据训练的生成式语言模型。 |
+| LangChain| 用于构建 LLM 应用的开发框架，提供提示词管理、链式调用等功能。 |
+| MCP（模型上下文协议）| Model Context Protocol，Anthropic 提出的模型上下文协议，标准化 LLM 与外部工具、数据源的连接方式。 |
+| Meta-Prompting（元提示）| 使用提示词来生成或优化其他提示词的技术。 |
+| Multimodal（多模态）| 能够处理和生成多种类型数据（文本、图像、音频等）的模型。 |
+| One-Shot Learning（单样本学习）| 在提示词中提供一个示例来指导模型的技术。 |
+| Parameter（参数）| 模型内部的可学习权重，参数量通常用来衡量模型规模。 |
+| Prefill（预填充）| 预先设定回复的开头部分，引导模型按特定格式继续生成。 |
+| Prompt（提示词）| 发送给语言模型的输入文本，用于指导模型生成期望的输出。 |
+| Prompt Engineering（提示词工程）| 设计和优化提示词以提升模型输出质量的技术和实践。 |
+| Prompt Injection（提示词注入）| 通过恶意输入试图操控模型行为的安全攻击手段。 |
+| PromptOps| 将 DevOps 理念应用于提示词生命周期管理的实践。 |
+| RAG（检索增强生成）| Retrieval-Augmented Generation，结合信息检索和文本生成的技术架构。详见第 9 章]。 |
+| ReAct| Reasoning and Acting，将推理与行动交替进行的 Agent 框架。详见第 8 章。 |
+| RLHF（人类反馈强化学习）| Reinforcement Learning from Human Feedback，使用人类反馈优化模型行为的训练方法。 |
+| Role（角色）| 为模型设定的身份或专业领域，影响回复风格和视角。 |
+| Self-Consistency（自一致性）| 通过多路径采样和投票提升推理准确性的技术。 |
+| 系统提示词（System Prompt）| 设定模型整体行为和规则的提示词，通常在对话开始时提供。 |
+| Temperature（温度）| 控制生成随机性的参数，值越高输出越随机，越低越确定。 |
+| Token（词元）| 模型处理文本的基本单位，可以是一个词、词的一部分或标点符号。 |
+| Token Limit（Token 限制）| 上下文窗口的大小限制，决定了输入输出的总 Token 数上限。 |
+| Top-k Sampling| 每步生成时只从概率最高的 k 个 Token 中采样的策略。 |
+| Top-p Sampling（核采样）| 每步生成时从累积概率达到 p 的最小 Token 集合中采样的策略。 |
+| ToT（思维树）| Tree of Thoughts，将推理过程组织为树形结构的高级推理策略。 |
+| Transformer| 现代大语言模型的基础架构，基于注意力机制。 |
+| Vector Database（向量数据库）| 专门用于存储和检索向量嵌入的数据库，RAG 系统的核心组件。 |
+| VLM（视觉语言模型）| Vision-Language Model，能够理解图像和文本的多模态模型。 |
+| Zero-Shot Learning（零样本学习）| 不提供示例，仅通过指令描述任务让模型完成的技术。详见第 5 章。 |
+| A2A Protocol（Agent-to-Agent 协议）| Google 提出的 Agent 间通信标准化协议，定义了多智能体系统中的消息格式和交互模式。 |
+| Extended Thinking（扩展思考）| Claude 等模型的深度推理功能，允许模型在回答前进行更深入的内部推理。预算参数（`budget_tokens`）控制方式在 Opus 4.6 / Sonnet 4.6 上已弃用、在 Opus 5、Opus 4.8 / 4.7 与 Sonnet 5 上已移除；Fable 5 / Mythos 5 只提供常开的 Adaptive Thinking，二者已于 2026-07-01 恢复访问。 |
+| MoE（混合专家模型）| Mixture of Experts，一种模型架构，通过路由机制动态激活部分参数，实现大规模模型的高效推理。 |
+| Structured Outputs（结构化输出）| OpenAI 等平台提供的功能，确保模型输出严格符合指定的 JSON Schema，无需后处理验证。 |
+
