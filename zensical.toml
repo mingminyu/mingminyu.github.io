@@ -205,22 +205,23 @@ nav = [
   { "羽毛球" = [
     { "步法" = "badminton/步法.md" },
     { "发力" = "badminton/发力.md" },
-    { "前场技术" = [] },
-    { "中场技术" = [] },
-    { "后场技术" = [] },
-    { "单打" = "badminton/单打.md" },
-    { "双打" = [] },
+    { "前场技术" = "badminton/前场技术.md" },
+    { "中场技术" = "badminton/中场技术.md" },
+    { "后场技术" = "badminton/后场技术.md" },
+    { "单打教学" = "badminton/单打.md" },
+    { "双打教学" = "badminton/双打.md" },
+    { "比赛" = "badminton/比赛.md" },
   ] },
-  { 
-    "股票" = [
-      { 
-        "基础知识" = [
-          { "专业术语" = "stock/基础知识/专业术语.md" },
-        ]
-      },
-      { "投资策略" = [] },
-    ] 
-  }
+  # { 
+  #   "股票" = [
+  #     { 
+  #       "基础知识" = [
+  #         { "专业术语" = "stock/基础知识/专业术语.md" },
+  #       ]
+  #     },
+  #     { "投资策略" = [] },
+  #   ] 
+  # }
 ]
 
 # The site_name is shown in the page header and the browser window title
