@@ -210,7 +210,7 @@ nav = [
     { "后场技术" = "badminton/后场技术.md" },
     { "单打教学" = "badminton/单打.md" },
     { "双打教学" = "badminton/双打.md" },
-    { "比赛" = "badminton/比赛.md" },
+    { "比赛集锦" = "badminton/比赛.md" },
   ] },
   # { 
   #   "股票" = [
