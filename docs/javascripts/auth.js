@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const path = window.location.pathname;
 
   // 1. 如果当前已经在登录页，直接放行，避免死循环
-  if (path.endsWith("/login/")) {
+  if (path.endsWith("/login/") || path.endsWith("/rand_group/")) {
     return;
   }
 

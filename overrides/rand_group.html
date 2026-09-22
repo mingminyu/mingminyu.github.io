@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机分组与队长选拔工具</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --male-color: #3498db;
+            --female-color: #e91e63;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: vertical;
+            font-family: monospace;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        button.reset {
+            background-color: #95a5a6;
+        }
+
+        button.reset:hover {
+            background-color: #7f8c8d;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        /* 解析预览区域样式 */
+        .parse-preview {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .parse-preview.active {
+            display: block;
+        }
+
+        .parse-preview h3 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .person-row {
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            border-bottom: 1px dashed #eee;
+            gap: 10px;
+        }
+
+        .person-row:last-child {
+            border-bottom: none;
+        }
+
+        .person-row .name {
+            flex: 1;
+            font-size: 14px;
+        }
+
+        .person-row .gender-toggle {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px;
+        }
+
+        .person-row .gender-toggle input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+        .person-row .gender-radio-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .person-row .gender-label {
+            font-weight: bold;
+        }
+
+        .person-row .gender-label.male {
+            color: var(--male-color);
+        }
+
+        .person-row .gender-label.female {
+            color: var(--female-color);
+        }
+
+        .preview-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .preview-actions button {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        .result-area {
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .group-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .group-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #f0f0f0;
+            color: #2c3e50;
+        }
+
+        .member-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .member-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .member-item:last-child {
+            border-bottom: none;
+        }
+
+        .name {
+            font-size: 1rem;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: white;
+            margin-left: 5px;
+        }
+
+        .tag.male { background-color: var(--male-color); }
+        .tag.female { background-color: var(--female-color); }
+        
+        .captain-badge {
+            background-color: #f1c40f;
+            color: #d35400;
+            font-size: 0.75rem;
+            padding: 2px 5px;
+            border-radius: 4px;
+            margin-left: 5px;
+            font-weight: bold;
+            border: 1px solid #f39c12;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+        }
+
+        .error-msg {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+            padding: 10px;
+            background: #fdf2f2;
+            border-radius: 8px;
+        }
+
+        .info-msg {
+            color: #27ae60;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .step-indicator {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #95a5a6;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 15px; }
+            .result-area { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+            .preview-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1> 随机分组 & 队长选拔</h1>
+    
+    <div class="step-indicator" id="stepIndicator">步骤1：粘贴名单并解析</div>
+
+    <div class="input-group">
+        <label for="names">选手名单（支持格式：序号. 姓名 /性别）</label>
+        <textarea id="names" placeholder="例如：
+1. 江湖中。。张洁 /男
+2. 阿民 /男
+3. L。F /女
+4. Anna /女
+5. 张三
+（序号会自动忽略，性别识别：男/女 或 M/F，不写默认男生；每队首个成员自动担任队长。解析后可在列表中直接选择性别）"></textarea>
+    </div>
+
+    <div class="btn-group">
+        <button onclick="parseNamesPreview()" id="parseBtn">解析名单</button>
+        <button class="reset" onclick="clearAll()">重新粘贴</button>
+    </div>
+    
+    <!-- 解析预览区域 -->
+    <div class="parse-preview" id="parsePreview">
+        <h3>已解析人员名单（选择性别）</h3>
+        <div id="personList"></div>
+        <div class="preview-actions">
+            <button onclick="confirmNames()" id="confirmBtn">确定，开始分组</button>
+            <button class="reset" onclick="cancelParse()" style="padding: 8px 15px; font-size: 14px;">取消</button>
+        </div>
+    </div>
+
+    <div class="input-group" id="groupCountGroup" style="display:none;">
+        <label for="groupCount">设置分组数量</label>
+        <input type="number" id="groupCount" value="4" min="1">
+    </div>
+
+    <div class="btn-group" id="actionBtnGroup" style="display:none;">
+        <button onclick="startGrouping()" id="groupBtn">开始随机分组</button>
+        <button class="reset" onclick="clearAll()">清空重置</button>
+    </div>
+    
+    <div id="info" class="info-msg"></div>
+    <div id="error" class="error-msg"></div>
+    <div id="result" class="result-area"></div>
+</div>
+
+<script>
+    // 存储解析后的人员数据
+    let parsedPersons = [];
+
+    // Fisher-Yates 洗牌算法
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    // 解析名单：忽略序号，提取姓名和性别
+    function parseNames(text) {
+        const lines = text.split('\n');
+        let persons = [];
+
+        lines.forEach(line => {
+            line = line.trim();
+            if (!line) return;
+
+            // 正则匹配：可选的序号（数字+.或数字+、或数字+空格）+ 姓名 + 可选的 / 或空格 + 性别
+            // 例如："1. 江湖中。。张洁 /男" 或 "阿民 /男" 或 "3.王光政/男"
+            const match = line.match(/^(?:\d+[.、]\s*)?(.+?)[\s/]*([男女MFmf])?\s*$/);
+            
+            if (match) {
+                const name = match[1].trim();
+                const genderStr = match[2];
+                
+                let gender = 'male'; // 默认男生
+                if (genderStr !== undefined) {
+                    if (['女', 'f', 'F', 'female', 'Female'].includes(genderStr)) {
+                        gender = 'female';
+                    }
+                }
+                
+                persons.push({ name: name, gender: gender });
+            }
+        });
+
+        return persons;
+    }
+
+    // 解析名单并显示预览
+    function parseNamesPreview() {
+        // 允许重新解析
+        document.getElementById('parseBtn').disabled = false;
+        const text = document.getElementById('names').value;
+        const errorDiv = document.getElementById('error');
+        const previewDiv = document.getElementById('parsePreview');
+        const personListDiv = document.getElementById('personList');
+        const stepIndicator = document.getElementById('stepIndicator');
+
+        // 重置显示
+        errorDiv.style.display = 'none';
+        
+        if (!text.trim()) {
+            showError("请先粘贴选手名单！");
+            return;
+        }
+
+        // 解析名单
+        parsedPersons = parseNames(text);
+        const total = parsedPersons.length;
+        const maleCount = parsedPersons.filter(p => p.gender === 'male').length;
+        const femaleCount = parsedPersons.filter(p => p.gender === 'female').length;
+
+        if (total === 0) {
+            showError("未识别到有效名单，请检查格式（示例：1. 张三 /男 或直接写 张三）");
+            return;
+        }
+
+        // 渲染人员列表（带复选框）
+        let html = '';
+        parsedPersons.forEach((person, index) => {
+            const isChecked = person.gender === 'female' ? 'checked' : '';
+            const genderLabel = person.gender === 'male' ? '男' : '女';
+            const labelClass = person.gender === 'male' ? 'male' : 'female';
+            
+            html += `
+                <div class="person-row">
+                    <span style="color:#95a5a6; font-size:13px;">${index + 1}.</span>
+                    <span class="name">${person.name}</span>
+                    <div class="gender-radio-group">
+                        <label style="font-size:13px; cursor:pointer;">
+                            <input type="radio" name="gender_${index}" value="male" ${person.gender === 'male' ? 'checked' : ''} onchange="setGender(${index}, 'male')">
+                            <span class="gender-label male">男</span>
+                        </label>
+                        <label style="font-size:13px; cursor:pointer;">
+                            <input type="radio" name="gender_${index}" value="female" ${person.gender === 'female' ? 'checked' : ''} onchange="setGender(${index}, 'female')">
+                            <span class="gender-label female">女</span>
+                        </label>
+                    </div>
+                </div>
+            `;
+        });
+
+        personListDiv.innerHTML = html;
+        previewDiv.classList.add('active');
+        
+        // 显示分组设置
+        document.getElementById('groupCountGroup').style.display = 'block';
+        document.getElementById('actionBtnGroup').style.display = 'flex';
+        
+        // 更新步骤指示器
+        stepIndicator.innerText = `步骤2：确认性别（共${total}人，男${maleCount}人，女${femaleCount}人）→ 设置组数 → 随机分组`;
+        
+        // 显示解析成功信息
+        document.getElementById('info').innerText = `已解析 ${total} 名选手（男 ${maleCount} 人，女 ${femaleCount} 人），请确认性别后点击"确定，开始分组"`;
+    }
+
+    // 设置性别
+    function setGender(index, gender) {
+        parsedPersons[index].gender = gender;
+    }
+
+    // 确认名单
+    function confirmNames() {
+        const stepIndicator = document.getElementById('stepIndicator');
+        stepIndicator.innerText = '已确认名单，可调整分组数量后点击"开始随机分组"';
+        
+        // 隐藏预览区域
+        document.getElementById('parsePreview').classList.remove('active');
+        
+        // 禁用解析按钮防止重复解析
+        document.getElementById('parseBtn').disabled = true;
+        
+        // 滚动到分组设置
+        document.getElementById('groupCount').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 取消解析
+    function cancelParse() {
+        document.getElementById('parsePreview').classList.remove('active');
+        document.getElementById('groupCountGroup').style.display = 'none';
+        document.getElementById('actionBtnGroup').style.display = 'none';
+        document.getElementById('stepIndicator').innerText = '步骤1：粘贴名单并解析';
+        document.getElementById('parseBtn').disabled = false;
+    }
+
+    function startGrouping() {
+        const groupCount = parseInt(document.getElementById('groupCount').value);
+        const resultDiv = document.getElementById('result');
+        const errorDiv = document.getElementById('error');
+        const infoDiv = document.getElementById('info');
+
+        // 重置显示
+        resultDiv.innerHTML = '';
+        errorDiv.style.display = 'none';
+        infoDiv.innerText = '';
+
+        if (parsedPersons.length === 0) {
+            showError("请先解析名单！");
+            return;
+        }
+        if (isNaN(groupCount) || groupCount < 1) {
+            showError("请输入有效的分组数量！");
+            return;
+        }
+        if (groupCount > parsedPersons.length) {
+            showError("分组数量不能超过人数！");
+            return;
+        }
+
+        // 打乱人员顺序
+        shuffle(parsedPersons);
+
+        // 将男女分开
+        const males = parsedPersons.filter(p => p.gender === 'male');
+        const females = parsedPersons.filter(p => p.gender === 'female');
+        
+        // 分别打乱
+        shuffle(males);
+        shuffle(females);
+
+        // 初始化分组容器
+        let groups = Array.from({ length: groupCount }, () => []);
+
+        // 先分发女生：轮询分配到各组，确保女生均匀分布
+        females.forEach((person, index) => {
+            const groupIndex = index % groupCount;
+            groups[groupIndex].push(person);
+        });
+
+        // 再分发男生：轮询分配到各组
+        males.forEach((person, index) => {
+            const groupIndex = index % groupCount;
+            groups[groupIndex].push(person);
+        });
+
+        // 渲染结果
+        groups.forEach((group, index) => {
+            const groupCard = document.createElement('div');
+            groupCard.className = 'group-card';
+            
+            // 每队首个成员为队长
+            let captainName = group.length > 0 ? group[0].name : null;
+
+            let html = `<div class="group-title">第 ${index + 1} 组（${group.length}人）</div>`;
+            html += `<ul class="member-list">`;
+            
+            group.forEach((member, memberIndex) => {
+                let isCaptain = (member.name === captainName);
+                let badge = isCaptain ? '<span class="captain-badge">队长</span>' : '';
+                let genderClass = member.gender;
+                let genderText = member.gender === 'male' ? '男' : '女';
+                
+                html += `
+                    <li class="member-item">
+                        <span class="name">${member.name}${badge}</span>
+                        <span class="tag ${genderClass}">${genderText}</span>
+                    </li>
+                `;
+            });
+            
+            html += `</ul>`;
+            
+            // 显示队长信息
+            if (captainName) {
+                html += `<div class="stats">队长：${captainName}</div>`;
+            }
+
+            groupCard.innerHTML = html;
+            resultDiv.appendChild(groupCard);
+        });
+
+        // 更新步骤指示器
+        document.getElementById('stepIndicator').innerText = '分组完成！';
+        
+        // 显示统计信息
+        const maleCount = parsedPersons.filter(p => p.gender === 'male').length;
+        const femaleCount = parsedPersons.filter(p => p.gender === 'female').length;
+        infoDiv.innerText = `已分为 ${groupCount} 组（男 ${maleCount} 人，女 ${femaleCount} 人），女生已均匀分配到各组，每队首个成员自动担任队长`;
+    }
+
+    function showError(msg) {
+        const errorDiv = document.getElementById('error');
+        errorDiv.innerText = msg;
+        errorDiv.style.display = 'block';
+    }
+
+    function clearAll() {
+        document.getElementById('names').value = '';
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('error').style.display = 'none';
+        document.getElementById('info').innerText = '';
+        document.getElementById('parsePreview').classList.remove('active');
+        document.getElementById('groupCountGroup').style.display = 'none';
+        document.getElementById('actionBtnGroup').style.display = 'none';
+        document.getElementById('stepIndicator').innerText = '步骤1：粘贴名单并解析';
+        document.getElementById('parseBtn').disabled = false;
+        parsedPersons = [];
+    }
+</script>
+
+</body>
+</html>
