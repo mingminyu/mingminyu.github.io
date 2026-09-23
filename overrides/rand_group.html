@@ -1,11 +1,10 @@
 
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>随机分组与队长选拔工具</title>
+    <title>羽毛球随机分组与队长选拔工具</title>
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -36,7 +35,48 @@
             text-align: center;
             color: #2c3e50;
             font-size: 1.5rem;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* 顶部 TABS */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            background: #eef2f7;
+            padding: 5px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        button.tab {
+            flex: 1;
+            padding: 10px 4px;
+            background: transparent;
+            color: #6b7a8d;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button.tab:hover {
+            background: rgba(255,255,255,0.6);
+            color: #2c3e50;
+        }
+
+        button.tab.active {
+            background: #fff;
+            color: var(--primary-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .mode-hint {
+            text-align: center;
+            font-size: 0.82rem;
+            color: #7f8c8d;
+            margin-bottom: 15px;
         }
 
         .input-group {
@@ -52,7 +92,7 @@
 
         textarea {
             width: 100%;
-            height: 200px;
+            height: 180px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 8px;
@@ -144,36 +184,34 @@
             font-size: 14px;
         }
 
-        .person-row .gender-toggle {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 13px;
-        }
-
-        .person-row .gender-toggle input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-            margin-right: 3px;
-        }
         .person-row .gender-radio-group {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .person-row .gender-radio-group input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            margin-right: 3px;
+        }
+
         .person-row .gender-label {
             font-weight: bold;
         }
 
-        .person-row .gender-label.male {
-            color: var(--male-color);
-        }
+        .person-row .gender-label.male { color: var(--male-color); }
+        .person-row .gender-label.female { color: var(--female-color); }
 
-        .person-row .gender-label.female {
-            color: var(--female-color);
+        .fixed-tag {
+            font-size: 0.72rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #fff;
         }
+        .fixed-tag.male { background-color: var(--male-color); }
+        .fixed-tag.female { background-color: var(--female-color); }
 
         .preview-actions {
             margin-top: 10px;
@@ -187,9 +225,9 @@
         }
 
         .result-area {
-            margin-top: 30px;
+            margin-top: 25px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
         }
 
@@ -229,10 +267,6 @@
             border-bottom: none;
         }
 
-        .name {
-            font-size: 1rem;
-        }
-
         .tag {
             font-size: 0.8rem;
             padding: 2px 6px;
@@ -243,7 +277,7 @@
 
         .tag.male { background-color: var(--male-color); }
         .tag.female { background-color: var(--female-color); }
-        
+
         .captain-badge {
             background-color: #f1c40f;
             color: #d35400;
@@ -257,7 +291,7 @@
 
         .stats {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #7f8c8d;
             margin-top: 10px;
             padding-top: 10px;
@@ -288,19 +322,47 @@
             margin-bottom: 10px;
         }
 
+        .result-toolbar {
+            display: none;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .result-toolbar.show {
+            display: flex;
+        }
+
+        .result-toolbar button {
+            padding: 10px;
+            font-size: 14px;
+        }
+
         @media (max-width: 600px) {
             .container { padding: 15px; }
             .result-area { grid-template-columns: 1fr; }
             .btn-group { flex-direction: column; }
             .preview-actions { flex-direction: column; }
+            .result-toolbar { flex-direction: column; }
+            .tabs { flex-wrap: wrap; }
+            button.tab { flex: 1 1 30%; font-size: 13px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1> 随机分组 & 队长选拔</h1>
-    
+    <h1>羽毛球随机分组 & 队长选拔</h1>
+
+    <!-- 模式 TABS -->
+    <div class="tabs" id="modeTabs">
+        <button class="tab" data-mode="ms">男单</button>
+        <button class="tab" data-mode="ws">女单</button>
+        <button class="tab" data-mode="md">男双</button>
+        <button class="tab" data-mode="wd">女双</button>
+        <button class="tab active" data-mode="xd">混双</button>
+    </div>
+    <div class="mode-hint" id="modeHint"></div>
+
     <div class="step-indicator" id="stepIndicator">步骤1：粘贴名单并解析</div>
 
     <div class="input-group">
@@ -310,18 +372,17 @@
 2. 阿民 /男
 3. L。F /女
 4. Anna /女
-5. 张三
-（序号会自动忽略，性别识别：男/女 或 M/F，不写默认男生；每队首个成员自动担任队长。解析后可在列表中直接选择性别）"></textarea>
+5. 张三"></textarea>
     </div>
 
     <div class="btn-group">
         <button onclick="parseNamesPreview()" id="parseBtn">解析名单</button>
         <button class="reset" onclick="clearAll()">重新粘贴</button>
     </div>
-    
+
     <!-- 解析预览区域 -->
     <div class="parse-preview" id="parsePreview">
-        <h3>已解析人员名单（选择性别）</h3>
+        <h3 id="previewTitle">已解析人员名单</h3>
         <div id="personList"></div>
         <div class="preview-actions">
             <button onclick="confirmNames()" id="confirmBtn">确定，开始分组</button>
@@ -338,268 +399,363 @@
         <button onclick="startGrouping()" id="groupBtn">开始随机分组</button>
         <button class="reset" onclick="clearAll()">清空重置</button>
     </div>
-    
+
     <div id="info" class="info-msg"></div>
     <div id="error" class="error-msg"></div>
+
+    <div class="result-toolbar" id="resultToolbar">
+        <button onclick="startGrouping()">重新抽取</button>
+        <button class="reset" onclick="copyResult()">复制结果</button>
+    </div>
+
     <div id="result" class="result-area"></div>
 </div>
 
 <script>
-    // 存储解析后的人员数据
-    let parsedPersons = [];
+    /* ---------- 模式配置 ---------- */
+    const MODES = {
+        ms: { label: '男单', fixedGender: 'male',   parseGender: false, hint: '男单模式：名单不做性别解析，全部按男生处理，每组首位自动担任队长' },
+        ws: { label: '女单', fixedGender: 'female', parseGender: false, hint: '女单模式：名单不做性别解析，全部按女生处理，每组首位自动担任队长' },
+        md: { label: '男双', fixedGender: 'male',   parseGender: false, hint: '男双模式：名单不做性别解析，全部按男生处理，每组首位自动担任队长' },
+        wd: { label: '女双', fixedGender: 'female', parseGender: false, hint: '女双模式：名单不做性别解析，全部按女生处理，每组首位自动担任队长' },
+        xd: { label: '混双', fixedGender: null,     parseGender: true,  hint: '混双模式：按 /男 /女（或 M/F）识别性别，男女分池抽取，保证每组女生数量尽可能相等，每组首位自动担任队长' }
+    };
 
-    // Fisher-Yates 洗牌算法
+    let currentMode = 'xd';
+    let parsedPersons = [];   // 已确认的名单
+    let lastResult = [];      // 最近一次分组结果，用于复制
+
+    /* ---------- 工具函数 ---------- */
+    // Fisher-Yates 洗牌
     function shuffle(array) {
-        let currentIndex = array.length, randomIndex;
-        while (currentIndex != 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex--;
-            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
     }
 
-    // 解析名单：忽略序号，提取姓名和性别
+    function showError(msg) {
+        const el = document.getElementById('error');
+        el.innerText = msg;
+        el.style.display = 'block';
+    }
+
+    function hideError() {
+        document.getElementById('error').style.display = 'none';
+    }
+
+    /* ---------- TABS 切换 ---------- */
+    document.querySelectorAll('#modeTabs .tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#modeTabs .tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentMode = btn.dataset.mode;
+            resetForMode();
+        });
+    });
+
+    function applyModeText() {
+        const m = MODES[currentMode];
+        document.getElementById('modeHint').innerText = m.hint;
+        const ta = document.getElementById('names');
+        ta.placeholder = m.parseGender
+            ? '例如：\n1. 江湖中。。张洁 /男\n2. 阿民 /男\n3. L。F /女\n4. Anna /女\n5. 张三（未标注默认男生）'
+            : '例如：\n1. 江湖中。。张洁\n2. 阿民\n3. 王光政\n（当前模式不做性别解析，末尾的 /男 /女 会被自动忽略）';
+        document.getElementById('previewTitle').innerText = m.parseGender ? '已解析人员名单（可手动调整性别）' : '已解析人员名单';
+    }
+
+    // 切换模式后重置解析状态（保留已粘贴文本）
+    function resetForMode() {
+        applyModeText();
+        parsedPersons = [];
+        lastResult = [];
+        document.getElementById('result').innerHTML = '';
+        document.getElementById('resultToolbar').classList.remove('show');
+        document.getElementById('parsePreview').classList.remove('active');
+        document.getElementById('groupCountGroup').style.display = 'none';
+        document.getElementById('actionBtnGroup').style.display = 'none';
+        document.getElementById('info').innerText = '';
+        hideError();
+        document.getElementById('parseBtn').disabled = false;
+        document.getElementById('stepIndicator').innerText = '步骤1：粘贴名单并解析';
+    }
+
+    /* ---------- 名单解析 ---------- */
     function parseNames(text) {
+        const mode = MODES[currentMode];
         const lines = text.split('\n');
-        let persons = [];
+        const persons = [];
 
         lines.forEach(line => {
-            line = line.trim();
-            if (!line) return;
+            let raw = line.trim();
+            if (!raw) return;
 
-            // 正则匹配：可选的序号（数字+.或数字+、或数字+空格）+ 姓名 + 可选的 / 或空格 + 性别
-            // 例如："1. 江湖中。。张洁 /男" 或 "阿民 /男" 或 "3.王光政/男"
-            const match = line.match(/^(?:\d+[.、]\s*)?(.+?)[\s/]*([男女MFmf])?\s*$/);
-            
-            if (match) {
-                const name = match[1].trim();
-                const genderStr = match[2];
-                
-                let gender = 'male'; // 默认男生
-                if (genderStr !== undefined) {
-                    if (['女', 'f', 'F', 'female', 'Female'].includes(genderStr)) {
-                        gender = 'female';
-                    }
+            // 去掉行首序号：1. / 1、/ 1) / 1： / 1 空格
+            raw = raw.replace(/^\s*\d+\s*[.、．)）:：]\s*/, '').trim();
+            if (!raw) return;
+
+            let gender = null;
+            if (mode.parseGender) {
+                // 识别行尾性别标记：/男、 女、／F、,m 等（要求前面有分隔符，避免误伤 "L。F"、"Tom"）
+                const gm = raw.match(/[\s/／、|｜,，]+([男女MFmf])\s*$/);
+                if (gm) {
+                    gender = (gm[1] === '女' || gm[1].toLowerCase() === 'f') ? 'female' : 'male';
+                    raw = raw.replace(/[\s/／、|｜,，]+[男女MFmf]\s*$/, '').trim();
                 }
-                
-                persons.push({ name: name, gender: gender });
+            } else {
+                // 非混双模式不做性别解析，但把行尾的性别标记直接丢掉
+                raw = raw.replace(/[\s/／、|｜,，]+[男女MFmf]\s*$/, '').trim();
             }
+
+            if (!raw) return;
+            persons.push({ name: raw, gender: gender || mode.fixedGender || 'male' });
         });
 
         return persons;
     }
 
-    // 解析名单并显示预览
+    /* ---------- 预览 ---------- */
     function parseNamesPreview() {
-        // 允许重新解析
-        document.getElementById('parseBtn').disabled = false;
+        hideError();
         const text = document.getElementById('names').value;
-        const errorDiv = document.getElementById('error');
-        const previewDiv = document.getElementById('parsePreview');
-        const personListDiv = document.getElementById('personList');
-        const stepIndicator = document.getElementById('stepIndicator');
+        const mode = MODES[currentMode];
 
-        // 重置显示
-        errorDiv.style.display = 'none';
-        
         if (!text.trim()) {
-            showError("请先粘贴选手名单！");
+            showError('请先粘贴选手名单！');
             return;
         }
 
-        // 解析名单
         parsedPersons = parseNames(text);
-        const total = parsedPersons.length;
-        const maleCount = parsedPersons.filter(p => p.gender === 'male').length;
-        const femaleCount = parsedPersons.filter(p => p.gender === 'female').length;
-
-        if (total === 0) {
-            showError("未识别到有效名单，请检查格式（示例：1. 张三 /男 或直接写 张三）");
+        if (parsedPersons.length === 0) {
+            showError('未识别到有效名单，请检查格式（示例：1. 张三 /男 或直接写 张三）');
             return;
         }
 
-        // 渲染人员列表（带复选框）
+        const maleCount = parsedPersons.filter(p => p.gender === 'male').length;
+        const femaleCount = parsedPersons.length - maleCount;
+
+        // 男单/女单/男双/女双：不做性别解析，跳过确认界面，直接进入分组设置
+        if (!mode.parseGender) {
+            document.getElementById('parsePreview').classList.remove('active');
+            document.getElementById('groupCountGroup').style.display = 'block';
+            document.getElementById('actionBtnGroup').style.display = 'flex';
+            document.getElementById('parseBtn').disabled = true;
+            document.getElementById('stepIndicator').innerText =
+                `已解析 ${parsedPersons.length} 人（全部按${mode.fixedGender === 'male' ? '男生' : '女生'}处理），设置组数后点击"开始随机分组"`;
+            document.getElementById('info').innerText = `共 ${parsedPersons.length} 人，无需选择性别，直接分组即可`;
+            document.getElementById('groupCount').scrollIntoView({ behavior: 'smooth' });
+            return;
+        }
+
         let html = '';
         parsedPersons.forEach((person, index) => {
-            const isChecked = person.gender === 'female' ? 'checked' : '';
-            const genderLabel = person.gender === 'male' ? '男' : '女';
-            const labelClass = person.gender === 'male' ? 'male' : 'female';
-            
-            html += `
-                <div class="person-row">
-                    <span style="color:#95a5a6; font-size:13px;">${index + 1}.</span>
-                    <span class="name">${person.name}</span>
+            const isMale = person.gender === 'male';
+            let right;
+            if (mode.parseGender) {
+                right = `
                     <div class="gender-radio-group">
                         <label style="font-size:13px; cursor:pointer;">
-                            <input type="radio" name="gender_${index}" value="male" ${person.gender === 'male' ? 'checked' : ''} onchange="setGender(${index}, 'male')">
+                            <input type="radio" name="gender_${index}" value="male" ${isMale ? 'checked' : ''} onchange="setGender(${index}, 'male')">
                             <span class="gender-label male">男</span>
                         </label>
                         <label style="font-size:13px; cursor:pointer;">
-                            <input type="radio" name="gender_${index}" value="female" ${person.gender === 'female' ? 'checked' : ''} onchange="setGender(${index}, 'female')">
+                            <input type="radio" name="gender_${index}" value="female" ${!isMale ? 'checked' : ''} onchange="setGender(${index}, 'female')">
                             <span class="gender-label female">女</span>
                         </label>
-                    </div>
-                </div>
-            `;
+                    </div>`;
+            } else {
+                right = `<span class="fixed-tag ${person.gender}">${isMale ? '男' : '女'}</span>`;
+            }
+
+            html += `
+                <div class="person-row">
+                    <span style="color:#95a5a6; font-size:13px;">${index + 1}.</span>
+                    <span class="name">${escapeHtml(person.name)}</span>
+                    ${right}
+                </div>`;
         });
 
-        personListDiv.innerHTML = html;
-        previewDiv.classList.add('active');
-        
-        // 显示分组设置
+        document.getElementById('personList').innerHTML = html;
+        document.getElementById('parsePreview').classList.add('active');
         document.getElementById('groupCountGroup').style.display = 'block';
         document.getElementById('actionBtnGroup').style.display = 'flex';
-        
-        // 更新步骤指示器
-        stepIndicator.innerText = `步骤2：确认性别（共${total}人，男${maleCount}人，女${femaleCount}人）→ 设置组数 → 随机分组`;
-        
-        // 显示解析成功信息
-        document.getElementById('info').innerText = `已解析 ${total} 名选手（男 ${maleCount} 人，女 ${femaleCount} 人），请确认性别后点击"确定，开始分组"`;
+
+        const total = parsedPersons.length;
+        const countText = mode.parseGender
+            ? `共 ${total} 人（男 ${maleCount} 人，女 ${femaleCount} 人）`
+            : `共 ${total} 人（全部按${mode.fixedGender === 'male' ? '男生' : '女生'}处理）`;
+
+        document.getElementById('stepIndicator').innerText =
+            `步骤2：确认名单（${countText}）→ 设置组数 → 随机分组`;
+        document.getElementById('info').innerText =
+            mode.parseGender ? `已解析 ${countText}，请确认性别后点击"确定，开始分组"` : `已解析 ${countText}，点击"确定，开始分组"`;
     }
 
-    // 设置性别
     function setGender(index, gender) {
         parsedPersons[index].gender = gender;
     }
 
-    // 确认名单
     function confirmNames() {
-        const stepIndicator = document.getElementById('stepIndicator');
-        stepIndicator.innerText = '已确认名单，可调整分组数量后点击"开始随机分组"';
-        
-        // 隐藏预览区域
         document.getElementById('parsePreview').classList.remove('active');
-        
-        // 禁用解析按钮防止重复解析
         document.getElementById('parseBtn').disabled = true;
-        
-        // 滚动到分组设置
+        document.getElementById('stepIndicator').innerText = '已确认名单，可调整分组数量后点击"开始随机分组"';
         document.getElementById('groupCount').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // 取消解析
     function cancelParse() {
-        document.getElementById('parsePreview').classList.remove('active');
-        document.getElementById('groupCountGroup').style.display = 'none';
-        document.getElementById('actionBtnGroup').style.display = 'none';
-        document.getElementById('stepIndicator').innerText = '步骤1：粘贴名单并解析';
-        document.getElementById('parseBtn').disabled = false;
+        resetForMode();
     }
 
+    /* ---------- 随机分组（不放回抽取） ---------- */
     function startGrouping() {
-        const groupCount = parseInt(document.getElementById('groupCount').value);
         const resultDiv = document.getElementById('result');
-        const errorDiv = document.getElementById('error');
         const infoDiv = document.getElementById('info');
-
-        // 重置显示
+        hideError();
         resultDiv.innerHTML = '';
-        errorDiv.style.display = 'none';
         infoDiv.innerText = '';
 
+        const groupCount = parseInt(document.getElementById('groupCount').value);
+        const mode = MODES[currentMode];
+
         if (parsedPersons.length === 0) {
-            showError("请先解析名单！");
+            showError('请先解析并确认名单！');
             return;
         }
         if (isNaN(groupCount) || groupCount < 1) {
-            showError("请输入有效的分组数量！");
+            showError('请输入有效的分组数量！');
             return;
         }
         if (groupCount > parsedPersons.length) {
-            showError("分组数量不能超过人数！");
+            showError('分组数量不能超过人数！');
             return;
         }
 
-        // 打乱人员顺序
-        shuffle(parsedPersons);
+        const groups = Array.from({ length: groupCount }, () => []);
 
-        // 将男女分开
-        const males = parsedPersons.filter(p => p.gender === 'male');
-        const females = parsedPersons.filter(p => p.gender === 'female');
-        
-        // 分别打乱
-        shuffle(males);
-        shuffle(females);
+        if (mode.parseGender) {
+            // 混双：男女分池，各自洗牌后轮流抽取（不放回）
+            const males = shuffle(parsedPersons.filter(p => p.gender === 'male'));
+            const females = shuffle(parsedPersons.filter(p => p.gender === 'female'));
 
-        // 初始化分组容器
-        let groups = Array.from({ length: groupCount }, () => []);
-
-        // 先分发女生：轮询分配到各组，确保女生均匀分布
-        females.forEach((person, index) => {
-            const groupIndex = index % groupCount;
-            groups[groupIndex].push(person);
-        });
-
-        // 再分发男生：轮询分配到各组
-        males.forEach((person, index) => {
-            const groupIndex = index % groupCount;
-            groups[groupIndex].push(person);
-        });
-
-        // 渲染结果
-        groups.forEach((group, index) => {
-            const groupCard = document.createElement('div');
-            groupCard.className = 'group-card';
-            
-            // 每队首个成员为队长
-            let captainName = group.length > 0 ? group[0].name : null;
-
-            let html = `<div class="group-title">第 ${index + 1} 组（${group.length}人）</div>`;
-            html += `<ul class="member-list">`;
-            
-            group.forEach((member, memberIndex) => {
-                let isCaptain = (member.name === captainName);
-                let badge = isCaptain ? '<span class="captain-badge">队长</span>' : '';
-                let genderClass = member.gender;
-                let genderText = member.gender === 'male' ? '男' : '女';
-                
-                html += `
-                    <li class="member-item">
-                        <span class="name">${member.name}${badge}</span>
-                        <span class="tag ${genderClass}">${genderText}</span>
-                    </li>
-                `;
-            });
-            
-            html += `</ul>`;
-            
-            // 显示队长信息
-            if (captainName) {
-                html += `<div class="stats">队长：${captainName}</div>`;
+            if (females.length === 0) {
+                showError('混双模式需要至少 1 名女生，请在名单中标注性别（如：张三 /女）');
+                return;
+            }
+            if (males.length === 0) {
+                showError('混双模式需要至少 1 名男生！');
+                return;
             }
 
-            groupCard.innerHTML = html;
-            resultDiv.appendChild(groupCard);
-        });
+            // 先抽女生：轮询分配，保证每组女生数量尽可能相等（最多相差 1 人）
+            let gi = 0;
+            while (females.length) {
+                groups[gi % groupCount].push(females.shift()); // shift = 不放回
+                gi++;
+            }
+            // 再抽男生：同样轮询分配，保证每组人数尽可能均衡
+            gi = 0;
+            while (males.length) {
+                groups[gi % groupCount].push(males.shift());
+                gi++;
+            }
 
-        // 更新步骤指示器
+        } else {
+            // 男单/女单/男双/女双：单一池子洗牌后轮流抽取（不放回）
+            const pool = shuffle(parsedPersons.slice());
+            let gi = 0;
+            while (pool.length) {
+                groups[gi % groupCount].push(pool.shift());
+                gi++;
+            }
+        }
+
+        renderGroups(groups, mode);
+        lastResult = groups;
+        document.getElementById('resultToolbar').classList.add('show');
         document.getElementById('stepIndicator').innerText = '分组完成！';
-        
-        // 显示统计信息
-        const maleCount = parsedPersons.filter(p => p.gender === 'male').length;
-        const femaleCount = parsedPersons.filter(p => p.gender === 'female').length;
-        infoDiv.innerText = `已分为 ${groupCount} 组（男 ${maleCount} 人，女 ${femaleCount} 人），女生已均匀分配到各组，每队首个成员自动担任队长`;
+
+        const femaleTotal = parsedPersons.filter(p => p.gender === 'female').length;
+        const maleTotal = parsedPersons.length - femaleTotal;
+        let summary = `已分为 ${groupCount} 组（男 ${maleTotal} 人，女 ${femaleTotal} 人），抽取方式为不放回随机`;
+        if (mode.parseGender) {
+            const perGroupFemale = groups.map(g => g.filter(p => p.gender === 'female').length);
+            summary += `，各组女生人数：${perGroupFemale.join(' / ')}`;
+            if (groupCount > femaleTotal) summary += '（女生人数少于组数，部分组将没有女生）';
+        }
+        summary += '，每组首位自动担任队长';
+        infoDiv.innerText = summary;
     }
 
-    function showError(msg) {
-        const errorDiv = document.getElementById('error');
-        errorDiv.innerText = msg;
-        errorDiv.style.display = 'block';
+    function renderGroups(groups, mode) {
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = '';
+
+        groups.forEach((group, index) => {
+            const card = document.createElement('div');
+            card.className = 'group-card';
+
+            const mCount = group.filter(p => p.gender === 'male').length;
+            const fCount = group.length - mCount;
+
+            let html = `<div class="group-title">第 ${index + 1} 组（${group.length} 人）</div><ul class="member-list">`;
+
+            group.forEach((member, i) => {
+                const badge = (i === 0) ? '<span class="captain-badge">队长</span>' : '';
+                const genderText = member.gender === 'male' ? '男' : '女';
+                html += `
+                    <li class="member-item">
+                        <span class="name">${escapeHtml(member.name)}${badge}</span>
+                        <span class="tag ${member.gender}">${genderText}</span>
+                    </li>`;
+            });
+
+            html += '</ul>';
+            html += mode.parseGender
+                ? `<div class="stats">男 ${mCount} 人 · 女 ${fCount} 人${group.length ? ` · 队长：${escapeHtml(group[0].name)}` : ''}</div>`
+                : `<div class="stats">${group.length ? `队长：${escapeHtml(group[0].name)} · 共 ${group.length} 人` : `共 ${group.length} 人`}</div>`;
+
+            card.innerHTML = html;
+            resultDiv.appendChild(card);
+        });
+    }
+
+    function copyResult() {
+        if (!lastResult.length) return;
+        const mode = MODES[currentMode];
+        let text = `【${mode.label}】随机分组结果\n`;
+        lastResult.forEach((group, i) => {
+            text += `\n第 ${i + 1} 组（${group.length} 人）：\n`;
+            group.forEach((m, j) => {
+                const g = m.gender === 'male' ? '男' : '女';
+                text += `  ${j + 1}. ${m.name}（${g}）${j === 0 ? ' [队长]' : ''}\n`;
+            });
+        });
+        navigator.clipboard.writeText(text).then(() => {
+            document.getElementById('info').innerText = '分组结果已复制到剪贴板';
+        }).catch(() => {
+            showError('复制失败，请手动选择文本复制');
+        });
+    }
+
+    function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, c => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[c]));
     }
 
     function clearAll() {
         document.getElementById('names').value = '';
-        document.getElementById('result').innerHTML = '';
-        document.getElementById('error').style.display = 'none';
-        document.getElementById('info').innerText = '';
-        document.getElementById('parsePreview').classList.remove('active');
-        document.getElementById('groupCountGroup').style.display = 'none';
-        document.getElementById('actionBtnGroup').style.display = 'none';
-        document.getElementById('stepIndicator').innerText = '步骤1：粘贴名单并解析';
-        document.getElementById('parseBtn').disabled = false;
-        parsedPersons = [];
+        resetForMode();
     }
+
+    // 初始化
+    applyModeText();
+
+    // 名单内容变化后允许重新解析
+    document.getElementById('names').addEventListener('input', () => {
+        document.getElementById('parseBtn').disabled = false;
+    });
 </script>
 
 </body>
