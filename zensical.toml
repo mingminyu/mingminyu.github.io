@@ -223,6 +223,7 @@ nav = [
   #     { "投资策略" = [] },
   #   ] 
   # }
+  { "博客" = ["blog/index.md"] },
 ]
 
 # The site_name is shown in the page header and the browser window title
@@ -570,4 +571,4 @@ auto_caption = true
 
 [project.plugins.markdown-exec]
 [project.markdown_extensions.pymdownx.blocks.caption]
-
+[project.plugins.blog]
