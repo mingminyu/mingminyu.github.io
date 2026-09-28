@@ -189,6 +189,9 @@ nav = [
             { "0.前言" = "courses/HarnessEngineering技术实战/ch00.md" },
             { "1.通用智能体应用步入生产力阶段" = "courses/HarnessEngineering技术实战/ch01.md" },
             { "2.从Prompt Engineering到Harness Engineering" = "courses/HarnessEngineering技术实战/ch02.md" },
+          ] },
+          { "DeepseekHarness智能体开发实战" = [
+            { "0.前言" = "courses/DeepseekHarness智能体开发实战/ch00.md" }
           ] }
         ]
       },
@@ -204,13 +207,13 @@ nav = [
     ]
   },
   { "羽毛球" = [
-    { "步法" = "badminton/步法.md" },
-    { "发力" = "badminton/发力.md" },
-    { "前场技术" = "badminton/前场技术.md" },
-    { "中场技术" = "badminton/中场技术.md" },
-    { "后场技术" = "badminton/后场技术.md" },
-    { "单打教学" = "badminton/单打.md" },
-    { "双打教学" = "badminton/双打.md" },
+    { "步法教学" = "badminton/基础-步法.md" },
+    { "发力教学" = "badminton/基础-发力.md" },
+    { "前场技术" = "badminton/技术-前场.md" },
+    { "中场技术" = "badminton/技术-中场.md" },
+    { "后场技术" = "badminton/技术-后场.md" },
+    { "单打套路" = "badminton/套路-单打.md" },
+    { "双打套路" = "badminton/套路-双打.md" },
     { "比赛集锦" = "badminton/比赛.md" },
   ] },
   # { 
@@ -560,7 +563,7 @@ custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
 [project.theme.icon.tag]
-default = "lucide/hash"
+default = "lucide/tag"
 
 [project.extra.tags]
 
