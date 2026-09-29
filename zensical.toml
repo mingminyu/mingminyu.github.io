@@ -575,3 +575,4 @@ auto_caption = true
 [project.plugins.markdown-exec]
 [project.markdown_extensions.pymdownx.blocks.caption]
 [project.plugins.blog]
+post_date_format = "short"
