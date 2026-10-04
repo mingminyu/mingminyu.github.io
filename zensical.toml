@@ -193,8 +193,8 @@ nav = [
           ] },
           { "DeepseekHarness智能体开发实战" = [
             { "0.前言" = "courses/DeepseekHarness智能体开发实战/ch00.md" },
-            { "1.DSH项目回顾与LLM Wiki介绍" = "courses/DeepseekHarness智能体开发实战/ch01.md" }
-          
+            { "1.DSH项目回顾与LLM Wiki介绍" = "courses/DeepseekHarness智能体开发实战/ch01.md" },
+            { "2.LLM Wiki从原始文档到可追溯知识层" = "courses/DeepseekHarness智能体开发实战/ch02.md" }
           ] }
         ]
       },
