@@ -189,13 +189,14 @@ nav = [
           { "Harness技术实战" = [
             { "0.前言" = "courses/HarnessEngineering技术实战/ch00.md" },
             { "1.通用智能体应用步入生产力阶段" = "courses/HarnessEngineering技术实战/ch01.md" },
-            { "2.从Prompt Engineering到Harness Engineering" = "courses/HarnessEngineering技术实战/ch02.md" },
+            { "2.从Prompt Engineering到Harness Engineering" = "courses/HarnessEngineering技术实战/ch02.md" }
           ] },
           { "DeepseekHarness智能体开发实战" = [
             { "0.前言" = "courses/DeepseekHarness智能体开发实战/ch00.md" },
             { "1.DSH项目回顾与LLM Wiki介绍" = "courses/DeepseekHarness智能体开发实战/ch01.md" },
             { "2.LLM Wiki从原始文档到可追溯知识层" = "courses/DeepseekHarness智能体开发实战/ch02.md" },
-            { "3.认识最终项目：开发全路线与DSH环境装配" = "courses/DeepseekHarness智能体开发实战/ch03.md"}
+            { "3.认识最终项目：开发全路线与DSH环境装配" = "courses/DeepseekHarness智能体开发实战/ch03.md"},
+            { "4.从空目录搭起第一个可运行的LLM Wiki" = "courses/DeepseekHarness智能体开发实战/ch04.md" },
           ] }
         ]
       },
