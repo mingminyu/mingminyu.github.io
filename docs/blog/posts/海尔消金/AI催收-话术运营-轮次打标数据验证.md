@@ -1,0 +1,56 @@
+---
+date: 2026-10-14
+categories:
+    - AI催收
+---
+
+# AI催收：意图和话术打标的数据验证
+
+针对 M1 话术体系运营专项，已根据梳理的意图和话术标签列表（详见文档[M1话术体系运营](https://haiercash.feishu.cn/wiki/KUbXw9A2VihraLkeP7hcBEEAnBe?table=tblx5J4wcqEK4AA3&view=vewLW2VuoU)）同步给科技。通过在**轮次维度**上对历史数据进行打标以及构建的**节点话术漏斗**，进一步分析话术优化的方向。
+
+基于打标功能以及数据，需推进的重点事项如下：
+
+1. **验证标签准确率**：随机挑选 50-100 通录音转写文本进行数据打标，并验证不同轮次下的标签准确率。
+2. **历史数据回溯**：回溯 9 月份自研 AI 外呼录音的打标数据，建立节点话术漏斗。
+3. **话术漏斗分析**：分析不同轮次下的意图和话术分布，重点先分析 1-2 之间的漏斗数据。
+
+!!! warning "打标准确率的重要性"
+
+    如果在节点上打标准确率过低，那建立的话术漏斗就没啥意义，后续的漏斗分析更是无稽之谈。
+
+## 1. API接口使用
+
+通过在 HiAgent 搭建 “催收对话小结——多标签” 智能体（@田宇）对录音数据进行打标，具体 API 接口的使用方法可参考以下案例。
+
+```python linenums="1" title="接口示例"
+import json
+import requests as rq
+
+LLM_API_URL = "https://hiagent-ai.haierxj.com/api/proxy/api/v1/sync_run_app_workflow"
+LLM_API_KEY = "d9a892d4shhc72upi06g"
+
+def llm_infer(record_info: dict):
+    """使用大模型进行推理"""
+
+    result = rq.post(
+        LLM_API_URL,
+        headers={
+            "Content-Type": "application/json",
+            "Apikey": LLM_API_KEY,
+        },
+        "InputData": json.dumps(record_info),
+    )
+    return result.json()
+
+sample_data = {
+    "id": "test123",
+    "dialog": [
+        {"speaker": "坐席", "content": "你好，海尔消费金融的，请问是郁明敏先生么？"},
+        {"speaker": "用户", "content": "啊，什么事？"},
+        {"speaker": "坐席", "content": "你是郁明敏本人么？"},
+    ],
+    "call_time": "1999-01-01 01:01:01",
+}
+```
+
+
