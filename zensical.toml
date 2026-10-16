@@ -553,6 +553,11 @@ generic = true
 [project.markdown_extensions.pymdownx.emoji]
 emoji_generator = "zensical.extensions.emoji.to_svg"
 emoji_index = "zensical.extensions.emoji.twemoji"
+options.custom_icons = [
+  "overrides/.icons",
+]
+
+
 [project.markdown_extensions.pymdownx.highlight]
 anchor_linenums = true
 line_spans = "__span"
@@ -573,10 +578,13 @@ combine_header_slug = true
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
+[project.plugins.tags]
 [project.theme.icon.tag]
 default = "lucide/tag"
+ai = "bootstrap/openai"
 
 [project.extra.tags]
+AI = "ai"
 
 [project.extra.status]
 [project.markdown_extensions.zensical.extensions.glightbox]
