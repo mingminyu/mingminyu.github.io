@@ -94,3 +94,22 @@
   /* 当侧边栏消失时，主内容区自动填满剩余空间 */
   transition: margin-left 0.3s ease; 
 }
+
+/* admonitions 自定义样式 */
+:root {
+  --md-admonition-icon--list-todo: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxpc3QtdG9kbyBwcmV2aWV3LWljb24iPjxwYXRoIGQ9Ik0xMyA1aDgiLz48cGF0aCBkPSJNMTMgMTJoOCIvPjxwYXRoIGQ9Ik0xMyAxOWg4Ii8+PHBhdGggZD0ibTMgMTcgMiAyIDQtNCIvPjxyZWN0IHg9IjMiIHk9IjQiIHdpZHRoPSI2IiBoZWlnaHQ9IjYiIHJ4PSIxIi8+PC9zdmc+')
+}
+.md-typeset .admonition.list-todo,
+.md-typeset details.list-todo {
+  border-color: rgb(43, 155, 70);
+}
+/* .md-typeset .list-todo > .admonition-title, */
+/* .md-typeset .list-todo > summary {
+  background-color: rgba(43, 155, 70, 0.1);
+} */
+.md-typeset .list-todo > .admonition-title::before,
+.md-typeset .list-todo > summary::before {
+  background-color: rgb(172, 7, 142);
+  -webkit-mask-image: var(--md-admonition-icon--list-todo);
+          mask-image: var(--md-admonition-icon--list-todo);
+}
