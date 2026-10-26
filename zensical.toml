@@ -1,4 +1,5 @@
 # ============================================================================
+# 原文地址：https://k7pl9l9npy.k.topthink.com/@dougua666/diyizhang%20chushilianghuajiaoyi.html
 # 81420853-22c5-4426-b058-8d061fe53a36
 # The configuration produced by default is meant to highlight the features
 # that Zensical provides and to serve as a starting point for your own
@@ -583,9 +584,13 @@ custom_checkbox = true
 [project.theme.icon.tag]
 default = "lucide/tag"
 ai = "bootstrap/openai"
+lark = "iconfont/lark"
 
 [project.extra.tags]
 AI = "ai"
+"飞书" = "lark"
+"飞书妙搭" = "lark"
+"豆包工作助手" = "lark"
 
 [project.extra.status]
 [project.markdown_extensions.zensical.extensions.glightbox]
