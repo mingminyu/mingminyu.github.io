@@ -1,7 +1,7 @@
 ---
 date: 2026-10-14
 categories:
-    - AI催收
+    - 求职招聘
 tags:
     - AI
 ---

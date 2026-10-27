@@ -10,7 +10,10 @@ tags:
 
 # AI舆情监控：基于豆包工作助手和妙搭的应用
 
+> :iconfont-lark: 点击[妙搭应用](https://miaoda.feishu.cn/app/app_17gj6f2yktp?from=auth_notice&taskid=1879737387102256) 查看效果。
+
 以前舆情监控一般会先使用爬虫获取外部舆情信息，然后再使用 NLP 技术给内容进行分类打标，这种技术方案有一个明显的问题是，不同站点需要分别解析才能爬取内容，
 
 <!-- more -->
+
 
