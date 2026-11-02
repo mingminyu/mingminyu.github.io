@@ -6,6 +6,22 @@
   color: #FB7299;
 }
 
+
+.md-typeset .md-tag-blue {
+    display: inline-flex;
+    align-items: center;
+    font-size: min(0.8em, 0.64rem);
+    color: #fff;
+    font-weight: 700;;
+    line-height: 1.6;
+    letter-spacing: normal;
+    gap: 0.5em;
+    padding: 0.3125em 0.78125em;
+    /* background: var(--md-default-fg-color--lightest); */
+    background: #2153dd;
+    border-radius: 0.4rem;
+}
+
 .md-main__inner.md-grid {
   width: 96%;
   max-width: 100rem !important;
