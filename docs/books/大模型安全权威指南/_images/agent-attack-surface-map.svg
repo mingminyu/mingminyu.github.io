@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 540" style="width:100%;max-width:740px;height:auto;display:block" role="img" aria-labelledby="as-title as-desc">
+  <title id="as-title">智能体系统攻击面地图</title>
+  <desc id="as-desc">智能体运行时居中，五个攻击面环绕：输入面（用户输入、文件、网页、邮件、语音、图像）、上下文面（系统提示、会话历史、长期记忆、检索召回、缓存）、工具面（函数调用、MCP Server、插件、第三方接口）、执行面（Shell、数据库、邮件、支付、网络、文件系统）与治理面（审批、审计、告警、回滚、策略版本、发布门禁），每个面列出其主要风险；底部给出加固优先顺序与对应控制。</desc>
+  <defs>
+    <style>
+      .as-bg { fill: #f9fbfd; }
+      .as-card { stroke-width: 2; }
+      .as-a { fill: #eef5ff; stroke: #7ba3d9; }
+      .as-b { fill: #f5f0ff; stroke: #9273c9; }
+      .as-c { fill: #eef8f1; stroke: #70a887; }
+      .as-d { fill: #fff5e8; stroke: #d8a354; }
+      .as-e { fill: #fff0ed; stroke: #d67868; }
+      .as-core { fill: #1d3557; }
+      .as-h { font: 700 15px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #1f2a33; text-anchor: middle; }
+      .as-i { font: 500 12.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #34495e; text-anchor: middle; }
+      .as-r { font: 500 12.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #b0473a; text-anchor: middle; }
+      .as-ct { font: 700 17px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #ffffff; text-anchor: middle; }
+      .as-cb { font: 500 12.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #dbe7f3; text-anchor: middle; }
+      .as-note { font: 500 12.5px 'Microsoft YaHei', 'PingFang SC', sans-serif; fill: #34495e; }
+      .as-line { stroke: #8797a8; stroke-width: 2; fill: none; marker-end: url(#as-arrow); }
+    </style>
+    <marker id="as-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8797a8" />
+    </marker>
+  </defs>
+
+  <rect class="as-bg" x="0" y="0" width="740" height="540" rx="12" />
+
+  <!-- 输入面 -->
+  <rect class="as-card as-a" x="190" y="20" width="360" height="96" rx="10" />
+  <text class="as-h" x="370" y="46">输入面</text>
+  <text class="as-i" x="370" y="70">用户输入、上传文件、网页、邮件、语音、图像</text>
+  <text class="as-r" x="370" y="94">风险：直接与间接注入、对抗样本、超长上下文挤压</text>
+
+  <!-- 上下文面 -->
+  <rect class="as-card as-b" x="15" y="150" width="240" height="150" rx="10" />
+  <text class="as-h" x="135" y="176">上下文面</text>
+  <text class="as-i" x="135" y="200">系统提示、会话历史、长期记忆</text>
+  <text class="as-i" x="135" y="220">检索召回、缓存</text>
+  <text class="as-r" x="135" y="252">风险：记忆污染、系统提示泄露</text>
+  <text class="as-r" x="135" y="272">跨会话串扰、检索投毒</text>
+
+  <!-- 工具面 -->
+  <rect class="as-card as-c" x="485" y="150" width="240" height="150" rx="10" />
+  <text class="as-h" x="605" y="176">工具面</text>
+  <text class="as-i" x="605" y="200">函数调用、MCP Server、插件</text>
+  <text class="as-i" x="605" y="220">第三方接口</text>
+  <text class="as-r" x="605" y="252">风险：参数幻觉、越权调用</text>
+  <text class="as-r" x="605" y="272">返回值注入、供应链污染</text>
+
+  <!-- 核心 -->
+  <rect class="as-core" x="285" y="165" width="170" height="120" rx="14" />
+  <text class="as-ct" x="370" y="205">智能体运行时</text>
+  <text class="as-cb" x="370" y="232">规划、记忆、推理、调度</text>
+  <text class="as-cb" x="370" y="254">在这里汇聚并放大风险</text>
+
+  <!-- 治理面 -->
+  <rect class="as-card as-e" x="15" y="330" width="345" height="100" rx="10" />
+  <text class="as-h" x="187" y="356">治理面</text>
+  <text class="as-i" x="187" y="380">审批流、审计、告警、回滚、策略版本、发布门禁</text>
+  <text class="as-r" x="187" y="406">风险：日志缺失、审批旁路、回归漏测、恢复失效</text>
+
+  <!-- 执行面 -->
+  <rect class="as-card as-d" x="380" y="330" width="345" height="100" rx="10" />
+  <text class="as-h" x="552" y="356">执行面</text>
+  <text class="as-i" x="552" y="380">Shell、数据库、邮件、支付、网络、文件系统</text>
+  <text class="as-r" x="552" y="406">风险：破坏性副作用、数据外带、资源耗尽、横向移动</text>
+
+  <!-- 连线：输入进入运行时，运行时把风险带到其余四个面 -->
+  <path class="as-line" d="M 370 116 L 370 164" />
+  <path class="as-line" d="M 285 225 L 256 225" />
+  <path class="as-line" d="M 455 225 L 484 225" />
+  <path class="as-line" d="M 330 285 L 330 329" />
+  <path class="as-line" d="M 410 285 L 410 329" />
+
+  <!-- 说明 -->
+  <text class="as-note" x="15" y="470">优先加固：① 工具与执行面　② 上下文与输入面</text>
+  <text class="as-note" x="15" y="496">对应控制：来源标记、最小权限、审批闸门、审计追踪、隔离回放、回归测试</text>
+  <text class="as-note" x="15" y="522" style="fill:#b0473a">红字为该面的主要风险</text>
+</svg>

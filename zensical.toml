@@ -69,8 +69,7 @@ nav = [
           }
         ]
       },
-      {
-        "图书馆" = [
+      { "图书馆" = [
           { "Hello Agents" = [
               { "0.前言" = "books/hello-agents/ch00.md" },
               { "1.初识智能体" = "books/hello-agents/ch01-初识智能体.md" },
@@ -175,7 +174,7 @@ nav = [
               { "0.前言" = "books/OpenClaw从入门到精通/ch00.md" },
             ]
           },
-          { "Harness Engineering 完全指南" = [
+          { "Harness工程完全指南" = [
               { "0.前言" = "books/HarnessEngineering完全指南/ch00.md" },
               { "1.初识智能体" = "books/HarnessEngineering完全指南/ch01-什么是HarnessEngineering.md" },
               { "2.Cluade Code架构全景" = "books/HarnessEngineering完全指南/ch02-CluadeCode架构全景.md" },
@@ -191,7 +190,7 @@ nav = [
             { "1.通用智能体应用步入生产力阶段" = "courses/HarnessEngineering技术实战/ch01.md" },
             { "2.从Prompt Engineering到Harness Engineering" = "courses/HarnessEngineering技术实战/ch02.md" }
           ] },
-          { "DeepseekHarness智能体开发实战" = [
+          { "DSH智能体开发实战" = [
             { "0.前言" = "courses/DeepseekHarness智能体开发实战/ch00.md" },
             { "1.DSH项目回顾与LLM Wiki介绍" = "courses/DeepseekHarness智能体开发实战/ch01.md" },
             { "2.LLM Wiki从原始文档到可追溯知识层" = "courses/DeepseekHarness智能体开发实战/ch02.md" },
@@ -199,16 +198,7 @@ nav = [
             { "4.从空目录搭起第一个可运行的LLM Wiki" = "courses/DeepseekHarness智能体开发实战/ch04.md" },
           ] }
         ]
-      },
-      {
-        "岗位" = [
-          {
-            "信贷风控" = [
-              { "模型算法" = "blog/posts/求职招聘/美团-信贷风控大模型算法专家.md" }
-            ]
-          }
-        ]
-      },
+      }
     ]
   },
   { "量化" = [
