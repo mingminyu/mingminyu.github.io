@@ -161,10 +161,18 @@ nav = [
           {
             "智能体AI权威指南" = [
               { "0.前言" = "books/智能体AI权威指南/ch00.md" },
+              { "1.智能体范式革命" = "books/智能体AI权威指南/ch01.md" },
+              { "2.推理、规划与提示词工程" = "books/智能体AI权威指南/ch02.md" },
+              { "3.记忆系统与上下文工程" = "books/智能体AI权威指南/ch03.md" },
+              { "4.工具使用与环境交互" = "books/智能体AI权威指南/ch04.md" },
               { "5.多智能体协作模式" = "books/智能体AI权威指南/ch05.md" },
+              { "6.通信与社会模拟" = "books/智能体AI权威指南/ch06.md" },
+              { "7.学习、评估与进化" = "books/智能体AI权威指南/ch07.md" },
               { "8.开发框架全景" = "books/智能体AI权威指南/ch08.md" },
               { "9.AgentOps与生产化落地" = "books/智能体AI权威指南/ch09.md" },
               { "10.智能体编程实践" = "books/智能体AI权威指南/ch10.md" },
+              { "11.安全、伦理与未来" = "books/智能体AI权威指南/ch11.md" },
+              { "12.附录" = "books/智能体AI权威指南/ch12.md" },
             ]
           },
           {
@@ -175,6 +183,18 @@ nav = [
           {
             "大模型安全权威指南" = [
               { "0.前言" = "books/大模型安全权威指南/ch00.md" },
+              { "1.认识Claude" = "books/大模型安全权威指南/ch01.md" },
+              { "2.提示工程核心技术" = "books/大模型安全权威指南/ch02.md" },
+              { "3.工具" = "books/大模型安全权威指南/ch03.md" },
+              { "4.MCP模型上下文协议" = "books/大模型安全权威指南/ch04.md" },
+              { "5.Computer Use计算机操控" = "books/大模型安全权威指南/ch05.md" },
+              { "6.Skills技能系统" = "books/大模型安全权威指南/ch06.md" },
+              { "7.Agentic Coding与Claude Code" = "books/大模型安全权威指南/ch07.md" },
+              { "8.Agent架构设计" = "books/大模型安全权威指南/ch08.md" },
+              { "9.企业级应用案例" = "books/大模型安全权威指南/ch09.md" },
+              { "10.成本优化与性能调优" = "books/大模型安全权威指南/ch10.md" },
+              { "11.安全与伦理" = "books/大模型安全权威指南/ch11.md" },
+              { "12.进阶能力：Claude前沿特性与上下文工程" = "books/大模型安全权威指南/ch12.md" },
             ]
           },
           {
@@ -599,9 +619,6 @@ combine_header_slug = true
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
-
-[project.plugins.llmstxt]
-
 [project.plugins.tags]
 [project.theme.icon.tag]
 default = "lucide/tag"
@@ -619,7 +636,6 @@ AI = "ai"
 auto_themed = true
 auto_caption = true
 
-[project.plugins.markdown-exec]
 [project.markdown_extensions.pymdownx.blocks.caption]
 [project.plugins.blog]
 post_date_format = "short"
