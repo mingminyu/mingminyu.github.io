@@ -175,36 +175,80 @@ nav = [
               { "12.附录" = "books/智能体AI权威指南/ch12.md" },
             ]
           },
-          {
-            "Claude技术指南" = [
+          { "Claude技术指南" = [
               { "0.前言" = "books/Claude技术指南/ch00.md" },
+              { "1.认识Claude" = "books/Claude技术指南/ch01.md" },
+              { "2.提示工程核心技术" = "books/Claude技术指南/ch02.md" },
+              { "3.工具" = "books/Claude技术指南/ch03.md" },
+              { "4.MCP模型上下文协议" = "books/Claude技术指南/ch04.md" },
+              { "5.Computer Use计算机操控" = "books/Claude技术指南/ch05.md" },
+              { "6.Skills技能系统" = "books/Claude技术指南/ch06.md" },
+              { "7.Agentic Coding与Claude Code" = "books/Claude技术指南/ch07.md" },
+              { "8.Agent架构设计" = "books/Claude技术指南/ch08.md" },
+              { "9.企业级应用案例" = "books/Claude技术指南/ch09.md" },
+              { "10.成本优化与性能调优" = "books/Claude技术指南/ch10.md" },
+              { "11.安全与伦理" = "books/Claude技术指南/ch11.md" },
+              { "12.进阶能力：Claude前沿特性与上下文工程" = "books/Claude技术指南/ch12.md" },
             ]
           },
-          {
-            "大模型安全权威指南" = [
+          { "大模型安全权威指南" = [
               { "0.前言" = "books/大模型安全权威指南/ch00.md" },
-              { "1.认识Claude" = "books/大模型安全权威指南/ch01.md" },
-              { "2.提示工程核心技术" = "books/大模型安全权威指南/ch02.md" },
-              { "3.工具" = "books/大模型安全权威指南/ch03.md" },
-              { "4.MCP模型上下文协议" = "books/大模型安全权威指南/ch04.md" },
-              { "5.Computer Use计算机操控" = "books/大模型安全权威指南/ch05.md" },
-              { "6.Skills技能系统" = "books/大模型安全权威指南/ch06.md" },
-              { "7.Agentic Coding与Claude Code" = "books/大模型安全权威指南/ch07.md" },
-              { "8.Agent架构设计" = "books/大模型安全权威指南/ch08.md" },
-              { "9.企业级应用案例" = "books/大模型安全权威指南/ch09.md" },
-              { "10.成本优化与性能调优" = "books/大模型安全权威指南/ch10.md" },
-              { "11.安全与伦理" = "books/大模型安全权威指南/ch11.md" },
-              { "12.进阶能力：Claude前沿特性与上下文工程" = "books/大模型安全权威指南/ch12.md" },
+              { "1.大语言模型安全导论" = "books/大模型安全权威指南/ch01.md" },
+              { "2.大语言模型安全基础" = "books/大模型安全权威指南/ch02.md" },
+              { "3.安全框架与标准" = "books/大模型安全权威指南/ch03.md" },
+              { "4.提示注入攻击与防御" = "books/大模型安全权威指南/ch04.md" },
+              { "5.越狱攻击" = "books/大模型安全权威指南/ch05.md" },
+              { "6.数据与模型攻击" = "books/大模型安全权威指南/ch06.md" },
+              { "7.RAG与知识库安全" = "books/大模型安全权威指南/ch07.md" },
+              { "8.安全架构设计" = "books/大模型安全权威指南/ch08.md" },
+              { "9.输入输出安全防护" = "books/大模型安全权威指南/ch09.md" },
+              { "10.安全运营与监控" = "books/大模型安全权威指南/ch10.md" },
+              { "11.智能体安全基础" = "books/大模型安全权威指南/ch11.md" },
+              { "12.智能体的攻击面" = "books/大模型安全权威指南/ch12.md" },
+              { "13.智能体安全架构" = "books/大模型安全权威指南/ch13.md" },
+              { "14.智能体安全实践" = "books/大模型安全权威指南/ch14.md" },
+              { "15.安全治理与未来展望" = "books/大模型安全权威指南/ch15.md" },
             ]
           },
-          {
+          {  
             "大模型原理与架构" = [
               { "0.前言" = "books/大模型原理与架构/ch00.md" },
+              { "1.从序列建模到Transformer" = "books/大模型原理与架构/ch01.md" },
+              { "2.注意力机制：为什么它是核心" = "books/大模型原理与架构/ch02.md" },
+              { "3.Transformer核心组件解析" = "books/大模型原理与架构/ch03.md" },
+              { "4.位置编码的设计哲学" = "books/大模型原理与架构/ch04.md" },
+              { "5.预训练：为什么“预测下一个词”能学到知识" = "books/大模型原理与架构/ch05.md" },
+              { "6.训练技术的底层逻辑" = "books/大模型原理与架构/ch06.md" },
+              { "7.大规模分布式训练" = "books/大模型原理与架构/ch07.md" },
+              { "8.从预训练到对齐：让模型有用且安全" = "books/大模型原理与架构/ch08.md" },
+              { "9.解码策略：模型如何生成文本" = "books/大模型原理与架构/ch09.md" },
+              { "10.推理优化：第一性原理的分析" = "books/大模型原理与架构/ch10.md" },
+              { "11.推理引擎与生产部署" = "books/大模型原理与架构/ch11.md" },
+              { "12.编码器系列模型" = "books/大模型原理与架构/ch12.md" },
+              { "13.解码器系列与主流LLM" = "books/大模型原理与架构/ch13.md" },
+              { "14.架构创新与未来趋势" = "books/大模型原理与架构/ch14.md" },
             ]
           },
           {
             "OpenClaw从入门到精通" = [
               { "0.前言" = "books/OpenClaw从入门到精通/ch00.md" },
+              { "1.认识OpenClaw" = "books/OpenClaw从入门到精通/ch01.md" },
+              { "2.环境准备与安装部署" = "books/OpenClaw从入门到精通/ch02.md" },
+              { "3.快速上手与首轮对话实战" = "books/OpenClaw从入门到精通/ch03.md" },
+              { "4.配置体系与模型治理" = "books/OpenClaw从入门到精通/ch04.md" },
+              
+              { "5.工具系统、技能与插件" = "books/OpenClaw从入门到精通/ch05.md" },
+              { "6.会话、上下文与记忆" = "books/OpenClaw从入门到精通/ch06.md" },
+              { "7.多渠道分发与多智能体协作" = "books/OpenClaw从入门到精通/ch07.md" },
+              { "8.自动化与运维安全实践" = "books/OpenClaw从入门到精通/ch08.md" },
+              { "9.Gateway控制平面与协议机制" = "books/OpenClaw从入门到精通/ch09.md" },
+              { "10.AgentLoop运行内核剖析" = "books/OpenClaw从入门到精通/ch10.md" },
+              { "11.可靠性与安全机制实现" = "books/OpenClaw从入门到精通/ch11.md" },
+              { "12.插件扩展与生产落地" = "books/OpenClaw从入门到精通/ch12.md" },
+              { "13.工具系统、技能与插件" = "books/OpenClaw从入门到精通/ch13.md" },
+              { "14.性能与成本优化实战" = "books/OpenClaw从入门到精通/ch14.md" },
+              { "15.故障诊断决策" = "books/OpenClaw从入门到精通/ch15.md" },
+              { "16.与主流 AI 生态集成" = "books/OpenClaw从入门到精通/ch16.md" },
             ]
           },
           { "Harness工程完全指南" = [
