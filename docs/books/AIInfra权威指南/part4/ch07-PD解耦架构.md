@@ -2,7 +2,7 @@
 
 # 第4部分 · 第7章：Prefill/Decode 解耦架构
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch06-分布式推理.md) ｜ [下一章](ch08-性能分析与Benchmark.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch06-分布式推理.md) ｜ [下一章](ch08-性能分析与Benchmark.md)
 
 ## 本章目录
 
@@ -12,7 +12,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "P/D解耦", "DistServe", "Splitwise", "KV Cache传输", "Goodput", "SLO" · [单篇原文](../articles/part4/第7章-PD解耦架构.md)
+> 发布 2026-04-16 · 标签 "P/D解耦", "DistServe", "Splitwise", "KV Cache传输", "Goodput", "SLO" · 单篇原文
 
 ### 本章简介
 

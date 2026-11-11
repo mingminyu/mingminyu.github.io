@@ -2,7 +2,7 @@
 
 # 第4部分 · 第1章：LLM 推理基础
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [下一章](ch02-推理引擎核心技术.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [下一章](ch02-推理引擎核心技术.md)
 
 ## 本章目录
 
@@ -14,7 +14,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "LLM推理", "Prefill", "Decode", "KV Cache", "TTFT", "TPOT", "Roofline" · [单篇原文](../articles/part4/第1章-LLM推理基础/第1章-LLM推理基础.md)
+> 发布 2026-04-16 · 标签 "LLM推理", "Prefill", "Decode", "KV Cache", "TTFT", "TPOT", "Roofline" · 单篇原文
 
 ### 本章简介
 
@@ -42,7 +42,7 @@
 
 ## 1.1 LLM 推理基础
 
-> 发布 2026-07-09 · 标签 "LLM推理", "Prefill", "Decode", "KV Cache", "TTFT", "TPOT", "Roofline" · [单篇原文](../articles/part4/第1章-LLM推理基础/1.1-LLM推理基础.md)
+> 发布 2026-07-09 · 标签 "LLM推理", "Prefill", "Decode", "KV Cache", "TTFT", "TPOT", "Roofline" · 单篇原文
 
 把一个训练好的大模型"搬上线"提供服务，和把它训练出来，是两件目标完全不同的事。训练追求的是把海量数据喂进去、让 Loss 收敛；而推理追求的是**在延迟和成本的约束下，尽可能快、尽可能多地生成 Token**。这一节不谈任何优化技巧，只做一件事：把 LLM 推理的底层逻辑彻底讲清楚——它分成哪两个阶段、为什么要缓存 KV、显存花在了哪里、用什么指标衡量快慢，以及一个绕不开的灵魂拷问：**为什么砸了几万块钱的 GPU，生成文字时算力却大部分在闲置？**
 
@@ -333,7 +333,7 @@ graph LR
 
 ## 1.2 vLLM 快速入门：从安装到部署你的第一个 LLM 推理服务
 
-> 发布 2026-04-15 · 标签 "vLLM", "LLM推理", "PagedAttention", "模型部署", "推理优化" · [单篇原文](../articles/part4/第1章-LLM推理基础/1.2-vLLM快速入门.md)
+> 发布 2026-04-15 · 标签 "vLLM", "LLM推理", "PagedAttention", "模型部署", "推理优化" · 单篇原文
 
 ### 1. 什么是 vLLM
 

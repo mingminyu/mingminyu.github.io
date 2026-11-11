@@ -2,7 +2,7 @@
 
 # 第2部分 · 第2章：CUDA 性能优化基础
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch01-CUDA编程入门.md) ｜ [下一章](ch03-经典算子实现-Reduce.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch01-CUDA编程入门.md) ｜ [下一章](ch03-经典算子实现-Reduce.md)
 
 ## 本章目录
 
@@ -16,7 +16,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "CUDA", "Warp", "合并访问", "Occupancy", "性能优化" · [单篇原文](../articles/part2/第2章-CUDA性能优化基础.md)
+> 发布 2026-04-16 · 标签 "CUDA", "Warp", "合并访问", "Occupancy", "性能优化" · 单篇原文
 
 ### 本章简介
 
@@ -34,7 +34,7 @@
 
 ## 2.1 Warp 与执行模型
 
-> 发布 2026-05-09 · 标签 "CUDA", "Warp", "Warp Shuffle", "Warp Divergence", "SIMT" · [单篇原文](../articles/part2/2.1-Warp与执行模型.md)
+> 发布 2026-05-09 · 标签 "CUDA", "Warp", "Warp Shuffle", "Warp Divergence", "SIMT" · 单篇原文
 
 深入理解 GPU 最核心的执行单元——Warp。本文从 SIMT 执行模型出发，详解 Warp Divergence 的性能代价与规避策略，掌握 Warp Shuffle 实现线程间零延迟数据交换，为编写高效 CUDA Kernel 奠定执行层面的认知基础。
 
@@ -500,7 +500,7 @@ Warp Shuffle 版本的优势：
 
 ## 2.2 内存访问优化
 
-> 发布 2026-05-12 · 标签 "CUDA", "合并访问", "Bank Conflict", "向量化加载", "内存优化" · [单篇原文](../articles/part2/2.2-内存访问优化.md)
+> 发布 2026-05-12 · 标签 "CUDA", "合并访问", "Bank Conflict", "向量化加载", "内存优化" · 单篇原文
 
 内存访问效率是 CUDA Kernel 性能最大的杠杆。本文深入讲解合并访问（Coalesced Access）的原理与判定方法、共享内存 Bank Conflict 的成因与 Padding 解决方案，以及向量化加载（float4/int4）提升带宽利用率的实战技巧。
 
@@ -1033,7 +1033,7 @@ graph TD
 
 ## 2.3 Occupancy 与资源分配
 
-> 发布 2026-05-12 · 标签 "CUDA", "Occupancy", "寄存器", "共享内存", "延迟隐藏" · [单篇原文](../articles/part2/2.3-Occupancy与资源分配.md)
+> 发布 2026-05-12 · 标签 "CUDA", "Occupancy", "寄存器", "共享内存", "延迟隐藏" · 单篇原文
 
 Occupancy 衡量 SM 上实际活跃 Warp 数与理论最大值的比例，是调优 CUDA Kernel 的核心指标之一。本文讲解 Occupancy 的定义、计算方法、三大限制因素（寄存器/共享内存/Block 大小），以及为什么 Occupancy 并非越高越好——真正的目标是在延迟隐藏与资源利用之间找到平衡点。
 
@@ -1513,7 +1513,7 @@ flexible_kernel<<<grid, block, smem_size>>>(data, N);
 
 ## 2.4 同步与原子操作
 
-> 发布 2026-05-13 · 标签 "CUDA", "同步", "原子操作", "__syncthreads", "Memory Fence" · [单篇原文](../articles/part2/2.4-同步与原子操作.md)
+> 发布 2026-05-13 · 标签 "CUDA", "同步", "原子操作", "__syncthreads", "Memory Fence" · 单篇原文
 
 正确的同步机制是编写无 Bug 并行程序的基础。本文详解 CUDA 中的块内同步 `__syncthreads()`、Warp 级同步、Memory Fence，以及原子操作的使用场景、性能代价与优化技巧，帮助你在保证正确性的前提下写出高性能的并行代码。
 

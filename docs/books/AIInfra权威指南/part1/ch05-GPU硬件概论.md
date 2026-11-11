@@ -2,7 +2,7 @@
 
 # 第1部分 · 第5章：GPU 硬件概论
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch04-PyTorch框架.md) ｜ [下一章](ch06-集合通信基础.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch04-PyTorch框架.md) ｜ [下一章](ch06-集合通信基础.md)
 
 ## 本章目录
 
@@ -14,7 +14,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "GPU", "硬件架构", "NVLink", "Roofline", "存储层次" · [单篇原文](../articles/part1/第5章-GPU硬件概论.md)
+> 发布 2026-04-16 · 标签 "GPU", "硬件架构", "NVLink", "Roofline", "存储层次" · 单篇原文
 
 ### 本章简介
 
@@ -32,7 +32,7 @@
 
 ## 5.1 GPU 硬件基础与体系结构
 
-> 发布 2026-04-26 · 标签 "GPU", "CUDA", "硬件架构", "AI计算", "显存" · [单篇原文](../articles/part1/gpu/gpu-basics.md)
+> 发布 2026-04-26 · 标签 "GPU", "CUDA", "硬件架构", "AI计算", "显存" · 单篇原文
 
 GPU 是大模型时代的"发动机"——训练一个千亿参数的 LLM 可能需要数千块 GPU 运行数月，而推理服务的吞吐量和延迟也直接取决于 GPU 的利用效率。对于 AI Infra 工程师来说，理解 GPU 不是选修课，而是所有后续优化（算子、并行、调度）的硬件基础。
 
@@ -544,7 +544,7 @@ nvidia-smi nvlink -s
 
 ## 5.2 NVIDIA GPU 架构演进
 
-> 发布 2026-04-27 · 标签 "GPU", "NVIDIA", "Tensor Core", "架构演进", "AI硬件" · [单篇原文](../articles/part1/gpu/nvidia-gpu-evolution.md)
+> 发布 2026-04-27 · 标签 "GPU", "NVIDIA", "Tensor Core", "架构演进", "AI硬件" · 单篇原文
 
 ### 1. 为什么要了解 GPU 架构演进
 

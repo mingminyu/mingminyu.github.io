@@ -2,7 +2,7 @@
 
 # 第2部分 · 第5章：经典算子实现—Softmax 与算子融合
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch04-经典算子实现-GEMM.md) ｜ [下一章](ch06-Attention算子.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch04-经典算子实现-GEMM.md) ｜ [下一章](ch06-Attention算子.md)
 
 ## 本章目录
 
@@ -14,7 +14,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "CUDA", "Softmax", "Online Softmax", "算子融合", "Kernel Fusion" · [单篇原文](../articles/part2/第5章-经典算子实现-Softmax与算子融合.md)
+> 发布 2026-04-16 · 标签 "CUDA", "Softmax", "Online Softmax", "算子融合", "Kernel Fusion" · 单篇原文
 
 ### 本章简介
 
@@ -32,7 +32,7 @@ Softmax 是 Transformer 中最关键的非线性操作之一，也是理解 Flas
 
 ## 5.1 CUDA Softmax 朴素实现优化
 
-> 发布 2026-06-04 · 标签 "CUDA", "GPU", "Softmax", "数值稳定性", "算子优化" · [单篇原文](../articles/part2/5.1-CUDA Softmax朴素实现优化.md)
+> 发布 2026-06-04 · 标签 "CUDA", "GPU", "Softmax", "数值稳定性", "算子优化" · 单篇原文
 
 Softmax 是 Transformer 中 Attention 计算的核心组件，看似简单的公式背后隐藏着数值溢出陷阱。本文从朴素实现暴露的数值问题出发，逐步引入 Safe Softmax、Block 级并行、Warp Shuffle、向量化访存等优化手段，每一步都有原理分析和性能对比，帮你写出既正确又高效的 Softmax Kernel。
 
@@ -570,7 +570,7 @@ __global__ void softmax_v4(float* input, float* output, int M, int N) {
 
 ## 5.2 CUDA Online Softmax 实现优化
 
-> 发布 2026-06-04 · 标签 "CUDA", "GPU", "Softmax", "Online Softmax", "FlashAttention", "算子优化" · [单篇原文](../articles/part2/5.2-CUDA Online Softmax实现.md)
+> 发布 2026-06-04 · 标签 "CUDA", "GPU", "Softmax", "Online Softmax", "FlashAttention", "算子优化" · 单篇原文
 
 传统 Safe Softmax 需要三遍扫描输入数据，而 Online Softmax 通过巧妙的数学递推，在一遍扫描中同时完成 max 和 sum 的计算，将内存读取次数从 3 次降到 2 次。本文从算法推导出发，逐步实现并优化 Online Softmax 的 CUDA Kernel，这也是理解 FlashAttention 的核心前置知识。
 

@@ -2,7 +2,7 @@
 
 # 第1部分 · 第4章：PyTorch 框架
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch03-Transformer架构详解.md) ｜ [下一章](ch05-GPU硬件概论.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch03-Transformer架构详解.md) ｜ [下一章](ch05-GPU硬件概论.md)
 
 ## 本章目录
 
@@ -13,7 +13,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "PyTorch", "autograd", "训练流程", "性能分析" · [单篇原文](../articles/part1/第4章-PyTorch框架.md)
+> 发布 2026-04-16 · 标签 "PyTorch", "autograd", "训练流程", "性能分析" · 单篇原文
 
 ### 本章简介
 
@@ -31,7 +31,7 @@ PyTorch 是 AI Infra 领域最主流的训练框架，也是后续分布式训�
 
 ## 4.1 PyTorch 框架入门
 
-> 发布 2026-04-25 · 标签 "PyTorch", "Tensor", "autograd", "计算图", "GPU" · [单篇原文](../articles/part1/pyroch/PyTorch框架入门.md)
+> 发布 2026-04-25 · 标签 "PyTorch", "Tensor", "autograd", "计算图", "GPU" · 单篇原文
 
 PyTorch 是当前大模型训练和推理的事实标准框架。本文聚焦于 AI Infra 工程师需要掌握的核心能力——从 Tensor 操作到完整训练循环，再到用 profiler 定位性能瓶颈，为后续的 CUDA 编程、分布式训练和推理优化打下基础。
 

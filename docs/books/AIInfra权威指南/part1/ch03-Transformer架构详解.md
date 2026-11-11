@@ -2,7 +2,7 @@
 
 # 第1部分 · 第3章：AI Infra工程师学Transformer
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch02-数学基础.md) ｜ [下一章](ch04-PyTorch框架.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch02-数学基础.md) ｜ [下一章](ch04-PyTorch框架.md)
 
 ## 本章目录
 
@@ -22,7 +22,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "Transformer", "Attention", "RoPE", "MoE", "模型架构" · [单篇原文](../articles/part1/第3章-Transformer架构详解.md)
+> 发布 2026-04-16 · 标签 "Transformer", "Attention", "RoPE", "MoE", "模型架构" · 单篇原文
 
 ### 本章简介
 
@@ -38,7 +38,7 @@ Transformer 是大模型时代的核心架构，也是 AI Infra 工程师必须�
 
 ## 3.0 Transformer 架构快速入门
 
-> 发布 2026-03-30 · 标签 "Transformer", "Attention", "LLM", "模型架构" · [单篇原文](../articles/part1/transformer/Transformer架构快速入门.md)
+> 发布 2026-03-30 · 标签 "Transformer", "Attention", "LLM", "模型架构" · 单篇原文
 
 Transformer 是大模型时代的"通用底座"——CUDA 层优化它的算子，分布式层切分它的参数，推理层加速它的生成。本文从 AI Infra 工程师的视角出发，带你理解这个"后续所有优化的对象"到底长什么样，为什么长这样，以及每个模块将在后续的哪些优化中被反复提及。
 
@@ -809,7 +809,7 @@ KV Cache 将 QKV 投影的总计算量从 $O(N^2 \cdot d^2)$ 降到了 $O(N \cdo
 
 ## 3.1 AI Infra工程师为什么必须懂Transformer
 
-> 发布 2026-03-30 · 标签 "Transformer", "AI Infra", "LLM", "模型架构", "学习路线" · [单篇原文](../articles/part1/transformer/3.1 AI Infra工程师为什么必须懂Transformer.md)
+> 发布 2026-03-30 · 标签 "Transformer", "AI Infra", "LLM", "模型架构", "学习路线" · 单篇原文
 
 Transformer 是当今所有大语言模型的共同骨架，而 AI Infra 工程师的全部工作——从底层算子到分布式训练再到推理服务——都围绕这个骨架展开。本文将系统阐述 AI Infra 的定义与技术栈定位、Transformer 如何成为"通用底座"、以及两者之间的精确映射关系，帮助读者建立"我到底在优化什么"的全局认知。
 
@@ -1155,7 +1155,7 @@ Transformer 的核心骨架虽然稳定，但细节在持续演进：GQA 改变�
 
 ## 3.2 Transformer全貌及代码实现
 
-> 发布 2026-03-31 · 标签 "Transformer", "模型架构", "Encoder-Decoder", "Decoder-only", "PyTorch" · [单篇原文](../articles/part1/transformer/3.2 Transformer全貌及代码实现.md)
+> 发布 2026-03-31 · 标签 "Transformer", "模型架构", "Encoder-Decoder", "Decoder-only", "PyTorch" · 单篇原文
 
 在拆解 Transformer 的各个零部件之前，先站远一点看清整台"机器"的全貌。本文从 2017 年原始论文的 Encoder-Decoder 架构讲起，完整剖析 Encoder、Decoder 的内部结构与数据流，随后追溯架构演化的三条路线（Encoder-only、Encoder-Decoder、Decoder-only），聚焦当前大模型的主流选择——Decoder-only，最后用 PyTorch 从零实现完整的 Encoder-Decoder Transformer，将理论与代码一一对应。
 
@@ -2113,7 +2113,7 @@ if __name__ == "__main__":
 
 ## 3.3 Self-Attention机制深入理解
 
-> 发布 2026-04-18 · 标签 "Transformer", "Self-Attention", "Multi-Head Attention", "FlashAttention", "GQA" · [单篇原文](../articles/part1/transformer/3.3 Self-Attention机制深入理解.md)
+> 发布 2026-04-18 · 标签 "Transformer", "Self-Attention", "Multi-Head Attention", "FlashAttention", "GQA" · 单篇原文
 
 Self-Attention 是 Transformer 的心脏，也是当代大模型中计算量最集中、优化手段最丰富的模块。无论你是想理解 FlashAttention 背后的 IO 优化思想，还是想搞清楚 GQA、MLA 这些 Attention 变种为什么能减少推理开销，都绕不开对 Self-Attention 机制的深入理解。本文将从 Attention 的历史起源讲起，逐步拆解 Scaled Dot-Product Attention 的每一步数学原理，手写 PyTorch 实现，分析计算瓶颈，最后延伸到 FlashAttention 和各种 Attention 变种，力求让读者建立从直觉到公式再到工程实现的完整认知链条。
 
@@ -2925,7 +2925,7 @@ FlashAttention-3（Dao et al., 2024）则针对 Hopper 架构（H100）进行了
 
 ## 3.4 Transformer前馈网络FFN深入理解
 
-> 发布 2026-04-20 · 标签 "Transformer", "FFN", "SwiGLU", "激活函数", "MoE" · [单篇原文](../articles/part1/transformer/3.4 Transformer前馈网络FFN深入理解.md)
+> 发布 2026-04-20 · 标签 "Transformer", "FFN", "SwiGLU", "激活函数", "MoE" · 单篇原文
 
 前馈网络（FFN）是 Transformer 中参数量最大的模块，占据单个 Block 约 2/3 的参数。它负责对每个 token 进行独立的非线性变换，是模型"记忆知识"和"深度推理"的核心载体。本文从 FFN 的结构设计出发，深入剖析激活函数演进、参数量计算、SwiGLU 门控机制，并延伸到张量并行切分、MoE 专家并行和 CUDA kernel 融合等 AI Infra 工程实践。
 
@@ -3645,7 +3645,7 @@ FFN 的输出通常要经过残差加法和后续的 LayerNorm。将这些逐元
 
 ## 3.5 Transformer位置编码深入理解
 
-> 发布 2026-04-20 · 标签 "Transformer", "位置编码", "RoPE", "Sinusoidal", "ALiBi" · [单篇原文](../articles/part1/transformer/3.5 Transformer位置编码深入理解.md)
+> 发布 2026-04-20 · 标签 "Transformer", "位置编码", "RoPE", "Sinusoidal", "ALiBi" · 单篇原文
 
 位置编码是 Transformer 架构中一个看似不起眼却至关重要的组件。没有它，Transformer 无法区分"猫吃鱼"和"鱼吃猫"的区别。本文从"为什么需要位置信息"这个根本问题出发，系统讲解 Sinusoidal 编码、可学习编码、RoPE、ALiBi 等主流方案的原理与实现，并深入探讨长上下文扩展中的位置编码外推技术，最终关联到 AI Infra 工程实践中的 CUDA kernel 融合与 KV Cache 管理。
 
@@ -4377,7 +4377,7 @@ RoPE 的核心操作是对 Q 和 K 向量做逐元素的乘加运算（5.5 节�
 
 ## 3.6 LayerNorm与残差连接深入理解
 
-> 发布 2026-04-21 · 标签 "Transformer", "LayerNorm", "RMSNorm", "残差连接", "Pre-Norm" · [单篇原文](../articles/part1/transformer/3.6 LayerNorm与残差连接深入理解.md)
+> 发布 2026-04-21 · 标签 "Transformer", "LayerNorm", "RMSNorm", "残差连接", "Pre-Norm" · 单篇原文
 
 在 Transformer 架构中，Self-Attention 和 FFN 负责"学什么"，而 LayerNorm 和残差连接决定了"能不能学会"。一个没有残差连接的 100 层网络几乎无法训练，一个没有归一化的深层网络则像一辆刹车失灵的卡车——要么冲出路面（梯度爆炸），要么熄火在半路（梯度消失）。本文从深度网络训练的根本困难出发，逐步拆解残差连接和归一化技术的原理、实现与工程优化，帮助你建立对这两个"幕后功臣"的系统认知。
 
@@ -5027,7 +5027,7 @@ LLaMA 系列在这个演进中起到了关键作用。Meta 在 LLaMA 论文中�
 
 ## 3.7 Transformer Decoder Block完整解析
 
-> 发布 2026-04-21 · 标签 "Transformer", "Decoder Block", "参数量计算", "显存规划" · [单篇原文](../articles/part1/transformer/3.7 Transformer Decoder Block完整解析.md)
+> 发布 2026-04-21 · 标签 "Transformer", "Decoder Block", "参数量计算", "显存规划" · 单篇原文
 
 大语言模型的核心计算单元是 Transformer Decoder Block。无论你在做 CUDA 算子优化、分布式训练还是推理部署，最终操作的对象都是这个 Block 里面的矩阵乘法、归一化和注意力计算。本文将这个 Block 彻底拆开，从架构选型的历史原因讲起，逐步深入到因果掩码的实现、完整的 PyTorch 代码、参数量与计算量的手算方法，最后落地到显存规划的工程实践。目标是读完之后，你能拿着纸笔算清楚任意一个开源模型"能不能装进某张卡"。
 
@@ -5761,7 +5761,7 @@ $$M_{kv} = 2 \times L \times h_{kv} \times d_k \times s \times b \times \text{by
 
 ## 3.8 从Transformer到LLM自回归生成深入理解
 
-> 发布 2026-04-21 · 标签 "Transformer", "自回归生成", "KV Cache", "PagedAttention" · [单篇原文](../articles/part1/transformer/3.8 从Transformer到LLM自回归生成深入理解.md)
+> 发布 2026-04-21 · 标签 "Transformer", "自回归生成", "KV Cache", "PagedAttention" · 单篇原文
 
 理解 Transformer 的内部结构只是第一步，真正让大语言模型"说话"的是自回归生成过程。本文深入剖析 LLM 推理的完整链路——从条件概率到 Token 采样，从 Prefill/Decode 两阶段特性到 KV Cache 管理，再到 PagedAttention、Speculative Decoding 等前沿优化技术，帮助 AI Infra 工程师建立推理优化的全局视野。
 
@@ -6314,7 +6314,7 @@ Prefill 完成后，将 KV Cache 传输到 Decode 池继续生成。这样两个
 
 ## 3.9 Tokenization与词嵌入
 
-> 发布 2026-04-24 · 标签 "Transformer", "Word Embedding", "Tokenization", "词向量" · [单篇原文](../articles/part1/transformer/3.9 Tokenization与词嵌入.md)
+> 发布 2026-04-24 · 标签 "Transformer", "Word Embedding", "Tokenization", "词向量" · 单篇原文
 
 Transformer 处理的不是原始文字，而是向量。在一段文字变成模型输入之前，需要先经过两道关键变换：**Tokenization（分词）** 和 **Embedding（词嵌入）**。这两步看似简单，却决定了模型能"看到"什么、能"理解"什么——是整个 Transformer 流水线的起点，也是语言建模的基础认知。
 

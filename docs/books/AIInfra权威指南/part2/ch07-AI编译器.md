@@ -2,7 +2,7 @@
 
 # 第2部分 · 第7章：AI 编译器
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch06-Attention算子.md) ｜ [下一章](ch08-性能分析工具链.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch06-Attention算子.md) ｜ [下一章](ch08-性能分析工具链.md)
 
 ## 本章目录
 
@@ -13,7 +13,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "Triton", "torch.compile", "AI编译器", "TorchInductor", "TVM" · [单篇原文](../articles/part2/第7章-AI编译器.md)
+> 发布 2026-04-16 · 标签 "Triton", "torch.compile", "AI编译器", "TorchInductor", "TVM" · 单篇原文
 
 ### 本章简介
 
@@ -29,7 +29,7 @@
 
 ## 7.1 Triton 编程框架介绍
 
-> 发布 2026-10-17 · 标签 "Triton", "AI编译器",  · [单篇原文](../articles/part2/7.1-Triton编程框架.md)
+> 发布 2026-10-17 · 标签 "Triton", "AI编译器",  · 单篇原文
 
 本文结合官方 Fused Softmax 算子的实现，介绍 Triton 的编程模型和基础语法。与 CUDA 通常从 thread 的视角编写计算逻辑不同，Triton 让开发者以 tile（数据块）为单位描述加载、计算和存储操作，将大量线程与 warp 级别的实现细节交给编译器。
 

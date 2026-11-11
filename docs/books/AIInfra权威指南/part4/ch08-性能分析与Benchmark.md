@@ -2,7 +2,7 @@
 
 # 第4部分 · 第8章：性能分析与 Benchmark
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch07-PD解耦架构.md) ｜ [下一章](ch09-生产部署与运维.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch07-PD解耦架构.md) ｜ [下一章](ch09-生产部署与运维.md)
 
 ## 本章目录
 
@@ -12,7 +12,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "性能分析", "Benchmark", "vLLM Bench", "GenAI-Perf", "性能回归" · [单篇原文](../articles/part4/第8章-性能分析与Benchmark.md)
+> 发布 2026-04-16 · 标签 "性能分析", "Benchmark", "vLLM Bench", "GenAI-Perf", "性能回归" · 单篇原文
 
 ### 本章简介
 

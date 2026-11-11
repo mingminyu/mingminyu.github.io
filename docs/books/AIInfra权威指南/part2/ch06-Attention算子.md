@@ -2,7 +2,7 @@
 
 # 第2部分 · 第6章：Attention 算子
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch05-经典算子实现-Softmax与算子融合.md) ｜ [下一章](ch07-AI编译器.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch05-经典算子实现-Softmax与算子融合.md) ｜ [下一章](ch07-AI编译器.md)
 
 ## 本章目录
 
@@ -14,7 +14,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "FlashAttention", "Attention", "Flash-Decoding", "PagedAttention", "CUDA" · [单篇原文](../articles/part2/第6章-Attention算子.md)
+> 发布 2026-04-16 · 标签 "FlashAttention", "Attention", "Flash-Decoding", "PagedAttention", "CUDA" · 单篇原文
 
 ### 本章简介
 
@@ -38,7 +38,7 @@ Attention 是 Transformer 的核心计算，也是 AI Infra 优化的重中之�
 
 ## 6.1 FlashAttention V1详解
 
-> 发布 2026-06-25 · 标签 "CUDA", "GPU", "FlashAttention", "Attention", "FlashAttention", "算子优化" · [单篇原文](../articles/part2/6.1-FlashAttention V1详解.md)
+> 发布 2026-06-25 · 标签 "CUDA", "GPU", "FlashAttention", "Attention", "FlashAttention", "算子优化" · 单篇原文
 
 本文深入剖析 FlashAttention V1 的核心原理与实现细节，理解如何通过 Tiling + Online Softmax 将 Attention 的额外显存占用从 $O(N^2)$ 降至 $O(N)$，同时大幅减少 HBM 访问量，实现无精度损失的加速。
 
@@ -627,7 +627,7 @@ FlashAttention V1 通过 **IO-Awareness** 的视角重新审视 Attention 计算
 
 ## 6.2 FlashAttention V2详解
 
-> 发布 2026-06-26 · 标签 "CUDA", "GPU", "FlashAttention", "Attention", "FlashAttention", "算子优化" · [单篇原文](../articles/part2/6.2-FlashAttention V2详解.md)
+> 发布 2026-06-26 · 标签 "CUDA", "GPU", "FlashAttention", "Attention", "FlashAttention", "算子优化" · 单篇原文
 
 本文深入剖析 FlashAttention V2 相比 V1 的核心改进：调换内外循环顺序、优化线程块内的工作分配、减少非矩阵乘运算，最终在 A100 上达到理论 FLOPS 的 50-73%。
 

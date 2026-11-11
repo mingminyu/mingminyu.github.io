@@ -2,7 +2,7 @@
 
 # 第4部分 · 第3章：nano-vllm 源码解读
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch02-推理引擎核心技术.md) ｜ [下一章](ch04-量化.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch02-推理引擎核心技术.md) ｜ [下一章](ch04-量化.md)
 
 ## 本章目录
 
@@ -18,7 +18,7 @@
 
 ## 本章导读
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "源码解读", "推理引擎", "PagedAttention", "连续批处理", "CUDA Graph" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/第3章-nano-vllm源码解读.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "源码解读", "推理引擎", "PagedAttention", "连续批处理", "CUDA Graph" · 单篇原文
 
 ### 📖 本章简介
 
@@ -43,7 +43,7 @@
 
 ## 3.1 项目全景与四层架构
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "推理引擎", "架构设计", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.1-项目全景与四层架构.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "推理引擎", "架构设计", "源码解读" · 单篇原文
 
 ### 1. 为什么值得读 nano-vllm
 
@@ -205,7 +205,7 @@ nanovllm/
 
 ## 3.2 配置、入口与一次 generate 的全流程
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "LLMEngine", "推理循环", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.2-配置入口与推理主循环.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "LLMEngine", "推理循环", "源码解读" · 单篇原文
 
 ### 1. 从一段示例代码进入
 
@@ -441,7 +441,7 @@ def step(self):
 
 ## 3.3 模型骨架与核心算子
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "Qwen3", "张量并行", "FlashAttention", "RoPE", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.3-模型与核心算子.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "Qwen3", "张量并行", "FlashAttention", "RoPE", "源码解读" · 单篇原文
 
 ### 1. 从 Qwen3 的一层说起
 
@@ -793,7 +793,7 @@ $$
 
 ## 3.4 KV Cache 与 BlockManager
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "PagedAttention", "KV Cache", "前缀缓存", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.4-KVCache与BlockManager.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "PagedAttention", "KV Cache", "前缀缓存", "源码解读" · 单篇原文
 
 ### 1. 为什么 KV 要分块
 
@@ -1104,7 +1104,7 @@ def allocate(self, seq, num_cached_blocks):
 
 ## 3.5 Scheduler 与连续批处理
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "Scheduler", "连续批处理", "调度", "抢占", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.5-Scheduler与连续批处理.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "Scheduler", "连续批处理", "调度", "抢占", "源码解读" · 单篇原文
 
 ### 1. 调度器要回答的三个问题
 
@@ -1292,7 +1292,7 @@ def postprocess(self, seqs, token_ids, is_prefill):
 
 ## 3.6 ModelRunner、CUDA Graph 与性能基准
 
-> 发布 2026-10-12 · 标签 "nano-vllm", "ModelRunner", "CUDA Graph", "性能基准", "张量并行", "源码解读" · [单篇原文](../articles/part4/第3章-nano-vllm源码解读/3.6-ModelRunner引擎循环与性能.md)
+> 发布 2026-10-12 · 标签 "nano-vllm", "ModelRunner", "CUDA Graph", "性能基准", "张量并行", "源码解读" · 单篇原文
 
 ### 1. ModelRunner 的位置
 

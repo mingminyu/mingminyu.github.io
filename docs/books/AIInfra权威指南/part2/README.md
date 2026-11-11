@@ -2,7 +2,7 @@
 
 > 从 CUDA 编程模型、内存模型到 Warp 执行与性能优化，再到 Reduce / GEMM / Softmax / FlashAttention / Triton 实战。
 
-> 本部分按原站章节拆为 **8 个独立 md 文件**；[返回总索引](../README.md) ｜ [单篇原文目录](../articles/part2/) ｜ [图片目录](../_images/)
+> 本部分按原站章节拆为 **8 个独立 md 文件**；返回总索引 ｜ 单篇原文目录 ｜ [图片目录](../_images/)
 
 ## 章节目录
 

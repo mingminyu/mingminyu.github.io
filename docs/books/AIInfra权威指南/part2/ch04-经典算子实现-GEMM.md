@@ -2,7 +2,7 @@
 
 # 第2部分 · 第4章：经典算子实现—GEMM
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch03-经典算子实现-Reduce.md) ｜ [下一章](ch05-经典算子实现-Softmax与算子融合.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch03-经典算子实现-Reduce.md) ｜ [下一章](ch05-经典算子实现-Softmax与算子融合.md)
 
 ## 本章目录
 
@@ -13,7 +13,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 标签 "CUDA", "GEMM", "矩阵乘法", "Tiling", "Tensor Core", "cuBLAS" · [单篇原文](../articles/part2/第4章-经典算子实现-GEMM.md)
+> 发布 2026-04-16 · 标签 "CUDA", "GEMM", "矩阵乘法", "Tiling", "Tensor Core", "cuBLAS" · 单篇原文
 
 ### 本章简介
 
@@ -47,7 +47,7 @@ GEMM（通用矩阵乘法）是深度学习中最核心的算子——线性层�
 
 ## 4.1 CUDA GEMM算子性能优化
 
-> 发布 2026-06-02 · 标签 "CUDA", "GEMM Kernel", "算子优化", "矩阵乘法" · [单篇原文](../articles/part2/4.1-CUDA GEMM算子性能优化.md)
+> 发布 2026-06-02 · 标签 "CUDA", "GEMM Kernel", "算子优化", "矩阵乘法" · 单篇原文
 
 矩阵乘法（GEMM）是深度学习中最核心的计算原语——从全连接层到注意力机制，绝大多数运算最终都归结为矩阵乘法。本文从朴素实现出发，逐步Block-Warp-Thread三级Tiling优化、向量化访存、Bank Conflict 消除、双缓冲等优化手段，带你系统掌握 CUDA GEMM 优化的完整方法论。
 

@@ -2,11 +2,11 @@
 
 # 第2部分 · 附录 · CUDA 编程入门指南（模块导读）
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [末章](ch08-性能分析工具链.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [末章](ch08-性能分析工具链.md)
 
 ---
 
-> 发布 2026-04-15 · 标签 CUDA, GPU编程, 算子优化, FlashAttention, Triton · [单篇原文](../articles/part2/CUDA编程入门指南.md)
+> 发布 2026-04-15 · 标签 CUDA, GPU编程, 算子优化, FlashAttention, Triton · 单篇原文
 
 CUDA 是连接 AI 算法与 GPU 硬件的桥梁，负责把高层的数学计算翻译成 GPU 能最高效执行的机器指令。本文从编程模型、内存模型讲起，到 Reduce/GEMM/Softmax 三大经典算子的实现与优化，再到 FlashAttention 系列 Attention 算子和 Triton 编译器，系统覆盖 AI Infra 从业者需要掌握的 CUDA 编程基础。
 

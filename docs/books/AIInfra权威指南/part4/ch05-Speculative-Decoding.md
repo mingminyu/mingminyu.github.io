@@ -2,7 +2,7 @@
 
 # 第4部分 · 第5章：Speculative Decoding
 
-> [总索引](../README.md) ｜ [本部分目录](README.md) ｜ [上一章](ch04-量化.md) ｜ [下一章](ch06-分布式推理.md)
+> 总索引 ｜ [本部分目录](README.md) ｜ [上一章](ch04-量化.md) ｜ [下一章](ch06-分布式推理.md)
 
 ## 本章目录
 
@@ -17,7 +17,7 @@
 
 ## 本章导读
 
-> 发布 2026-04-16 · 更新 2026-11-01 · 标签 "Speculative Decoding", "投机解码", "Medusa", "EAGLE", "MTP", "N-gram" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/第5章-Speculative-Decoding.md)
+> 发布 2026-04-16 · 更新 2026-11-01 · 标签 "Speculative Decoding", "投机解码", "Medusa", "EAGLE", "MTP", "N-gram" · 单篇原文
 
 ### 📖 本章简介
 
@@ -44,7 +44,7 @@ Decode 慢，是因为大模型每读一遍权重只写出一个 Token。投机�
 
 ## 5.1 投机解码核心原理：先猜一段，再让大模型验收
 
-> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Speculative Decoding", "Draft", "Verify", "Rejection Sampling", "KV Cache" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/5.1-投机解码核心原理.md)
+> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Speculative Decoding", "Draft", "Verify", "Rejection Sampling", "KV Cache" · 单篇原文
 
 第 1 章把 Decode 比作接龙：大模型写完一个 Token，才知道下一个该接什么。第 2 章用批处理让一次权重搬运服务更多请求，第 4 章用低比特让每次搬得更少。这一章换个思路：**同一个请求，能不能一次大模型前向就确认好几个 Token？**
 
@@ -332,7 +332,7 @@ print("经验分布:", [counts[i] / trials for i in range(3)], "接受率:", acc
 
 ## 5.2 Draft 模型与无模型方案：怎样便宜地猜得更准
 
-> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Draft Model", "N-gram", "Prompt Lookup", "Suffix Decoding", "Acceptance Rate" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/5.2-Draft模型与无模型方案.md)
+> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Draft Model", "N-gram", "Prompt Lookup", "Suffix Decoding", "Acceptance Rate" · 单篇原文
 
 上一节证明了：只要验收与修正做对，Draft 猜得再差也不会把输出带偏。但从性能上看，草稿写得慢、又总被否决，投机就成了白忙一场。所以本节的问题是：**怎样让"猜一段"的成本，低于"少调几次大模型"省下来的时间？**
 
@@ -612,7 +612,7 @@ $$
 
 ## 5.3 Medusa、EAGLE 与 MTP：复用大模型信息生成更好的草稿
 
-> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Medusa", "EAGLE", "EAGLE-3", "MTP", "Draft Tree", "Tree Attention" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/5.3-Medusa与EAGLE.md)
+> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Medusa", "EAGLE", "EAGLE-3", "MTP", "Draft Tree", "Tree Attention" · 单篇原文
 
 独立 Draft 像另请了一位助手：工资低，但他得自己把全文再读一遍、另记一份笔记才能动笔。另一种思路是让助手直接用上主编已经形成的理解：Target 的隐藏状态里装着它对上文的理解，**在这些表示上接几个小头或一个轻量网络，往往比从 Token 开始再跑一个完整模型更划算。**
 
@@ -878,7 +878,7 @@ Medusa 除了精确的拒绝采样，还提出了 Typical Acceptance：只要候
 
 ## 5.4 投机解码的收益边界：接受率高，为什么仍可能变慢
 
-> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Acceptance Rate", "TPOT", "Continuous Batching", "Dynamic Speculative Decoding", "量化", "性能分析" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/5.4-收益边界与限制.md)
+> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "Acceptance Rate", "TPOT", "Continuous Batching", "Dynamic Speculative Decoding", "量化", "性能分析" · 单篇原文
 
 "草稿接受率 80%，是不是一定变快？"这是投机解码最常见的误判。接受率只说明猜得准不准，没说明猜一次花多久、验证一段草稿要多少算力、多出来的缓存挤掉了多少请求。**每轮提交的 Token 多了，每轮的耗时也长了，两者相除才是真正的收益。**
 
@@ -1156,7 +1156,7 @@ assert expected_length([1.0] * 4) == 5
 
 ## 5.5 vLLM 投机解码实战：配置、接受率与性能一起测
 
-> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "vLLM", "Speculative Decoding", "N-gram", "EAGLE-3", "Benchmark", "Acceptance Rate" · [单篇原文](../articles/part4/第5章-Speculative-Decoding/5.5-vLLM投机解码实战.md)
+> 发布 2026-10-07 · 更新 2026-11-01 · 标签 "vLLM", "Speculative Decoding", "N-gram", "EAGLE-3", "Benchmark", "Acceptance Rate" · 单篇原文
 
 前四节把"先猜后验"拆成了采样规则、候选来源、辅助网络和性能账本。现在把它们接回推理服务：**同一个 Target、同一张卡、同一批请求，打开投机之后到底变了什么？** 只有接受率没有普通 Decode 的基线，或者只有 Token/s 不看输出内容，都回答不了这个问题。
 
