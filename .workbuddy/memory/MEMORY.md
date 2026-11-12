@@ -18,7 +18,7 @@
 - 文档常在 VS Code / Zensical Studio 里被顺手格式化（表格对齐、`<br />`、引用块等），**编辑前必须重新读取文件最新内容**，不要按上一次写入的快照做整文件覆盖；用局部替换保留用户改动。
 
 ## 参考资料（后续写文档先查这里）
-- **Zensical 官方全量离线参考库**：`/Users/yumm/.workbuddy/zensical-reference/`
+- **Zensical 官方全量离线参考库**：`/Users/yumm/.workbuddy/zensical-reference/`（2026-11-12 复核：该路径当前不存在，可能已移走，使用前先确认存在）
   - `README.md` 索引与 54 页清单；`M2Note-PROJECT.md` 是本项目现状对照 + 优化建议（优先读）
   - `official/` 54 页官网 Markdown 原文（2026-11-10 抓取，官网生成器 zensical-0.1.0）
   - `notes/` 四份中文精读笔记：authoring.md（写作语法）、setup.md（配置）、compatibility.md（扩展/迁移/插件）、basics.md（CLI/构建/发布）
