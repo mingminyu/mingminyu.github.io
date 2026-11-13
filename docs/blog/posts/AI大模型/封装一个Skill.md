@@ -13,6 +13,8 @@ tags:
 
 元数据常驻上下文，正文触发时才加载，脚本与资料按需取用 —— 这套 ==渐进式披露== 决定了 Skill 该写多少、该把什么拆出去。
 
+<!-- more -->
+
 ## 1. 先看结构：三层加载
 
 | 层级     | 内容                                 | 何时进入上下文    | 体量        |
@@ -113,13 +115,15 @@ python3 "$S/package_skill.py" ~/.workbuddy/skills/weekly-report-style ./dist
 
 !!! tip "本机实测：`--path` 必须显式给"
 
-    skill-creator 的说明把 `--path` 写成「可省略、默认用户级」，但本机 `init_skill.py` 的 `main()` 要求参数 ≥ 4 个且第 3 个必须是 `--path`；省略会直接打印用法并退出。上面四步命令已在 /tmp 实测通过：初始化 → `Skill is valid!` → `demo-skill.zip`。
+    `skill-creator` 的说明把 `--path` 写成「可省略、默认用户级」，但本机 `init_skill.py` 的 `main()` 要求参数 ≥ 4 个且第 3 个必须是 `--path`；省略会直接打印用法并退出。上面四步命令已在 /tmp 实测通过：初始化 → `Skill is valid!` → `demo-skill.zip`。
 
-## 4. 进阶实例一：`scripts/` 把确定性逻辑固化
+## 4. 进阶实例
+
+### 4.1 实例一：`scripts/` 把确定性逻辑固化
 
 真实案例 `~/.workbuddy/skills/bilibili-video-info/`：解析 B 站分享文本 / 短链，输出标题、时间、UP 主、规范 URL。
 
-```text
+```text title="项目结构"
 bilibili-video-info/
 ├── SKILL.md
 ├── scripts/
@@ -131,7 +135,7 @@ bilibili-video-info/
 
 使用时不重写代码，直接执行脚本，把用户原文整段传进去：
 
-```bash
+```bash title="手动执行脚本" linenums="1"
 python3 ~/.workbuddy/skills/bilibili-video-info/scripts/resolve_bili.py "【手指发力技术教学-哔哩哔哩】 https://b23.tv/HlWsuVM"
 ```
 
@@ -143,12 +147,41 @@ python3 ~/.workbuddy/skills/bilibili-video-info/scripts/resolve_bili.py "【手�
 
 | 做法                | 原因                                        |
 | ----------------- | ----------------------------------------- |
-| 脚本可直接执行，不必读入上下文   | 省 token、结果确定、可复测                          |
+| **脚本可直接执行，不必读入上下文**   | 省 token、结果确定、可复测                          |
 | 映射表 / 配置与脚本逻辑分离   | 改数据不改代码；同一条规则只存在一处                        |
 | 降级路径写进 `SKILL.md` | 本机直连 API 常被拦截，固定走「WebFetch 取 JSON → 喂回脚本」 |
 | 缺失字段显式标注「未获取」     | 防止模型凭猜测补齐                                 |
 
-## 5. 进阶实例二：`references/` 与 `assets/` 的取舍
+??? code "bilibili-video-info SKILL源码"
+
+    === "SKILL.md"
+
+        ````markdown
+        --8<-- "code/llm_skills/bilibili-video-info/SKILL.md"
+        ````
+
+    === "scripts/resolve_bili.py"
+
+        ```python linenums="1"
+        --8<-- "code/llm_skills/bilibili-video-info/scripts/resolve_bili.py"
+        ```
+
+    === "scripts/uploader_aliases.json"
+
+        ```json
+        {
+          "羽球小宋老师": "小宋老师",
+          "广益羽球": "黄广益"
+        }
+        ```
+
+    === "references/bilibili_api.md"
+
+        ````markdown
+        --8<-- "code/llm_skills/bilibili-video-info/references/bilibili_api.md"
+        ````
+
+### 4.2 实例二：`references/` 与 `assets/` 的取舍
 
 | 目录            | 放什么                      | 判据                | 别放           |
 | ------------- | ------------------------ | ----------------- | ------------ |
@@ -162,7 +195,7 @@ python3 ~/.workbuddy/skills/bilibili-video-info/scripts/resolve_bili.py "【手�
 
 更完整的组合案例 `~/.workbuddy/skills/italent-attendance-capture/`：
 
-```text
+```text title="项目结构"
 italent-attendance-capture/
 ├── SKILL.md
 ├── config.json
@@ -173,14 +206,51 @@ italent-attendance-capture/
     └── workflow.md         # 参数优先级、长区间耗时、降级说明
 ```
 
-```bash
+```bash title="手动执行"
 node ~/.workbuddy/skills/italent-attendance-capture/scripts/capture.js \
   --start 2026-11-01 --end 2026-11-06 --out ./attendance-shots
 ```
 
-关键数值：30 条/页分批、18:00 判定加班、`captured.json` 记录已抓日期实现幂等、stdout 返回摘要 JSON。这类「多脚本 + 状态文件 + 参考文档」的结构，正是从单文件 Skill 升级到可长期运行工具的分界线。
+**关键数值**：30 条/页分批、18:00 判定加班、`captured.json` 记录已抓日期实现幂等、stdout 返回摘要 JSON。这类「多脚本 + 状态文件 + 参考文档」的结构，正是从单文件 Skill 升级到可长期运行工具的分界线。
 
-## 6. 进阶实例三：让 Skill 越用越准
+??? code "italent-attendance-capture SKILL源码"
+
+    === "SKILL.md"
+
+        ````markdown
+        --8<-- "code/llm_skills/italent-attendance-capture/SKILL.md"
+        ````
+
+    === "config.json"
+
+        ```json
+        {
+          "user": "<账号>",
+          "password": "<密码>",
+          "overtimeAfter": "18:00"
+          "pageSize": 30
+        }
+        ```
+
+    === "scripts/capture.js"
+        
+        ```js linenums="1"
+        --8<-- "code/llm_skills/italent-attendance-capture/scripts/capture.js"
+        ```
+
+    === "scripts/excel_report.py"
+
+        ```python linenums="1"
+        --8<-- "code/llm_skills/italent-attendance-capture/scripts/excel_report.py"
+        ```
+
+    === "references/workflow.md"
+
+        ```markdown
+        --8<-- "code/llm_skills/italent-attendance-capture/references/workflow.md"
+        ```
+
+### 4.3 实例三：让 Skill 越用越准
 
 | 观察到的现象       | 改哪里                                                                       | 怎么验证        |
 | ------------ | ------------------------------------------------------------------------- | ----------- |
@@ -193,7 +263,9 @@ node ~/.workbuddy/skills/italent-attendance-capture/scripts/capture.js \
 
 写作用的固定口径：用祈使句 / 不定式（「执行 X」「把 Y 传入 Z」），不用第二人称；只写对另一个实例 ==非显而易见== 的知识，不复述常识；`SKILL.md` 里引用到的每个资源都要说明何时使用。
 
-## 7. 发布前校验清单
+## 5. 发布前校验清单
+
+在你的 SKILL 发布之前，需要检查下是否符合以下要求：
 
 - [ ] `name` 与目录名一致，且为 hyphen-case
 - [ ] `description` 含「做什么 / 何时用 / 触发词」，无尖括号
@@ -204,7 +276,7 @@ node ~/.workbuddy/skills/italent-attendance-capture/scripts/capture.js \
 - [ ] 用真实任务跑过一遍，必要时回到第 6 节迭代
 - [ ] `package_skill.py` 打出 `<name>.zip`
 
-## 8. 常见坑速查
+## 6. 常见坑速查
 
 | 坑                               | 后果               | 修法                      |
 | ------------------------------- | ---------------- | ----------------------- |
@@ -215,24 +287,6 @@ node ~/.workbuddy/skills/italent-attendance-capture/scripts/capture.js \
 | 规则在 `SKILL.md` 与脚本 / JSON 里各写一份 | 改一处漏一处，行为漂移      | 数据归数据，流程归正文             |
 | 初始化示例文件没删                       | 打包把占位文件一起分发出去    | 用不到的目录整个删掉              |
 | 把整本 API 文档塞进正文                  | 每次触发都撑爆上下文       | 拆到 `references/` 并给检索模式 |
-
-## 9. 本站落地：写成 Zensical 博客
-
-```yaml
----
-date: 2026-11-12
-categories:
-    - AI大模型
-tags:
-    - AI
-    - Skill
----
-```
-
-- 文章放 `docs/blog/posts/<分类>/`，`date` 必填，\`\` 之前是列表摘要。
-- 新增 tag 若要自定义图标，需同步 `zensical.toml` 的 `[project.extra.tags]` 与 `[project.theme.icon.tag]`；不配置则用默认 tag 图标。
-- `!!! tip` 等提示块：标题行后空一行，正文 4 空格缩进，**不要**用代码块包裹；代码块内的 `**加粗**` 不会生效。
-- 编写期用 Zensical Studio 预览，发布前用 `zensical build --clean` 验证主题与链接。
 
 ## 参考
 

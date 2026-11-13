@@ -1,0 +1,6 @@
+{
+  "user": "<账号>",
+  "password": "<密码>",
+  "overtimeAfter": "18:00",
+  "pageSize": 30
+}
